@@ -69,8 +69,8 @@ $(document).ready(function() {
 
 
 
-<script src="js/bootstrap.min.js"></script>
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="/javascripts/bootstrap.min.js"></script>
+<link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 </head>
@@ -152,14 +152,14 @@ $(document).ready(function() {
             <h4 class="modal-title" id="myModalLabel">Add your recipe</h4>
             </div>
             <div class="modal-body">
-                <form method="post">
+                <form action="/recipes" method="POST">
 				<label for="recipe_name">
 					Recipe Name:
 					<input type="text" name="recipe_name" id="username" placeholder="Recipe name..." pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
 				</label>
 				<label for="recipe_image">
 					Image:
-					<input type="password" name="recipe_image" id="password" placeholder="image url" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
+					<input type="text" name="recipe_image" id="password" placeholder="image url" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
 				</label>
 			</form>
             </div>
