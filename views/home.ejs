@@ -1,0 +1,117 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!doctype html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Food for Thought</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/stylesheets/main.css"/>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<link href='http://fonts.googleapis.com/css?family=News+Cycle|Raleway:600,400,300' rel='stylesheet' type='text/css'>
+<script>
+      function initialize() {
+        var mapArea = document.getElementById('map');
+        var mapOptions = {
+          center: new google.maps.LatLng(42.3598, -71.0921),
+          zoom: 6,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+		  minZoom: 3,
+		  maxZoom:7,
+		  mapTypeControl: false,
+		  streetViewControl: false,
+		  zoomControl: false,
+		  panControl: false
+        }
+        var map = new google.maps.Map(mapArea, mapOptions)
+		new google.maps.Marker({position: {lat: 42.3589, lng: -71.0921}, map: map, icon: "marker3.png"}) 
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+	  
+</script>
+
+
+
+<!--LOGIN FORM-->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script><script>
+$(document).ready(function() {
+	$("#loginLink").click(function( event ){
+		event.preventDefault();
+    	$(".overlay").fadeToggle("fast");
+  	});
+	
+	$(".overlayLink").click(function(event){
+		event.preventDefault();
+		var action = $(this).attr('data-action');
+		
+		$.get( "ajax/" + action, function( data ) {
+			$( ".login-content" ).html( data );
+		});	
+		
+		$(".overlay").fadeToggle("fast");
+	});
+	
+	$(".close").click(function(){
+		$(".overlay").fadeToggle("fast");
+	});
+	
+	$(document).keyup(function(e) {
+		if(e.keyCode == 27 && $(".overlay").css("display") != "none" ) { 
+			event.preventDefault();
+			$(".overlay").fadeToggle("fast");
+		}
+	});
+});
+</script>
+<!--END LOGIN-->
+
+
+
+<script src="js/bootstrap.min.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+</head>
+
+
+
+<body>
+
+<div id="nav">
+    <!--search bar--->
+    <div class="field" id="searchform">
+      <input type="text" id="searchterm" placeholder="What recipe are you searching for?" />
+      <button type="button" id="search">Find!</button>
+    </div>
+    <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <!--search bar ends-->
+
+    
+    
+</div>
+    
+        
+    
+    <a href="login.php" id="loginLink" class="top">Login</a>
+<div class="overlay" style="display: none;">
+	<div class="login-wrapper">
+		<div class="login-content">
+			<a class="close">x</a>
+			<h3>Log in</h3>
+			<form method="post" action="login.php">
+				<label for="username">
+					Username:
+					<input type="text" name="username" id="username" placeholder="Username must be between 8 and 20 characters" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
+				</label>
+				<label for="password">
+					Password:
+					<input type="password" name="password" id="password" placeholder="Password must contain 1 uppercase, lowercase and number" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
+				</label>
+				<button type="submit">Sign in</button>
+			</form>
+		</div>
+	</div>
+</div>
+    
+<div id="map"></div>
+</body>
+</html>
