@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Food for Thought</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link rel="stylesheet" type="text/css" href="css/main.css"/> <!--CHANGE THIS LINE FOR THE EJS FILE-->
 <link rel="stylesheet" type="text/css" href="/stylesheets/main.css"/>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 <link href='http://fonts.googleapis.com/css?family=News+Cycle|Raleway:600,400,300' rel='stylesheet' type='text/css'>
@@ -79,21 +80,18 @@ $(document).ready(function() {
 <body>
 
 <div id="nav">
-    <!--search bar--->
+    <!--search bar
     <div class="field" id="searchform">
       <input type="text" id="searchterm" placeholder="What recipe are you searching for?" />
       <button type="button" id="search">Find!</button>
     </div>
     <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <!--search bar ends-->
-
-    
-    
-</div>
+    <input type=search name=s placeholder="What recipes are you looking for?"> <!-- search bar-->
     
         
-    
-    <a href="login.php" id="loginLink" class="top">Login</a>
+    <!--LOGIN ORIGINAL
+    <a href="login.php" id="loginLink" class="top btn btn-default btn-success">Login</a>
 <div class="overlay" style="display: none;">
 	<div class="login-wrapper">
 		<div class="login-content">
@@ -112,14 +110,41 @@ $(document).ready(function() {
 			</form>
 		</div>
 	</div>
-</div>
+</div>--->
 
+<!--LOGIN bootstrap-->
+<a href="#" class="btn btn-default btn-success"   data-toggle="modal"   data-target="#loginModal">Login</a>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h4 class="modal-title" id="myModalLabel">Login</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+				<label for="username">
+					Username:
+					<input type="text" name="recipe_name" id="username" placeholder="Username..." pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
+				</label>
+				<label for="password">
+					Password:
+					<input type="password" name="password" id="password" placeholder="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
+				</label>
+			</form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
+        </div>
+    </div>
+  </div>
+</div><!--login bootstrap-->
 
 
 
 <!--Recipe form-->
-<a href="#" class="btn btn-default btn-success"   data-toggle="modal"   data-target="#basicModal">Add Recipe</a>
-<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<a href="#" class="btn btn-default btn-success"   data-toggle="modal"   data-target="#recipeModal">Add Recipe</a>
+<div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -127,26 +152,27 @@ $(document).ready(function() {
             <h4 class="modal-title" id="myModalLabel">Add your recipe</h4>
             </div>
             <div class="modal-body">
-                <h3>Modal Body</h3>
                 <form method="post">
-				<label for="username">
+				<label for="recipe_name">
 					Recipe Name:
 					<input type="text" name="recipe_name" id="username" placeholder="Recipe name..." pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
 				</label>
-				<label for="password">
+				<label for="recipe_image">
 					Image:
 					<input type="password" name="recipe_image" id="password" placeholder="image url" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
 				</label>
 			</form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
         </div>
     </div>
   </div>
 </div>
 
 
+
+</div><!--END NAVBAR-->
 
 
     
