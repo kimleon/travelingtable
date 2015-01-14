@@ -117,7 +117,7 @@ a.close {
 *	LOG-IN BOX
 */
 div.overlay {
-	background-color: rgba(0,0,0,.25);
+	background-color: rgba(0,0,0,.4);
 	bottom: 0;
 	display: flex;
 	justify-content: center;
@@ -223,4 +223,14 @@ form button {
 
 .top {
 	z-index:1;
+}
+
+input[type=search] { 	
+	padding: 3px;
+	font-family: Raleway;     /* Overridden by font: -webkit-small-control; */
+	border-radius: .9em ;  /* Overridden by border: 2px inset; */
+	border-color: #ffffff;
+	height:7vh;
+	width:40vw;
+	margin:5px;
 }

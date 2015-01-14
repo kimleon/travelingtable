@@ -32,7 +32,9 @@
 
 
 <!--LOGIN FORM-->
-<script src="http://code.jquery.com/jquery-latest.min.js"></script><script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
 $(document).ready(function() {
 	$("#loginLink").click(function( event ){
 		event.preventDefault();
@@ -106,11 +108,47 @@ $(document).ready(function() {
 					Password:
 					<input type="password" name="password" id="password" placeholder="Password must contain 1 uppercase, lowercase and number" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
 				</label>
-				<button type="submit">Sign in</button>
+				<button type="submit">SIGN IN</button>
 			</form>
 		</div>
 	</div>
 </div>
+
+
+
+
+<!--Recipe form-->
+<a href="#" class="btn btn-default btn-success"   data-toggle="modal"   data-target="#basicModal">Add Recipe</a>
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h4 class="modal-title" id="myModalLabel">Add your recipe</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Modal Body</h3>
+                <form method="post">
+				<label for="username">
+					Recipe Name:
+					<input type="text" name="recipe_name" id="username" placeholder="Recipe name..." pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
+				</label>
+				<label for="password">
+					Image:
+					<input type="password" name="recipe_image" id="password" placeholder="image url" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
+				</label>
+			</form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
     
 <div id="map"></div>
 </body>

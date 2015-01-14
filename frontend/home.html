@@ -77,7 +77,7 @@ $(document).ready(function() {
 <body>
 
 <div id="nav">
-    <!--search bar--->
+    <!--search bar-
     <div class="field" id="searchform">
       <input type="text" id="searchterm" placeholder="What recipe are you searching for?" />
       <button type="button" id="search">Find!</button>
@@ -85,9 +85,9 @@ $(document).ready(function() {
     <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <!--search bar ends-->
 
+    <input type=search name=s>
     
-    
-</div>
+
     
         
     
@@ -111,7 +111,31 @@ $(document).ready(function() {
 		</div>
 	</div>
 </div>
-    
+
+    <a href="recipe.php" id="loginLink" class="top"> Add a New Recipe!</a>
+<div class="overlay" style="display: none;">
+	<div class="login-wrapper">
+		<div class="login-content">
+			<a class="close">x</a>
+			<h3>Share your recipe!</h3>
+			<form method="post" action="recipe.php">
+				<label for="recipe_name">
+					Recipe Name:
+					<input type="text" name="recipe_name" id="username" placeholder="Whats the name of your recipe?" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{2,40}$" required />
+				</label>
+				<label for="recipe_image">
+					Image:
+					<input type="password" name="password" id="password" placeholder="Password must contain 1 uppercase, lowercase and number" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
+				</label>
+				<button type="submit">Submit recipe</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+</div>
+
+
 <div id="map"></div>
 </body>
 </html>
