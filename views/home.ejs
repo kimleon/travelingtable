@@ -5,8 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Food for Thought</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--<link rel="stylesheet" type="text/css" href="css/main.css"/> <!--CHANGE THIS LINE FOR THE EJS FILE-->
-<link rel="stylesheet" type="text/css" href="/stylesheets/main.css"/>
+
+
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 <link href='http://fonts.googleapis.com/css?family=News+Cycle|Raleway:600,400,300' rel='stylesheet' type='text/css'>
 <script>
@@ -21,8 +21,81 @@
 		  mapTypeControl: false,
 		  streetViewControl: false,
 		  zoomControl: false,
-		  panControl: false
-        }
+		  panControl: false,
+styles: [
+
+  {
+    "featureType": "landscape.natural",
+    "elementType": "geometry.fill",
+    "stylers": [
+      { "color": "#f5f5f2" },
+      { "visibility": "on" }
+    ]
+  },{
+    "featureType": "poi",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#9BE4C4"
+            }
+        ]
+    },{
+    "featureType": "transit",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "landscape.man_made",
+    "elementType": "geometry.fill",
+    "stylers": [
+      { "color": "#ffffff" },
+      { "visibility": "on" }
+    ]
+  },{
+    "featureType": "road.arterial",
+    "stylers": [
+      { "visibility": "simplified" },
+      { "color": "#fee379" }
+    ]
+  },{
+    "featureType": "road.highway",
+    "elementType": "labels.icon",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "landscape",
+    "stylers": [
+      { "color": "#F7F8FF" }
+    ]
+  },{
+    "featureType": "road",
+    "stylers": [
+      { "color": "#ffffff" }
+    ]
+  },{
+    "featureType": "water",
+    "stylers": [
+      { "color": "#A9D5F1" }
+    ]
+  },{
+    "featureType": "landscape",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },
+],
+
+		}
+		
         var map = new google.maps.Map(mapArea, mapOptions)
 		new google.maps.Marker({position: {lat: 42.3589, lng: -71.0921}, map: map, icon: "marker3.png"}) 
       }
@@ -32,39 +105,10 @@
 
 
 
+
 <!--LOGIN FORM-->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-<script>
-$(document).ready(function() {
-	$("#loginLink").click(function( event ){
-		event.preventDefault();
-    	$(".overlay").fadeToggle("fast");
-  	});
-	
-	$(".overlayLink").click(function(event){
-		event.preventDefault();
-		var action = $(this).attr('data-action');
-		
-		$.get( "ajax/" + action, function( data ) {
-			$( ".login-content" ).html( data );
-		});	
-		
-		$(".overlay").fadeToggle("fast");
-	});
-	
-	$(".close").click(function(){
-		$(".overlay").fadeToggle("fast");
-	});
-	
-	$(document).keyup(function(e) {
-		if(e.keyCode == 27 && $(".overlay").css("display") != "none" ) { 
-			event.preventDefault();
-			$(".overlay").fadeToggle("fast");
-		}
-	});
-});
-</script>
 <!--END LOGIN-->
 
 
@@ -73,48 +117,42 @@ $(document).ready(function() {
 <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/javascripts/recipe.js"></script>
-
+<link rel="stylesheet" type="text/css" href="/stylesheets/main.css"/>
+<!--<link rel="stylesheet" type="text/css" href="css/main.css"/> <!--CHANGE THIS LINE FOR THE EJS FILE-->
 </head>
 
 
 
 <body>
 
-<div id="nav">
-    <!--search bar
-    <div class="field" id="searchform">
-      <input type="text" id="searchterm" placeholder="What recipe are you searching for?" />
-      <button type="button" id="search">Find!</button>
-    </div>
-    <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-    <!--search bar ends-->
-    <input type=search name=s placeholder="What recipes are you looking for?"> <!-- search bar-->
-    
-        
-    <!--LOGIN ORIGINAL
-    <a href="login.php" id="loginLink" class="top btn btn-default btn-success">Login</a>
-<div class="overlay" style="display: none;">
-	<div class="login-wrapper">
-		<div class="login-content">
-			<a class="close">x</a>
-			<h3>Log in</h3>
-			<form method="post" action="login.php">
-				<label for="username">
-					Username:
-					<input type="text" name="username" id="username" placeholder="Username must be between 8 and 20 characters" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
-				</label>
-				<label for="password">
-					Password:
-					<input type="password" name="password" id="password" placeholder="Password must contain 1 uppercase, lowercase and number" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
-				</label>
-				<button type="submit">SIGN IN</button>
-			</form>
-		</div>
-	</div>
-</div>--->
-
-<!--LOGIN bootstrap-->
-<a href="#" class="btn btn-default btn-success"   data-toggle="modal"   data-target="#loginModal">Login</a>
+<div class="navbar navbar-inverse navbar-default navbar-fixed-top">
+   <div class="container">
+      <div class="navbar-header">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         </button>
+         <!--<a class="navbar-brand hidden-xs" href="#" style="vertical-align:center"><img src="GlobalGobi.png" class="brand"></a>
+         <a class="navbar-brand visible-xs" href="#" style="vertical-align:center"><img src="GlobalGobi.png" class="brand"></a>-->
+         <a class="navbar-brand hidden-xs" href="#" style="vertical-align:center"><img src="/graphics/GlobalGobi.png" class="brand"></a>
+         <a class="navbar-brand visible-xs" href="#" style="vertical-align:center"><img src="/graphics/GlobalGobi.png" class="brand"></a>
+         <form class="navbar-form pull-left" role="search">
+            <div class="input-group">
+               <input type="text" class="form-control" placeholder="Search for a recipe...">
+               <div class="input-group-btn">
+                  <button type="submit" class="btn btn-default round"><span class="glyphicon glyphicon-search"></span></button>
+               </div>
+            </div>
+         </form>
+      </div>
+      <div class="navbar-collapse collapse">
+         <ul class="nav navbar-nav navbar-right">
+         
+         
+         
+         	<!---LOGIN FORM------>
+            <li><a href="#" data-toggle="modal"   data-target="#loginModal">Login</a>
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -126,55 +164,70 @@ $(document).ready(function() {
                 <form method="post">
 				<label for="username">
 					Username:
-					<input type="text" name="username" id="username" placeholder="Username..." pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
+					<input type="text" name="recipe_name" id="username" placeholder="Username..." pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
 				</label>
 				<label for="password">
 					Password:
 					<input type="password" name="password" id="password" placeholder="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
 				</label>
+				<label for="new_username">
+                	Don't have one? choose a username:
+                    <input type="text" name="new_username" id="username" placeholder="Username">
+                </label>
+                <label for="new_password">
+                    Password:
+                    <input type="text" name="new_password" id="password" placeholder="Password">
+                </label>
 			</form>
             </div>
             <div class="modal-footer">
-                <button id="login_button" type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
+                <button type="submit" class="btn btn-default" data-dismiss="modal"><a href="/profile.ejs">Submit</a></button>
         </div>
     </div>
   </div>
-</div><!--login bootstrap-->
-
-
-
-<!--Recipe form-->
-<a href="#" class="btn btn-default btn-success"   data-toggle="modal"   data-target="#recipeModal">Add Recipe</a>
+</div><!--login bootstrap--></li>
+            
+            
+            
+            <!----RECIPE FORM---->
+            <li>
+<a href="#" data-toggle="modal"   data-target="#recipeModal">Add Recipe</a>
 <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-            <h4 class="modal-title" id="myModalLabel">Add your recipe</h4>
+            <h4 class="modal-title" id="myModalLabel" class="form-group">Add your recipe</h4>
             </div>
             <div class="modal-body">
-                <form action="/recipes" method="POST">
-				<label for="recipe_name">
+                <form method="post">
+				<div class="form-group"><label for="recipe_name">
 					Recipe Name:
-					<input type="text" name="recipe_name" id="rec_name" placeholder="Recipe name..." pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
-				</label>
-				<label for="recipe_image">
+					<input type="text" class = "form-control" name="recipe_name" id="username" placeholder="Recipe name..." pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
+				</label></div>
+				<div class="form-group"><label for="recipe_image">
 					Image:
-					<input type="text" name="recipe_image" id="rec_image" placeholder="image url" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
-				</label>
+					<input type="text" name="recipe_image" class = "form-control" id="password" placeholder="image url" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
+				</label></div>
+                <label for="recipe_checkbox">
+                	Dietary Restrictions
 			</form>
             </div>
             <div class="modal-footer">
-                <button id="recipe_button" type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
+                <button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
         </div>
     </div>
   </div>
+</div></li>
+
+
+		<!--HELP---->
+       <li style="vertical-align:center"><a href="#" data-toggle="modal"   data-target="#help">?</a></li>
+         </ul>
+      </div>
+      <!--/.navbar-collapse -->
+   </div>
 </div>
-
-
-
-</div><!--END NAVBAR-->
-
 
     
 <div id="map"></div>
