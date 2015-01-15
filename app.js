@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
+
 //added mongoose 
 var mongoose = require('mongoose');
 var fs = require('fs');
@@ -13,6 +13,10 @@ var fs = require('fs');
 mongoose.connect('mongodb://localhost/test');
 
 var app = express();
+
+//passport imports
+var passport = require('passport');
+var session      = require('express-session');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,6 +30,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//more for configuring passport
+app.use(session({secret: 'mySecretKey'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+var routes = require('./routes/index');
 app.use('/', routes);
 
 // catch 404 and forward to error handler
