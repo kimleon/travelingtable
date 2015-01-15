@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var recipes = require('../models/recipes');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -14,14 +15,24 @@ router.get('/Users', function(req, res) {
 	});
 });
 
+// //testing db
+// var firstRecipe = new models.Recipes({
+// 	name: 'gobi',
+// 	image: 'http://amazing-seeds.com/images/cauliflower__22959_zoom.jpg'
+// });
+// //at this point newRecipe is only in memory
+// firstRecipe.save(function(err, thor));
+
+
 
 /* POST / -- adding a new recipe */
 router.post('/Recipes', function(req, res) {
   // store itthe submitted recipe
-  var newRecipe = new models.Recipes({
+  var newRecipe = new recipes.Recipe({
   	name: req.body['recipe_name'],
   	image: req.body['recipe_image'],
   });
+  console.log(newRecipe);
   //at this point newRecipe is only in memory
   newRecipe.save(function(err, result) {
   	res.redirect('/Recipes/:userId');
