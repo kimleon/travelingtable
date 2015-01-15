@@ -164,7 +164,7 @@ styles: [
                 <form method="post">
 				<label for="username">
 					Username:
-					<input type="text" name="recipe_name" id="username" placeholder="Username..." pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
+					<input type="text" name="username" id="username" placeholder="Username..." pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
 				</label>
 				<label for="password">
 					Password:
@@ -203,18 +203,18 @@ styles: [
                 <form method="post">
 				<div class="form-group"><label for="recipe_name">
 					Recipe Name:
-					<input type="text" class = "form-control" name="recipe_name" id="username" placeholder="Recipe name..." pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
+					<input type="text" class = "form-control" name="recipe_name" id="rec_name" placeholder="Recipe name..." pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required />
 				</label></div>
 				<div class="form-group"><label for="recipe_image">
 					Image:
-					<input type="text" name="recipe_image" class = "form-control" id="password" placeholder="image url" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
+					<input type="text" name="recipe_image" class = "form-control" id="rec_image" placeholder="image url" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
 				</label></div>
                 <label for="recipe_checkbox">
                 	Dietary Restrictions
 			</form>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
+                <button id="recipe_button" type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
         </div>
     </div>
   </div>
