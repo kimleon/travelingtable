@@ -158,7 +158,7 @@ styles: [
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-            <h4 class="modal-title" id="myModalLabel">Login</h4>
+            <h3 class="modal-title" id="myModalLabel">Login</h3>
             </div>
             <div class="modal-body">
                 <form method="post">
@@ -170,14 +170,6 @@ styles: [
 					Password:
 					<input type="password" name="password" id="password" placeholder="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
 				</label>
-				<label for="new_username">
-                	Don't have one? choose a username:
-                    <input type="text" name="new_username" id="username" placeholder="Username">
-                </label>
-                <label for="new_password">
-                    Password:
-                    <input type="text" name="new_password" id="password" placeholder="Password">
-                </label>
 			</form>
             </div>
             <div class="modal-footer">
@@ -188,6 +180,38 @@ styles: [
 </div><!--login bootstrap--></li>
             
             
+
+        <!---REGISTER FORM------>
+            <li><a href="#" data-toggle="modal"   data-target="#registerModal">Sign-up</a>
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h3 class="modal-title" id="myModalLabel">Create an Account</h3>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+        <label for="new_username">
+                  Don't have a username? Choose one!
+                    <input type="text" name="new_username" id="username" placeholder="Username">
+                </label>
+                <label for="new_password">
+                    Choose a password:
+                    <input type="text" name="new_password" id="password" placeholder="Password">
+                </label>
+      </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-default" data-dismiss="modal"><a href="/profile.ejs">Submit</a></button>
+        </div>
+    </div>
+  </div>
+</div><!--login bootstrap--></li>
+
+
+
+
             
             <!----RECIPE FORM---->
             <li>
@@ -197,7 +221,7 @@ styles: [
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-            <h4 class="modal-title" id="myModalLabel" class="form-group">Add your recipe</h4>
+            <h3 class="modal-title" id="myModalLabel" class="form-group">Add your recipe</h3>
             </div>
             <div class="modal-body">
                 <form method="post">
