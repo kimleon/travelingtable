@@ -1,0 +1,38 @@
+*{
+	box-sizing: border-box;
+	margin: 0;
+	outline: none;
+	padding: 0;
+}
+
+body {
+	margin:0
+}
+
+.avatar {
+	height: 20vh;
+	width: auto;
+	z-index:3;
+}
+
+#profile {
+	height:100vh;
+	width:30vw;
+	background-color:#2dbeb2;
+	color:white;
+	font-family:Helvetica, sans-serif;
+	position:fixed;
+	z-index:2;
+}
+
+#profcontents {
+	margin: 0 auto;
+	width:21vw;
+	margin-top: 5vh;
+	z-index:1;
+	}
+	
+#map {
+	height:100vh;
+	widthL70vw;
+}
