@@ -27,6 +27,7 @@ router.post('/Recipes', function(req, res) {
   //at this point newRecipe is only in memory
   newRecipe.save(function(err, result) {
   	console.log(result);
+  	//this is not redirecting at the moment
   	res.redirect('/recipes/' + result._id);
   });
 });
