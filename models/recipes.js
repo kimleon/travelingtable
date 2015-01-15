@@ -13,4 +13,14 @@ var recipesSchema = new Schema({
 
 var Recipe = mongoose.model('Recipes', recipesSchema);
 
+
+var checkLength = function(s) {
+  return s.length > 0;
+};
+
+// Validators for our model. When we save or modify our model, these validators
+// get run. If they return false, an error happens.
+Recipe.schema.path('name').validate(checkLength, "Name cannot be empty");
+Recipe.schema.path('image').validate(checkLength, "Image url cannot be empty");
+
 exports.Recipe = Recipe;

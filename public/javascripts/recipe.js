@@ -8,5 +8,7 @@ $(document).ready(function() {
 		$.post("/Recipes", req, function(data) {
 			alert("yusss you did it");
 		});
+		$('#rec_name').val("");
+		$('#rec_image').val("");
 	});
 });
