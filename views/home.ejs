@@ -9,6 +9,34 @@
 
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 <link href='http://fonts.googleapis.com/css?family=News+Cycle|Raleway:600,400,300' rel='stylesheet' type='text/css'>
+
+
+<!---- onload script-->
+<script type="text/javascript">
+function buttondisplay() {
+    $.ajax({
+        type: "POST",
+        url: "/Refresh",
+        success: function(data) {
+          console.log('LOGGED in var below')
+          console.log(data.authenticated);
+           if (data.authenticated) {
+             $("#logged_in").show();
+             $("#logged_out").hide();
+           } else {
+             $("#logged_in").hide();
+             $("#logged_out").show();
+           }
+}
+});
+};
+</script>
+
+
+
+
+
+
 <script>
       function initialize() {
         var mapArea = document.getElementById('map');
