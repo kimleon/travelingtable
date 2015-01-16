@@ -15,6 +15,7 @@ var isLoggedIn = function(req, res, next) {
 }
 
 module.exports = function(passport) {
+
     /* GET home page. */
   router.get('/', function(req, res) {
     res.render('home');
@@ -112,6 +113,22 @@ module.exports = function(passport) {
   });
 
 
+  /*For page refreshes-check if user is logged in*/
+  router.post('/Refresh', function(req, res) {
+    if (req.isAuthenticated()) {
+      console.log('sending back an authenticated session');
+      res.json({
+        authenticated: true
+      });
+    }
+    else {
+      console.log('sending back a not authenticated session');
+      res.json({
+        authenticated: false
+      });
+    }
+  });
+
   router.get('/Profile', isLoggedIn, function(req, res) {
     console.log(req.user);
     res.render('profile', {username: req.user.username, recipetitle: "Gobi"});
@@ -128,6 +145,7 @@ module.exports = function(passport) {
     res.redirect('/');
     
   });
+
  
   return router;
 }
