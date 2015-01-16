@@ -150,7 +150,7 @@ styles: [
          
          
           <!---LOGIN FORM------>
-    <li><a href="#" data-toggle="modal"   data-target="#loginModal">Login</a>
+    <li><a href="#" data-toggle="modal" id="logged_out" data-target="#loginModal">Login</a>
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -183,7 +183,7 @@ styles: [
 
             
         <!---REGISTER FORM------>
-    <li><a href="#" data-toggle="modal"   data-target="#registerModal">Sign-up</a>
+    <li><a href="#" data-toggle="modal"   id="logged_out" data-target="#registerModal">Sign-up</a>
 <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -215,10 +215,56 @@ styles: [
 
     </div>
   </div>
-</div><!--login bootstrap--></li>
+</div><!--register bootstrap--></li>
 
 
-		<!--HELP---->
+
+
+
+
+<!--=============--RECIPE FORM=================================================---->
+            <li><a href="#" data-toggle="modal"   id="logged_in" data-target="#recipeModal">Add Recipe</a>
+<div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h3 class="modal-title" id="myModalLabel" class="form-group">Add your recipe</h3>
+            </div>
+
+
+            <div class="modal-body" id="recipe_form">
+                <form method="post" name="recipe" action="">
+                    <fieldset>
+
+                        <label for="recipe_name">Recipe Name: </label>
+                        <input type="text" class = "form-control" name="recipe_name" id="rec_name" placeholder="recipe name"  />
+                        <label class="error" for="recipe_name" id="recipe_name_error"> This field is required!</label></br>
+
+                        <label for="rec_image">Image: </label>
+                        <input type="text" name="recipe_image" class = "form-control" id="recipe_image" placeholder="image url"  required />
+                        <label class="error" for="recipe_image" id="recipe_image_error"> This field is required!</label></br>
+                        
+                        <label for="recipe_checkbox">Dietary Restrictions</label>
+
+                        <input type="submit" name="submit" class="recipebutton" id="submit_btn" value="Submit" />
+
+                      </fieldset>
+                  </form>
+            </div>
+    </div>
+  </div>
+</div></li>
+
+
+
+<!--=======================LOGOUT BUTTON=========================================-->
+        <input type="submit" name="logout" id="logged_in" class="logoutbutton" id="logout_btn" value="Logout" />
+
+
+
+
+<!--=======================  help  =========================================-->
        <li style="vertical-align:center"><a href="#" data-toggle="modal"   data-target="#help">?</a></li>
          </ul>
       </div>
@@ -226,6 +272,10 @@ styles: [
    </div>
 </div>
 
+
+
+
+<!--=======================  MAP  =========================================-->
     
 <div id="map"></div>
 </body>
