@@ -7,24 +7,32 @@ var User = require('../models/users').User;
 //export so the rest of the application can use this
 module.exports = function(passport) {
 	passport.use('signup', new LocalStrategy({
-		usernameField: 'username',
-		passwordField: 'password',
+		usernameField: 'new_username',
+		passwordField: 'new_password',
 		passReqToCallback: true //allows us to passback the entire request to the calback
 	},
-	function(req, email, password, done) {
-		//asyhchronus
+	function(req, new_username, new_password, done) {
+		//asyhchronous
 		//User.findOne won't fire unless data is sent back
+		// var new_username = new_username
+		console.log(req.body);
 		process.nextTick(function() {
-			User.findOne({'username': username}, function (err, user) {
-				if (err)
+			console.log('nexttickthing', new_username);
+			User.findOne({'username': new_username}, function (err, user) {
+				if (err) {
+					console.log(err)
 					return done(err);
+				}
 				if (user) {
-					return done(null, false, req.flash('signupMessage', 'That username is already taken'));
+					console.log(new_password);
+					console.log('Hello');
+					console.log(new_username);
+					return done(null, false);
 				} else {
 					//create a new user with this email
 					var newUser = new User();
-					newUser.username = username;
-					newUser.password = newUser.generateHash(password);
+					newUser.username = new_username;
+					newUser.password = newUser.generateHash(new_password);
 
 					//save the user into the database
 					newUser.save(function(err){

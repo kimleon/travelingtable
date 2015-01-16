@@ -70,20 +70,22 @@
       // validate and process form here
       
       $('.error').hide();
-      var new_username = $("input#new_username").val();
-      if (new_username == "") {
+      var new_username = $("input[name=new_username]").val();
+      console.log(new_username);
+      if (new_username === "") {
         $("label#new_username_error").show();
         $("input#new_username").focus();
         return false;
       }
       
-      var new_password = $("input#new_password").val();
-      if (new_password == "") {
+      var new_password = $("input[name=new_password]").val();
+      console.log(new_password);
+      if (new_password === "") {
         $("label#new_password_error").show();
         $("input#new_password").focus();
         return false;
       }
-      
+      console.log(new_username, new_password);
     var dataString = '&new_username='+ new_username +'&new_password=' + new_password;
       //alert (dataString);return false;
       $.ajax({

@@ -16,6 +16,7 @@ var app = express();
 
 //passport imports
 var passport = require('passport');
+//configure session so user can stay logged in
 var session      = require('express-session');
 
 // view engine setup
@@ -30,12 +31,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//more for configuring passport
+//more for configuring passport-configure session
 app.use(session({secret: 'mySecretKey'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-var routes = require('./routes/index');
+var init = require('./passport/init')
+console.log(init);
+init(passport);
+
+var routes = require('./routes/routes')(passport);
 app.use('/', routes);
 
 // catch 404 and forward to error handler

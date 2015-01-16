@@ -3,6 +3,16 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var recipes = require('../models/recipes');
 
+var isLoggedIn = function(req, res, next) {
+	//if the user is logged in, call next() to request the next request handler
+	//Passport adds this method to request an object
+	//middleware allowed to add properties to request and response objects
+	if (req.isAuthenticated())
+		return next();
+	//If not logged in session, redirect to the home page
+	res.redirect('/');
+}
+
 
 /* GET home page. */
 router.get('/', function(req, res) {

@@ -7,6 +7,9 @@ var bcrypt = require('bcrypt-nodejs');
 var usersSchema = new mongoose.Schema({
 	username: String,
 	password: String
+	//dietary_restrictions: [String],
+	//icon_choice: String
+	//recipe_list: [Schema.Types.ObjectId]
 });
 
 //Associated method for usersSchema:
