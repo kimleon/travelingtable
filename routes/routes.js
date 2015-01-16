@@ -114,14 +114,23 @@ module.exports = function(passport) {
     });
   });
 
+
+  router.get('/Profile', isLoggedIn, function(req, res) {
+    console.log(req.user);
+    res.render('profile', {username: req.user.username, recipetitle: "Gobi"});
+  });
+
   /*Logging out should log you out*/
   /*Handle logouts*/
   router.get('/Logout', function(req, res) {
+    console.log('logout');
+    console.log("before", req.user.username);
     req.logout();
+    //console.log("after", req.user.username);
     res.redirect('/');
+    
   });
-
-
+ 
   return router;
 }
 

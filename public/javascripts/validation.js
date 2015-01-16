@@ -193,7 +193,7 @@ var status= false;
 		$.ajax({
 		    type: "GET",
 		    url: "/Logout",
-		    data: status,
+		    data: status
 		});
 		return false;
 });
