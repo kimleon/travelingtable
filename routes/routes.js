@@ -119,7 +119,7 @@ module.exports = function(passport) {
 
   /*Logging out should log you out*/
   /*Handle logouts*/
-  router.get('/Logout', function(req, res) {
+  router.post('/Logout', function(req, res) {
     console.log('logout');
     console.log("before", req.user.username);
     console.log('logging out');

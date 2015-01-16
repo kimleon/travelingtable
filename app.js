@@ -19,24 +19,30 @@ var passport = require('passport');
 //configure session so user can stay logged in
 var session      = require('express-session');
 
+var init = require('./passport/init')
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(cookieParser());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 //more for configuring passport-configure session
-app.use(session({secret: 'mySecretKey'}));
+
+
+app.use(session({secret: 'mySecretKey',
+                saveUninitialized: true,
+                resave: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-var init = require('./passport/init')
+
 console.log(init);
 init(passport);
 
