@@ -1,14 +1,14 @@
 
 
-$(document.ready(function(){
-    if (data.loggedIn) {
-      $(“#logged_in”).show();
-      $(“#logged_out”).hide();
-    } else {
-      $("#logged_in").hide();
-      $(“#logged_out”).show();
-    }
-}));
+// $(document).ready(function(){
+//     if (data.loggedIn) {
+//       $("#logged_in").show();
+//       $("#logged_out").hide();
+//     } else {
+//       $("#logged_in").hide();
+//       $("#logged_out").show();
+//     }
+// });
 
 
 
@@ -74,17 +74,19 @@ $(document.ready(function(){
 
 
 
- $(function() {
-    $(".signupbutton").click(function() {
-      // validate and process form here
-    });
-  }); 
+ // $(function() {
+ //    $(".signupbutton").click(function() {
+ //      // validate and process form here
+ //    });
+ //  }); 
 
  $(function() {
     $('.error').hide();
+    console.log("asdf");
+    console.log($(".signupbutton"));
     $(".signupbutton").click(function() {
       // validate and process form here
-      
+      console.log('button click happening');
       $('.error').hide();
       var new_username = $("input[name=new_username]").val();
       console.log(new_username);
@@ -104,14 +106,17 @@ $(document.ready(function(){
       
 		var dataString3 = '&new_username='+ new_username +'&new_password=' + new_password;
 		  //alert (dataString);return false;
+
 		  $.ajax({
 		    type: "POST",
 		    url: "/Register",
 		    data: dataString3,
-		    success: function() {
+		    success: function(data) {
+            console.log(data.loggedIn);
+
             $('#logged_out').hide();
             $('#logged_in').show();
-		      $('#signup_form').html("<div id='signupmessage'><h2>Registration form submitted!</h2></div>");
+		        $('#signup_form').html("<div id='signupmessage'><h2>Registration form submitted!</h2></div>");
 		      //$('#signupmessage').html("<h2>Registration form submitted!</h2>")
 		      //.append("<p>Welcome gobi!</p>")
 		      //.hide()

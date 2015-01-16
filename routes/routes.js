@@ -83,14 +83,16 @@ module.exports = function(passport) {
 
   /*HANDLE register things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
   router.post('/Register', passport.authenticate('signup'), function(req, res){
-    res.j 
+    res.json ({
+      loggedIn: true
+    });
     });
 
 
 
    /*HANDLE register things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
   router.post('/Login', passport.authenticate('local-login'), function(req, res){
-
+    console.log('Logout route happening');
     res.json({ //sends info to specify what should now be shown in the nav bar
       loggedIn: true
     });
