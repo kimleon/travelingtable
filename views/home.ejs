@@ -178,37 +178,7 @@ styles: [
   </div>
 </div><!--login bootstrap--></li>
             
-            
-
-        <!---REGISTER FORM------>
-            <li><a href="#" data-toggle="modal"   data-target="#registerModal">Sign-up</a>
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-            <h3 class="modal-title" id="myModalLabel">Create an Account</h3>
-            </div>
-            <div class="modal-body">
-                <form method="post">
-        <label for="new_username">
-                  Don't have a username? Choose one!
-                    <input type="text" name="new_username" id="username" placeholder="Username">
-                </label>
-                <label for="new_password">
-                    Choose a password:
-                    <input type="text" name="new_password" id="password" placeholder="Password">
-                </label>
-      </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-default" data-dismiss="modal"><a href="/profile.ejs">Submit</a></button>
-        </div>
-    </div>
-  </div>
-</div><!--login bootstrap--></li>
-
-
+        
 
 
             
@@ -228,10 +198,12 @@ styles: [
                 <fieldset>
                     <label for="new_username">Don't have a username? Choose one!</label>
                     <input type="text" name="new_username" id="username" placeholder="Username">
-        
+                    <label class="error" for="new_username" id="new_username_error"> This field is required!</label></br>
+
+
                     <label for="new_password">Choose a password:</label>
                     <input type="text" name="new_password" id="password" placeholder="Password">
-
+                     <label class="error" for="new_password" id="new_password_error"> This field is required!</label></br>
 
                   <!--button-->
                   <input type="submit" name="submit" class="signupbutton" id="submit_btn" value="Send" />
