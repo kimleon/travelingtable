@@ -94,10 +94,10 @@
 		    url: "/Register",
 		    data: dataString3,
 		    success: function() {
-		      $('#signup_form').html("<div id='signupmessage'></div>");
-		      $('#signupmessage').html("<h2>Registration form submitted!</h2>")
-		      .append("<p>Welcome gobi!</p>")
-		      .hide()
+		      $('#signup_form').html("<div id='signupmessage'><h2>Registration form submitted!</h2></div>");
+		      //$('#signupmessage').html("<h2>Registration form submitted!</h2>")
+		      //.append("<p>Welcome gobi!</p>")
+		      //.hide()
 		      //.fadeIn(1500, function() {
 		       //});
 		    }
