@@ -1,5 +1,4 @@
-/*
-
+//<!--=========================== LOGIN FORM =========================================-> 
  $(function() {
     $(".button").click(function() {
       // validate and process form here
@@ -12,37 +11,39 @@
       // validate and process form here
       
       $('.error').hide();
-      var username = $("input#username").val();
-      if (username == "") {
+  	  var username = $("input#username").val();
+  		if (username == "") {
         $("label#username_error").show();
         $("input#username").focus();
         return false;
       }
-      
-      var password = $("input#password").val();
-      if (password == "") {
+  		
+  		var password = $("input#password").val();
+  		if (password == "") {
         $("label#password_error").show();
         $("input#password").focus();
         return false;
       }
       
-    var dataString = '&username='+ username +'&password=' + password;
-      //alert (dataString);return false;
-      $.ajax({
-        type: "POST",
-        url: "/Login",
-        data: dataString,
-        success: function() {
-          $('#login_form').html("<div id='message'></div>");
-          $('#message').html("<h2>Login Form Submitted!</h2>")
-          .append("<p>Enjoy the site!</p>")
-          .hide()
-          //.fadeIn(1500, function() {
-           //});
-        }
-      });
-      return false;
+		var dataString = '&username='+ username +'&password=' + password;
+		  //alert (dataString);return false;
+		  $.ajax({
+		    type: "POST",
+		    url: "/Login",
+		    data: dataString,
+		    success: function() {
+		      $('#login_form').html("<div id='message'></div>");
+		      $('#message').html("<h2>Login Form Submitted!</h2>")
+		      .append("<p>Enjoy the site!</p>")
+		      .hide()
+		      //.fadeIn(1500, function() {
+		       //});
+		    }
+		  });
+		  return false;
 
+ 	$('.logged_out').hide();
+ 	$('.logged_in').show();
 
     $('#login_form').html("<div id='message'></div>");
 
@@ -53,8 +54,8 @@
   });
 
 
-*/
-//<!---SIGN UP FORM-->
+
+//<!--===========================-SIGN UP FORM-=========================================->
 
 
 
@@ -85,23 +86,27 @@
         $("input#new_password").focus();
         return false;
       }
-      console.log(new_username, new_password);
-    var dataString = '&new_username='+ new_username +'&new_password=' + new_password;
-      //alert (dataString);return false;
-      $.ajax({
-        type: "POST",
-        url: "/Register",
-        data: dataString,
-        success: function() {
-          $('#signup_form').html("<div id='message'></div>");
-          $('#signupmessage').html("<h2>Register Form Submitted!</h2>")
-          .append("<p>Enjoy the site!</p>")
-          .hide()
-          //.fadeIn(1500, function() {
-           //});
-        }
-      });
-      return false;
+      
+		var dataString3 = '&new_username='+ new_username +'&new_password=' + new_password;
+		  //alert (dataString);return false;
+		  $.ajax({
+		    type: "POST",
+		    url: "/Register",
+		    data: dataString3,
+		    success: function() {
+		      $('#signup_form').html("<div id='message'></div>");
+		      $('#signupmessage').html("<h2>Registration form submitted!</h2>")
+		      .append("<p>Welcome gobi!</p>")
+		      .hide()
+		      //.fadeIn(1500, function() {
+		       //});
+		    }
+		  });
+		  return false;
+
+
+ 	$('.logged_out').hide();
+ 	$('.logged_in').show();
 
 
     $('#signup_form').html("<div id='signupmessage'></div>");
@@ -113,4 +118,83 @@
   });
 
   
+
+
+//<!--=========================== RECIPE FORM-=========================================->
+
+
+
+ $(function() {
+    $(".recipebutton").click(function() {
+      // validate and process form here
+    });
+  }); 
+
+ $(function() {
+    $('.error').hide();
+    $(".recipebutton").click(function() {
+      // validate and process form here
+      
+      $('.error').hide();
+  	  var recipe_name = $("input#recipe_name").val();
+  		if (recipe_name == "") {
+        $("label#recipe_name_error").show();
+        $("input#recipe_name").focus();
+        return false;
+      }
+  		
+  		var recipe_image = $("input#recipe_image").val();
+  		if (recipe_image == "") {
+        $("label#recipe_image_error").show();
+        $("input#recipe_image").focus();
+        return false;
+      }
+      
+		var dataString2 = '&recipe_name'+ recipe_name +'&recipe_image' + recipe_image;
+		  //alert (dataString);return false;
+		  $.ajax({
+		    type: "POST",
+		    url: "/Recipes",
+		    data: dataString2,
+		    success: function() {
+		      $('#recipe_form').html("<div id='message'></div>");
+		      $('#recipemessage').html("<h2>Recipe submitted!</h2>")
+		      .append("<p>Thank you so much for your contribution!</p>")
+		      .hide()
+		      //.fadeIn(1500, function() {
+		       //});
+		    }
+		  });
+		  return false;
+
+
+    $('#recipe_form').html("<div id='recipemessage'></div>");
+
+
+
+
+    });
+  });
+
+
+//<!--=========================== Logout =========================================->
+
+ $(function() {
+    $(".logoutbutton").click(function() {
+      // validate and process form here
+    });
+  }); 
+
+ $(function() {
+ 	$('.logged_in').hide();
+ 	$('.logged_out').show();
+
+var status= false;
+		$.ajax({
+		    type: "GET",
+		    url: "/Logout",
+		    data: status,
+		});
+		return false;
+});
   
