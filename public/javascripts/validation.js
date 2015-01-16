@@ -18,7 +18,7 @@
 //<!--=========================== ONLOAD for button display =========================================-> 
 
 
-(function buttondisplay() {
+function buttondisplay() {
     $.ajax({
         type: "POST",
         url: "/Refresh",
@@ -34,7 +34,7 @@
            }
 }
 });
-});
+};
 
 
 //<!--=========================== LOGIN FORM =========================================-> 
