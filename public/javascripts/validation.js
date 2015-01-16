@@ -11,15 +11,15 @@
       // validate and process form here
       
       $('.error').hide();
-  	  var username = $("input#username").val();
-  		if (username == "") {
+  	  var username = $("input[name=username]").val();
+  		if (username === "") {
         $("label#username_error").show();
         $("input#username").focus();
         return false;
       }
   		
-  		var password = $("input#password").val();
-  		if (password == "") {
+  		var password = $("input[name=password]").val();
+  		if (password === "") {
         $("label#password_error").show();
         $("input#password").focus();
         return false;
@@ -94,7 +94,7 @@
 		    url: "/Register",
 		    data: dataString3,
 		    success: function() {
-		      $('#signup_form').html("<div id='message'></div>");
+		      $('#signup_form').html("<div id='signupmessage'></div>");
 		      $('#signupmessage').html("<h2>Registration form submitted!</h2>")
 		      .append("<p>Welcome gobi!</p>")
 		      .hide()
@@ -136,15 +136,15 @@
       // validate and process form here
       
       $('.error').hide();
-  	  var recipe_name = $("input#recipe_name").val();
-  		if (recipe_name == "") {
+  	  var recipe_name = $("input[name=recipe_name]").val();
+  		if (recipe_name === "") {
         $("label#recipe_name_error").show();
         $("input#recipe_name").focus();
         return false;
       }
   		
-  		var recipe_image = $("input#recipe_image").val();
-  		if (recipe_image == "") {
+  		var recipe_image = $("input[name=recipe_image]").val();
+  		if (recipe_image === "") {
         $("label#recipe_image_error").show();
         $("input#recipe_image").focus();
         return false;
@@ -157,7 +157,7 @@
 		    url: "/Recipes",
 		    data: dataString2,
 		    success: function() {
-		      $('#recipe_form').html("<div id='message'></div>");
+		      $('#recipe_form').html("<div id='recipemessage'></div>");
 		      $('#recipemessage').html("<h2>Recipe submitted!</h2>")
 		      .append("<p>Thank you so much for your contribution!</p>")
 		      .hide()

@@ -57,22 +57,22 @@ body {
 }
 
 a.close {
-	background-color: #D4D4D4;
-	border-radius: 55%;
+	background-color: transparent;
+	border: 0;
 	color: #ffffff;
 	display: block;
 	font-family: 'Raleway', sans-serif;
 	font-weight: 100;
-	font-size: 1em;
-	padding: .3em .5em;
+	font-size: 5em;
+	padding: 1vw;
 	position: absolute;
-	top: 3rem;
+	top: 5vh;
 	transition: all 400ms ease;
 	right: 3rem;
 }
 	
 	a.close:hover {
-		background-color: #1bc5b3;
+		background-color: transparent;
 		cursor: pointer;
 		color:#ffffff;
 	}
@@ -216,6 +216,7 @@ background-color: #2DBEB2;
 
 .search {
 	border-radius:30px 0px 0px 30px;
+	width:25vw;
 }
 
 .round {
@@ -225,4 +226,49 @@ background-color: #2DBEB2;
 .avatar {
 	height:20vh;
 	width:auto;
+}
+
+#submit_btn {
+	border-radius:30px;
+	background-color:#35d7b7;
+	color:white;
+	border:0;
+	float:right;
+}
+
+.navbutton {
+	background-color:#35d7b7;
+	border:none;
+	color:white;
+}
+
+.modal-content {
+	border-radius:50px;
+}
+
+.modal-header {
+	border-radius:50px 50px 0px 00px;
+	text-align: center;
+}
+
+.modal-body {
+	text-decoration: none;
+	font-weight:100;
+	padding: 2vw;
+}
+
+
+.close {
+	background-color: transparent;
+	border: 0;
+	color: #ffffff;
+	display: block;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 100;
+	font-size: 1em;
+	padding: 1vw;
+	position: absolute;
+	top: 3vh;
+	transition: all 400ms ease;
+	right: 3vw;
 }

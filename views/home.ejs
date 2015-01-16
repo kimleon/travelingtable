@@ -135,9 +135,15 @@ styles: [
          <a class="navbar-brand visible-xs" href="#" style="vertical-align:center"><img src="GlobalGobi.png" class="brand"></a>-->
          <a class="navbar-brand hidden-xs" href="#" style="vertical-align:center"><img src="graphics/GlobalGobi.png" class="brand"></a>
          <a class="navbar-brand visible-xs" href="#" style="vertical-align:center"><img src="graphics/GlobalGobi.png" class="brand"></a>
+         
+         
+         <!--================================================================================-->
+         <!--                              s e a r c h
+         <!--================================================================================-->
+         
          <form class="navbar-form pull-left" role="search">
             <div class="input-group">
-               <input type="text" class="form-control" placeholder="Search for a recipe...">
+               <input type="text" class="form-control search" placeholder="Search for a recipe...">
                <div class="input-group-btn">
                   <button type="submit" class="btn btn-default round"><span class="glyphicon glyphicon-search"></span></button>
                </div>
@@ -146,10 +152,53 @@ styles: [
       </div>
       <div class="navbar-collapse collapse">
          <ul class="nav navbar-nav navbar-right">
+ 
+ 
+<!--==============================================================================-->
+<!--                                s i g n   u p 
+<!--================================================================================-->
+             
+    <li><a href="#" data-toggle="modal"   id="logged_out" data-target="#registerModal">Sign-up</a>
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h3 class="modal-title" id="myModalLabel">Create an Account</h3>
+            </div>
+            
+
+            <div class="modal-body" id="signup_form">
+            <form method="post"  name="signup" action="">
+                <fieldset>
+                    <label for="new_username">Don't have a username? Choose one!</label></br>
+                    <input type="text" name="new_username" id="username" placeholder="Username"></br>
+                    <label class="error" for="new_username" id="new_username_error"> This field is required!</label></br></br>
+
+
+                    <label for="new_password">Choose a password:</label></br>
+                    <input type="password" name="new_password" id="password" placeholder="Password"></br>
+                     <label class="error" for="new_password" id="new_password_error"> This field is required!</label></br></br>
+
+                  <!--button-->
+                  <input type="submit" name="submit" class="signupbutton btn-large" id="submit_btn" value="Send" />
+                    
+                <fieldset>    
+             </form>
+          </div>
+
+
+    </div>
+  </div>
+</div><!--register bootstrap--></li>
+ 
+ 
          
          
-         
-          <!---LOGIN FORM------>
+<!--================================================================================-->         
+<!--                                 l o g i n  
+<!--================================================================================-->
+
     <li><a href="#" data-toggle="modal" id="logged_out" data-target="#loginModal">Login</a>
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -178,51 +227,17 @@ styles: [
   </div>
 </div><!--login bootstrap--></li>
             
-        
-
-
-            
-        <!---REGISTER FORM------>
-    <li><a href="#" data-toggle="modal"   id="logged_out" data-target="#registerModal">Sign-up</a>
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-            <h3 class="modal-title" id="myModalLabel">Create an Account</h3>
-            </div>
-            
-
-            <div class="modal-body" id="signup_form">
-            <form method="post"  name="signup" action="">
-                <fieldset>
-                    <label for="new_username">Don't have a username? Choose one!</label>
-                    <input type="text" name="new_username" id="username" placeholder="Username">
-                    <label class="error" for="new_username" id="new_username_error"> This field is required!</label></br>
-
-
-                    <label for="new_password">Choose a password:</label>
-                    <input type="text" name="new_password" id="password" placeholder="Password">
-                     <label class="error" for="new_password" id="new_password_error"> This field is required!</label></br>
-
-                  <!--button-->
-                  <input type="submit" name="submit" class="signupbutton" id="submit_btn" value="Send" />
-                    
-                <fieldset>    
-             </form>
-          </div>
-
-
-    </div>
-  </div>
-</div><!--register bootstrap--></li>
+      
 
 
 
 
 
+<!--================================================================================-->
+<!--                            r e c i p e   f o r m 
+<!--================================================================================-->
 
-<!--=============--RECIPE FORM=================================================---->
+
             <li><a href="#" data-toggle="modal"   id="logged_in" data-target="#recipeModal">Add Recipe</a>
 <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -237,15 +252,15 @@ styles: [
                 <form method="post" name="recipe" action="">
                     <fieldset>
 
-                        <label for="recipe_name">Recipe Name: </label>
-                        <input type="text" class = "form-control" name="recipe_name" id="rec_name" placeholder="recipe name"  />
-                        <label class="error" for="recipe_name" id="recipe_name_error"> This field is required!</label></br>
+                        <label for="recipe_name">Recipe Name: </label></br>
+                        <input type="text" name="recipe_name" id="rec_name" placeholder="recipe name"  /></br>
+                        <label class="error" for="recipe_name" id="recipe_name_error"> This field is required!</label></br></br>
 
-                        <label for="rec_image">Image: </label>
-                        <input type="text" name="recipe_image" class = "form-control" id="recipe_image" placeholder="image url"  required />
-                        <label class="error" for="recipe_image" id="recipe_image_error"> This field is required!</label></br>
+                        <label for="rec_image">Image: </label></br>
+                        <input type="text" name="recipe_image" id="recipe_image" placeholder="image url"  required /></br>
+                        <label class="error" for="recipe_image" id="recipe_image_error"> This field is required!</label></br></br>
                         
-                        <label for="recipe_checkbox">Dietary Restrictions</label>
+                        <label for="recipe_checkbox">Dietary Restrictions</label></br>
 
                         <input type="submit" name="submit" class="recipebutton" id="submit_btn" value="Submit" />
 
@@ -257,15 +272,21 @@ styles: [
 </div></li>
 
 
+<!--================================================================================-->
+<!--                                    l o g o u t
+<!--================================================================================-->
 
-<!--=======================LOGOUT BUTTON=========================================-->
-        <input type="submit" name="logout" id="logged_in" class="logoutbutton" id="logout_btn" value="Logout" />
+        <!--<li><input type="submit" name="logout" id="logged_in" class="logoutbutton navbutton" id="logout_btn" value="Logout" /></li>-->
+<li><a href="#" name="logout" id="logged_in" class="logoutbutton" id="logout_btn" />Logout</li>
 
 
+<!--================================================================================-->
+<!--                                       h e l p 
+<!--================================================================================-->
 
 
-<!--=======================  help  =========================================-->
-       <li style="vertical-align:center"><a href="#" data-toggle="modal"   data-target="#help">?</a></li>
+<li><a href="#">?</a></li>
+
          </ul>
       </div>
       <!--/.navbar-collapse -->
@@ -278,5 +299,6 @@ styles: [
 <!--=======================  MAP  =========================================-->
     
 <div id="map"></div>
+
 </body>
 </html>
