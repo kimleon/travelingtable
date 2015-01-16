@@ -13,13 +13,9 @@
 
 
 //<!--=========================== LOGIN FORM =========================================-> 
- $(function() {
-    $(".button").click(function() {
-      // validate and process form here
-    });
-  }); 
 
  $(function() {
+    console.log('Login function is happening')
     $('.error').hide();
     $(".button").click(function() {
       // validate and process form here
@@ -45,12 +41,16 @@
 		    type: "POST",
 		    url: "/Login",
 		    data: dataString,
-		    success: function() {
-            $('#logged_out').hide();
-            $('#logged_in').show();
-		      $('#login_form').html("<div id='message'><h2>Login Form Submitted!</h2></div>");
-		      $('#message').html("<h2>Login Form Submitted!</h2>")
-		      .append("<p>Enjoy the site!</p>")
+		    success: function(data) {
+          console.log('LOGGED in var below')
+          console.log(data.loggedIn);
+          $('#logged_out').hide();
+          $('#logged_in').show();
+		        $('#login_form').html("<div id='message'><h2>Login Form Submitted!</h2></div>");
+		      //$('#message').html("<h2>Login Form Submitted!</h2>")
+		      
+
+          //.append("<p>Enjoy the site!</p>")
 		      //.hide()
 		      //.fadeIn(1500, function() {
 		       //});
@@ -85,6 +85,7 @@
     console.log("asdf");
     console.log($(".signupbutton"));
     $(".signupbutton").click(function() {
+    //$("#submit_btn.signupbutton.btn-large").submit(function() {
       // validate and process form here
       console.log('button click happening');
       $('.error').hide();
@@ -116,7 +117,7 @@
 
             $('#logged_out').hide();
             $('#logged_in').show();
-		        $('#signup_form').html("<div id='signupmessage'><h2>Registration form submitted!</h2></div>");
+		        $('#signup_form').html("<div id='signupmessage'><h2>Registration form submitted!</h2><p>Welcome gobi!</p></div>");
 		      //$('#signupmessage').html("<h2>Registration form submitted!</h2>")
 		      //.append("<p>Welcome gobi!</p>")
 		      //.hide()
@@ -147,12 +148,6 @@
 
 
  $(function() {
-    $(".recipebutton").click(function() {
-      // validate and process form here
-    });
-  }); 
-
- $(function() {
     $('.error').hide();
     $(".recipebutton").click(function() {
       // validate and process form here
@@ -179,11 +174,9 @@
 		    url: "/Recipes",
 		    data: dataString2,
 		    success: function() {
-            $('#logged_out').hide();
-            $('#logged_in').show();
-		      $('#recipe_form').html("<div id='recipemessage'></div>");
-		      $('#recipemessage').html("<h2>Recipe submitted!</h2>")
-		      .append("<p>Thank you so much for your contribution!</p>")
+		      $('#recipe_form').html("<div id='recipemessage'><h2>Recipe submitted!</h2><p>Thank you so much for your contribution!</p></div>");
+		      //$('#recipemessage').html("<h2>Recipe submitted!</h2>")
+		      //.append("<p>Thank you so much for your contribution!</p>")
 		      //.hide()
 		      //.fadeIn(1500, function() {
 		       //});
@@ -206,19 +199,20 @@
  $(function() {
     $(".logoutbutton").click(function() {
       // validate and process form here
-    });
-  }); 
+
 
  $(function() {
  	$('#logged_in').hide();
  	$('#logged_out').show();
 
-var status= false;
 		$.ajax({
-		    type: "GET",
-		    url: "/Logout",
-		    data: status
+		    type: "POST",
+		    url: "/Logout"
+		    //data: status
 		});
 		return false;
 });
+
+});
+}); 
   
