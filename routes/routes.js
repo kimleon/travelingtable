@@ -83,21 +83,16 @@ module.exports = function(passport) {
 
   /*HANDLE register things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
   router.post('/Register', passport.authenticate('signup'), function(req, res){
-    res.json({ //sends info to specify what should now be shown in the nav bar
-      login_button: false,
-      recipe_button: true,
-      loggedInHelp: true
+    res.j 
     });
-    
-  });
+
+
 
    /*HANDLE register things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
   router.post('/Login', passport.authenticate('local-login'), function(req, res){
 
     res.json({ //sends info to specify what should now be shown in the nav bar
-      login_button: false,
-      recipe_button: true,
-      loggedInHelp: true
+      loggedIn: true
     });
   });
 
@@ -125,6 +120,7 @@ module.exports = function(passport) {
   router.get('/Logout', function(req, res) {
     console.log('logout');
     console.log("before", req.user.username);
+    console.log('logging out');
     req.logout();
     //console.log("after", req.user.username);
     res.redirect('/');

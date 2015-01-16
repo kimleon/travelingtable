@@ -1,3 +1,17 @@
+
+
+$(document.ready(function(){
+    if (data.loggedIn) {
+      $(“#logged_in”).show();
+      $(“#logged_out”).hide();
+    } else {
+      $("#logged_in").hide();
+      $(“#logged_out”).show();
+    }
+}));
+
+
+
 //<!--=========================== LOGIN FORM =========================================-> 
  $(function() {
     $(".button").click(function() {
@@ -11,15 +25,15 @@
       // validate and process form here
       
       $('.error').hide();
-  	  var username = $("input#username").val();
-  		if (username == "") {
+  	  var username = $("input[name=username]").val();
+  		if (username === "") {
         $("label#username_error").show();
         $("input#username").focus();
         return false;
       }
   		
-  		var password = $("input#password").val();
-  		if (password == "") {
+  		var password = $("input[name=password]").val();
+  		if (password === "") {
         $("label#password_error").show();
         $("input#password").focus();
         return false;
@@ -32,18 +46,19 @@
 		    url: "/Login",
 		    data: dataString,
 		    success: function() {
-		      $('#login_form').html("<div id='message'></div>");
+            $('#logged_out').hide();
+            $('#logged_in').show();
+		      $('#login_form').html("<div id='message'><h2>Login Form Submitted!</h2></div>");
 		      $('#message').html("<h2>Login Form Submitted!</h2>")
 		      .append("<p>Enjoy the site!</p>")
-		      .hide()
+		      //.hide()
 		      //.fadeIn(1500, function() {
 		       //});
 		    }
 		  });
 		  return false;
 
- 	$('.logged_out').hide();
- 	$('.logged_in').show();
+
 
     $('#login_form').html("<div id='message'></div>");
 
@@ -94,10 +109,12 @@
 		    url: "/Register",
 		    data: dataString3,
 		    success: function() {
-		      $('#signup_form').html("<div id='message'></div>");
-		      $('#signupmessage').html("<h2>Registration form submitted!</h2>")
-		      .append("<p>Welcome gobi!</p>")
-		      .hide()
+            $('#logged_out').hide();
+            $('#logged_in').show();
+		      $('#signup_form').html("<div id='signupmessage'><h2>Registration form submitted!</h2></div>");
+		      //$('#signupmessage').html("<h2>Registration form submitted!</h2>")
+		      //.append("<p>Welcome gobi!</p>")
+		      //.hide()
 		      //.fadeIn(1500, function() {
 		       //});
 		    }
@@ -105,8 +122,8 @@
 		  return false;
 
 
- 	$('.logged_out').hide();
- 	$('.logged_in').show();
+ 	$('#logged_out').hide();
+ 	$('#logged_in').show();
 
 
     $('#signup_form').html("<div id='signupmessage'></div>");
@@ -136,15 +153,15 @@
       // validate and process form here
       
       $('.error').hide();
-  	  var recipe_name = $("input#recipe_name").val();
-  		if (recipe_name == "") {
+  	  var recipe_name = $("input[name=recipe_name]").val();
+  		if (recipe_name === "") {
         $("label#recipe_name_error").show();
         $("input#recipe_name").focus();
         return false;
       }
   		
-  		var recipe_image = $("input#recipe_image").val();
-  		if (recipe_image == "") {
+  		var recipe_image = $("input[name=recipe_image]").val();
+  		if (recipe_image === "") {
         $("label#recipe_image_error").show();
         $("input#recipe_image").focus();
         return false;
@@ -157,10 +174,12 @@
 		    url: "/Recipes",
 		    data: dataString2,
 		    success: function() {
-		      $('#recipe_form').html("<div id='message'></div>");
+            $('#logged_out').hide();
+            $('#logged_in').show();
+		      $('#recipe_form').html("<div id='recipemessage'></div>");
 		      $('#recipemessage').html("<h2>Recipe submitted!</h2>")
 		      .append("<p>Thank you so much for your contribution!</p>")
-		      .hide()
+		      //.hide()
 		      //.fadeIn(1500, function() {
 		       //});
 		    }
@@ -186,8 +205,8 @@
   }); 
 
  $(function() {
- 	$('.logged_in').hide();
- 	$('.logged_out').show();
+ 	$('#logged_in').hide();
+ 	$('#logged_out').show();
 
 var status= false;
 		$.ajax({
