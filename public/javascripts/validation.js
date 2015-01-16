@@ -1,3 +1,17 @@
+
+
+$(document.ready(function(){
+    if (data.loggedIn) {
+      $(“#logged_in”).show();
+      $(“#logged_out”).hide();
+    } else {
+      $("#logged_in").hide();
+      $(“#logged_out”).show();
+    }
+}));
+
+
+
 //<!--=========================== LOGIN FORM =========================================-> 
  $(function() {
     $(".button").click(function() {
@@ -32,18 +46,19 @@
 		    url: "/Login",
 		    data: dataString,
 		    success: function() {
-		      $('#login_form').html("<div id='message'></div>");
+            $('#logged_out').hide();
+            $('#logged_in').show();
+		      $('#login_form').html("<div id='message'><h2>Login Form Submitted!</h2></div>");
 		      $('#message').html("<h2>Login Form Submitted!</h2>")
 		      .append("<p>Enjoy the site!</p>")
-		      .hide()
+		      //.hide()
 		      //.fadeIn(1500, function() {
 		       //});
 		    }
 		  });
 		  return false;
 
- 	$('.logged_out').hide();
- 	$('.logged_in').show();
+
 
     $('#login_form').html("<div id='message'></div>");
 
@@ -94,6 +109,8 @@
 		    url: "/Register",
 		    data: dataString3,
 		    success: function() {
+            $('#logged_out').hide();
+            $('#logged_in').show();
 		      $('#signup_form').html("<div id='signupmessage'><h2>Registration form submitted!</h2></div>");
 		      //$('#signupmessage').html("<h2>Registration form submitted!</h2>")
 		      //.append("<p>Welcome gobi!</p>")
@@ -105,8 +122,8 @@
 		  return false;
 
 
- 	$('.logged_out').hide();
- 	$('.logged_in').show();
+ 	$('#logged_out').hide();
+ 	$('#logged_in').show();
 
 
     $('#signup_form').html("<div id='signupmessage'></div>");
@@ -157,10 +174,12 @@
 		    url: "/Recipes",
 		    data: dataString2,
 		    success: function() {
+            $('#logged_out').hide();
+            $('#logged_in').show();
 		      $('#recipe_form').html("<div id='recipemessage'></div>");
 		      $('#recipemessage').html("<h2>Recipe submitted!</h2>")
 		      .append("<p>Thank you so much for your contribution!</p>")
-		      .hide()
+		      //.hide()
 		      //.fadeIn(1500, function() {
 		       //});
 		    }
@@ -186,8 +205,8 @@
   }); 
 
  $(function() {
- 	$('.logged_in').hide();
- 	$('.logged_out').show();
+ 	$('#logged_in').hide();
+ 	$('#logged_out').show();
 
 var status= false;
 		$.ajax({
