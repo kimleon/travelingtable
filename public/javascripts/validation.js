@@ -12,6 +12,31 @@
 
 
 
+
+
+
+//<!--=========================== ONLOAD for button display =========================================-> 
+
+
+(function buttondisplay() {
+    $.ajax({
+        type: "POST",
+        url: "/Refresh",
+        success: function(data) {
+          console.log('LOGGED in var below')
+          console.log(data.authenticated);
+           if (data.authenticated) {
+             $("#logged_in").show();
+             $("#logged_out").hide();
+           } else {
+             $("#logged_in").hide();
+             $("#logged_out").show();
+           }
+}
+});
+});
+
+
 //<!--=========================== LOGIN FORM =========================================-> 
 
  $(function() {
