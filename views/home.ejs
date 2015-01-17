@@ -11,7 +11,7 @@
 <link href='http://fonts.googleapis.com/css?family=News+Cycle|Raleway:600,400,300' rel='stylesheet' type='text/css'>
 
 
-<!---- onload script-->
+<!-- onload script-->
 <script type="text/javascript">
 function buttondisplay() {
     $.ajax({
@@ -178,13 +178,13 @@ styles: [
          
          <!--================================================================================-->
          <!--                              s e a r c h
-         <!--================================================================================-->
+         <!================================================================================-->
          
          <form class="navbar-form pull-left" role="search">
             <div class="input-group">
-               <input type="text" class="form-control search" placeholder="Search for a recipe...">
+               <input type="text" id="search_input" class="form-control search" placeholder="Search for a recipe...">
                <div class="input-group-btn">
-                  <button type="submit" class="btn btn-default round"><span class="glyphicon glyphicon-search"></span></button>
+                  <button id="search_button" type="submit" class="btn btn-default round"><span class="glyphicon glyphicon-search"></span></button>
                </div>
             </div>
          </form>
@@ -195,7 +195,7 @@ styles: [
  
 <!--==============================================================================-->
 <!--                                s i g n   u p 
-<!--================================================================================-->
+<!================================================================================-->
              
     <li><a href="#" data-toggle="modal"   id="logged_out" data-target="#registerModal">Sign-up</a>
 <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
@@ -238,7 +238,7 @@ styles: [
          
 <!--================================================================================-->         
 <!--                                 l o g i n  
-<!--================================================================================-->
+<!================================================================================-->
 
     <li><a href="#" data-toggle="modal" id="logged_out" data-target="#loginModal">Login</a>
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
@@ -276,14 +276,14 @@ styles: [
 
 <!--================================================================================-->
 <!--                            a d d   r e c i p e
-<!--================================================================================-->
+<!================================================================================-->
 
 
 
 
 <!--================================================================================-->
 <!--                           s h o w   r e c i p e
-<!--================================================================================-->
+<!================================================================================-->
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -317,7 +317,7 @@ styles: [
 
 <!--================================================================================-->
 <!--                            r e c i p e   f o r m 
-<!--================================================================================-->
+<!================================================================================-->
 
 
 <li><a href='/new_recipe' id="logged_in">Add Recipe</a>
@@ -334,7 +334,7 @@ styles: [
 
 
             <div class="modal-body" id="recipe_form">
- <!--               <form method="post" name="recipe" action="">
+ <!               <form method="post" name="recipe" action="">
                     <fieldset>
 
                         <label for="recipe_name">Recipe Name: </label></br>
@@ -359,7 +359,7 @@ styles: [
 
 <!--================================================================================-->
 <!--                                    l o g o u t
-<!--================================================================================-->
+<!================================================================================-->
 
         <!--<li><input type="submit" name="logout" id="logged_in" class="logoutbutton navbutton" id="logout_btn" value="Logout" /></li>-->
 <li><a href="#" name="logout" id="logged_in" class="logoutbutton" id="logout_btn" />Logout</li>
@@ -367,7 +367,7 @@ styles: [
 
 <!--================================================================================-->
 <!--                                       h e l p 
-<!--================================================================================-->
+<!================================================================================-->
 
 
 <li><a href="#">?</a></li>
