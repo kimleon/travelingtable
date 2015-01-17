@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
+
 //added mongoose 
 var mongoose = require('mongoose');
 var fs = require('fs');
@@ -14,18 +14,39 @@ mongoose.connect('mongodb://localhost/test');
 
 var app = express();
 
+//passport imports
+var passport = require('passport');
+//configure session so user can stay logged in
+var session      = require('express-session');
+
+var init = require('./passport/init')
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(cookieParser());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
+//more for configuring passport-configure session
+
+
+app.use(session({secret: 'mySecretKey',
+                saveUninitialized: true,
+                resave: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+console.log(init);
+init(passport);
+
+var routes = require('./routes/routes')(passport);
 app.use('/', routes);
 
 // catch 404 and forward to error handler
