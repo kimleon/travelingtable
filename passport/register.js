@@ -33,11 +33,15 @@ module.exports = function(passport) {
 					var newUser = new User();
 					newUser.username = new_username;
 					newUser.password = newUser.generateHash(new_password);
+					newUser.recipe_list = [];
 
 					//save the user into the database
 					newUser.save(function(err){
-						if (err)
+						if (err) {
+							console.log(err);
 							throw err;
+						}
+							
 						return done(null, newUser);
 					});					
 				}

@@ -1,23 +1,24 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+ObjectId = Schema.ObjectId;
 var recipesSchema = new Schema({
 	name: String,
-	image: String
-	//latitude: Float,
-	//longitude: Float
+	image: String,
+	latitude: Number,
+	longitude: Number,
 	// instructions: [String],
-	// userId: Schema.Types.ObjectId.
+	userId: [{type: mongoose.Schema.ObjectId, ref: "User"}],
 	//ingredients: [String],
-	//peanuts: Boolean
-	//gluten: Boolean,
-	//vegan: Boolean,
-	//vegetarian: Boolean,
-	//soy: Boolean,
-	//upvotes: Integer
+	allergies: Boolean,
+	gluten: Boolean,
+	vegan: Boolean,
+	vegetarian: Boolean,
+	soy: Boolean,
+	upvotes: Number
+	
 });
 
-var Recipe = mongoose.model('Recipes', recipesSchema);
+var Recipe = mongoose.model('Recipe', recipesSchema);
 
 
 var checkLength = function(s) {

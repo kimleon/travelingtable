@@ -23,31 +23,14 @@ module.exports = function(passport) {
 
   //list of users
   router.get('/Users', function(req, res) {
-    mongoose.model('Users').find(function(err, Users) {
+    mongoose.model('User').find(function(err, Users) {
       res.send(Users);
     });
   });
 
-  /* POST / -- adding a new recipe */
-  router.post('/Recipes', function(req, res) {
-    // store itthe submitted recipe
-    var newRecipe = new recipes.Recipe({
-      name: req.body['recipe_name'],
-      image: req.body['recipe_image'],
-    });
-    
-    //at this point newRecipe is only in memory
-    newRecipe.save(function(err, result) {
-      console.log(result);
-      //this is not redirecting at the moment
-      res.redirect('/recipes/' + result._id);
-    });
-  });
-
-
   //list of recipes
   router.get('/Recipes', function(req, res) {
-    mongoose.model('Recipes').find(function(err, recipes) {
+    mongoose.model('Recipe').find(function(err, recipes) {
       res.send(recipes);
     });
   });
@@ -55,7 +38,7 @@ module.exports = function(passport) {
   //NOTE FOR THE TWO BELOW WE WON'T ACTUALLY NEED THEM EVENTUALLY
   //URL to view list of users to check they are getting entered into te database
   router.get('/Users', function(req, res) {
-    mongoose.model('Users').find(function(err, users){
+    mongoose.model('User').find(function(err, users){
       res.send(users);
     });
   });
@@ -93,6 +76,8 @@ module.exports = function(passport) {
 
    /*HANDLE register things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
   router.post('/Login', passport.authenticate('local-login'), function(req, res){
+    console.log('above')
+    console.log(req.user._id);
     console.log('Logout route happening');
     res.json({ //sends info to specify what should now be shown in the nav bar
       loggedIn: true
@@ -145,6 +130,41 @@ module.exports = function(passport) {
     res.redirect('/');
     
   });
+
+  /*Adding a new recipe sends you to addrecipe.ejs*/
+  router.get('/new_recipe', isLoggedIn, function(req, res) {
+    res.render('addrecipe');
+  });
+
+  //Post on new recipe page
+  router.post('/new_recipe', function(req, res) {
+    // store itthe submitted recipe
+    console.log('this post request is happening');
+    var newRecipe = new recipes.Recipe({
+      name: req.body.recipe_name,
+      image: req.body.recipe_image,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude,
+      userId: req.user._id,
+      allergies: req.body.allergies,
+      gluten: req.body.gluten,
+      vegan: req.body.vegan,
+      vegetarian: req.body.vegetarian,
+      soy: req.body.soy,
+      upvotes: 0
+    });
+
+
+
+    newRecipe.save(function(err, result) {
+      console.log(result);
+      req.user.recipe_list.push(result._id);
+         });
+    res.redirect('/new_recipe'); //go back to the home page after submit
+
+  });
+  
+  //How do I pass in the user IDs, How do I get the latitude and longitude 
 
  
   return router;

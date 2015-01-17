@@ -6,10 +6,10 @@ var bcrypt = require('bcrypt-nodejs');
 //currently only password and username
 var usersSchema = new mongoose.Schema({
 	username: String,
-	password: String
+	password: String,
 	//dietary_restrictions: [String],
 	//icon_choice: String
-	//recipe_list: [Schema.Types.ObjectId],
+	recipe_list: [{type: mongoose.Schema.ObjectId, ref: "Recipe"}]
 	//upvoted_recipes: [Schema.Types.ObjectId]
 });
 
@@ -24,7 +24,7 @@ usersSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
 //create entire model to expose it to the entire application
-var User = mongoose.model('Users', usersSchema);
+var User = mongoose.model('User', usersSchema);
 exports.User = User;
 
 

@@ -173,11 +173,16 @@ function buttondisplay() {
 
 
  $(function() {
+    console.log('this recipe submit button is happening')
     $('.error').hide();
     $(".recipebutton").click(function() {
       // validate and process form here
       
       $('.error').hide();
+      console.log("Is this happening")
+
+      var latitude = latLng.lat();
+      var longitude = latLng.lng();
   	  var recipe_name = $("input[name=recipe_name]").val();
   		if (recipe_name === "") {
         $("label#recipe_name_error").show();
@@ -191,12 +196,23 @@ function buttondisplay() {
         $("input#recipe_image").focus();
         return false;
       }
-      
-		var dataString2 = '&recipe_name'+ recipe_name +'&recipe_image' + recipe_image;
+
+      //dessert, entree, or appetizer
+      var dish_type = $("#dish_type option:selected").text();
+
+      var vegetarian = $("input[name=vegetarian]").prop("checked");
+      var vegan = $("input[name=vegan]").prop("checked");
+      var gluten_free = $("input[name=gluten-free]").prop("checked");
+      var allergies = $("input[name=allergies]").prop("checked");
+      console.log("are we getting here")
+		  var dataString2 = '&recipe_name='+ recipe_name +'&recipe_image=' + recipe_image + '&dish_type=' + dish_type
+                        +'$vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies
+                        +'&latitude=' + latitude + '&longitude=' + longitude;
 		  //alert (dataString);return false;
+      console.log("are we getting to this 2nd here")
 		  $.ajax({
 		    type: "POST",
-		    url: "/Recipes",
+		    url: "/new_recipe",
 		    data: dataString2,
 		    success: function() {
 		      $('#recipe_form').html("<div id='recipemessage'><h2>Recipe submitted!</h2><p>Thank you so much for your contribution!</p></div>");
