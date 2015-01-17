@@ -9,7 +9,8 @@ var usersSchema = new mongoose.Schema({
 	password: String
 	//dietary_restrictions: [String],
 	//icon_choice: String
-	//recipe_list: [Schema.Types.ObjectId]
+	//recipe_list: [Schema.Types.ObjectId],
+	//upvoted_recipes: [Schema.Types.ObjectId]
 });
 
 //Associated method for usersSchema:

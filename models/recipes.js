@@ -4,9 +4,17 @@ var Schema = mongoose.Schema;
 var recipesSchema = new Schema({
 	name: String,
 	image: String
-	// instructions: [String]
-	// userId: Schema.Types.ObjectId
-	//ingredients: [String]
+	//latitude: Float,
+	//longitude: Float
+	// instructions: [String],
+	// userId: Schema.Types.ObjectId.
+	//ingredients: [String],
+	//peanuts: Boolean
+	//gluten: Boolean,
+	//vegan: Boolean,
+	//vegetarian: Boolean,
+	//soy: Boolean,
+	//upvotes: Integer
 });
 
 var Recipe = mongoose.model('Recipes', recipesSchema);
