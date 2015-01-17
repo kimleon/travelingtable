@@ -154,13 +154,16 @@ module.exports = function(passport) {
       upvotes: 0
     });
 
-
-
     newRecipe.save(function(err, result) {
       console.log(result);
-      req.user.recipe_list.push(result._id);
-         });
-    res.redirect('/new_recipe'); //go back to the home page after submit
+      console.log(req.user.recipe_list)
+      //req.user.recipe_list.push(result._id);
+       //  });
+      users.User.findOneAndUpdate({_id:req.user._id}, {$push: {recipe_list: result._id}}, function () {
+        res.redirect('/new_recipe');
+      });
+    });
+     //go back to the home page after submit
 
   });
   
