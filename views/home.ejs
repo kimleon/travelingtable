@@ -125,7 +125,18 @@ styles: [
 		}
 		
         var map = new google.maps.Map(mapArea, mapOptions)
-		new google.maps.Marker({position: {lat: 42.3589, lng: -71.0921}, map: map, icon: "marker3.png"}) 
+		    var marker_1 = new google.maps.Marker({position: {lat: 42.3589, lng: -71.0921}, map: map, icon: "/graphics/marker3.png"})
+
+
+/*sample view recipe*/
+    /*google.maps.event.addListener(marker_1, 'click', function() {
+      $('#showrecipe').modal('show')
+      });
+}
+*/
+
+
+
       }
       google.maps.event.addDomListener(window, 'load', initialize);
 	  
@@ -261,6 +272,44 @@ styles: [
 </div><!--login bootstrap--></li>
             
       
+
+
+<!--================================================================================-->
+<!--                            a d d   r e c i p e
+<!--================================================================================-->
+
+
+
+
+<!--================================================================================-->
+<!--                           s h o w   r e c i p e
+<!--================================================================================-->
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel"> recipe_name </h4>
+      </div>
+      <div class="modal-body">
+        check on these names theyre probs not accurate, just placeholders</br>
+        recipe_image
+        recipe_type
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 
 
 
