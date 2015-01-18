@@ -1,32 +1,55 @@
-	var locations = {}; //A repository for markers (and the data from which they were contructed).
+//add function call for dragend event and refresh every 5s, resizing
 
+
+
+
+
+
+	var locations = []; //A repository for markers (and the data from which they were contructed).
+	//var edges = null;
 //this will contain the markers loaded within map edges? idk initialize this with existing db maybe?
 
 //new markers that are scanned and passed in
 	//initial dataset for markers
-	var locs = {
-	    1: {
-	        info: '11111. Some random info here',
-	        lat: -37.8139,
-	        lng: 144.9634
-	    },
-	    2: {
-	        info: '22222. Some random info here',
-	        lat: 46.0553,
-	        lng: 14.5144
-	    },
-	    3: {
-	        info: '33333. Some random info here',
-	        lat: -33.7333,
-	        lng: 151.0833
-	    },
-	    4: {
-	        info: '44444. Some random info here',
-	        lat: 27.9798,
-	        lng: -81.731
-	    }
-	};
-	var map = new google.maps.Map(document.getElementById('map_2385853'), {
+	var data.len = 0;
+
+
+
+	// get edges
+	var edges = map.getBounds();
+	var bottom_coord = edges[0][0];
+	var left_coord = edges[1][0];
+	var top_coord = edges[0][1];
+	var right_coord = edges[1][1]; 
+
+
+
+
+	//ajax get request - length
+
+
+	//ajax post edges
+    $.ajax({
+        type: "POST",
+        url: "/findMarkers",
+        data: '&bottom_coord='+bottom_coord+'&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&locations='+locations,'&len='+len,
+        success: function(data) {
+        	//$.each(data, function())
+        	//data.locs
+        	//len sent back
+
+        }
+	});
+
+
+
+
+
+
+	//compare lengths, if length_Received > len, ajax get request of last length_Received-len values within bounds
+//map info ya know the usual
+
+	var map = new google.maps.Map(document.getElementById('#map'), {
 	    zoom: 1,
 	    maxZoom: 8,
 	    minZoom: 1,
@@ -34,30 +57,41 @@
 	    center: new google.maps.LatLng(30, 30),
 	    mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
-	var infowindow = new google.maps.InfoWindow();
 
+
+
+	//iterate through them if within bounds, and not already in locations (already loaded) markers, then display
+	//append to locations
 	function setMarkers(locObj) {
-	    $.each(locObj, function (key, loc) {
-	        if (!locations[key] && loc.lat !== undefined && loc.lng !== undefined) {
+	    $.each(locObj, function (loc) {
+	        //if (!locations[loc[0]] && loc[1] !== undefined && loc[2] !== undefined) {
+
+			//if ($.inArray(loc[0],locations)!== -1 && loc[1] !== undefined && loc[2] !== undefined) {
+
+
+	        	//$.inArray(value, array)
 	            //Marker has not yet been made (and there's enough data to create one).
+	            //ALSO ADD AN EXTRA LINE FOR IF IT IS WITHIN OUR BOUNDS, if lat in range(bounds), and lng in range(bounds)
 
 	            //Create marker
 	            loc.marker = new google.maps.Marker({
-	                position: new google.maps.LatLng(loc.lat, loc.lng),
+	                position: new google.maps.LatLng(loc[1], loc[2]),
 	                map: map
 	            });
 
+	            //what is this click listener business, oh crap this displays the usernames okay
 	            //Attach click listener to marker
-	            google.maps.event.addListener(loc.marker, 'click', (function (key) {
+	            /*google.maps.event.addListener(loc.marker, 'click', (function (key) {
 	                return function () {
 	                    infowindow.setContent(locations[key].info);
 	                    infowindow.open(map, locations[key].marker);
 	                }
-	            })(key));
+	            })(key));*/
 
 	            //Remember loc in the `locations` so its info can be displayed and so its marker can be deleted.
-	            locations[key] = loc;
-	        } else if (locations[key] && loc.remove) {
+	            locations.push(loc[0]);
+
+	        } /*else if (locations[key] && loc.remove) {
 	            //Remove marker from map
 	            if (locations[key].marker) {
 	                locations[key].marker.setMap(null);
@@ -73,10 +107,10 @@
 	                new google.maps.LatLng(loc.lat, loc.lng));
 	            }
 	            //locations[key].info looks after itself.
-	        }
+	        }*/
 	    });
 	}
-
+/*
 	var ajaxObj = { //Object to save cluttering the namespace.
 	    options: {
 	        url: "........", //The resource that delivers loc data.
@@ -104,36 +138,6 @@
 	    .fail(ajaxObj.fail) //fires when an ajax error occurs
 	    .always(ajaxObj.get); //fires after ajax success or ajax error
 	}
-
-	setMarkers(locs); //Create markers from the initial dataset served with the document.
+*/
+	setMarkers(data.locs); //Create markers from the initial dataset served with the document.
 	//ajaxObj.get(); //Start the get cycle.
-
-	// *******************
-	//test: simulated ajax
-	var testLocs = {
-	    1: {
-	        info: '1. New Random info and new position',
-	        lat: -37,
-	        lng: 124.9634
-	    },
-	    2: {
-	        lat: 70,
-	        lng: 14.5144
-	    },
-	    3: {
-	        info: '3. New Random info'
-	    },
-	    4: {
-	        remove: true
-	    },
-	    5: {
-	        info: '55555. Added',
-	        lat: -37,
-	        lng: 0
-	    }
-	};
-	setTimeout(function () {
-	    setMarkers(testLocs);
-	}, ajaxObj.delay);
-	// *******************
-	
