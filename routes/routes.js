@@ -72,23 +72,51 @@ module.exports = function(passport) {
 
 
   /*HANDLE register things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
-  router.post('/Register', passport.authenticate('signup'), function(req, res){
+  router.get('/RegisterFail', function(req, res){
+    console.log(req.flash('signupMessage'))
     res.json ({
-      loggedIn: true
+      loggedIn: false,
+      message: req.flash('signupMessage')
     });
     });
 
+  router.get('/Register', function(req, res){
+    console.log(req.flash('signupMessage'))
+    res.json ({
+      loggedIn: true,
+      message: req.flash('signupMessage')
+    });
+    });
+
+  /*Actual form for register*/
+  router.post('/Register', passport.authenticate('signup', {
+    successRedirect: '/Register',
+    failureRedirect: '/RegisterFail',
+    failureFlash: true
+  }))
+
+  /*Actual form for login*/
+  router.post('/Login', passport.authenticate('local-login', {
+    successRedirect: '/Login',
+    failureRedirect: '/LoginFail',
+    failureFlash: true
+  }))
+
+  router.get('/LoginFail', function(req, res) {
+    console.log(req.flash('loginMessage'))
+    res.json({
+      loggedIn: false,
+      message: req.flash('loginMessage')
+    });
+  });
 
 
-
-
-   /*HANDLE register things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
-  router.post('/Login', passport.authenticate('local-login'), function(req, res){
-    console.log('above')
-    console.log(req.user._id);
-    console.log('Logout route happening');
+   /*HANDLE login things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
+  router.get('/Login', function(req, res){
+    console.log(mongoose.model('Marker').find().count());
     res.json({ //sends info to specify what should now be shown in the nav bar
-      loggedIn: true
+      loggedIn: true,
+      message: req.flash('loginMessage')
     });
   });
 
@@ -186,6 +214,35 @@ module.exports = function(passport) {
       });
     });
   });
+
+/*RENDERING ALL MARKERS for new page*/
+/*
+router.post('/findMarkers', function(req, res) {
+  //initial zoom for page set
+  var bottom = req.body.bottom_coord
+  var top = req.body.top_coord
+  var left = req.body.left_coord
+  var right = req.body.right_coord
+  var locations = req.body.locations //already stored markers
+  var length = req.body.len //SEND kiran current length of the database
+  markers_to_post = []
+  markers.Marker.find().forEach(function(marker) {
+    if ((left <= marker.longitude) && (marker.longitude<= right)) {
+      if ((bottom <= marker.latitude) && (marker.latitude<= top)) {
+        if (locations.indexOf(marker._id) !== -1)
+          cur_marker = [marker._id, marker.latitude, marker.longitude];
+          markers_to_post.push(cur_marker);
+      }
+    }
+
+  res.json({
+    locs: markers_to_post
+    len: length
+  });
+
+  });
+});
+*/
      
   
   //How do I pass in the user IDs, How do I get the latitude and longitude 
