@@ -157,6 +157,7 @@ module.exports = function(passport) {
       image: req.body.recipe_image,
       latitude: req.body.latitude,
       longitude: req.body.longitude,
+      dish_type: req.body.dish_type,
       userId: req.user._id,
       allergies: req.body.allergies,
       gluten: req.body.gluten,

@@ -6,6 +6,7 @@ var recipesSchema = new Schema({
 	image: String,
 	latitude: Number,
 	longitude: Number,
+	dish_type: String,
 	// instructions: [String],
 	userId: [{type: mongoose.Schema.ObjectId, ref: "User"}],
 	//ingredients: [String],
