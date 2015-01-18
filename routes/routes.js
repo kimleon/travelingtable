@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var recipes = require('../models/recipes');
 var users = require('../models/users'); //user and recipe models imported
 var markers = require('../models/markers'); //marker schema
+
 var isLoggedIn = function(req, res, next) {
 	//if the user is logged in, call next() to request the next request handler
 	//Passport adds this method to request an object
@@ -81,12 +82,14 @@ module.exports = function(passport) {
     });
 
   router.get('/Register', function(req, res){
-    console.log(req.flash('signupMessage'))
-    res.json ({
-      loggedIn: true,
-      message: req.flash('signupMessage')
-    });
-    });
+  console.log(req.flash('signupMessage'))
+  res.json({
+        loggedIn: true,
+        message: req.flash('signupMessage')
+      });
+
+  });
+
 
   /*Actual form for register*/
   router.post('/Register', passport.authenticate('signup', {
@@ -113,11 +116,24 @@ module.exports = function(passport) {
 
    /*HANDLE login things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
   router.get('/Login', function(req, res){
-    console.log(mongoose.model('Marker').find().count());
-    res.json({ //sends info to specify what should now be shown in the nav bar
-      loggedIn: true,
-      message: req.flash('loginMessage')
+    //was trying things out will delete this later this is useful for doing markers
+    mongoose.model('User').find({ username: { $nin: [ 'deepti', 'victorhung' ] }}, function(err, items) {
+        if (err) {
+        console.log(err);
+        return;
+        }
+        arr = []
+        items.forEach(function(user) { 
+          arr.push(user.username)
+        });
+        console.log(arr)
+
+        res.json({ //sends info to specify what should now be shown in the nav bar
+          loggedIn: true,
+          message: req.flash('loginMessage')
     });
+      });
+    
   });
 
 
@@ -215,8 +231,8 @@ module.exports = function(passport) {
     });
   });
 
-/*RENDERING ALL MARKERS for new page*/
-/*
+/*RENDERING ALL MARKERS for new page (searches for new markers to send)*/
+
 router.post('/findMarkers', function(req, res) {
   //initial zoom for page set
   var bottom = req.body.bottom_coord
@@ -225,24 +241,31 @@ router.post('/findMarkers', function(req, res) {
   var right = req.body.right_coord
   var locations = req.body.locations //already stored markers
   var length = req.body.len //SEND kiran current length of the database
+
   markers_to_post = []
-  markers.Marker.find().forEach(function(marker) {
-    if ((left <= marker.longitude) && (marker.longitude<= right)) {
-      if ((bottom <= marker.latitude) && (marker.latitude<= top)) {
-        if (locations.indexOf(marker._id) !== -1)
-          cur_marker = [marker._id, marker.latitude, marker.longitude];
-          markers_to_post.push(cur_marker);
-      }
-    }
+  markerIDs = []
+  mongoose.model('Marker').find({ $and: 
+    [{ latitude: { $gte: bottom, $lte: top } },
+    {longitude: {$gte: left, $lte: top}},
+    {_id: {$nin: locations}}]}, function(err, returned_markers) {
+      if (err)
+        return;
+      //push all of the marker items to send to front end
+      returned_markers.forEach(function(marker) {
+        var cur_array = [marker.latitude, marker.longitude]
+        markers_to_post.push(cur_array);
+        markerIDs.push(marker._id);
+      });
+      console.log('marker array', markers_to_post);
+      console.log('ID ARRAY', markerIDs);
+      res.json( {
+        markers_to_post: markers_to_post,
+        markerIDs: markerIDs
+      });
+    });
 
-  res.json({
-    locs: markers_to_post
-    len: length
   });
 
-  });
-});
-*/
      
   
   //How do I pass in the user IDs, How do I get the latitude and longitude 

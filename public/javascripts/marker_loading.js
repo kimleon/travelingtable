@@ -5,8 +5,7 @@
 
 
 
-	var locations = []; //A repository for markers (and the data from which they were contructed).
-	//var edges = null;
+	var locations = []; //A repository for markers (and the data from which they were contructed).//var edges = null;
 //this will contain the markers loaded within map edges? idk initialize this with existing db maybe?
 
 //new markers that are scanned and passed in
@@ -17,12 +16,10 @@
 
 	// get edges
 	var edges = map.getBounds();
-	var bottom_coord = edges[0][0];
-	var left_coord = edges[1][0];
-	var top_coord = edges[0][1];
-	var right_coord = edges[1][1]; 
-
-
+	var left_coord = edges.getSouthWest().lat()
+	var top_coord = edges.getSouthWest().lng()
+	var right_coord = edges.getNorthEast().lat()
+	var bottom_coord = edges.getNorthEast().lng()
 
 
 	//ajax get request - length
@@ -32,7 +29,7 @@
     $.ajax({
         type: "POST",
         url: "/findMarkers",
-        data: '&bottom_coord='+bottom_coord+'&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&locations='+locations,'&len='+len,
+        data: '&bottom_coord='+bottom_coord+'&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&locations='+locations,'&len='+data.len,
         success: function(data) {
         	//$.each(data, function())
         	//data.locs
