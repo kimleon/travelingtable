@@ -13,9 +13,7 @@ var recipesSchema = new Schema({
 	gluten: Boolean,
 	vegan: Boolean,
 	vegetarian: Boolean,
-	soy: Boolean,
 	upvotes: Number
-	
 });
 
 var Recipe = mongoose.model('Recipe', recipesSchema);

@@ -206,7 +206,7 @@ function buttondisplay() {
       var allergies = $("input[name=allergies]").prop("checked");
       console.log("are we getting here")
 		  var dataString2 = '&recipe_name='+ recipe_name +'&recipe_image=' + recipe_image + '&dish_type=' + dish_type
-                        +'$vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies
+                        +'&vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies
                         +'&latitude=' + latitude + '&longitude=' + longitude;
 		  //alert (dataString);return false;
       console.log("are we getting to this 2nd here")

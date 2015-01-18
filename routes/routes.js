@@ -3,7 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var recipes = require('../models/recipes');
 var users = require('../models/users'); //user and recipe models imported
-
+var markers = require('../models/markers'); //marker schema
 var isLoggedIn = function(req, res, next) {
 	//if the user is logged in, call next() to request the next request handler
 	//Passport adds this method to request an object
@@ -43,6 +43,12 @@ module.exports = function(passport) {
     });
   });
 
+  router.get('/Markers', function(req, res) {
+    mongoose.model('Marker').find(function(err, markers){
+      res.send(markers);
+    });
+  });
+
 
   /* GET /Recipes/123 
     view a specific recipe */
@@ -74,6 +80,8 @@ module.exports = function(passport) {
 
 
 
+
+
    /*HANDLE register things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
   router.post('/Login', passport.authenticate('local-login'), function(req, res){
     console.log('above')
@@ -97,6 +105,8 @@ module.exports = function(passport) {
     });
   });
 
+  
+
 
   /*For page refreshes-check if user is logged in*/
   router.post('/Refresh', function(req, res) {
@@ -116,6 +126,8 @@ module.exports = function(passport) {
 
   router.get('/Profile', isLoggedIn, function(req, res) {
     console.log(req.user);
+    
+    
     res.render('profile', {username: req.user.username, recipetitle: "Gobi"});
   });
 
@@ -150,22 +162,30 @@ module.exports = function(passport) {
       gluten: req.body.gluten,
       vegan: req.body.vegan,
       vegetarian: req.body.vegetarian,
-      soy: req.body.soy,
       upvotes: 0
     });
+    console.log(req.body.vegetarian)
 
     newRecipe.save(function(err, result) {
       console.log(result);
       console.log(req.user.recipe_list)
-      //req.user.recipe_list.push(result._id);
-       //  });
-      users.User.findOneAndUpdate({_id:req.user._id}, {$push: {recipe_list: result._id}}, function () {
-        res.redirect('/new_recipe');
+      var newMarker = new markers.Marker({
+            latitude: req.body.latitude,
+            longitude: req.body.longitude,
+            recipeId: result._id
+          });
+      users.User.findOneAndUpdate(
+        {_id:req.user._id}, 
+        {$push: {recipe_list: result._id}}, 
+        function () {
+          newMarker.save(function(err, result2) {
+            console.log(result2);
+            res.redirect('/new_recipe');  
+          });
       });
     });
-     //go back to the home page after submit
-
   });
+     
   
   //How do I pass in the user IDs, How do I get the latitude and longitude 
 
