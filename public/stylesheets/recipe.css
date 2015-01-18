@@ -10,23 +10,26 @@
 }
 
 body {
-	margin:0
+	margin:0;
 }
 
 
-
 #map {
-	height:10vh;
+	height:100vh;
 	width:100vw;
 	position:fixed;
+	clear:left;
 }
 
 #recipe_form {
 	background-color: white;
-	position:fixed;
-	float:top;
-	z-index:1;
+	position:absolute;
+	float:left;
 	width:100vw;
+	clear:left;
+	/*height:auto;*/
+	margin:0;
+	/*margin-top:10vw;*/
 }
 body {
   background-color:#34495e;
@@ -66,7 +69,7 @@ body {
 	font-family: "Open Sans", Helvetica, sans-serif;
 	font-weight: 300;
 }
-
+/*
 a.close {
 	background-color: transparent;
 	border: 0;
@@ -87,7 +90,7 @@ a.close {
 		cursor: pointer;
 		color:#ffffff;
 	}
-
+*/
 .top {
 	z-index:1;
 }
@@ -95,7 +98,7 @@ a.close {
 .form-control {
 	width:100%
 }
-
+/*
 .brand {
 	max-height:200%;
 	width:auto;
@@ -141,16 +144,16 @@ a.close {
     .collapse.in{
         display:block !important;
     } 
-}
+}*/
 /*
 color: white; /*BACKGROUND color for active
 background-color: #2DBEB2;
     background-color: #35d7b7;
 */
-
+/*
 .navbar{
 	color: white; /*BACKGROUND color for active*/
-/*background-color: #2DBEB2;*/
+/*background-color: #2DBEB2;
     background-color: #35d7b7;
 	border-color: #35d7b7;
 	font-size:120%;
@@ -196,27 +199,17 @@ background-color: #2DBEB2;
 }
 
 
-
-.btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px;
-}
-
 .navbar-header > a 
 {
     float: left;
-}
+}*/
 
 .modal-body {
 	font-family:"Open Sans";
 	font-weight: 300;
 	color:black;
 	font-style:normal;
+	padding-top:10vh;
 }
 
 .modal-header {
@@ -224,12 +217,7 @@ background-color: #2DBEB2;
 	color:white;
 	font-size:150%;
 }
-
-.search {
-	border-radius:30px 0px 0px 30px;
-	width:25vw;
-}
-
+/*
 .round {
 	border-radius:0px 30px 30px 0px;
 }
@@ -238,7 +226,7 @@ background-color: #2DBEB2;
 	height:20vh;
 	width:auto;
 }
-
+*/
 #submit_btn {
 	border-radius:30px;
 	background-color:#35d7b7;
@@ -269,7 +257,7 @@ background-color: #2DBEB2;
 	position: relative;
 }
 
-
+/*
 .close {
 	background-color: transparent;
 	border: 0;
@@ -283,9 +271,51 @@ background-color: #2DBEB2;
 	top: 3vh;
 	transition: all 400ms ease;
 	right: 3vw;
-}
+}*/
 
-#form {
+/*#form {
 	position:absolute;
+}*/
+
+
+#instructionbar {
+	width:100vw;
+	/*height:10vh;*/
+	background-color:#35d7b7;
+	color:white;
+	font-weight:100;
+	position:fixed;
+	margin: 0;
+	z-index:2;
+	top:0;
+	/*font-size:2em;*/
+	line-height:2em;
+	vertical-align:center;
+	padding:0.5em;
 }
 
+.scroll {
+	z-index:1;
+	float:right;
+	bottom:15vh;
+	position:relative;
+	margin:0px;
+	display:block;
+}
+
+#map-section {
+	height:100vh;
+	margin:0;
+}
+
+.page {
+	display:inline-block;
+	overflow:hidden;
+}
+
+button {
+	background-color:transparent;
+	border:0;
+	outline: 0;
+	box-shadow: none;
+}

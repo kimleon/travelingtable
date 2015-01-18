@@ -6,7 +6,7 @@ function initialize() {
   var haightAshbury = new google.maps.LatLng(37.7699298, -122.4469157);
   var mapOptions = {
           center: new google.maps.LatLng(42.3598, -71.0921),
-          zoom: 6,
+          zoom: 3,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
 		  minZoom: 3,
 		  maxZoom:7,
@@ -111,29 +111,5 @@ function addMarker(location) {
   });
 }
 
-
-
-// Sets the map on all markers in the array.
-function setAllMap(map) {
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(map);
-  }
-}
-
-/* Removes the markers from the map, but keeps them in the array.
-function clearMarkers() {
-  setAllMap(null);
-}
-
-// Shows any markers currently in the array.
-function showMarkers() {
-  setAllMap(map);
-}
-
-// Deletes all markers in the array by removing references to them.
-function deleteMarkers() {
-  clearMarkers();
-  markers = [];
-}*/
 
 google.maps.event.addDomListener(window, 'load', initialize);

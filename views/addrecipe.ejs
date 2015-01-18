@@ -21,20 +21,30 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/javascripts/recipe.js"></script>
 <link rel="stylesheet" type="text/css" href="/stylesheets/recipe.css"/>
+
+<script src="/javascripts/smooth-scroll.js"></script>
     
     
     
   </head>
   <body>
-  <div class="page">
-    <div id="map"></div>
-    <p>Click on the map to add markers.</p>
+   <div class="page">
+    <div id="instructionbar">
+      <div id="mapinstr" id="instructionbar"><h2>Place a marker to label the region your recipe comes from.</h2></div>
+        <div id="recipeinstr" id="instructionbar"><h2>Fill out the recipe form with your dish information!</h2></div>
+    </div>
+    
+    <div id="mapsection">
+        <div id="map"></div>
+    <div class="scroll"><a data-scroll data-options='{ "easing": "easeInOutQuad" }' href="#recipe_form"><button><img src="graphics/scroll.png" style="max-width:50%;"/></button></a></div>
+    </div>
     
     
 
-            </div id="form">
-
-    		<h3 class="modal-title" id="myModalLabel">Add your recipe</h3>
+            <!--<div id="form">-->
+      <!--<h3>Add your recipe</h3>-->
+           
+        <!--<h3 class="modal-title" id="myModalLabel" name="#recipe_form">Add your recipe</h3>-->
             <div class="modal-body" id="recipe_form">
  <!--               <form method="post" name="recipe" action="">
                     <fieldset>-->
@@ -47,8 +57,8 @@
                         
                         <div class="form-group">
                           <label for="sel1">What kind of dish is this recipe?</label>
-                          <select class="form-control" id="dish_type" name="dish_type">
-                            <option >Appetizer/Side</option>
+                          <select class="form-control" id="sel1" name="dish_type">
+                            <option>Appetizer/Side</option>
                             <option>Entree</option>
                             <option>Dessert</option>
                           </select>
@@ -61,23 +71,32 @@
                         
                         <label for="recipe_checkbox">Dietary Restrictions</label></br>
                             <div class="checkbox">
-                              <label><input type="checkbox" name="vegetarian" id="vegetarian" value="vegetarian">Vegetarian</label>
+                              <label><input type="checkbox" name="vegetarian" value="">Vegetarian</label>
                             </div>
                             <div class="checkbox">
-                              <label><input type="checkbox" name="vegan" value="vegan">Vegan</label>
+                              <label><input type="checkbox" name="vegan" value="">Vegan</label>
                             </div>
                             <div class="checkbox">
-                              <label><input type="checkbox" name="gluten-free" value="gluten-free">Gluten-Free</label>
+                              <label><input type="checkbox" name="gluten-free" value="">Gluten-Free</label>
                             </div>
                             <div class="checkbox">
-                              <label><input type="checkbox" name="allergies" value="allergies">No peanuts/soy</label>
+                              <label><input type="checkbox" name="allergies" value="">No peanuts/soy</label>
                             </div>
                         <input type="submit" name="submit" class="recipebutton" id="submit_btn" value="Submit" />
-
 <!--                      </fieldset>
                   </form>-->
             </div>
     </div>
-</div>
+
+<script>
+    smoothScroll.init({
+      speed: 1000,
+      easing: 'easeInOutCubic',
+      offset: 0,
+      updateURL: true,
+      callbackBefore: function ( toggle, anchor ) {},
+      callbackAfter: function ( toggle, anchor ) {}
+    });
+</script>
   </body>
 </html>
