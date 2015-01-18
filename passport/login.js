@@ -18,12 +18,14 @@ module.exports = function(passport) {
 				return done(err);
 			//if no user is found, return an error message
 			if (!user) {
-				return done(null, false, {message: 'Incorrect username.'});
+
+				return done(null, false, req.flash('loginMessage', 'Are you sure this is the correct username?  It is okay, you can try again!'));
 			} 
 
 			//else, you want to check username and password match
 			if(!user.validPassword(password)){
-				return done(null, false, {message: 'Incorrect password.'});					
+				console.log('The username is wrong we are reaching to this point')
+				return done(null, false, req.flash('loginMessage', 'You did bad, the password is WRONG.  Sorry dude.'));					
 			}
 
 			//else, all is well, return the successful user

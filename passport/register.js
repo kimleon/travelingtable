@@ -27,7 +27,7 @@ module.exports = function(passport) {
 					console.log(new_password);
 					console.log('Hello');
 					console.log(new_username);
-					return done(null, false);
+					return done(null, false, req.flash('signupMessage', 'Sorry, this username is taken.  We suggest you think a little harder.'));
 				} else {
 					//create a new user with this email
 					var newUser = new User();
