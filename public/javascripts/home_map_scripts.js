@@ -1,4 +1,5 @@
 
+      var map;
       function initialize() {
          //var locations = [];
          var new_locations = [];
@@ -122,7 +123,8 @@
                   
                       loc.marker = new google.maps.Marker({
                           position: new google.maps.LatLng(loc[1], loc[2]),
-                          map: map
+                          map: map,
+                          customInfo: loc[0]
                       });
                      
                       //Remember loc in the `locations` so its info can be displayed and so its marker can be deleted.
@@ -134,6 +136,78 @@
           setMarkers(new_locations); //Create markers from the initial dataset served with the document.
           //ajaxObj.get(); //Start the get cycle.
         })
+
+     
+      google.maps.event.addListener(marker,'click',function(marker.customInfo) {
+            $.ajax({
+                type: "POST",
+                url: "/viewRecipe",
+                data: '&=markerID='+marker.customInfo,
+                success: function(data) {
+                  console.log('recieving the marker ID');
+                  var recipe_name = data.recipe_name
+                  var recipe_type = data.recipe_type
+                  var recipe_image = data.recipe_image
+                  var vegetarian = data.vegetarian
+                  var vegan = data.vegan
+                  var gluten = data.gluten
+                  var allergies = data.allergies
+                  var upvotes = data.upvotes
+                  }
+          });
+
+
+            if (vegetarian===true) {
+              vegetarian='checked="checked">';
+            } else {
+              vegetarian='>';
+            }
+            
+            if (vegan===true) {
+              vegan='checked="checked">';
+            } else {
+              vegan='>';
+            }
+
+            if (gluten===true) {
+              gluten='checked="checked">';
+            } else {
+              gluten='>';
+            }
+
+            if (allergies===true) {
+              allergies ='checked="checked">';
+            } else {
+              allergies ='>';
+            }
+
+            
+
+     var contentString = '<div id="window"><div id="title">'+recipe_name+'</div><div id="inside"><div class="label">
+     Dish type:</div></br>'+recipe_type+'</br><div class="label">Recipe Image</div></br><img src="'+recipe_image
+     ' class="image"></br><div class="label">Dietary Restrictions:</div></br>'+'<input type="checkbox" class="checkbox"
+      disabled="disabled" '+vegetarian+' Vegetarian <input type="checkbox" class="checkbox" disabled="disabled" '+vegan+
+      'Vegan <input type="checkbox" class="checkbox" disabled="disabled" '+gluten+'Gluten-Free <input type="checkbox"
+       class="checkbox" disabled="disabled" '+allergies+'No peanuts/soy <div class="label">Upvotes: </div>'+upvotes+'</div></div>';
+
+      var infowindow = new google.maps.InfoWindow({
+          content: contentString
+       });
+
+      infowindow.open(map,marker);
+
+      });
+
+
+
+
+
+
+
      }
 
       google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+      
