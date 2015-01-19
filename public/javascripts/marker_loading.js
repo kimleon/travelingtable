@@ -11,7 +11,7 @@
 
 //new markers that are scanned and passed in
 	//initial dataset for markers
-	var data.len = 0;
+	//var data.len = 0;
 
 
 
@@ -32,7 +32,7 @@
     $.ajax({
         type: "POST",
         url: "/findMarkers",
-        data: '&bottom_coord='+bottom_coord+'&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&locations='+locations,'&len='+len,
+        data: '&bottom_coord='+bottom_coord+'&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&locations='+locations//,'&len='+len,
         success: function(data) {
         	//$.each(data, function())
         	//data.locs
@@ -139,5 +139,5 @@
 	    .always(ajaxObj.get); //fires after ajax success or ajax error
 	}
 */
-	setMarkers(data.locs); //Create markers from the initial dataset served with the document.
+	setMarkers(data.newmarkers); //Create markers from the initial dataset served with the document.
 	//ajaxObj.get(); //Start the get cycle.
