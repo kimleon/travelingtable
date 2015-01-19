@@ -321,31 +321,34 @@ router.post('/findMarkers', function(req, res) {
   /*VIEWING ONE'S PROFILe*/
   router.get('/Profile', isLoggedIn, function(req, res) {
     console.log(req.user);
-    mongoose.model('User').find(
-      {_id: req.user._id},
-      function(err, user_result) {
+    var user_recipes = req.user.recipe_list
+    arr = []
+    if (user_recipes.length !==0) {
+    console.log('user recipes below:');
+    console.log(user_recipes);
+     mongoose.model('Recipe').find({ _id: { $in: user_recipes}}, function(err, foods) {
         if (err) {
-          console.log('error in finding the user below:');
+          console.log('error in finding recipe associated with user');
           console.log(err);
           return;
         }
-        var user_recipes = user_result.recipe_list
-         mongoose.model('Recipe').find({ _id: { $in: user_recipes}}, function(err, foods) {
-            if (err) {
-              console.log('error in finding recipe associated with user');
-              console.log(err);
-              return;
-            }
-            arr = []
-            foods.forEach(function(food) { 
-            cur_array = [food.dish_type, food.name, food._id];
-            arr.push(cur_array);
-             });
-            res.json({
-              user_recipes: arr
-            });
+        
+        foods.forEach(function(food) { 
+        cur_array = [food.dish_type, food.name, food._id];
+        arr.push(cur_array);
          });
+        res.render('profile', {
+          username: req.user.username,
+          recipetitle: arr
+        });
       });
+    } else {
+      res.render('profile', {
+        username: req.user.username,
+        recipetitle: "Sorry you have not entered any recipes! please do or else we will disown you."
+      });
+    }
+      
     });
 
 
@@ -364,7 +367,7 @@ router.post('/findRecipeOnMap', function(req, res) {
         longitude: recipe.longitude
       });
     });
-});
+  });
  
 return router;
 }

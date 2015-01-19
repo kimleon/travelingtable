@@ -137,8 +137,9 @@
           //ajaxObj.get(); //Start the get cycle.
         })
       
-      /*
-      google.maps.event.addListener(marker,'click',function(marker.customInfo) {
+      
+      google.maps.event.addListener(google.maps.Marker,'click',function() {
+            console.log(this.customInfo);
             $.ajax({
                 type: "POST",
                 url: "/viewRecipe",
@@ -182,14 +183,15 @@
             }
 
             
-
+    /*
      var contentString = '<div id="window"><div id="title">'+recipe_name+'</div><div id="inside"><div class="label">
      Dish type:</div></br>'+recipe_type+'</br><div class="label">Recipe Image</div></br><img src="'+recipe_image
      ' class="image"></br><div class="label">Dietary Restrictions:</div></br>'+'<input type="checkbox" class="checkbox"
       disabled="disabled" '+vegetarian+' Vegetarian <input type="checkbox" class="checkbox" disabled="disabled" '+vegan+
       'Vegan <input type="checkbox" class="checkbox" disabled="disabled" '+gluten+'Gluten-Free <input type="checkbox"
        class="checkbox" disabled="disabled" '+allergies+'No peanuts/soy <div class="label">Upvotes: </div>'+upvotes+'</div></div>';
-
+       */
+       var contentString = "VICTOR HUNG WE LOVE YOU"; 
       var infowindow = new google.maps.InfoWindow({
           content: contentString
        });
@@ -199,7 +201,7 @@
       });
 
 
-    */
+    
 
 
 
