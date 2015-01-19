@@ -36,6 +36,35 @@ module.exports = function(passport) {
     });
   });
 
+
+
+  router.get('/Search/:keywords', function(req, res) {
+    //search only works if a single word entered into the search
+  //   var final_find = "";
+  //   var search_keywords = req.param('keywords');
+  //   var split = search_keywords.split("+");
+  //   for i in split:
+  //     final_find += { name: {$regex : '.*'+i+'.*'}},
+  //   final_find = final_find.substring(0, str.length - 1);
+  //   console.log(final_find);
+  //   actual_final = final_find.valueOf();
+  //   recipes.Recipe.find({ $or: [ actual_final ] }, function(err, results) { 
+  //     res.send(results);
+  //   });
+  // });
+  //example of $or:
+  //   var searchword = req.param('keywords');
+  //   recipes.Recipe.find({ $or: [ { name: {$regex : '.*'+searchword1+'.*'}}, { name: {$regex : ".*"searchword2".*"}} ] }, function(err, results) { 
+  //     res.send(results);
+  //   });
+  // });
+    var searchword = req.param('keywords');
+    recipes.Recipe.find({ name: {$regex : '.*'+searchword+'.*'} }, function(err, results) { 
+      res.send(results);
+    });
+  });
+
+
   //NOTE FOR THE TWO BELOW WE WON'T ACTUALLY NEED THEM EVENTUALLY
   //URL to view list of users to check they are getting entered into te database
   router.get('/Users', function(req, res) {

@@ -3,12 +3,25 @@ view all recipes that have the keyword in their title*/
 
 router.get('Search/:keyword', function(req, res) {
 	//search only works if a single word entered into the search
-	var keyword = req.param('keyword');
-	recipes.Recipe.find({recipe_name: keyword}, function(err, result) {
-		console.log(result);
-		res.render('multiplerecipes', { recipe_list: result });
+	var searchword = req.param('keyword');
+	recipes.Recipe.find({name: searchword}, function(err, results) {
+		console.log(results);
+		res.render('multiplerecipes', { recipe_list: results });
 	});
 });
+
+
+
+
+  /* GET /Recipes/123 
+    view a specific recipe */
+  router.get('/Recipes/:id', function(req, res) {
+    var recipeId = req.param('id');
+    recipes.Recipe.findOne({_id: recipeId}, function(err, result) {
+      console.log(result);
+      res.render('singlerecipe', { recipe: result });
+    });
+  });
 
 
 // example:
