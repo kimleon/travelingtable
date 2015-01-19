@@ -1,7 +1,7 @@
- var locations = [];
-
 
       function initialize() {
+         var locations = {};
+
         var mapArea = document.getElementById('map');
         var mapOptions = {
           center: new google.maps.LatLng(42.3598, -71.0921),
@@ -93,87 +93,49 @@
 
 
 
+      google.maps.event.addListener(map, 'idle', function()  {
+            console.log('function refreshmap called')
+          // get edges
+          //var edges = map.getBounds();
+          //console.log(edges);
+          //var left_coord = edges.getSouthWest().lng();
+          //var top_coord = edges.getNorthEast().lat();
+          //var right_coord = edges.getNorthEast().lng();
+          //var bottom_coord = edges.getSouthWest().lat();
+          //console.log('got all the edges');
+
+          //ajax post edges
+            $.ajax({
+                type: "POST",
+                url: "/newFindMarkers",
+                data: '&locations='+locations,//,'&len='+len,
+                success: function(data) {
+                  console.log('recieving the data of markers');
+                  var new_locations = data.new_markers
+                }
+          });
 
 
 
-var refreshMap = function(map) 
+          //iterate through them if within bounds, and not already in locations (already loaded) markers, then display
+          //append to locations
+          var setMarkers = function(locObj) {
+              $.each(locObj, function (loc) {
+                  
+                      loc.marker = new google.maps.Marker({
+                          position: new google.maps.LatLng(loc[1], loc[2]),
+                          map: map
+                      });
+                     
+                      //Remember loc in the `locations` so its info can be displayed and so its marker can be deleted.
+                      locations.push(loc[0]);
+                  
+           });
+           }
 
-{ return function()
-  {
-    console.log('function refreshmap called')
-  // get edges
-  var edges = map.getBounds();
-  console.log(edges);
-  var left_coord = edges.getSouthWest().lng();
-  var top_coord = edges.getNorthEast().lat();
-  var right_coord = edges.getNorthEast().lng();
-  var bottom_coord = edges.getSouthWest().lat();
-
-
-  //ajax post edges
-    $.ajax({
-        type: "POST",
-        url: "/findMarkers",
-        data: '&bottom_coord='+bottom_coord+'&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&locations='+locations,//,'&len='+len,
-        success: function(data) {
-          console.log('recieving the data of markers');
-          var new_locations = data.new_markers
-        }
-  });
-
-
-
-  //iterate through them if within bounds, and not already in locations (already loaded) markers, then display
-  //append to locations
-  var setMarkers = function(locObj) {
-      $.each(locObj, function (loc) {
-          
-              loc.marker = new google.maps.Marker({
-                  position: new google.maps.LatLng(loc[1], loc[2]),
-                  map: map
-              });
-             
-              //Remember loc in the `locations` so its info can be displayed and so its marker can be deleted.
-              locations.push(loc[0]);
-          
-   });
-   }
-
-  setMarkers(new_locations); //Create markers from the initial dataset served with the document.
-  //ajaxObj.get(); //Start the get cycle.
-}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-      google.maps.event.addDomListener(map, 'bounds_changed',refreshMap(map));
-      //google.maps.event.addDomListener(map, 'center_changed',refreshMap(map));
-      //google.maps.event.addDomListener(map, 'resize',refreshMap(map));
-      //google.maps.event.addDomListener(map, 'dragend',refreshMap(map));
-
-        //return map
-		   // var marker_1 = new google.maps.Marker({position: {lat: 42.3589, lng: -71.0921}, map: map, icon: "/graphics/marker3.png"})
-
-
-/*sample view recipe*/
-    /*google.maps.event.addListener(marker_1, 'click', function() {
-      $('#showrecipe').modal('show')
-      });
-}
-*/
-
-
-
-      }
-
+          setMarkers(new_locations); //Create markers from the initial dataset served with the document.
+          //ajaxObj.get(); //Start the get cycle.
+        })
+     }
 
       google.maps.event.addDomListener(window, 'load', initialize);
