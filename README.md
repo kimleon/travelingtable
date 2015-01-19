@@ -1,3 +1,4 @@
+
 Things we still have to do FOR MVP:
 -Deepti: make sure marker rendering is working on the map with the way we came up with (to send through AJAX list of locations that have been rendered for that session)
 -Deepti: Implement dietary restrictions showing up on the map with restricting the search iteration
@@ -42,3 +43,4 @@ FEATURES FOR AFTER MVP:
 WE HAVE TO STOP IMPLEMENTING FEATURES BY FRIDAY NIGHT AND DEVOTE THE REST OF THE TIME TO FINDING BUGS!!!!!
 
 -
+
