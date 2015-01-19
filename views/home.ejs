@@ -141,10 +141,10 @@ var refreshMap = function(map)
   // get edges
   var edges = map.getBounds();
   console.log(edges);
-  var left_coord = edges.getSouthWest().lat();
-  var top_coord = edges.getSouthWest().lng();
-  var right_coord = edges.getNorthEast().lat();
-  var bottom_coord = edges.getNorthEast().lng();
+  var left_coord = edges.getSouthWest().lng();
+  var top_coord = edges.getNorthEast().lat();
+  var right_coord = edges.getNorthEast().lng();
+  var bottom_coord = edges.getSouthWest().lat();
 
 
   //ajax post edges
