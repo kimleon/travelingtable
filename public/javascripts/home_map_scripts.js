@@ -1,6 +1,7 @@
 
       var map;
       function initialize() {
+        
          //var locations = [];
          var new_locations = [];
         var mapArea = document.getElementById('map');
@@ -126,6 +127,8 @@
                           map: map,
                           customInfo: loc[0]
                       });
+
+                      setListener(loc.marker);
                      
                       //Remember loc in the `locations` so its info can be displayed and so its marker can be deleted.
                       //locations.push(loc[0]);
@@ -135,55 +138,58 @@
 
           setMarkers(new_locations); //Create markers from the initial dataset served with the document.
           //ajaxObj.get(); //Start the get cycle.
-        })
-      
-      
-      google.maps.event.addListener(google.maps.Marker,'click',function() {
+        });
+
+    var setListener = function(marker) {
+
+      var recipe_name 
+      var recipe_type 
+      var recipe_image
+      var vegetarian
+      var vegan
+      var gluten
+      var allergies
+      var upvotes
+      google.maps.event.addListener(marker,'click',function() {
+            console.log('marker info');
             console.log(this.customInfo);
             $.ajax({
                 type: "POST",
                 url: "/viewRecipe",
-                data: '&=markerID='+marker.customInfo,
+                data: '&markerID='+marker.customInfo,
                 success: function(data) {
                   console.log('recieving the marker ID');
-                  var recipe_name = data.recipe_name
-                  var recipe_type = data.recipe_type
-                  var recipe_image = data.recipe_image
-                  var vegetarian = data.vegetarian
-                  var vegan = data.vegan
-                  var gluten = data.gluten
-                  var allergies = data.allergies
-                  var upvotes = data.upvotes
-                  }
-          });
-
-
+                  console.log(data);
+                  recipe_name = data.recipe_name
+                  recipe_type = data.recipe_type
+                  recipe_image = data.recipe_image
+                  vegetarian = data.vegetarian
+                  vegan = data.vegan
+                  gluten = data.gluten
+                  allergies = data.allergies
+                  upvotes = data.upvotes
+                       
             if (vegetarian===true) {
               vegetarian='checked="checked">';
             } else {
               vegetarian='>';
             }
-            
             if (vegan===true) {
               vegan='checked="checked">';
             } else {
               vegan='>';
             }
-
             if (gluten===true) {
               gluten='checked="checked">';
             } else {
               gluten='>';
             }
-
             if (allergies===true) {
               allergies ='checked="checked">';
             } else {
               allergies ='>';
             }
-
-            
-    /*
+             /*
      var contentString = '<div id="window"><div id="title">'+recipe_name+'</div><div id="inside"><div class="label">
      Dish type:</div></br>'+recipe_type+'</br><div class="label">Recipe Image</div></br><img src="'+recipe_image
      ' class="image"></br><div class="label">Dietary Restrictions:</div></br>'+'<input type="checkbox" class="checkbox"
@@ -191,22 +197,23 @@
       'Vegan <input type="checkbox" class="checkbox" disabled="disabled" '+gluten+'Gluten-Free <input type="checkbox"
        class="checkbox" disabled="disabled" '+allergies+'No peanuts/soy <div class="label">Upvotes: </div>'+upvotes+'</div></div>';
        */
-       var contentString = "VICTOR HUNG WE LOVE YOU"; 
+      var contentString = recipe_name + recipe_image; 
       var infowindow = new google.maps.InfoWindow({
-          content: contentString
-       });
-
+      content: contentString
+       });   
       infowindow.open(map,marker);
-
+      }
       });
 
+      });
+    }
 
     
 
 
 
 
-     }
+  }
 
       google.maps.event.addDomListener(window, 'load', initialize);
 

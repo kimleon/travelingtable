@@ -8,7 +8,7 @@ var recipesSchema = new Schema({
 	longitude: Number,
 	dish_type: String,
 	// instructions: [String],
-	userId: [{type: mongoose.Schema.ObjectId, ref: "User"}],
+	userId: {type: mongoose.Schema.ObjectId, ref: "User"},
 	//ingredients: [String],
 	allergies: Boolean,
 	gluten: Boolean,
