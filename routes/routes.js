@@ -240,27 +240,23 @@ router.post('/findMarkers', function(req, res) {
   var left = req.body.left_coord
   var right = req.body.right_coord
   var locations = req.body.locations //already stored markers
-  var length = req.body.len //SEND kiran current length of the database
+ 
 
-  markers_to_post = []
-  markerIDs = []
+  new_markers = []
   mongoose.model('Marker').find({ $and: 
     [{ latitude: { $gte: bottom, $lte: top } },
-    {longitude: {$gte: left, $lte: top}},
+    {longitude: {$gte: left, $lte: right}},
     {_id: {$nin: locations}}]}, function(err, returned_markers) {
       if (err)
         return;
       //push all of the marker items to send to front end
       returned_markers.forEach(function(marker) {
-        var cur_array = [marker.latitude, marker.longitude]
-        markers_to_post.push(cur_array);
-        markerIDs.push(marker._id);
+        var cur_array = [marker._id, marker.latitude, marker.longitude]
+        new_markers.push(cur_array)
       });
-      console.log('marker array', markers_to_post);
-      console.log('ID ARRAY', markerIDs);
+      console.log('marker array', new_markers);
       res.json( {
-        markers_to_post: markers_to_post,
-        markerIDs: markerIDs
+        new_markers: new_markers
       });
     });
 
