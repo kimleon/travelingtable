@@ -4,7 +4,7 @@ ObjectId = Schema.ObjectId;
 var markersSchema = new Schema({
 	latitude: Number,
 	longitude: Number,
-	recipeId: [{type: mongoose.Schema.ObjectId, ref: "Recipe"}]
+	recipeId: {type: mongoose.Schema.ObjectId, ref: "Recipe"}
 });
 
 var Marker = mongoose.model('Marker', markersSchema);

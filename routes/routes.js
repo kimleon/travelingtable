@@ -206,6 +206,8 @@ module.exports = function(passport) {
     console.log(req.body.vegetarian)
 
     newRecipe.save(function(err, result) {
+      if (err)
+        console.log('something with recipes going wrong', err);
       console.log(result);
       console.log(req.user.recipe_list)
       var newMarker = new markers.Marker({
@@ -278,7 +280,6 @@ router.post('/findMarkers', function(req, res) {
         var cur_array = [marker._id, marker.latitude, marker.longitude]
         new_markers.push(cur_array)
       });
-      console.log('marker array', new_markers);
       res.json( {
         new_markers: new_markers
       });
@@ -288,7 +289,9 @@ router.post('/findMarkers', function(req, res) {
 
   //recieving and displaying the recipe info for the marker on a modal
   router.post('/viewRecipe', function(req, res) {
+    console.log('getting to post reques');
     var markerID = req.body.markerID
+    console.log(markerID)
     mongoose.model('Marker').find(
       { _id: markerID }, function(err, markerResult) {
       if (err) {
@@ -296,14 +299,18 @@ router.post('/findMarkers', function(req, res) {
         console.log(err);
         return;
       }
+      marker = markerResult[0]
       mongoose.model('Recipe').find(
-      {_id: markerID.recipeId}, 
-      function(err, recipeResult) {
+      {_id: marker.recipeId}, 
+      function(err, recipe) {
         if (err) {
           console.log('error in retrieving recipe shown');
           console.log(err)
           return;
         }
+        recipeResult = recipe[0]
+        console.log('current recipe name')
+        console.log(recipeResult.name);
         res.json ({
           recipe_name: recipeResult.name,
           recipe_type: recipeResult.dish_type,
