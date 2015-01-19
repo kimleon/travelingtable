@@ -148,6 +148,7 @@ module.exports = function(passport) {
       })
     });
   });
+  //NOT SURE YET HOW TO DO THE OTHER THING OR EVEN WHY IT IS IMPORTANT LIKE WTF
 
   
 
@@ -166,13 +167,6 @@ module.exports = function(passport) {
         authenticated: false
       });
     }
-  });
-
-  router.get('/Profile', isLoggedIn, function(req, res) {
-    console.log(req.user);
-    
-    
-    res.render('profile', {username: req.user.username, recipetitle: "Gobi"});
   });
 
   /*Logging out should log you out*/
@@ -291,8 +285,88 @@ router.post('/findMarkers', function(req, res) {
     });
 
   });
+
+  //recieving and displaying the recipe info for the marker on a modal
+  router.post('/viewRecipe', function(req, res) {
+    var markerID = req.body.markerID
+    mongoose.model('Marker').find(
+      { _id: markerID }, function(err, markerResult) {
+      if (err) {
+        console.log('error in retrieving marker below:');
+        console.log(err);
+        return;
+      }
+      mongoose.model('Recipe').find(
+      {_id: markerID.recipeId}, 
+      function(err, recipeResult) {
+        if (err) {
+          console.log('error in retrieving recipe shown');
+          console.log(err)
+          return;
+        }
+        res.json ({
+          recipe_name: recipeResult.name,
+          recipe_type: recipeResult.dish_type,
+          recipe_image: recipeResult.image,
+          vegan: recipeResult.vegan,
+          vegetarian: recipeResult.vegetarian,
+          gluten: recipeResult.gluten,
+          allergies: recipeResult.allergies,
+          upvotes: recipeResult.upvotes
+        });
+      });
+    });
+  });
+
+  /*VIEWING ONE'S PROFILe*/
+  router.get('/Profile', isLoggedIn, function(req, res) {
+    console.log(req.user);
+    mongoose.model('User').find(
+      {_id: req.user._id},
+      function(err, user_result) {
+        if (err) {
+          console.log('error in finding the user below:');
+          console.log(err);
+          return;
+        }
+        var user_recipes = user_result.recipe_list
+         mongoose.model('Recipe').find({ _id: { $in: user_recipes}}, function(err, foods) {
+            if (err) {
+              console.log('error in finding recipe associated with user');
+              console.log(err);
+              return;
+            }
+            arr = []
+            foods.forEach(function(food) { 
+            cur_array = [food.dish_type, food.name, food._id];
+            arr.push(cur_array);
+             });
+            res.json({
+              user_recipes: arr
+            });
+         });
+      });
+    });
+
+
+/*VIEWING A SEARCH QUERY FROM A LINK*/
+router.post('/findRecipeOnMap', function(req, res) {
+  var recipeId = req.body.recipeId; //info from ajax get request
+  mongoose.model('Recipe').find(
+    {_id: recipeId}, 
+    function(err, recipe) {
+      if (err){
+        console.log('error in finding associated recipe given the id');
+        console.log(err);
+      }
+      res.json({
+        latitude: recipe.latitude,
+        longitude: recipe.longitude
+      });
+    });
+});
  
-  return router;
+return router;
 }
 
 

@@ -136,8 +136,8 @@
           setMarkers(new_locations); //Create markers from the initial dataset served with the document.
           //ajaxObj.get(); //Start the get cycle.
         })
-
-     
+      
+      /*
       google.maps.event.addListener(marker,'click',function(marker.customInfo) {
             $.ajax({
                 type: "POST",
@@ -199,7 +199,7 @@
       });
 
 
-
+    */
 
 
 
