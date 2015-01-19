@@ -1,8 +1,6 @@
-
-      function initialize() {
-         //var locations = [];
-         var new_locations = [];
-        var mapArea = document.getElementById('map');
+var locations5 = []
+var initialize = function () {
+	var mapArea = document.getElementById('map');
         var mapOptions = {
           center: new google.maps.LatLng(42.3598, -71.0921),
           zoom: 6,
@@ -85,55 +83,41 @@
             },
           ],
 
-      }
-		
-      var map = new google.maps.Map(mapArea, mapOptions);
+      }		
+  var map = new google.maps.Map(mapArea, mapOptions);
+  google.maps.event.addListenerOnce(map, 'idle', nest(locations5));
 
-      google.maps.event.addListener(map, 'idle', function()  {
-            console.log('function refreshmap called')
-            //console.log(locations)
-          // get edges
-          //var edges = map.getBounds();
-          //console.log(edges);
-          //var left_coord = edges.getSouthWest().lng();
-          //var top_coord = edges.getNorthEast().lat();
-          //var right_coord = edges.getNorthEast().lng();
-          //var bottom_coord = edges.getSouthWest().lat();
-          //console.log('got all the edges');
+}
 
-          //ajax post edges
-            $.ajax({
-                type: "POST",
-                url: "/newFindMarkers",
-                success: function(data) {
-                  console.log('recieving the data of markers');
-                  console.log(data.new_markers)
-                  new_locations = data.new_markers
-                }
-          });
+var nest = function(locations) {
+	google.maps.event.addListener(map, 'bounds_changed',refreshMap(locations));
+}
 
+var refreshMap = function(locations) {
+  console.log(locations)
+  console.log('function refreshmap called')
+  // get edges
+  var edges = map.getBounds();
+  console.log('dsjfldajlkjs')
+  console.log(edges);
+  var left_coord = edges.getSouthWest().lng();
+  var top_coord = edges.getNorthEast().lat();
+  var right_coord = edges.getNorthEast().lng();
+  var bottom_coord = edges.getSouthWest().lat();
+  console.log('bottomcoord', bottom_coord)
+  console.log('locations', locations)
 
+  //ajax post edges
+    $.ajax({
+        type: "POST",
+        url: "/findMarkers",
+        data: '&bottom_coord='+bottom_coord+'&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&locations='+locations,//,'&len='+len,
+        success: function(data) {
+          console.log('recieving the data of markers');
+          //var new_locations = data.new_markers
+        
+  		}
+	});
 
-          //iterate through them if within bounds, and not already in locations (already loaded) markers, then display
-          //append to locations
-          var setMarkers = function(locObj) {
-              $.each(locObj, function (index, loc) {
-                    console.log(loc)
-                  
-                      loc.marker = new google.maps.Marker({
-                          position: new google.maps.LatLng(loc[1], loc[2]),
-                          map: map
-                      });
-                     
-                      //Remember loc in the `locations` so its info can be displayed and so its marker can be deleted.
-                      //locations.push(loc[0]);
-                  
-           });
-           }
-
-          setMarkers(new_locations); //Create markers from the initial dataset served with the document.
-          //ajaxObj.get(); //Start the get cycle.
-        })
-     }
-
-      google.maps.event.addDomListener(window, 'load', initialize);
+}
+google.maps.event.addDomListener(window, 'load', initialize);

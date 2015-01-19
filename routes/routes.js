@@ -266,6 +266,31 @@ router.post('/findMarkers', function(req, res) {
   
   //How do I pass in the user IDs, How do I get the latitude and longitude 
 
+  router.post('/newFindMarkers', function(req, res) {
+  //initial zoom for page set
+  //var locations = req.body.locations //already stored markers
+  //console.log('locations')
+  //console.log(locations)
+  new_markers = []
+  mongoose.model('Marker').find(
+    {}, function(err, returned_markers) {
+      if (err) {
+        console.log(err)
+        return;
+      }
+        
+      //push all of the marker items to send to front end
+      returned_markers.forEach(function(marker) {
+        var cur_array = [marker._id, marker.latitude, marker.longitude]
+        new_markers.push(cur_array)
+      });
+      console.log('marker array', new_markers);
+      res.json( {
+        new_markers: new_markers
+      });
+    });
+
+  });
  
   return router;
 }
