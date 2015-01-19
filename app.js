@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var flash = require('connect-flash');
 
 //added mongoose 
 var mongoose = require('mongoose');
@@ -41,6 +41,7 @@ app.use(session({secret: 'mySecretKey',
                 resave: true}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash())
 
 
 console.log(init);

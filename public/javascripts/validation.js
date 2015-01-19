@@ -69,10 +69,12 @@ function buttondisplay() {
 		    success: function(data) {
           console.log('LOGGED in var below')
           console.log(data.loggedIn);
-          $('#logged_out').hide();
-          $('#logged_in').show();
-		        $('#login_form').html("<div id='message'><h2>Login Form Submitted!</h2></div>");
-		      //$('#message').html("<h2>Login Form Submitted!</h2>")
+          if (data.loggedIn===true) {
+            $('#logged_out').hide();
+            $('#logged_in').show();
+  		      $('#login_form').html("<div id='message'><h2>Login Form Submitted!</h2></div>");
+		      }
+          //$('#message').html("<h2>Login Form Submitted!</h2>")
 		      
 
           //.append("<p>Enjoy the site!</p>")
@@ -139,10 +141,12 @@ function buttondisplay() {
 		    data: dataString3,
 		    success: function(data) {
             console.log(data.loggedIn);
-
+            if (data.loggedIn===true) {
             $('#logged_out').hide();
             $('#logged_in').show();
-		        $('#signup_form').html("<div id='signupmessage'><h2>Registration form submitted!</h2><p>Welcome gobi!</p></div>");
+            $('#signup_form').html("<div id='signupmessage'><h2>Registration form submitted!</h2><p>Welcome gobi!</p></div>");
+            }
+            
 		      //$('#signupmessage').html("<h2>Registration form submitted!</h2>")
 		      //.append("<p>Welcome gobi!</p>")
 		      //.hide()

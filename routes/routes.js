@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var recipes = require('../models/recipes');
 var users = require('../models/users'); //user and recipe models imported
 var markers = require('../models/markers'); //marker schema
+
 var isLoggedIn = function(req, res, next) {
 	//if the user is logged in, call next() to request the next request handler
 	//Passport adds this method to request an object
@@ -72,24 +73,67 @@ module.exports = function(passport) {
 
 
   /*HANDLE register things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
-  router.post('/Register', passport.authenticate('signup'), function(req, res){
+  router.get('/RegisterFail', function(req, res){
+    console.log(req.flash('signupMessage'))
     res.json ({
-      loggedIn: true
+      loggedIn: false,
+      message: req.flash('signupMessage')
     });
     });
 
+  router.get('/Register', function(req, res){
+  console.log(req.flash('signupMessage'))
+  res.json({
+        loggedIn: true,
+        message: req.flash('signupMessage')
+      });
+
+  });
 
 
+  /*Actual form for register*/
+  router.post('/Register', passport.authenticate('signup', {
+    successRedirect: '/Register',
+    failureRedirect: '/RegisterFail',
+    failureFlash: true
+  }))
 
+  /*Actual form for login*/
+  router.post('/Login', passport.authenticate('local-login', {
+    successRedirect: '/Login',
+    failureRedirect: '/LoginFail',
+    failureFlash: true
+  }))
 
-   /*HANDLE register things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
-  router.post('/Login', passport.authenticate('local-login'), function(req, res){
-    console.log('above')
-    console.log(req.user._id);
-    console.log('Logout route happening');
-    res.json({ //sends info to specify what should now be shown in the nav bar
-      loggedIn: true
+  router.get('/LoginFail', function(req, res) {
+    console.log(req.flash('loginMessage'))
+    res.json({
+      loggedIn: false,
+      message: req.flash('loginMessage')
     });
+  });
+
+
+   /*HANDLE login things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
+  router.get('/Login', function(req, res){
+    //was trying things out will delete this later this is useful for doing markers
+    mongoose.model('User').find({ username: { $nin: [ 'deepti', 'victorhung' ] }}, function(err, items) {
+        if (err) {
+        console.log(err);
+        return;
+        }
+        arr = []
+        items.forEach(function(user) { 
+          arr.push(user.username)
+        });
+        console.log(arr)
+
+        res.json({ //sends info to specify what should now be shown in the nav bar
+          loggedIn: true,
+          message: req.flash('loginMessage')
+    });
+      });
+    
   });
 
 
@@ -104,6 +148,7 @@ module.exports = function(passport) {
       })
     });
   });
+  //NOT SURE YET HOW TO DO THE OTHER THING OR EVEN WHY IT IS IMPORTANT LIKE WTF
 
   
 
@@ -122,13 +167,6 @@ module.exports = function(passport) {
         authenticated: false
       });
     }
-  });
-
-  router.get('/Profile', isLoggedIn, function(req, res) {
-    console.log(req.user);
-    
-    
-    res.render('profile', {username: req.user.username, recipetitle: "Gobi"});
   });
 
   /*Logging out should log you out*/
@@ -157,6 +195,7 @@ module.exports = function(passport) {
       image: req.body.recipe_image,
       latitude: req.body.latitude,
       longitude: req.body.longitude,
+      dish_type: req.body.dish_type,
       userId: req.user._id,
       allergies: req.body.allergies,
       gluten: req.body.gluten,
@@ -185,12 +224,152 @@ module.exports = function(passport) {
       });
     });
   });
+
+/*RENDERING ALL MARKERS for new page (searches for new markers to send)*/
+
+router.post('/findMarkers', function(req, res) {
+  //initial zoom for page set
+  var bottom = req.body.bottom_coord
+  var top = req.body.top_coord
+  var left = req.body.left_coord
+  var right = req.body.right_coord
+  var locations = req.body.locations //already stored markers
+ 
+
+  new_markers = []
+  mongoose.model('Marker').find({ $and: 
+    [{ latitude: { $gte: bottom, $lte: top } },
+    {longitude: {$gte: left, $lte: right}},
+    {_id: {$nin: locations}}]}, function(err, returned_markers) {
+      if (err)
+        return;
+      //push all of the marker items to send to front end
+      returned_markers.forEach(function(marker) {
+        var cur_array = [marker._id, marker.latitude, marker.longitude]
+        new_markers.push(cur_array)
+      });
+      console.log('marker array', new_markers);
+      res.json( {
+        new_markers: new_markers
+      });
+    });
+
+  });
+
      
   
   //How do I pass in the user IDs, How do I get the latitude and longitude 
 
+  router.post('/newFindMarkers', function(req, res) {
+  //initial zoom for page set
+  //var locations = req.body.locations //already stored markers
+  //console.log('locations')
+  //console.log(locations)
+  new_markers = []
+  mongoose.model('Marker').find(
+    {}, function(err, returned_markers) {
+      if (err) {
+        console.log(err)
+        return;
+      }
+        
+      //push all of the marker items to send to front end
+      returned_markers.forEach(function(marker) {
+        var cur_array = [marker._id, marker.latitude, marker.longitude]
+        new_markers.push(cur_array)
+      });
+      console.log('marker array', new_markers);
+      res.json( {
+        new_markers: new_markers
+      });
+    });
+
+  });
+
+  //recieving and displaying the recipe info for the marker on a modal
+  router.post('/viewRecipe', function(req, res) {
+    var markerID = req.body.markerID
+    mongoose.model('Marker').find(
+      { _id: markerID }, function(err, markerResult) {
+      if (err) {
+        console.log('error in retrieving marker below:');
+        console.log(err);
+        return;
+      }
+      mongoose.model('Recipe').find(
+      {_id: markerID.recipeId}, 
+      function(err, recipeResult) {
+        if (err) {
+          console.log('error in retrieving recipe shown');
+          console.log(err)
+          return;
+        }
+        res.json ({
+          recipe_name: recipeResult.name,
+          recipe_type: recipeResult.dish_type,
+          recipe_image: recipeResult.image,
+          vegan: recipeResult.vegan,
+          vegetarian: recipeResult.vegetarian,
+          gluten: recipeResult.gluten,
+          allergies: recipeResult.allergies,
+          upvotes: recipeResult.upvotes
+        });
+      });
+    });
+  });
+
+  /*VIEWING ONE'S PROFILe*/
+  router.get('/Profile', isLoggedIn, function(req, res) {
+    console.log(req.user);
+    var user_recipes = req.user.recipe_list
+    arr = []
+    if (user_recipes.length !==0) {
+    console.log('user recipes below:');
+    console.log(user_recipes);
+     mongoose.model('Recipe').find({ _id: { $in: user_recipes}}, function(err, foods) {
+        if (err) {
+          console.log('error in finding recipe associated with user');
+          console.log(err);
+          return;
+        }
+        
+        foods.forEach(function(food) { 
+        cur_array = [food.dish_type, food.name, food._id];
+        arr.push(cur_array);
+         });
+        res.render('profile', {
+          username: req.user.username,
+          recipetitle: arr
+        });
+      });
+    } else {
+      res.render('profile', {
+        username: req.user.username,
+        recipetitle: "Sorry you have not entered any recipes! please do or else we will disown you."
+      });
+    }
+      
+    });
+
+
+/*VIEWING A SEARCH QUERY FROM A LINK*/
+router.post('/findRecipeOnMap', function(req, res) {
+  var recipeId = req.body.recipeId; //info from ajax get request
+  mongoose.model('Recipe').find(
+    {_id: recipeId}, 
+    function(err, recipe) {
+      if (err){
+        console.log('error in finding associated recipe given the id');
+        console.log(err);
+      }
+      res.json({
+        latitude: recipe.latitude,
+        longitude: recipe.longitude
+      });
+    });
+  });
  
-  return router;
+return router;
 }
 
 
