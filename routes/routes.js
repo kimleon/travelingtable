@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var recipes = require('../models/recipes');
 var users = require('../models/users'); //user and recipe models imported
 var markers = require('../models/markers'); //marker schema
+
 var isLoggedIn = function(req, res, next) {
 	//if the user is logged in, call next() to request the next request handler
 	//Passport adds this method to request an object
@@ -72,24 +73,67 @@ module.exports = function(passport) {
 
 
   /*HANDLE register things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
-  router.post('/Register', passport.authenticate('signup'), function(req, res){
+  router.get('/RegisterFail', function(req, res){
+    console.log(req.flash('signupMessage'))
     res.json ({
-      loggedIn: true
+      loggedIn: false,
+      message: req.flash('signupMessage')
     });
     });
 
+  router.get('/Register', function(req, res){
+  console.log(req.flash('signupMessage'))
+  res.json({
+        loggedIn: true,
+        message: req.flash('signupMessage')
+      });
+
+  });
 
 
+  /*Actual form for register*/
+  router.post('/Register', passport.authenticate('signup', {
+    successRedirect: '/Register',
+    failureRedirect: '/RegisterFail',
+    failureFlash: true
+  }))
 
+  /*Actual form for login*/
+  router.post('/Login', passport.authenticate('local-login', {
+    successRedirect: '/Login',
+    failureRedirect: '/LoginFail',
+    failureFlash: true
+  }))
 
-   /*HANDLE register things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
-  router.post('/Login', passport.authenticate('local-login'), function(req, res){
-    console.log('above')
-    console.log(req.user._id);
-    console.log('Logout route happening');
-    res.json({ //sends info to specify what should now be shown in the nav bar
-      loggedIn: true
+  router.get('/LoginFail', function(req, res) {
+    console.log(req.flash('loginMessage'))
+    res.json({
+      loggedIn: false,
+      message: req.flash('loginMessage')
     });
+  });
+
+
+   /*HANDLE login things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
+  router.get('/Login', function(req, res){
+    //was trying things out will delete this later this is useful for doing markers
+    mongoose.model('User').find({ username: { $nin: [ 'deepti', 'victorhung' ] }}, function(err, items) {
+        if (err) {
+        console.log(err);
+        return;
+        }
+        arr = []
+        items.forEach(function(user) { 
+          arr.push(user.username)
+        });
+        console.log(arr)
+
+        res.json({ //sends info to specify what should now be shown in the nav bar
+          loggedIn: true,
+          message: req.flash('loginMessage')
+    });
+      });
+    
   });
 
 
@@ -186,6 +230,38 @@ module.exports = function(passport) {
       });
     });
   });
+
+/*RENDERING ALL MARKERS for new page (searches for new markers to send)*/
+
+router.post('/findMarkers', function(req, res) {
+  //initial zoom for page set
+  var bottom = req.body.bottom_coord
+  var top = req.body.top_coord
+  var left = req.body.left_coord
+  var right = req.body.right_coord
+  var locations = req.body.locations //already stored markers
+ 
+
+  new_markers = []
+  mongoose.model('Marker').find({ $and: 
+    [{ latitude: { $gte: bottom, $lte: top } },
+    {longitude: {$gte: left, $lte: right}},
+    {_id: {$nin: locations}}]}, function(err, returned_markers) {
+      if (err)
+        return;
+      //push all of the marker items to send to front end
+      returned_markers.forEach(function(marker) {
+        var cur_array = [marker._id, marker.latitude, marker.longitude]
+        new_markers.push(cur_array)
+      });
+      console.log('marker array', new_markers);
+      res.json( {
+        new_markers: new_markers
+      });
+    });
+
+  });
+
      
   
   //How do I pass in the user IDs, How do I get the latitude and longitude 

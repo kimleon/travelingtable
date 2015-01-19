@@ -125,7 +125,7 @@ styles: [
 		}
 		
         var map = new google.maps.Map(mapArea, mapOptions)
-		    var marker_1 = new google.maps.Marker({position: {lat: 42.3589, lng: -71.0921}, map: map, icon: "/graphics/marker3.png"})
+		   // var marker_1 = new google.maps.Marker({position: {lat: 42.3589, lng: -71.0921}, map: map, icon: "/graphics/marker3.png"})
 
 
 /*sample view recipe*/
@@ -139,6 +139,10 @@ styles: [
 
       }
       google.maps.event.addDomListener(window, 'load', initialize);
+      google.maps.event.addDomListener(map, 'bounds_changed',refreshMap);
+      google.maps.event.addDomListener(map, 'center_changed',refreshMap);
+      google.maps.event.addDomListener(map, 'resize',refreshMap);
+      google.maps.event.addDomListener(map, 'drag',refreshMap);
 	  
 </script>
 

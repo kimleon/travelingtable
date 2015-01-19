@@ -1,12 +1,5 @@
 //add function call for dragend event and refresh every 5s, resizing
-
-
-
-
-
-
-	var locations = []; //A repository for markers (and the data from which they were contructed).
-	//var edges = null;
+	var locations = []; //A repository for markers (and the data from which they were contructed).//var edges = null;
 //this will contain the markers loaded within map edges? idk initialize this with existing db maybe?
 
 //new markers that are scanned and passed in
@@ -14,15 +7,14 @@
 	//var data.len = 0;
 
 
-
+	function refreshMap() {
+		console.log('function refreshmap called')
 	// get edges
 	var edges = map.getBounds();
-	var bottom_coord = edges[0][0];
-	var left_coord = edges[1][0];
-	var top_coord = edges[0][1];
-	var right_coord = edges[1][1]; 
-
-
+	var left_coord = edges.getSouthWest().lat();
+	var top_coord = edges.getSouthWest().lng();
+	var right_coord = edges.getNorthEast().lat();
+	var bottom_coord = edges.getNorthEast().lng();
 
 
 	//ajax get request - length
@@ -32,12 +24,10 @@
     $.ajax({
         type: "POST",
         url: "/findMarkers",
-        data: '&bottom_coord='+bottom_coord+'&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&locations='+locations//,'&len='+len,
+        data: '&bottom_coord='+bottom_coord+'&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&locations='+locations,//,'&len='+len,
         success: function(data) {
-        	//$.each(data, function())
-        	//data.locs
-        	//len sent back
-
+        	console.log(data.new_markers);
+        	var new_locations = data.new_markers
         }
 	});
 
@@ -49,14 +39,14 @@
 	//compare lengths, if length_Received > len, ajax get request of last length_Received-len values within bounds
 //map info ya know the usual
 
-	var map = new google.maps.Map(document.getElementById('#map'), {
+	/*var map = new google.maps.Map(document.getElementById('#map'), {
 	    zoom: 1,
 	    maxZoom: 8,
 	    minZoom: 1,
 	    streetViewControl: false,
 	    center: new google.maps.LatLng(30, 30),
 	    mapTypeId: google.maps.MapTypeId.ROADMAP
-	});
+	});*/
 
 
 
@@ -65,20 +55,15 @@
 	function setMarkers(locObj) {
 	    $.each(locObj, function (loc) {
 	        //if (!locations[loc[0]] && loc[1] !== undefined && loc[2] !== undefined) {
-
 			//if ($.inArray(loc[0],locations)!== -1 && loc[1] !== undefined && loc[2] !== undefined) {
-
-
 	        	//$.inArray(value, array)
 	            //Marker has not yet been made (and there's enough data to create one).
 	            //ALSO ADD AN EXTRA LINE FOR IF IT IS WITHIN OUR BOUNDS, if lat in range(bounds), and lng in range(bounds)
-
 	            //Create marker
 	            loc.marker = new google.maps.Marker({
 	                position: new google.maps.LatLng(loc[1], loc[2]),
 	                map: map
 	            });
-
 	            //what is this click listener business, oh crap this displays the usernames okay
 	            //Attach click listener to marker
 	            /*google.maps.event.addListener(loc.marker, 'click', (function (key) {
@@ -87,10 +72,8 @@
 	                    infowindow.open(map, locations[key].marker);
 	                }
 	            })(key));*/
-
 	            //Remember loc in the `locations` so its info can be displayed and so its marker can be deleted.
 	            locations.push(loc[0]);
-
 	        } /*else if (locations[key] && loc.remove) {
 	            //Remove marker from map
 	            if (locations[key].marker) {
@@ -130,7 +113,6 @@
 	        ajaxObj.errorCount++;
 	    }
 	};
-
 	//Ajax master routine
 	function getMarkerData() {
 	    $.ajax(ajaxObj.options)
@@ -139,5 +121,8 @@
 	    .always(ajaxObj.get); //fires after ajax success or ajax error
 	}
 */
-	setMarkers(data.newmarkers); //Create markers from the initial dataset served with the document.
+	setMarkers(new_locations); //Create markers from the initial dataset served with the document.
 	//ajaxObj.get(); //Start the get cycle.
+}
+
+
