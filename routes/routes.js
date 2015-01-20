@@ -6,13 +6,13 @@ var users = require('../models/users'); //user and recipe models imported
 var markers = require('../models/markers'); //marker schema
 
 var isLoggedIn = function(req, res, next) {
-	//if the user is logged in, call next() to request the next request handler
-	//Passport adds this method to request an object
-	//middleware allowed to add properties to request and response objects
-	if (req.isAuthenticated())
-		return next();
-	//If not logged in session, redirect to the home page
-	res.redirect('/');
+  //if the user is logged in, call next() to request the next request handler
+  //Passport adds this method to request an object
+  //middleware allowed to add properties to request and response objects
+  if (req.isAuthenticated())
+    return next();
+  //If not logged in session, redirect to the home page
+  res.redirect('/');
 }
 
 module.exports = function(passport) {
@@ -114,7 +114,7 @@ module.exports = function(passport) {
   console.log(req.flash('signupMessage'))
   res.json({
         loggedIn: true,
-        message: req.flash('signupMessage')
+        message: ' '
       });
 
   });
@@ -145,23 +145,11 @@ module.exports = function(passport) {
 
    /*HANDLE login things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
   router.get('/Login', function(req, res){
-    //was trying things out will delete this later this is useful for doing markers
-    mongoose.model('User').find({ username: { $nin: [ 'deepti', 'victorhung' ] }}, function(err, items) {
-        if (err) {
-        console.log(err);
-        return;
-        }
-        arr = []
-        items.forEach(function(user) { 
-          arr.push(user.username)
-        });
-        console.log(arr)
-
-        res.json({ //sends info to specify what should now be shown in the nav bar
+    res.json({ //sends info to specify what should now be shown in the nav bar
           loggedIn: true,
-          message: req.flash('loginMessage')
+          message: ' '
     });
-      });
+    
     
   });
 
@@ -169,6 +157,10 @@ module.exports = function(passport) {
   /*TRY TO ACCESS YOUR OWN PROFILE: should be protected to when you are logged in*/
   router.get('/Profile:id', isLoggedIn, function(req, res) {
     var userId = req.param('id');
+    var vegetarian = req.body.vegetarian;
+    var vegan = req.body.vegan;
+    var allergies = req.body.allergies;
+    var gluten = req.body.gluten;
     users.User.findOne({_id: userId}, function(err, result){
       console.log(result);
       res.render('profile', {
@@ -218,7 +210,7 @@ module.exports = function(passport) {
   //Post on new recipe page
   router.post('/new_recipe', function(req, res) {
     // store itthe submitted recipe
-    console.log('this post request is happening');
+    console.log('this post request is happening new recip');
     var newRecipe = new recipes.Recipe({
       name: req.body.recipe_name,
       image: req.body.recipe_image,
@@ -227,7 +219,7 @@ module.exports = function(passport) {
       dish_type: req.body.dish_type,
       userId: req.user._id,
       allergies: req.body.allergies,
-      gluten: req.body.gluten,
+      gluten: req.body.gluten_free,
       vegan: req.body.vegan,
       vegetarian: req.body.vegetarian,
       upvotes: 0
@@ -242,22 +234,50 @@ module.exports = function(passport) {
       var newMarker = new markers.Marker({
             latitude: req.body.latitude,
             longitude: req.body.longitude,
-            recipeId: result._id
+            recipeId: result._id,
+            vegetarian: result.vegetarian,
+            vegan: result.vegan,
+            allergies: result.allergies,
+            gluten: result.gluten
           });
+      console.log(newMarker);
       users.User.findOneAndUpdate(
         {_id:req.user._id}, 
         {$push: {recipe_list: result._id}}, 
         function () {
+          console.log('trying to save the new marker')
           newMarker.save(function(err, result2) {
-            console.log(result2);
+            if (err)
+              console.log('what is going on savign marker', err)
+            console.log('result 2', result2);
             res.redirect('/new_recipe');  
           });
       });
     });
   });
 
-/*RENDERING ALL MARKERS for new page (searches for new markers to send)*/
+  router.post('/updateRestrictions', isLoggedIn, function(req, res) {
+    user = req.user;
+    console.log(req.user.username);
+    vegetarian2 = req.body.vegetarian;
+    console.log(vegetarian2)
+    vegan2 = req.body.vegan;
+    allergies2 = req.body.allergies;
+    gluten_free2 = req.body.gluten_free;
+    console.log('old vegetarian', user.vegetarian)
+    users.User.findOneAndUpdate({_id: user._id}, 
+      {$set: {
+        vegetarian: vegetarian2,
+        vegan: vegan2,
+        allergies: allergies2,
+        gluten_free: gluten_free2}},
+      function(err, result) {
+        console.log('new vegetarian', result.vegetarian);
+        res.redirect('/Profile')
+      });
+  });
 
+/*RENDERING ALL MARKERS for new page (searches for new markers to send)*/
 router.post('/findMarkers', function(req, res) {
   //initial zoom for page set
   var bottom = req.body.bottom_coord
@@ -267,55 +287,53 @@ router.post('/findMarkers', function(req, res) {
   //var locations = req.body.locations //already stored markers
   console.log(bottom, top, left, right)
 
+
   new_markers = []
-  mongoose.model('Marker').find({ $and: 
-    [{ latitude: { $gte: bottom, $lte: top } },
-    {longitude: {$gte: left, $lte: right}}]}, 
-    function(err, returned_markers) {
-      if (err) {
-        console.log('find markers error', err);
-        return;
-      }        
-      //push all of the marker items to send to front end
-      returned_markers.forEach(function(marker) {
-        var cur_array = [marker._id, marker.latitude, marker.longitude]
-        new_markers.push(cur_array)
-      });
-      console.log('marker array', new_markers);
-      res.json( {
-        new_markers: new_markers
-      });
-    });
 
-  });
-
-     
-  
-  //How do I pass in the user IDs, How do I get the latitude and longitude 
-
-  router.post('/newFindMarkers', function(req, res) {
-  //initial zoom for page set
-  //var locations = req.body.locations //already stored markers
-  //console.log('locations')
-  //console.log(locations)
-  new_markers = []
-  mongoose.model('Marker').find(
-    {}, function(err, returned_markers) {
-      if (err) {
-        console.log(err)
-        return;
-      }
-        
-      //push all of the marker items to send to front end
-      returned_markers.forEach(function(marker) {
-        var cur_array = [marker._id, marker.latitude, marker.longitude]
-        new_markers.push(cur_array)
+  //now do a different query if the user is logged in
+  if (req.isAuthenticated()) {
+    mongoose.model('Marker').find({ $and: 
+      [{ latitude: { $gte: bottom, $lte: top }},
+      {longitude: {$gte: left, $lte: right}},
+      {vegetarian: req.user.vegetarian},
+      {vegan: req.user.vegan},
+      {gluten: req.user.gluten_free},
+      {allergies: req.user.allergies}]}, 
+      function(err, returned_markers) {
+        if (err) {
+          console.log('find markers error', err);
+          return;
+        } 
+        //push all of the marker items to send to front end
+        returned_markers.forEach(function(marker) {
+          var cur_array = [marker._id, marker.latitude, marker.longitude]
+          new_markers.push(cur_array)
+        });
+        console.log('marker array', new_markers);
+        res.json( {
+          new_markers: new_markers
+        });
+       }); 
+  } else {
+    mongoose.model('Marker').find({ $and: 
+      [{ latitude: { $gte: bottom, $lte: top } },
+      {longitude: {$gte: left, $lte: right}}]}, 
+      function(err, returned_markers) {
+        if (err) {
+          console.log('find markers error', err);
+          return;
+        }        
+        //push all of the marker items to send to front end
+        returned_markers.forEach(function(marker) {
+          var cur_array = [marker._id, marker.latitude, marker.longitude]
+          new_markers.push(cur_array)
+        });
+        //console.log('marker array', new_markers);
+        res.json( {
+          new_markers: new_markers
+        });
       });
-      res.json( {
-        new_markers: new_markers
-      });
-    });
-
+    }
   });
 
   //recieving and displaying the recipe info for the marker on a modal
@@ -358,8 +376,12 @@ router.post('/findMarkers', function(req, res) {
 
   /*VIEWING ONE'S PROFILe*/
   router.get('/Profile', isLoggedIn, function(req, res) {
-    console.log(req.user);
+    console.log(req.user.username);
     var user_recipes = req.user.recipe_list
+    var vegetarian = req.user.vegetarian
+    var vegan = req.user.vegan;
+    var gluten_free = req.user.gluten_free;
+    var allergies = req.user.allergies;
     arr = []
     if (user_recipes.length !==0) {
     console.log('user recipes below:');
@@ -380,14 +402,13 @@ router.post('/findMarkers', function(req, res) {
           recipetitle: arr
         });
       });
-    } else {
+      } else {
       res.render('profile', {
         username: req.user.username,
         recipetitle: "Sorry you have not entered any recipes! please do or else we will disown you."
       });
-    }
-      
-    });
+    }      
+  });
 
 
 /*VIEWING A SEARCH QUERY FROM A LINK*/

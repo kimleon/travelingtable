@@ -265,7 +265,7 @@ function buttondisplay() {
 
  $(function() {
     $(".dietprefbutton").click(function() {
-      // validate and process form here
+      console.log('this is being called')
 
       var vegetarian = $("input[name=vegetarian]").prop("checked");
       var vegan = $("input[name=vegan]").prop("checked");
