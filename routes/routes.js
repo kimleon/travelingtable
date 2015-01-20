@@ -444,6 +444,38 @@ router.post('/findMarkers', function(req, res) {
       });
     }      
   });
+  
+  /*Decide if a user CAN vote when the recipe is opened */
+  router.post('/canUpvote', isLoggedIn, function(req, res) {
+    markerID = req.body.markerID
+    user = req.user;
+    upvoted_recipes = user.upvoted_recipes;
+    mongoose.model('Marker').find(
+      {_id: markerID}, function(err, result) {
+        if (err) {
+          console.log('error in finding can upvote info', err);
+          return;
+        }
+        recipeID = result.recipeId;
+        mongoose.model('Recipe').find({ $and: 
+      [{ _id: recipeID},
+      {_id: {$nin: upvoted_recipes}}]}, 
+      function(err, result) {
+        if (err) {
+          console.log(err, "error with can upvote route")
+          return;
+        }
+        if (typeof result !== 'undefined' && result.length > 0) {
+          res.json({
+            upvoted: true
+          });
+        } else {
+          
+        }
+
+      });
+    });
+  });
 
   
   router.post('/Upvote', isLoggedIn, function(req, res) {
@@ -471,7 +503,7 @@ router.post('/findMarkers', function(req, res) {
               console.log('error having user upvote this recipe in database', err);
               }
               res.json({
-                upvotes: recipe_upvotes
+                upvoted: true
           });
         });
 
