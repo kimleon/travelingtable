@@ -139,7 +139,14 @@ function buttondisplay() {
         return false;
       }
       
-		var dataString3 = '&new_username='+ new_username +'&new_password=' + new_password;
+
+      var vegetarian = $("input[name=vegetarian]").prop("checked");
+      var vegan = $("input[name=vegan]").prop("checked");
+      var gluten_free = $("input[name=gluten-free]").prop("checked");
+      var allergies = $("input[name=allergies]").prop("checked");
+
+
+		  var dataString3 = '&new_username='+ new_username +'&new_password=' + new_password+'&vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies;
 		  //alert (dataString);return false;
 
 		  $.ajax({
