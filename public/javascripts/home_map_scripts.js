@@ -143,6 +143,56 @@
           //ajaxObj.get(); //Start the get cycle.
         });
 
+
+
+
+
+
+
+      google.maps.event.addListener(map, 'refresh', function()  {
+            console.log('function refreshmap called')
+            //console.log(locations)
+          var edges = map.getBounds();
+          console.log(edges);
+          var left_coord = edges.getSouthWest().lng();
+          var top_coord = edges.getNorthEast().lat();
+          var right_coord = edges.getNorthEast().lng();
+          var bottom_coord = edges.getSouthWest().lat();
+          console.log('got all the edges');
+          console.log(left_coord, top_coord, right_coord, bottom_coord);
+          //ajax post edges
+            $.ajax({
+                type: "POST",
+                url: "/findMarkers",
+                data: '&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&bottom_coord='+bottom_coord,
+                success: function(data) {
+                  console.log('recieving the data of markers');
+                  console.log(data.new_markers)
+                  new_locations = data.new_markers
+                }
+          });
+          var setMarkers = function(locObj) {
+              $.each(locObj, function (index, loc) {
+                    console.log(loc)
+                      loc.marker = new google.maps.Marker({
+                          position: new google.maps.LatLng(loc[1], loc[2]),
+                          map: map,
+                          customInfo: loc[0]
+                      });
+                      setListener(loc.marker);
+           });
+           }
+          setMarkers(new_locations); //Create markers from the initial dataset served with the document.
+          //ajaxObj.get(); //Start the get cycle.
+        });
+
+
+
+
+
+
+
+
     var setListener = function(marker) {
 
       var recipe_name 

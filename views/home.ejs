@@ -11,6 +11,12 @@
 <link href='http://fonts.googleapis.com/css?family=News+Cycle|Raleway:600,400,300' rel='stylesheet' type='text/css'>
 
 
+
+<script type="text/javascript">
+  $("#signupmessage").hide();
+</script>
+
+
 <!-- onload script-->
 <script type="text/javascript">
 function buttondisplay() {
@@ -21,11 +27,15 @@ function buttondisplay() {
           console.log('LOGGED in var below')
           console.log(data.authenticated);
            if (data.authenticated) {
-             $("#logged_in").show();
-             $("#logged_out").hide();
+             $("#log_out").show();
+             $("#log_in").hide();
+             $("#add_recipe").show();
+             $("#sign_up").hide();
            } else {
-             $("#logged_in").hide();
-             $("#logged_out").show();
+             $("#log_out").hide();
+             $("#log_in").show();
+             $("#add_recipe").hide();
+             $("#sign_up").show();
            }
 }
 });
@@ -75,7 +85,7 @@ function buttondisplay() {
          <form class="navbar-form pull-left" role="search">
             <div class="input-group">
                <input type="text" id="search_input" name="search_input" class="form-control search" placeholder="Search for a recipe...">
-               <label class="error" for="search_input" id="search_error"> This field is required!</label></br>
+               <!--<label class="error" for="search_input" id="search_error"> This field is required!</label></br>-->
                <div class="input-group-btn">
                   <button id="search_button" type="submit" class="btn btn-default round"><span class="glyphicon glyphicon-search"></span></button>
                </div>
@@ -85,12 +95,27 @@ function buttondisplay() {
       <div class="navbar-collapse collapse">
          <ul class="nav navbar-nav navbar-right">
  
+
+
+
+
+
+
+<!--================================================================================-->
+<!--                                       h e l p 
+<!================================================================================-->
+
+
+<li><a href="#">?</a></li>
+
+
+
  
 <!--==============================================================================-->
 <!--                                s i g n   u p 
 <!================================================================================-->
              
-    <li><a href="#" data-toggle="modal"   id="logged_out" data-target="#registerModal">Sign-up</a>
+    <li><a href="#" data-toggle="modal"   id="sign_up" data-target="#registerModal">Sign-up</a>
 <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -121,6 +146,8 @@ function buttondisplay() {
              </form> -->
           </div>
 
+          <div id='signupmessage1' class="hidden" style="color:black"></br></br><h2>Registration form submitted!</h2><p>Welcome gobi!</p></div>
+
 
     </div>
   </div>
@@ -133,7 +160,7 @@ function buttondisplay() {
 <!--                                 l o g i n  
 <!================================================================================-->
 
-    <li><a href="#" data-toggle="modal" id="logged_out" data-target="#loginModal">Login</a>
+    <li><a href="#" data-toggle="modal" id="log_in" data-target="#loginModal">Login</a>
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -160,6 +187,8 @@ function buttondisplay() {
 <!--        </fieldset>
       </form>-->
       </div>
+
+      <div id='loginmessage' class="hidden" style="color:black"></br><h2>Login Form Submitted!</h2></div>
     </div>
   </div>
 </div><!--login bootstrap--></li>
@@ -178,7 +207,7 @@ function buttondisplay() {
 <!--                           s h o w   r e c i p e
 <!================================================================================-->
 
-
+<!--
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -198,7 +227,7 @@ function buttondisplay() {
     </div>
   </div>
 </div>
-
+-->
 
 
 
@@ -213,7 +242,7 @@ function buttondisplay() {
 <!================================================================================-->
 
 
-<li><a href='/new_recipe' id="logged_in">Add Recipe</a>
+<li><a href='/new_recipe' id="add_recipe">Add Recipe</a></li>
 <!--
 
             <li><a href="#" data-toggle="modal"   id="logged_in" data-target="#recipeModal">Add Recipe</a>
@@ -255,15 +284,8 @@ function buttondisplay() {
 <!================================================================================-->
 
         <!--<li><input type="submit" name="logout" id="logged_in" class="logoutbutton navbutton" id="logout_btn" value="Logout" /></li>-->
-<li><a href="#" name="logout" id="logged_in" class="logoutbutton" id="logout_btn" />Logout</li>
+<li id="logged_in"><a href="#" name="logout" id="log_out" class="logoutbutton" id="logout_btn" />Logout</li>
 
-
-<!--================================================================================-->
-<!--                                       h e l p 
-<!================================================================================-->
-
-
-<li><a href="#">?</a></li>
 
          </ul>
       </div>

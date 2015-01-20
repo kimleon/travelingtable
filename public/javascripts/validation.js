@@ -26,11 +26,15 @@ function buttondisplay() {
           console.log('LOGGED in var below')
           console.log(data.authenticated);
            if (data.authenticated) {
-             $("#logged_in").show();
-             $("#logged_out").hide();
+             $("#log_out").show();
+             $("#log_in").hide();
+             $("#add_recipe").show();
+             $("#sign_up").hide();
            } else {
-             $("#logged_in").hide();
-             $("#logged_out").show();
+             $("#log_out").hide();
+             $("#log_in").show();
+             $("#add_recipe").hide();
+             $("#sign_up").show();
            }
 }
 });
@@ -70,9 +74,12 @@ function buttondisplay() {
           console.log('LOGGED in var below')
           console.log(data.loggedIn);
           if (data.loggedIn===true) {
-            $('#logged_out').hide();
-            $('#logged_in').show();
-  		      $('#login_form').html("<div id='message'><h2>Login Form Submitted!</h2></div>");
+            $("#log_out").show();
+             $("#log_in").hide();
+             $("#add_recipe").show();
+             $("#sign_up").hide();
+  		      $('#login_form').addClass("hidden");
+            $('#loginmessage').removeClass("hidden");
 		      }
           //$('#message').html("<h2>Login Form Submitted!</h2>")
 		      
@@ -142,9 +149,16 @@ function buttondisplay() {
 		    success: function(data) {
             console.log(data.loggedIn);
             if (data.loggedIn===true) {
-            $('#logged_out').hide();
-            $('#logged_in').show();
-            $('#signup_form').html("<div id='signupmessage'><h2>Registration form submitted!</h2><p>Welcome gobi!</p></div>");
+            $("#log_out").show();
+             $("#log_in").hide();
+             $("#add_recipe").show();
+             $("#sign_up").hide();
+             //$("#" + signupmessage).toggle();
+            //$('#signup_form').html("<div id='signupmessage'><h2>Registration form submitted!</h2><p>Welcome gobi!</p></div>");
+            $('#signup_form').addClass("hidden");
+            //$('#signup_message').show();
+            $('#signupmessage1').removeClass("hidden");
+
             }
             
 		      //$('#signupmessage').html("<h2>Registration form submitted!</h2>")
@@ -157,11 +171,8 @@ function buttondisplay() {
 		  return false;
 
 
- 	$('#logged_out').hide();
- 	$('#logged_in').show();
 
-
-    $('#signup_form').html("<div id='signupmessage'></div>");
+    //$('#signup_form').html("<div id='signupmessage'></div>");
 
 
 
@@ -220,7 +231,7 @@ function buttondisplay() {
 		    data: dataString2,
 		    success: function() {
 		      $('#recipe_form').html("<div id='recipemessage'><h2>Recipe submitted!</h2><p>Thank you so much for your contribution!</p></div>");
-		      //$('#recipemessage').html("<h2>Recipe submitted!</h2>")
+          //$('#recipemessage').html("<h2>Recipe submitted!</h2>")
 		      //.append("<p>Thank you so much for your contribution!</p>")
 		      //.hide()
 		      //.fadeIn(1500, function() {
@@ -246,14 +257,14 @@ function buttondisplay() {
 $(function() {
     console.log('Search function is happening')
     $('.error').hide();
-    $(".searchbutton").click(function() {
+    $(".search_button").click(function() {
       // validate and process form here
       
       $('.error').hide();
       var search_input = $("input[name=search_input]").val();
       if (search_input === "") {
-        $("label#search_input_error").show();
-        $("input#search_input").focus();
+        //$("label#search_input_error").show();
+        //$("input#search_input").focus();
         return false;
       }
     var search_text = search_input; 
@@ -299,12 +310,19 @@ $(function() {
 
 
  $(function() {
- 	$('#logged_in').hide();
- 	$('#logged_out').show();
+             $("#log_out").hide();
+             $("#log_in").show();
+             $("#add_recipe").hide();
+             $("#sign_up").show();
+             $('#signup_form').removeClass("hidden");
+             $("#login_form").removeClass("hidden");
+             $("#loginmessage").addClass("hidden");
+            //$('#signup_message').show();
+            $('#signupmessage1').addClass("hidden");
 
 		$.ajax({
 		    type: "POST",
-		    url: "/Logout"
+		    url: "/Logout",
 		    //data: status
 		});
 		return false;
