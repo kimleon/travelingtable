@@ -15,6 +15,7 @@
     		  streetViewControl: false,
     		  zoomControl: false,
     		  panControl: false,
+          v:2.184,
           styles: [
 
             {
@@ -95,18 +96,19 @@
             console.log('function refreshmap called')
             //console.log(locations)
           // get edges
-          //var edges = map.getBounds();
-          //console.log(edges);
-          //var left_coord = edges.getSouthWest().lng();
-          //var top_coord = edges.getNorthEast().lat();
-          //var right_coord = edges.getNorthEast().lng();
-          //var bottom_coord = edges.getSouthWest().lat();
-          //console.log('got all the edges');
+          var edges = map.getBounds();
+          console.log(edges);
+          var left_coord = edges.getSouthWest().lng();
+          var top_coord = edges.getNorthEast().lat();
+          var right_coord = edges.getNorthEast().lng();
+          var bottom_coord = edges.getSouthWest().lat();
+          console.log('got all the edges');
 
           //ajax post edges
             $.ajax({
                 type: "POST",
-                url: "/newFindMarkers",
+                url: "/findMarkers",
+                data: '&=left_coord='+left_coord+'&=top_coord='+top_coord+'&=right_coord='+right_coord+'&=bottom_coord='+bottom_coord,
                 success: function(data) {
                   console.log('recieving the data of markers');
                   console.log(data.new_markers)
