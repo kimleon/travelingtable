@@ -149,7 +149,7 @@
 
 
 
-      google.maps.event.addListener(map, 'refresh', function()  {
+      google.maps.event.addDomListener(map, 'load', function()  {
             console.log('function refreshmap called')
             //console.log(locations)
           var edges = map.getBounds();

@@ -281,12 +281,12 @@ function buttondisplay() {
             url: "/updateRestrictions",
             data: dataString5,
             success: function() {
-              
+
 
             }
           });
 
-      
+
     });
   });
           //alert (dataString);return false;
@@ -348,11 +348,9 @@ $(function() {
 //<!--=========================== Logout =========================================->
 
  $(function() {
-    $(".logoutbutton").click(function() {
+    $(".logoutbutton2").click(function() {
       // validate and process form here
 
-
- $(function() {
              $("#log_out").hide();
              $("#log_in").show();
              $("#add_recipe").hide();
@@ -372,5 +370,3 @@ $(function() {
 });
 
 });
-}); 
-  
