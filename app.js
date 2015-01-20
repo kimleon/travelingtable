@@ -10,7 +10,7 @@ var flash = require('connect-flash');
 var mongoose = require('mongoose');
 var fs = require('fs');
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://heroku_app33354178:r2hnh85hvkb1vpop79a3iuu902@ds031711.mongolab.com:31711/heroku_app33354178');
 
 var app = express();
 
