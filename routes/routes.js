@@ -22,6 +22,7 @@ module.exports = function(passport) {
     res.render('home');
   });
 
+  /*
   //list of users
   router.get('/Users', function(req, res) {
     mongoose.model('User').find(function(err, Users) {
@@ -36,7 +37,7 @@ module.exports = function(passport) {
     });
   });
 
-
+  */
 
   router.get('/Search/:keywords', function(req, res) {
     //search only works if a single word entered into the search
@@ -64,7 +65,7 @@ module.exports = function(passport) {
     });
   });
 
-
+  /*
   //NOTE FOR THE TWO BELOW WE WON'T ACTUALLY NEED THEM EVENTUALLY
   //URL to view list of users to check they are getting entered into te database
   router.get('/Users', function(req, res) {
@@ -78,7 +79,7 @@ module.exports = function(passport) {
       res.send(markers);
     });
   });
-
+  */
 
   /* GET /Recipes/123 
     view a specific recipe */
