@@ -297,7 +297,8 @@ background-color: #2DBEB2;
 .scroll {
 	z-index:1;
 	float:right;
-	bottom:15vh;
+	bottom:22vh;
+	right:5vw;
 	position:relative;
 	margin:0px;
 	display:block;

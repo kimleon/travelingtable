@@ -8,7 +8,7 @@ function initialize() {
   elevator = new google.maps.ElevationService();
   var mapOptions = {
       center: new google.maps.LatLng(42.3598, -71.0921),
-      zoom: 3,
+      zoom: 5,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
 		  minZoom: 3,
 		  maxZoom:7,

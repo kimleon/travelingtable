@@ -276,3 +276,63 @@ background-color: #2DBEB2;
 .hidden {
 	display:none;
 }
+
+
+/*.slide-out-div {
+        width: 250px;
+        background: #ffffff;
+        border-radius:20px;
+        z-index:99;
+        display: block;
+        position: absolute;   
+        padding:10px;
+		padding-left:15px;
+		padding-right:15px;
+		margin:0;
+		right:0vw;
+		float:right;
+		top:5vh;
+		font-size:1.2em;          
+} */
+/*#tab {
+	display:block;
+}
+*/
+
+
+.handle {
+	z-index:6;
+	position:fixed;
+	right:0;
+	bottom:25vh;
+	display:inline-block;
+	height:30%;
+	width:auto;
+	float:right;
+}
+
+
+#inner {
+  position: fixed;
+  z-index:5;
+  top: 8vh;
+  height:40vh;
+  right:-25vw;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  width:25vw;
+  display:inline-block;
+  background-color:white;
+  float:right;
+  border-top-left-radius:5em;
+  border-bottom-left-radius: 5em;
+  padding:2em;
+}
+#tab:hover {
+  right: 25vw;
+}
+#tab:hover #inner {
+  right: 0;
+}

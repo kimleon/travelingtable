@@ -14,6 +14,7 @@
     
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <!--END LOGIN-->
+<script src="/javascripts/responsive_3dfoldscroll.js"></script>
 <script src="/javascripts/mapscripts.js"></script>
 <script src="/javascripts/validation.js"></script>
 <script src="/javascripts/bootstrap.min.js"></script>
@@ -29,14 +30,24 @@
   </head>
   <body>
    <div class="page">
-    <div id="instructionbar">
+
+
+    <div id="instructionbar" class="foldWrapper clearfix">
       <div id="mapinstr" id="instructionbar"><h2>Place a marker to label the region your recipe comes from.</h2></div>
-        <div id="recipeinstr" id="instructionbar"><h2>Fill out the recipe form with your dish information!</h2></div>
     </div>
     
+
+    <div id="instructionbar" class="foldWrapper clearfix">
+        <div id="recipeinstr" id="instructionbar"><h2>Fill out the recipe form with your dish information!</h2></div>
+    </div>
+
+
+
+
+
     <div id="mapsection">
         <div id="map"></div>
-    <div class="scroll"><a data-scroll data-options='{ "easing": "easeInOutQuad" }' href="#recipe_form"><button><img src="graphics/scroll.png" style="max-width:90%;"/></button></a></div>
+    <div class="scroll"><a data-scroll data-options='{ "easing": "easeInOutQuad" }' href="#recipe_form"><button><img src="graphics/scroll copy.png" style="max-width:90%;"/></button></a></div>
     </div>
     
     
@@ -99,5 +110,14 @@
       callbackAfter: function ( toggle, anchor ) {}
     });
 </script>
+
+  <script>
+      $( document ).ready(function() {
+        window.onload=function(){
+          var fold = $.fn.responsive_3dfoldscroll();
+        };
+      });
+    
+    </script>
   </body>
 </html>

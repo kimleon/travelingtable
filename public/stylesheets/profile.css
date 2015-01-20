@@ -35,5 +35,40 @@ body {
 	
 #map {
 	height:100vh;
-	widthL70vw;
+	/*widthL70vw;*/
 }
+
+#back {
+	padding:10px;
+	padding-left:15px;
+	padding-right:15px;
+	margin:0;
+	border-radius:10vw;
+	color:#f90e61;
+	background-color:white;
+	z-index:5;
+	display:block;
+	position:absolute;
+	right:5vw;
+	top:5vh;
+	font-size:1.2em;
+}
+
+a:link {
+    color: #f90e61;
+}
+
+/* visited link */
+a:visited {
+    color: #f90e61;
+}
+
+/* mouse over link */
+a:hover {
+    color: 	#FB5690;
+    text-decoration: none;
+}
+
+
+
+

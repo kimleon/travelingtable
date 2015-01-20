@@ -30,11 +30,13 @@ function buttondisplay() {
              $("#log_in").hide();
              $("#add_recipe").show();
              $("#sign_up").hide();
+             $("#profile").show();
            } else {
              $("#log_out").hide();
              $("#log_in").show();
              $("#add_recipe").hide();
              $("#sign_up").show();
+             $("#profile").hide();
            }
 }
 });
@@ -80,6 +82,7 @@ function buttondisplay() {
              $("#sign_up").hide();
   		      $('#login_form').addClass("hidden");
             $('#loginmessage').removeClass("hidden");
+            $("#profile").show();
 		      }
           //$('#message').html("<h2>Login Form Submitted!</h2>")
 		      
@@ -160,6 +163,7 @@ function buttondisplay() {
              $("#log_in").hide();
              $("#add_recipe").show();
              $("#sign_up").hide();
+             $("#profile").show();
              //$("#" + signupmessage).toggle();
             //$('#signup_form').html("<div id='signupmessage'><h2>Registration form submitted!</h2><p>Welcome gobi!</p></div>");
             $('#signup_form').addClass("hidden");
@@ -355,6 +359,7 @@ $(function() {
              $("#log_in").show();
              $("#add_recipe").hide();
              $("#sign_up").show();
+             $("#profile").hide();
              $('#signup_form').removeClass("hidden");
              $("#login_form").removeClass("hidden");
              $("#loginmessage").addClass("hidden");

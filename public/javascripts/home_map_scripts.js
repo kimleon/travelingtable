@@ -256,6 +256,7 @@
       content: contentString
        });   
       infowindow.open(map,marker);
+      map.panTo(marker.getPosition());
       }
       });
 

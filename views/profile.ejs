@@ -14,6 +14,7 @@ function randomPic() {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 <link href='https://fonts.googleapis.com/css?family=News+Cycle|Raleway:400,300,100' rel='stylesheet' type='text/css'>
 <script>
@@ -115,7 +116,6 @@ styles: [
 <script src="/javascripts/bootstrap-modal.js"></script>
 <script src="/javascripts/bootstrap.min.js"></script>
 <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/stylesheets/profile.css"/>
 
 <link rel="stylesheet" type="text/css" href="/main/profile.css"/>
@@ -126,8 +126,10 @@ styles: [
 <body>
 
 
+
 <div id="profile">
 <div id="profcontents">
+
 <h4>Welcome,</h4><p><%= username %></p></br>
 
 <script type="text/javascript">randomPic();</script></br>
@@ -157,9 +159,11 @@ styles: [
 
 
 </div>
+
 </div>
 
+<div id="back"><a href="/">take me back!</a></div>
+<div id="map"> </div>
 
-<div id="map"></div>
 </body>
 </html>
