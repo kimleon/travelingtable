@@ -15,7 +15,7 @@
     		  streetViewControl: false,
     		  zoomControl: false,
     		  panControl: false,
-          v:2.184,
+          //v:2.184,
           styles: [
 
             {
@@ -103,12 +103,13 @@
           var right_coord = edges.getNorthEast().lng();
           var bottom_coord = edges.getSouthWest().lat();
           console.log('got all the edges');
+          console.log(left_coord, top_coord, right_coord, bottom_coord);
 
           //ajax post edges
             $.ajax({
                 type: "POST",
                 url: "/findMarkers",
-                data: '&=left_coord='+left_coord+'&=top_coord='+top_coord+'&=right_coord='+right_coord+'&=bottom_coord='+bottom_coord,
+                data: '&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&bottom_coord='+bottom_coord,
                 success: function(data) {
                   console.log('recieving the data of markers');
                   console.log(data.new_markers)

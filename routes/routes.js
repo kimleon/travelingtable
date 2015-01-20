@@ -265,7 +265,7 @@ router.post('/findMarkers', function(req, res) {
   var left = req.body.left_coord
   var right = req.body.right_coord
   //var locations = req.body.locations //already stored markers
- 
+  console.log(bottom, top, left, right)
 
   new_markers = []
   mongoose.model('Marker').find({ $and: 
