@@ -286,8 +286,6 @@ router.post('/findMarkers', function(req, res) {
   var right = req.body.right_coord
   //var locations = req.body.locations //already stored markers
   console.log(bottom, top, left, right)
-
-
   new_markers = []
 
   //now do a different query if the user is logged in
@@ -334,6 +332,42 @@ router.post('/findMarkers', function(req, res) {
         });
       });
     }
+  });
+
+  router.post('/findUserMarkers', function(req, res) {
+    user = req.user;
+    recipe_list = req.user.recipe_list;
+    console.log('User recipe list', recipe_list)
+    //initial zoom for page set
+    var bottom = req.body.bottom_coord;
+    var top = req.body.top_coord;
+    var left = req.body.left_coord;
+    var right = req.body.right_coord;
+    //var locations = req.body.locations //already stored markers
+    console.log(bottom, top, left, right)
+    new_markers = []
+
+    mongoose.model('Marker').find({ $and: 
+      [{ latitude: { $gte: bottom, $lte: top }},
+      {longitude: {$gte: left, $lte: right}},
+      {recipeId: {$in: recipe_list}}]}, 
+      function(err, returned_markers){
+      if (err) {
+        console.log('error in find recipes associated with this user', err);
+      }
+      //push all of the marker items to send to front end
+      returned_markers.forEach(function(marker) {
+      var cur_array = [marker._id, marker.latitude, marker.longitude]
+      new_markers.push(cur_array);
+      });
+
+      console.log('new_markers array', new_markers)
+
+      res.json({
+        new_markers: new_markers
+      });
+    });
+
   });
 
   //recieving and displaying the recipe info for the marker on a modal
@@ -408,6 +442,41 @@ router.post('/findMarkers', function(req, res) {
         recipetitle: "Sorry you have not entered any recipes! please do or else we will disown you."
       });
     }      
+  });
+
+  
+  router.post('/Upvote', isLoggedIn, function(req, res) {
+    markerID = req.body.markerID
+    user = req.user
+    mongoose.model('Marker').find(
+    {_id: markerID}, function(err, result){
+      if (err) {
+        console.log('error in finding marker associated with upvote request', err);
+      }
+      recipeId = result.recipeId
+      mongoose.model('Recipe').findOneAndUpdate(
+        {_id: recipeId}, 
+        {$inc: {upvotes: 1}}, 
+        function(err, recipe) {
+          if (err) {
+            console.log('error in finding recipe associated with this id', err);
+          }
+          recipe_upvotes = recipe.upvote; //store recipe upvotes
+          mongoose.model('User').findOneAndUpdate(
+            {_id:req.user._id}, 
+            {$push: {upvoted_recipes: recipeId}}, 
+            function(err, result) {
+              if (err) {
+              console.log('error having user upvote this recipe in database', err);
+              }
+              res.json({
+                upvotes: recipe_upvotes
+          });
+        });
+
+        });
+    });
+
   });
 
 

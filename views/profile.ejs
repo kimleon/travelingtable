@@ -16,109 +16,14 @@ function randomPic() {
 
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 <link href='https://fonts.googleapis.com/css?family=News+Cycle|Raleway:400,300,100' rel='stylesheet' type='text/css'>
-<script>
-      function initialize() {
-        var mapArea = document.getElementById('map');
-        var mapOptions = {
-          center: new google.maps.LatLng(42.3598, -71.0921),
-          zoom: 6,
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-		  minZoom: 3,
-		  maxZoom:7,
-		  mapTypeControl: false,
-		  streetViewControl: false,
-		  zoomControl: false,
-		  panControl: false,
-styles: [
-
-  {
-    "featureType": "landscape.natural",
-    "elementType": "geometry.fill",
-    "stylers": [
-      { "color": "#f5f5f2" },
-      { "visibility": "on" }
-    ]
-  },{
-    "featureType": "poi",
-    "stylers": [
-      { "visibility": "off" }
-    ]
-  },{
-        "featureType": "poi.park",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "color": "#9BE4C4"
-            }
-        ]
-    },{
-    "featureType": "transit",
-    "stylers": [
-      { "visibility": "off" }
-    ]
-  },{
-    "featureType": "landscape.man_made",
-    "elementType": "geometry.fill",
-    "stylers": [
-      { "color": "#ffffff" },
-      { "visibility": "on" }
-    ]
-  },{
-    "featureType": "road.arterial",
-    "stylers": [
-      { "visibility": "simplified" },
-      { "color": "#fee379" }
-    ]
-  },{
-    "featureType": "road.highway",
-    "elementType": "labels.icon",
-    "stylers": [
-      { "visibility": "off" }
-    ]
-  },{
-    "featureType": "landscape",
-    "stylers": [
-      { "color": "#F7F8FF" }
-    ]
-  },{
-    "featureType": "road",
-    "stylers": [
-      { "color": "#ffffff" }
-    ]
-  },{
-    "featureType": "water",
-    "stylers": [
-      { "color": "#A9D5F1" }
-    ]
-  },{
-    "featureType": "landscape",
-    "stylers": [
-      { "visibility": "off" }
-    ]
-  },
-],
-
-		}
-		
-        var map = new google.maps.Map(mapArea, mapOptions)
-		new google.maps.Marker({position: {lat: 42.3589, lng: -71.0921}, map: map, icon: "marker3.png"}) 
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
-	  
-</script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/javascripts/profile_map_scripts.js"></script>
 <script src="/javascripts/validation.js"></script>
-<script src="/javascripts/bootstrap-transition.js"></script>
-<script src="/javascripts/bootstrap-modal.js"></script>
-<script src="/javascripts/bootstrap.min.js"></script>
 <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
 
 <link rel="stylesheet" type="text/css" href="/stylesheets/profile.css"/>
 
-<link rel="stylesheet" type="text/css" href="/main/profile.css"/>
+<link rel="stylesheet" type="text/css" href="/stylesheets/main.css"/>
 
 
 </head>

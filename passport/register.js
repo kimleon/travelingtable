@@ -38,6 +38,7 @@ module.exports = function(passport) {
 					newUser.vegan = false;
 					newUser.allergies = false;
 					newUser.gluten_free = false;
+					newUser.upvoted_recipes = [];
 
 					//save the user into the database
 					newUser.save(function(err){

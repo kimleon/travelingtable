@@ -11,8 +11,8 @@ var usersSchema = new mongoose.Schema({
 	vegan: Boolean,
 	gluten_free: Boolean,
 	allergies: Boolean,
-	recipe_list: [{type: mongoose.Schema.ObjectId, ref: "Recipe"}]
-	//upvoted_recipes: [Schema.Types.ObjectId]
+	recipe_list: [{type: mongoose.Schema.ObjectId, ref: "Recipe"}],
+	upvoted_recipes: [{type: mongoose.Schema.ObjectId, ref: "Recipe"}]
 });
 
 //Associated method for usersSchema:
