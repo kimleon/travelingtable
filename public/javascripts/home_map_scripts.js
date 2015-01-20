@@ -248,8 +248,13 @@
       var infowindow = new google.maps.InfoWindow({
       content: contentString
        });   
-      infowindow.open(map,marker);
+      //infowindow.open(map,marker);
       map.panTo(marker.getPosition());
+      $('.recipetitle').html('<div>'+recipe_name+'</div>');
+      $('.recipeimage').html('<img src="'+recipe_image+'" style="width:200px;height:auto" />');     
+      $('.recipetype').html('<div>'+recipe_type+'</div>');  
+
+
       }
       });
 

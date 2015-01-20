@@ -316,7 +316,7 @@ background-color: #2DBEB2;
   position: fixed;
   z-index:5;
   top: 8vh;
-  height:40vh;
+  height:80vh;
   right:-25vw;
   -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
@@ -329,6 +329,7 @@ background-color: #2DBEB2;
   border-top-left-radius:5em;
   border-bottom-left-radius: 5em;
   padding:2em;
+  overflow:auto;
 }
 #tab:hover {
   right: 25vw;
