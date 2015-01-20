@@ -1,4 +1,4 @@
-var locations5 = []
+//var locations5 = []
 var initialize = function () {
 	var mapArea = document.getElementById('map');
         var mapOptions = {
@@ -85,16 +85,12 @@ var initialize = function () {
 
       }		
   var map = new google.maps.Map(mapArea, mapOptions);
-  google.maps.event.addListenerOnce(map, 'idle', nest(locations5));
+  google.maps.event.addListenerOnce(map, 'idle', refreshMap());
 
 }
 
-var nest = function(locations) {
-	google.maps.event.addListener(map, 'bounds_changed',refreshMap(locations));
-}
-
-var refreshMap = function(locations) {
-  console.log(locations)
+var refreshMap = function() {
+  //console.log()
   console.log('function refreshmap called')
   // get edges
   var edges = map.getBounds();
@@ -105,16 +101,16 @@ var refreshMap = function(locations) {
   var right_coord = edges.getNorthEast().lng();
   var bottom_coord = edges.getSouthWest().lat();
   console.log('bottomcoord', bottom_coord)
-  console.log('locations', locations)
+  //console.log('locations', locations)
 
   //ajax post edges
     $.ajax({
         type: "POST",
         url: "/findMarkers",
-        data: '&bottom_coord='+bottom_coord+'&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&locations='+locations,//,'&len='+len,
+        data: '&bottom_coord='+bottom_coord+'&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord,
         success: function(data) {
           console.log('recieving the data of markers');
-          //var new_locations = data.new_markers
+          console.log(data);
         
   		}
 	});

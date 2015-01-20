@@ -242,7 +242,7 @@ function buttondisplay() {
 
 
 //<!--=========================== SEARCH FORM-=========================================->
-
+/*
 $(function() {
     console.log('Search function is happening')
     $('.error').hide();
@@ -285,7 +285,7 @@ $(function() {
     });
   });
 
-
+*/
 
 
 
