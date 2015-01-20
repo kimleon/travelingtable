@@ -23,6 +23,7 @@ body {
 	font-family:Helvetica, sans-serif;
 	position:fixed;
 	z-index:2;
+	overflow: auto;
 }
 
 #profcontents {
