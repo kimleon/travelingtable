@@ -250,7 +250,8 @@
       'Vegan <input type="checkbox" class="checkbox" disabled="disabled" '+gluten+'Gluten-Free <input type="checkbox"
        class="checkbox" disabled="disabled" '+allergies+'No peanuts/soy <div class="label">Upvotes: </div>'+upvotes+'</div></div>';
        */
-      var contentString = recipe_name + recipe_image; 
+      var contentString = recipe_name + recipe_image;
+      //<div class="checkbox"><label><input type="checkbox" name="upvote" value="">Upvote</label></div>'; 
       var infowindow = new google.maps.InfoWindow({
       content: contentString
        });   

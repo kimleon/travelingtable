@@ -1,13 +1,15 @@
+var elevator;
 var map;
 var marker = false;
 var latLng = false;
 
 function initialize() {
-  var haightAshbury = new google.maps.LatLng(37.7699298, -122.4469157);
+
+  elevator = new google.maps.ElevationService();
   var mapOptions = {
-          center: new google.maps.LatLng(42.3598, -71.0921),
-          zoom: 3,
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
+      center: new google.maps.LatLng(42.3598, -71.0921),
+      zoom: 3,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
 		  minZoom: 3,
 		  maxZoom:7,
 		  mapTypeControl: false,
@@ -101,14 +103,33 @@ styles: [
 
 // Add a marker to the map and push to the array.
 function addMarker(location) {
+  var locations = [];
+  locations.push(location);
+  var elevation;
+  var positionalRequest = { 'locations': locations }
+    elevator.getElevationForLocations(positionalRequest, function(results, status) {
+    if (status == google.maps.ElevationStatus.OK && results[0]) {
+      // Retrieve the first result
+      if (results[0].elevation>-50) {
+        elevation = true;
+      } else {
+        elevation = false;
+      }
+      console.log(elevation);
+
+
   if (marker) {
     marker.setMap(null);
   } 
+  if (elevation){
   marker = new google.maps.Marker({
     position: location,
     map: map,
-	icon: "graphics/addmarker.png"
-  });
+  icon: "graphics/addmarker.png"
+});
+  };
+    }});
+
 }
 
 

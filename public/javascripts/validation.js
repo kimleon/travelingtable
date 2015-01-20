@@ -259,6 +259,42 @@ function buttondisplay() {
 
 
 
+
+
+//<!--=========================== Dietary Preference Edit =========================================->
+
+ $(function() {
+    $(".dietprefbutton").click(function() {
+      // validate and process form here
+
+      var vegetarian = $("input[name=vegetarian]").prop("checked");
+      var vegan = $("input[name=vegan]").prop("checked");
+      var gluten_free = $("input[name=gluten-free]").prop("checked");
+      var allergies = $("input[name=allergies]").prop("checked");
+      console.log("are we getting the prefs")
+      
+      var dataString5 = '&vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies;
+  
+
+      $.ajax({
+            type: "POST",
+            url: "/updateRestrictions",
+            data: dataString5,
+            success: function() {
+              
+
+            }
+          });
+
+      
+    });
+  });
+          //alert (dataString);return false;
+
+
+
+
+
 //<!--=========================== SEARCH FORM-=========================================->
 /*
 $(function() {
