@@ -32,6 +32,7 @@ function buttondisplay() {
              $("#sign_up").hide();
              $("#profile").show();
              $(".upvotebutton").show();
+             $(".voted").hide();
            } else {
              $("#log_out").hide();
              $("#log_in").show();
@@ -39,6 +40,7 @@ function buttondisplay() {
              $("#sign_up").show();
              $("#profile").hide();
              $(".upvotebutton").hide();
+             $(".voted").hide();
            }
 }
 });
@@ -86,6 +88,7 @@ function buttondisplay() {
             $('#loginmessage').removeClass("hidden");
             $("#profile").show();
             $(".upvotebutton").show();
+            $(".voted").hide();
 		      }
           //$('#message').html("<h2>Login Form Submitted!</h2>")
 		      
@@ -168,6 +171,7 @@ function buttondisplay() {
              $("#sign_up").hide();
              $("#profile").show();
              $(".upvotebutton").show();
+             $(".voted").hide();
              //$("#" + signupmessage).toggle();
             //$('#signup_form').html("<div id='signupmessage'><h2>Registration form submitted!</h2><p>Welcome gobi!</p></div>");
             $('#signup_form').addClass("hidden");
@@ -368,6 +372,7 @@ $(function() {
              $("#login_form").removeClass("hidden");
              $("#loginmessage").addClass("hidden");
              $(".upvotebutton").hide();
+             $(".voted").hide();
             //$('#signup_message').show();
             $('#signupmessage1').addClass("hidden");
 

@@ -258,8 +258,15 @@
                         url: "/canUpvote",
                         data: "&markerID="+marker.customInfo,
                         success: function(data) {
+                          //console.log(data.upvoted+" = upvoted or not");
                            if (data.upvoted) {
-                            $('.upvotebutton').html('You upvoted this!');
+                            //$('.upvotebutton').html('You upvoted this!');
+                            $('.voted').show();
+                            $('.upvotebutton').hide();
+                           } else {
+                            //$('.upvotebutton').html('<a href="#" class="upvotebutton2">Upvote</a>');
+                            $('.voted').hide();
+                            $('.upvotebutton').show();
                            }
                          }
                        })
@@ -275,7 +282,9 @@ $(function() {
         data: "&markerID="+marker.customInfo,
         success: function(data) {
           upvotes = data.current_upvotes;
-          $('.upvotebutton').html('You upvoted this!');
+          //$('.upvotebutton').html('You upvoted this!');
+          $('.voted').show();
+          $('.upvotebutton').hide();
           $('.upvotes').html('<div>'+upvotes+' upvotes</div>') 
         }
       });
