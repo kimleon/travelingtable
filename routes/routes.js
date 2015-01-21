@@ -133,6 +133,7 @@ module.exports = function(passport) {
     res.json({
       loggedIn: false,
       message: req.flash('loginMessage')
+   
     });
   });
 
@@ -142,9 +143,17 @@ module.exports = function(passport) {
     res.json({ //sends info to specify what should now be shown in the nav bar
           loggedIn: true,
           message: ' '
+    });  
+  });
+
+  /*Figure out if logged in user has dietary restrictions*/
+  router.post('/getRestrictions', isLoggedIn, function(req, res) {
+    res.json({
+      vegetarian: req.user.vegetarian,
+      vegan: req.user.vegan,
+      allergies: req.user.allergies,
+      gluten_free: req.user.gluten_free
     });
-    
-    
   });
 
 
@@ -232,7 +241,8 @@ module.exports = function(passport) {
             vegetarian: result.vegetarian,
             vegan: result.vegan,
             allergies: result.allergies,
-            gluten: result.gluten
+            gluten: result.gluten,
+            dish_type: result.dish_type
           });
       console.log(newMarker);
       users.User.findOneAndUpdate(

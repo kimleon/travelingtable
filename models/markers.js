@@ -8,7 +8,8 @@ var markersSchema = new Schema({
 	vegetarian: Boolean,
 	vegan: Boolean,
 	allergies: Boolean,
-	gluten: Boolean
+	gluten: Boolean,
+	dish_type: String
 });
 
 var Marker = mongoose.model('Marker', markersSchema);
