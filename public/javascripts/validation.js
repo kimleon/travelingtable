@@ -89,6 +89,7 @@ function buttondisplay() {
             $("#profile").show();
             $(".upvotebutton").show();
             $(".voted").hide();
+            location.reload(true);
 		      }
           //$('#message').html("<h2>Login Form Submitted!</h2>")
 		      
@@ -178,6 +179,8 @@ function buttondisplay() {
             //$('#signup_message').show();
             $('#signupmessage1').removeClass("hidden");
 
+            location.reload(true);
+
             }
             
 		      //$('#signupmessage').html("<h2>Registration form submitted!</h2>")
@@ -250,6 +253,9 @@ function buttondisplay() {
 		    data: dataString2,
 		    success: function() {
 		      $('#recipe_form').html("<div id='recipemessage'><h2>Recipe submitted!</h2><p>Thank you so much for your contribution!</p></div>");
+          //setTimeout(function() { 
+              window.location.href = '/'; 
+            //}, 2000);
           //$('#recipemessage').html("<h2>Recipe submitted!</h2>")
 		      //.append("<p>Thank you so much for your contribution!</p>")
 		      //.hide()
@@ -375,6 +381,8 @@ $(function() {
              $(".voted").hide();
             //$('#signup_message').show();
             $('#signupmessage1').addClass("hidden");
+
+            location.reload(true);
 
 		$.ajax({
 		    type: "POST",
