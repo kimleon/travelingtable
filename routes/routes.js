@@ -53,7 +53,7 @@ module.exports = function(passport) {
     //following line removes the last comma
     final_find = final_find.substring(0, final_find.length - 1);
     console.log(final_find);
-    recipes.Recipe.find({ name: {$regex : '.*'+final_find+'.*'}}, function(err, results) { 
+    recipes.Recipe.find({ name: {$regex : '.*'+final_find+'.*'}}, { name: 1, dish_type: 1 }, function(err, results) { 
       res.send(results);
     });
   });
