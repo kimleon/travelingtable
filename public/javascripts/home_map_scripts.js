@@ -1,5 +1,6 @@
 
       var map;
+      var currentID;
       function initialize() {
         
          //var locations = [];
@@ -199,6 +200,7 @@
       google.maps.event.addListener(marker,'click',function() {
             console.log('marker info');
             console.log(this.customInfo);
+            currentID = marker.customInfo;
             $.ajax({
                 type: "POST",
                 url: "/viewRecipe",
@@ -272,24 +274,9 @@
                        })
               }}});
 
-//if you can vote and you choose to...
-$(function() {
-    $(".upvotebutton2").click(function() {
-      console.log('are we gettitng here', marker.customInfo);
-    $.ajax({
-        type: "POST",
-        url: "/Upvote",
-        data: "&markerID="+marker.customInfo,
-        success: function(data) {
-          upvotes = data.current_upvotes;
-          //$('.upvotebutton').html('You upvoted this!');
-          $('.voted').show();
-          $('.upvotebutton').hide();
-          $('.upvotes').html('<div>'+upvotes+' upvotes</div>') 
-        }
-      });
-  });
-  });
+
+
+  
 
 
 
@@ -315,6 +302,23 @@ $(function() {
 
       google.maps.event.addDomListener(window, 'load', initialize);
 
-     
+//if you can vote and you choose to...
+$(function() {
+    $(".upvotebutton2").click(function() {
+      console.log('are we gettitng here', currentID);
+    $.ajax({
+        type: "POST",
+        url: "/Upvote",
+        data: "&markerID="+currentID,
+        success: function(data) {
+          upvotes = data.current_upvotes;
+          //$('.upvotebutton').html('You upvoted this!');
+          $('.voted').show();
+          $('.upvotebutton').hide();
+          $('.upvotes').html('<div>'+upvotes+' upvotes</div>') 
+        }
+      });
+  });
+});
 
       
