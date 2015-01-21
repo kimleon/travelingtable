@@ -1,6 +1,5 @@
 
       var map;
-      var currentID;
       function initialize() {
         
          //var locations = [];
@@ -200,7 +199,6 @@
       google.maps.event.addListener(marker,'click',function() {
             console.log('marker info');
             console.log(this.customInfo);
-            currentID = marker.customInfo
             $.ajax({
                 type: "POST",
                 url: "/viewRecipe",
@@ -245,21 +243,20 @@
       'Vegan <input type="checkbox" class="checkbox" disabled="disabled" '+gluten+'Gluten-Free <input type="checkbox"
        class="checkbox" disabled="disabled" '+allergies+'No peanuts/soy <div class="label">Upvotes: </div>'+upvotes+'</div></div>';
        */
-       console.log(currentID, "currentID")
-       console.log('marker info', marker.customInfo)
+
 //check if you can upvote or no, if not, itll replace it with a thing that says you voted luls no button nemorez
     $.ajax({
         type: "POST",
         url: "/Refresh",
+        data: "&markerID="+marker.customInfo,
         success: function(data) {
           console.log('LOGGED in var below')
           console.log(data.authenticated);
            if (data.authenticated) {
-
                 $.ajax({
                         type: "POST",
                         url: "/canUpvote",
-                        data: "&markerID="+currentID,
+                        data: "&markerID="+marker.customInfo,
                         success: function(data) {
                            if (data.upvoted) {
                             $('.upvotebutton').html('You upvoted this!');
@@ -268,7 +265,22 @@
                        })
               }}});
 
-
+//if you can vote and you choose to...
+$(function() {
+    $(".upvotebutton2").click(function() {
+      console.log('are we gettitng here', marker.customInfo);
+    $.ajax({
+        type: "POST",
+        url: "/Upvote",
+        data: "&markerID="+marker.customInfo,
+        success: function(data) {
+          upvotes = data.current_upvotes;
+          $('.upvotebutton').html('You upvoted this!');
+          $('.upvotes').html('<div>'+upvotes+' upvotes</div>') 
+        }
+      });
+  });
+  });
 
 
 
@@ -293,22 +305,7 @@
   }
 
       google.maps.event.addDomListener(window, 'load', initialize);
-//if you can vote and you choose to...
-$(function() {
-    $(".upvotebutton2").click(function() {
-      console.log('are we gettitng here', marker.customInfo);
-    $.ajax({
-        type: "POST",
-        url: "/Upvote",
-        data: "&markerID="+currentID,
-        success: function(data) {
-          upvotes = data.current_upvotes;
-          $('.upvotebutton').html('You upvoted this!');
-          $('.upvotes').html('<div>'+upvotes+' upvotes</div>') 
-        }
-      });
-  });
-  });
+
      
 
       
