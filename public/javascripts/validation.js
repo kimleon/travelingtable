@@ -285,7 +285,7 @@ function buttondisplay() {
             url: "/updateRestrictions",
             data: dataString5,
             success: function() {
-
+              $('#submitted').removeClass("hidden");
 
             }
           });
