@@ -22,7 +22,7 @@ module.exports = function(passport) {
     res.render('home');
   });
 
-  /*
+  
   //list of users
   router.get('/Users', function(req, res) {
     mongoose.model('User').find(function(err, Users) {
@@ -37,7 +37,7 @@ module.exports = function(passport) {
     });
   });
 
-  */
+  
 
   router.get('/Search/:keywords', function(req, res) {
     //search only works if a single word entered into the search
@@ -65,7 +65,7 @@ module.exports = function(passport) {
     });
   });
 
-  /*
+  
   //NOTE FOR THE TWO BELOW WE WON'T ACTUALLY NEED THEM EVENTUALLY
   //URL to view list of users to check they are getting entered into te database
   router.get('/Users', function(req, res) {
@@ -79,7 +79,7 @@ module.exports = function(passport) {
       res.send(markers);
     });
   });
-  */
+  
 
   /* GET /Recipes/123 
     view a specific recipe */
@@ -291,13 +291,33 @@ router.post('/findMarkers', function(req, res) {
 
   //now do a different query if the user is logged in
   if (req.isAuthenticated()) {
+    if (req.user.vegetarian === true) {
+      vegetarian_arr = [true]
+    } else {
+      vegetarian_arr = [true, false]
+    }
+    if (req.user.vegan === true) {
+      vegan_arr = [true]
+    } else {
+      vegan_arr = [true, false]
+    }
+    if (req.user.allergies === true) {
+      allergies_arr = [true]
+    } else {
+      allergies_arr = [true, false]
+    }
+    if (req.user.gluten_free === true) {
+      gluten_free_arr = [true]
+    } else {
+      gluten_free_arr = [true, false]
+    }
     mongoose.model('Marker').find({ $and: 
       [{ latitude: { $gte: bottom, $lte: top }},
       {longitude: {$gte: left, $lte: right}},
-      {vegetarian: req.user.vegetarian},
-      {vegan: req.user.vegan},
-      {gluten: req.user.gluten_free},
-      {allergies: req.user.allergies}]}, 
+      {vegetarian: {$in: vegetarian_arr}},
+      {vegan: {$in: vegan_arr}},
+      {gluten: {$in: gluten_free_arr}},
+      {allergies: {$in: allergies_arr}}]}, 
       function(err, returned_markers) {
         if (err) {
           console.log('find markers error', err);
@@ -470,7 +490,9 @@ router.post('/findMarkers', function(req, res) {
             upvoted: true
           });
         } else {
-          
+          res.json({
+            upvoted: false
+          });
         }
 
       });
