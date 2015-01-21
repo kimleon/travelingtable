@@ -15,6 +15,7 @@ function randomPic() {
 <script type="text/javascript">
 $(document).ready(function(){
     $.ajax({
+        type: 'POST',
         url: "/getRestrictions",
         context: document.body,
         success: function(data){
