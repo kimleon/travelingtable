@@ -31,12 +31,14 @@ function buttondisplay() {
              $("#add_recipe").show();
              $("#sign_up").hide();
              $("#profile").show();
+             $(".upvotebutton").show();
            } else {
              $("#log_out").hide();
              $("#log_in").show();
              $("#add_recipe").hide();
              $("#sign_up").show();
              $("#profile").hide();
+             $(".upvotebutton").hide();
            }
 }
 });
@@ -77,12 +79,13 @@ function buttondisplay() {
           console.log(data.loggedIn);
           if (data.loggedIn===true) {
             $("#log_out").show();
-             $("#log_in").hide();
-             $("#add_recipe").show();
-             $("#sign_up").hide();
+            $("#log_in").hide();
+            $("#add_recipe").show();
+            $("#sign_up").hide();
   		      $('#login_form').addClass("hidden");
             $('#loginmessage').removeClass("hidden");
             $("#profile").show();
+            $(".upvotebutton").show();
 		      }
           //$('#message').html("<h2>Login Form Submitted!</h2>")
 		      
@@ -164,6 +167,7 @@ function buttondisplay() {
              $("#add_recipe").show();
              $("#sign_up").hide();
              $("#profile").show();
+             $(".upvotebutton").show();
              //$("#" + signupmessage).toggle();
             //$('#signup_form').html("<div id='signupmessage'><h2>Registration form submitted!</h2><p>Welcome gobi!</p></div>");
             $('#signup_form').addClass("hidden");
@@ -363,6 +367,7 @@ $(function() {
              $('#signup_form').removeClass("hidden");
              $("#login_form").removeClass("hidden");
              $("#loginmessage").addClass("hidden");
+             $(".upvotebutton").hide();
             //$('#signup_message').show();
             $('#signupmessage1').addClass("hidden");
 

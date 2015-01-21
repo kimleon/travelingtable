@@ -243,6 +243,45 @@
       'Vegan <input type="checkbox" class="checkbox" disabled="disabled" '+gluten+'Gluten-Free <input type="checkbox"
        class="checkbox" disabled="disabled" '+allergies+'No peanuts/soy <div class="label">Upvotes: </div>'+upvotes+'</div></div>';
        */
+
+//check if you can upvote or no, if not, itll replace it with a thing that says you voted luls no button nemorez
+    $.ajax({
+        type: "POST",
+        url: "/Refresh",
+        success: function(data) {
+          console.log('LOGGED in var below')
+          console.log(data.authenticated);
+           if (data.authenticated) {
+
+                $.ajax({
+                        type: "POST",
+                        url: "/canUpvote",
+                        success: function(data) {
+                           if (data.upvoted) {
+                            $('.upvotebutton').html('You upvoted this!');
+                           }
+                         }
+                       })
+              }}});
+
+//if you can vote and you choose to...
+$(function() {
+    $(".upvotebutton2").click(function() {
+    $.ajax({
+        type: "POST",
+        url: "/Upvote",
+        data: "&markerID="+marker.customInfo,
+        success: function(data) {
+          upvotes = data.current_upvotes;
+          $('.upvotebutton').html('You upvoted this!');
+          $('.upvotes').html('<div>'+upvotes+' upvotes</div>') 
+        }
+      });
+  });
+  });
+
+
+
       var contentString = recipe_name + recipe_image;
       //<div class="checkbox"><label><input type="checkbox" name="upvote" value="">Upvote</label></div>'; 
       var infowindow = new google.maps.InfoWindow({
