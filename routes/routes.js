@@ -22,6 +22,7 @@ module.exports = function(passport) {
     res.render('home');
   });
 
+  
   //list of users
   router.get('/Users', function(req, res) {
     mongoose.model('User').find(function(err, Users) {
@@ -36,7 +37,7 @@ module.exports = function(passport) {
     });
   });
 
-
+  
 
   router.get('/Search/:keywords', function(req, res) {
     //search only works if a single word entered into the search
@@ -57,7 +58,7 @@ module.exports = function(passport) {
     });
   });
 
-
+  
   //NOTE FOR THE TWO BELOW WE WON'T ACTUALLY NEED THEM EVENTUALLY
   //URL to view list of users to check they are getting entered into te database
   router.get('/Users', function(req, res) {
@@ -71,7 +72,7 @@ module.exports = function(passport) {
       res.send(markers);
     });
   });
-
+  
 
   /* GET /Recipes/123 
     view a specific recipe */
@@ -283,13 +284,33 @@ router.post('/findMarkers', function(req, res) {
 
   //now do a different query if the user is logged in
   if (req.isAuthenticated()) {
+    if (req.user.vegetarian === true) {
+      vegetarian_arr = [true]
+    } else {
+      vegetarian_arr = [true, false]
+    }
+    if (req.user.vegan === true) {
+      vegan_arr = [true]
+    } else {
+      vegan_arr = [true, false]
+    }
+    if (req.user.allergies === true) {
+      allergies_arr = [true]
+    } else {
+      allergies_arr = [true, false]
+    }
+    if (req.user.gluten_free === true) {
+      gluten_free_arr = [true]
+    } else {
+      gluten_free_arr = [true, false]
+    }
     mongoose.model('Marker').find({ $and: 
       [{ latitude: { $gte: bottom, $lte: top }},
       {longitude: {$gte: left, $lte: right}},
-      {vegetarian: req.user.vegetarian},
-      {vegan: req.user.vegan},
-      {gluten: req.user.gluten_free},
-      {allergies: req.user.allergies}]}, 
+      {vegetarian: {$in: vegetarian_arr}},
+      {vegan: {$in: vegan_arr}},
+      {gluten: {$in: gluten_free_arr}},
+      {allergies: {$in: allergies_arr}}]}, 
       function(err, returned_markers) {
         if (err) {
           console.log('find markers error', err);
@@ -436,6 +457,40 @@ router.post('/findMarkers', function(req, res) {
       });
     }      
   });
+  
+  /*Decide if a user CAN vote when the recipe is opened */
+  router.post('/canUpvote', isLoggedIn, function(req, res) {
+    markerID = req.body.markerID
+    user = req.user;
+    upvoted_recipes = user.upvoted_recipes;
+    mongoose.model('Marker').find(
+      {_id: markerID}, function(err, result) {
+        if (err) {
+          console.log('error in finding can upvote info', err);
+          return;
+        }
+        recipeID = result.recipeId;
+        mongoose.model('Recipe').find({ $and: 
+      [{ _id: recipeID},
+      {_id: {$nin: upvoted_recipes}}]}, 
+      function(err, result) {
+        if (err) {
+          console.log(err, "error with can upvote route")
+          return;
+        }
+        if (typeof result !== 'undefined' && result.length > 0) {
+          res.json({
+            upvoted: true
+          });
+        } else {
+          res.json({
+            upvoted: false
+          });
+        }
+
+      });
+    });
+  });
 
   
   router.post('/Upvote', isLoggedIn, function(req, res) {
@@ -463,7 +518,7 @@ router.post('/findMarkers', function(req, res) {
               console.log('error having user upvote this recipe in database', err);
               }
               res.json({
-                upvotes: recipe_upvotes
+                upvoted: true
           });
         });
 

@@ -251,9 +251,9 @@
       //infowindow.open(map,marker);
       map.panTo(marker.getPosition());
       $('.recipetitle').html('<div>'+recipe_name+'</div>');
-      $('.recipeimage').html('<img src="'+recipe_image+'" style="width:200px;height:auto" />');     
-      $('.recipetype').html('<div>'+recipe_type+'</div>');  
-
+      $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
+      $('.recipetype').html('<div>'+recipe_type+'</div>'); 
+      $('.upvotes').html('<div>'+upvotes+' upvotes</div>') 
 
       }
       });
