@@ -327,7 +327,7 @@ background-color: #2DBEB2;
   display:inline-block;
   background-color:white;
   float:right;
-  border-top-left-radius:5em;
+  border-top-left-radius:0em;
   border-bottom-left-radius: 5em;
   padding:2em;
   overflow:auto;

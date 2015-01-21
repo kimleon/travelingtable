@@ -31,12 +31,16 @@ function buttondisplay() {
              $("#add_recipe").show();
              $("#sign_up").hide();
              $("#profile").show();
+             $(".upvotebutton").show();
+             $(".voted").hide();
            } else {
              $("#log_out").hide();
              $("#log_in").show();
              $("#add_recipe").hide();
              $("#sign_up").show();
              $("#profile").hide();
+             $(".upvotebutton").hide();
+             $(".voted").hide();
            }
 }
 });
@@ -77,12 +81,15 @@ function buttondisplay() {
           console.log(data.loggedIn);
           if (data.loggedIn===true) {
             $("#log_out").show();
-             $("#log_in").hide();
-             $("#add_recipe").show();
-             $("#sign_up").hide();
+            $("#log_in").hide();
+            $("#add_recipe").show();
+            $("#sign_up").hide();
   		      $('#login_form').addClass("hidden");
             $('#loginmessage').removeClass("hidden");
             $("#profile").show();
+            $(".upvotebutton").show();
+            $(".voted").hide();
+            location.reload(true);
 		      }
           //$('#message').html("<h2>Login Form Submitted!</h2>")
 		      
@@ -164,11 +171,15 @@ function buttondisplay() {
              $("#add_recipe").show();
              $("#sign_up").hide();
              $("#profile").show();
+             $(".upvotebutton").show();
+             $(".voted").hide();
              //$("#" + signupmessage).toggle();
             //$('#signup_form').html("<div id='signupmessage'><h2>Registration form submitted!</h2><p>Welcome gobi!</p></div>");
             $('#signup_form').addClass("hidden");
             //$('#signup_message').show();
             $('#signupmessage1').removeClass("hidden");
+
+            location.reload(true);
 
             }
             
@@ -242,6 +253,9 @@ function buttondisplay() {
 		    data: dataString2,
 		    success: function() {
 		      $('#recipe_form').html("<div id='recipemessage'><h2>Recipe submitted!</h2><p>Thank you so much for your contribution!</p></div>");
+          //setTimeout(function() { 
+              window.location.href = '/'; 
+            //}, 2000);
           //$('#recipemessage').html("<h2>Recipe submitted!</h2>")
 		      //.append("<p>Thank you so much for your contribution!</p>")
 		      //.hide()
@@ -363,8 +377,12 @@ $(function() {
              $('#signup_form').removeClass("hidden");
              $("#login_form").removeClass("hidden");
              $("#loginmessage").addClass("hidden");
+             $(".upvotebutton").hide();
+             $(".voted").hide();
             //$('#signup_message').show();
             $('#signupmessage1').addClass("hidden");
+
+            location.reload(true);
 
 		$.ajax({
 		    type: "POST",

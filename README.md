@@ -7,7 +7,7 @@ Things we still have to do FOR MVP:
 -Deepti: fix routes in the website
 -Deepti: fix flash messages thing for wrong password/username with logged in
 -Deepti: implement upvoting (should be simple)
--Deepti: figure out how to do profile page with the specific user IDs in URL
+
 
 ***FOR BOTH SEARCH AND PROFILE: when you click on a recipe title link, will bring you to the location on the map where you have posted that recipe and will animate it-figure out how this works
 

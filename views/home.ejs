@@ -32,12 +32,16 @@ function buttondisplay() {
              $("#add_recipe").show();
              $("#sign_up").hide();
              $("#profile").show();
+             $(".upvotebutton").show();
+             $(".voted").hide();
            } else {
              $("#log_out").hide();
              $("#log_in").show();
              $("#add_recipe").hide();
              $("#sign_up").show();
              $("#profile").hide;
+             $(".upvotebutton").hide();
+             $(".voted").hide();
            }
 }
 });
@@ -285,6 +289,8 @@ function buttondisplay() {
         Content of recipe haha woo woo woo<br>woo</br>boowejwoepjwo</br>
         <div><h3>Total Votes: </h3></div>
         <div class="upvotes">X votes</div>
+        <div class="upvotebutton"><a href="#" class="upvotebutton2">Upvote</a></div>
+        <div class="voted">You upvoted this!</div>
 </div>
 
 </body>
