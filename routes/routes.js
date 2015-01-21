@@ -129,11 +129,10 @@ module.exports = function(passport) {
   }))
 
   router.get('/LoginFail', function(req, res) {
-    console.log(req.flash('loginMessage'))
+    console.log(req.flash('loginMessage'));
     res.json({
       loggedIn: false,
-      message: req.flash('loginMessage')
-   
+      message: req.flash('loginMessage')  
     });
   });
 
@@ -426,7 +425,8 @@ router.post('/findMarkers', function(req, res) {
           vegetarian: recipeResult.vegetarian,
           gluten: recipeResult.gluten,
           allergies: recipeResult.allergies,
-          upvotes: recipeResult.upvotes
+          upvotes: recipeResult.upvotes,
+          dish_type: recipeResult.dish_type
         });
       });
     });
