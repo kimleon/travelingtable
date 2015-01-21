@@ -501,7 +501,6 @@ router.post('/findMarkers', function(req, res) {
       });
     });
   });
-
   
   router.post('/Upvote', isLoggedIn, function(req, res) {
     markerID = req.body.markerID
@@ -528,7 +527,7 @@ router.post('/findMarkers', function(req, res) {
               console.log('error having user upvote this recipe in database', err);
               }
               res.json({
-                upvoted: true
+                current_upvotes: recipe_upvotes
           });
         });
 
