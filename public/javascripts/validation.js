@@ -387,20 +387,16 @@ function buttondisplay() {
 
 $(function() {
     console.log('Search function is happening')
-    //$('.error').hide();
     $("#search_button").click(function() {
       // validate and process form here
       
-      //$('.error').hide();
+      // $('.error').hide();
       var search_input = $("input[name=search_input]").val();
       if (search_input === "") {
         //$("label#search_input_error").show();
         //$("input#search_input").focus();
         return false;
       }
-    //var search_text = search_input; 
-    //console.log("hereeee");
-    console.log(search_input); 
       //alert (dataString);return false;
 
 
@@ -414,6 +410,7 @@ $(function() {
           var results = data.search_array;
           console.log(results);
 
+
         }
           //$('#message').html("<h2>Login Form Submitted!</h2>")
           
@@ -425,17 +422,7 @@ $(function() {
         })
       });
       return false;
-
-
-
-    //$('#search_form').html("<div id='message'></div>");
-
-
-  });
-
-
-
-
+});
 
 
 
@@ -466,6 +453,6 @@ $(function() {
 		    //data: status
 		});
 		return false;
-});
+})
 
-});
+})
