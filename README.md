@@ -17,7 +17,9 @@ and later ingredients list
 -Kim: top 5?10? recipes in current view by upvotes (sort the input)
 ---input: array of arrays for which each array gives you title, dishtype, upvotes 
 ---output: top recipes by 
--ther's an ajax call in home that gets markers in the area
+-there's an ajax call in home that gets markers in the area
+-in the same array
+^^done!! :D
 -Kim: Fix recipe list so it doesn't look shitty <---yusssss also done
 
 

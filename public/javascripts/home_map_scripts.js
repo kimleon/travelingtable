@@ -4,13 +4,34 @@
       var markers = []
       var markerClusterer;
       clusterSettings = {
-          maxZoom: 6,
+          maxZoom: 4,
           styles: [{
-                  height:130,
+                  height:55,
                   url: "/graphics/cluster1.png",
-                  width: 130
+                  width: 55,
+                  anchorIcon: ["27px", "28px"],
+                  anchor: [6,0]
+                  //anchorIcon: [20, 140]
+                  },
+                  {
+                  height:55,
+                  url: "/graphics/cluster2.png",
+                  width: 55,
+                  anchorIcon: ["27px", "28px"],
+                  anchor: [6,0]
+                  //anchorIcon: [20, 140]
+                  },
+                  {
+                  height:55,
+                  url: "/graphics/cluster3.png",
+                  width: 55,
+                  anchorIcon: ["27px", "28px"],
+                  anchor: [6,0]
                   //anchorIcon: [20, 140]
                   }]}
+        clusterSettings2 = {
+          maxZoom: 4
+        }
       function initialize() {
         
          //var locations = [];
@@ -155,7 +176,7 @@
           setMarkers(new_locations);
           //setImagePath(imagePath:'/graphics/cluster');
           //setImageExtension(imageExtension:'.png');
-          var markerCluster = new MarkerClusterer(map, markers, clusterSettings);
+          var markerCluster = new MarkerClusterer(map, markers, clusterSettings2);
           //var markerCluster = new MarkerClusterer(map, markers);
           //refreshMapCluster(); 
           //Create markers from the initial dataset served with the document.
@@ -205,7 +226,7 @@
           setMarkers(new_locations);
           //setImagePath(imagePath:'/graphics/cluster');
           //setImageExtension(imageExtension:'.png');
-          var markerCluster = new MarkerClusterer(map, markers, clusterSettings);
+          var markerCluster = new MarkerClusterer(map, markers, clusterSettings2);
  //Create markers from the initial dataset served with the document.
           //ajaxObj.get(); //Start the get cycle.
           //refreshMapCluster();
@@ -294,7 +315,7 @@
                         url: "/canUpvote",
                         data: "&markerID="+marker.customInfo,
                         success: function(data) {
-                          //console.log(data.upvoted+" = upvoted or not");
+                           console.log(data.upvoted+" = upvoted or not");
                            if (data.upvoted) {
                             //$('.upvotebutton').html('You upvoted this!');
                             $('.voted').show();
@@ -369,13 +390,14 @@
 //if you can vote and you choose to...
 $(function() {
     $(".upvotebutton2").click(function() {
-      //console.log('are we gettitng here', currentID);
+      console.log('are we gettitng here', currentID);
     $.ajax({
         type: "POST",
         url: "/Upvote",
         data: "&markerID="+currentID,
         success: function(data) {
-          upvotes = data.current_upvotes;
+          upvotes = data.upvotes;
+          console.log('current upvotes,', upvotes)
           //$('.upvotebutton').html('You upvoted this!');
           $('.voted').show();
           $('.upvotebutton').hide();

@@ -210,7 +210,7 @@ function buttondisplay() {
   function isNumberKey(evt)
       {
          var charCode = (evt.which) ? evt.which : event.keyCode
-         if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode!==190 && charCode!==46 && charCode!==62 && charCode!==47)
+         if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode!==190 && charCode!==46 && charCode!==62)
             return false;
 
          return true;
@@ -221,7 +221,7 @@ function buttondisplay() {
   function separateKey(evt)
       {
          var charCode2 = (evt.which) ? evt.which : event.keyCode
-         if (charCode2===126 || charCode2===96 || charCode2 === 125 || charCode2 === 123)
+         if (charCode2===126 || charCode2===96)
             return false;
 
          return true;
@@ -409,32 +409,33 @@ var search_array = [];
 $(function() {
     console.log('Search function is happening')
     $(".search2").click(function() {
-      // validate and process form here
-
-
-
-      // $('.error').hide();
       var search_input = $("input[name=search_input]").val();
+      console.log("search input")
       console.log(search_input)
+      search_input = search_input.toLowerCase();
       if (search_input === "") {
-        //$("label#search_input_error").show();
-        //$("input#search_input").focus();
         return false;
-      } else if (search_input === "top 5") {
-        console.log("yeehhh top 5");
+      } else if (search_input === "top 5"){
+        console.log("yeeeeeeeeeh")
+        var current_edges = map.getBounds()
+        var left_coord = current_edges.getSouthWest().lng();
+        var top_coord = current_edges.getNorthEast().lat();
+        var right_coord = current_edges.getNorthEast().lng();
+        var bottom_coord = current_edges.getSouthWest().lat();
+        console.log('edges', top_coord, bottom_coord, right_coord, left_coord)
         $.ajax({
           type: "POST",
-          url: "/Top5/"+search_input,
-          data: '&top5_input='+search_input,
+          url: "/Top5",
+          data: '&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&bottom_coord='+bottom_coord,
           success: function(data) {
-            console.log('success in search');
+            console.log('success in top5');
             top5_array = data.top5_array;
             console.log(top5_array.length);
 
 
             var replace = '';
             for (var i=0; i<top5_array.length; i++) {
-              replace=replace+"<div><li>"+[i+1]+'. '+top5_array[i][1]+': '+top5_array[i][2]+"</li></div>"
+              replace=replace+"<div><li>"+top5_array[i][3]+' upvotes: '+top5_array[i][1]+', '+top5_array[i][2]+"</li></div>"
             }
             $("#search_inner").html(replace);
 
@@ -464,6 +465,32 @@ $(function() {
       });
 
 })
+
+
+
+      // } else if (search_input === "top 5") {
+      //   console.log("yeehhh top 5")
+      //   var current_edges = map.getBounds()
+      //   console.log(current_edges)
+      //   $.ajax({
+      //     type: "POST",
+      //     url: "/Top5/"+search_input,
+      //     data: '&top5_input='+search_input,
+      //     success: function(data) {
+      //       console.log('success in search');
+      //       top5_array = data.top5_array;
+      //       console.log(top5_array.length);
+
+
+      //       var replace = '';
+      //       for (var i=0; i<top5_array.length; i++) {
+      //         replace=replace+"<div><li>"+[i+1]+'. '+top5_array[i][1]+': '+top5_array[i][2]+"</li></div>"
+      //       }
+      //       $("#search_inner").html(replace);
+
+      //     }
+      //   });
+
 
 
 
