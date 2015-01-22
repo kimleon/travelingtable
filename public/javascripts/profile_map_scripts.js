@@ -178,12 +178,6 @@
         });
 
 
-
-
-
-
-
-
     var setListener = function(marker) {
 
       var recipe_name 
