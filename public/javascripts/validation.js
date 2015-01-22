@@ -382,28 +382,27 @@ function buttondisplay() {
 
 
 //<!--=========================== SEARCH FORM-=========================================->
-/*
+
 $(function() {
     console.log('Search function is happening')
-    $('.error').hide();
-    $(".search_button").click(function() {
+    $("#search_button").click(function() {
       // validate and process form here
       
-      $('.error').hide();
+      // $('.error').hide();
       var search_input = $("input[name=search_input]").val();
       if (search_input === "") {
         //$("label#search_input_error").show();
         //$("input#search_input").focus();
         return false;
       }
-    var search_text = search_input; 
-    console.log("hereeee");
-    console.log(search_text); 
+    // var search_text = search_input; 
+    // console.log("hereeee");
+    // console.log(search_text); 
       //alert (dataString);return false;
       $.ajax({
         type: "POST",
-        url: "/Search/"+search_text,
-        data: dataString
+        url: "/Search/"+search_input,
+        data: '&search_input='+search_input
           //$('#message').html("<h2>Login Form Submitted!</h2>")
           
 
@@ -411,21 +410,21 @@ $(function() {
           //.hide()
           //.fadeIn(1500, function() {
            //});
-        }
+        })
       });
       return false;
 
 
 
-    $('#search_form').html("<div id='message'></div>");
+    // $('#search_form').html("<div id='message'></div>");
 
 
 
 
-    });
-  });
 
-*/
+    }); 
+
+
 
 
 
