@@ -221,7 +221,7 @@ function buttondisplay() {
   function separateKey(evt)
       {
          var charCode2 = (evt.which) ? evt.which : event.keyCode
-         if (charCode2===126 || charCode2===96)
+         if (charCode2===126 || charCode2===96 || charCode2 === 125 || charCode2 === 123)
             return false;
 
          return true;
