@@ -412,6 +412,7 @@ $(function() {
       var search_input = $("input[name=search_input]").val();
       console.log("search input")
       console.log(search_input)
+      search_input = search_input.toLowerCase();
       if (search_input === "") {
         return false;
       } else if (search_input === "top 5"){
@@ -434,7 +435,7 @@ $(function() {
 
             var replace = '';
             for (var i=0; i<top5_array.length; i++) {
-              replace=replace+"<div><li>"+top5_array[i][1]+' upvotes: '+top5_array[i][1]+', '+top5_array[i][2]+"</li></div>"
+              replace=replace+"<div><li>"+top5_array[i][3]+' upvotes: '+top5_array[i][1]+', '+top5_array[i][2]+"</li></div>"
             }
             $("#search_inner").html(replace);
 
