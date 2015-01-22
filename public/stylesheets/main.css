@@ -301,38 +301,7 @@ background-color: #2DBEB2;
 */
 
 
-.handle {
-	z-index:6;
-	position:fixed;
-	right:0;
-	bottom:25vh;
-	display:inline-block;
-	height:30%;
-	width:auto;
-	float:right;
-}
 
-
-#inner {
-  position: fixed;
-  z-index:2;
-  top: 7vh;
-  height:80vh;
-  /*right:-35vw;*/
-  right:0vw;
-  -webkit-transition-duration: 0.3s;
-  -moz-transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  width:35vw;
-  display:inline-block;
-  background-color:white;
-  float:right;
-  border-top-left-radius:0em;
-  border-bottom-left-radius: 5em;
-  padding:2em;
-  overflow:auto;
-}
 
 #search_inner {
   float: left;
@@ -357,7 +326,7 @@ background-color: #2DBEB2;
 }
 
 
-#top5_inner {
+#features {
   float: left;
   clear:left;
   color: black;
@@ -365,22 +334,67 @@ background-color: #2DBEB2;
   z-index: 2;
   top: 50px;
   height:35vh;
-  left: 20px;
+  left: 2vw;
+  width:10vw;
+  display:inline-block;
+  background-color:#F0F5FF;
+  border-bottom-right-radius:3em;
+  border-bottom-left-radius: 3em;
+  text-align:center;
+  margin:0;
+  display:block;
+  overflow:hidden;
+}
+
+.gray {
+	background-color:white;
+	float:left;
+	display:inline-block;
+	width:10vw;
+	margin:5 auto;
+	padding:.5em;
+}
+
+.white {
+	background-color:#F0F5FF;
+	float:left;
+	display:inline-block;
+	width:10vw;
+	margin:0 auto;
+	padding:.5em;
+}
+.handle {
+	z-index:6;
+	position:fixed;
+	right:0;
+	bottom:25vh;
+	display:inline-block;
+	height:30%;
+	width:auto;
+	float:right;
+}
+
+
+#inner {
+  position: fixed;
+  z-index:2;
+  top: 7vh;
+  height:80vh;
+  /*right:-35vw;*/
+  right:-35vw;
   -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  width:14vw;
+  width:35vw;
   display:inline-block;
-  background-color:blue;
-  border-bottom-right-radius:3em;
-  border-bottom-left-radius: 3em;
+  background-color:white;
+  float:right;
+  border-top-left-radius:0em;
+  border-bottom-left-radius: 5em;
   padding:2em;
   overflow:auto;
 }
-
-
-/*
 #tab:hover {
   right: 35vw;
 }
