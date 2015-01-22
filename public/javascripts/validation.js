@@ -206,13 +206,54 @@ function buttondisplay() {
 
 
 //<!--=========================== RECIPE FORM-=========================================->
+//limit input into the time estimated for prep field
+  function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode!==190 && charCode!==46 && charCode!==62)
+            return false;
 
+         return true;
+      }
 
 
  $(function() {
     console.log('this recipe submit button is happening')
     $('.error').hide();
     $(".recipebutton").click(function() {
+      //console.log(counterbox);
+      //console.log(counter);
+      //var test = $("input[name='boxinput1']").val();
+      //console.log(test);
+
+
+      var ingredients = [];
+      //console.log(counterbox);
+
+      for (var i=1; (i<counterbox+1); i++) {
+        //console.log(counterbox);
+        //var test = $("input[name='boxinput"+i+"']").val();
+        //console.log(test);
+        ingredients.push($("input[name='boxinput"+i+"']").val());
+      };
+
+      //console.log(ingredients);
+
+      //console.log(ingredients);
+
+
+      var steps = [];
+      //console.log(counterbox);
+
+      for (var i=1; (i<counter+1); i++) {
+        //console.log(counterbox);
+        //var test = $("input[name='input"+i+"']").val();
+        //console.log(test);
+        steps.push($("textarea[name='input"+i+"']").val());
+      };
+
+      //console.log(steps);
+
       // validate and process form here
       
       $('.error').hide();
@@ -227,7 +268,31 @@ function buttondisplay() {
         return false;
       }
   		
-  		var recipe_image = $("input[name=recipe_image]").val();
+  		 var dish_type = $('#sel1 :selected').text();
+      if (dish_type === "Choose one!") {
+        $('label#dish_type_error').show();
+        $('input#sel1').focus();
+        return false;
+      }
+
+
+
+
+
+      var est_time = $("input[name=est_time]").val();
+      if (est_time === "") {
+        $('label#est_time_error1').show();
+        $('input#est_time').focus();
+        return false;
+      }
+      if (typeof est_time-1 === 'number' && est_time !== "") {
+        $('label#est_time_error2').show();
+        $('input#est_time').focus();
+        return false;
+      }
+
+
+      var recipe_image = $("input[name=recipe_image]").val();
   		if (recipe_image === "") {
         $("label#recipe_image_error").show();
         $("input#recipe_image").focus();
@@ -235,7 +300,8 @@ function buttondisplay() {
       }
 
       //dessert, entree, or appetizer
-      var dish_type = $("#dish_type option:selected").text();
+      //var dish_type = $("#dish_type option:selected").text();
+
 
       var vegetarian = $("input[name=vegetarian]").prop("checked");
       var vegan = $("input[name=vegan]").prop("checked");
@@ -244,7 +310,7 @@ function buttondisplay() {
       console.log("are we getting here")
 		  var dataString2 = '&recipe_name='+ recipe_name +'&recipe_image=' + recipe_image + '&dish_type=' + dish_type
                         +'&vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies
-                        +'&latitude=' + latitude + '&longitude=' + longitude;
+                        +'&latitude=' + latitude + '&longitude=' + longitude + "&ingredients="+ingredients+"&steps="+steps;
 		  //alert (dataString);return false;
       console.log("are we getting to this 2nd here")
 		  $.ajax({
@@ -300,6 +366,8 @@ function buttondisplay() {
             data: dataString5,
             success: function() {
               $('#submitted').removeClass("hidden");
+              $('#submitted').addClass("informatiemelding");
+              jQuery("div.informatiemelding").delay(2000).fadeOut("slow");
 
             }
           });

@@ -91,6 +91,14 @@ module.exports = function(passport) {
     });
   });
 
+
+    //   res.json({
+    //     //send results
+    //     search_results: results
+    // });
+  
+
+
   
   //NOTE FOR THE TWO BELOW WE WON'T ACTUALLY NEED THEM EVENTUALLY
   //URL to view list of users to check they are getting entered into te database
@@ -162,10 +170,11 @@ module.exports = function(passport) {
   }))
 
   router.get('/LoginFail', function(req, res) {
-    console.log(req.flash('loginMessage'));
+    console.log(req.flash('loginMessage'))
     res.json({
       loggedIn: false,
-      message: req.flash('loginMessage')  
+      message: req.flash('loginMessage')
+   
     });
   });
 
@@ -259,8 +268,8 @@ module.exports = function(passport) {
       vegetarian: req.body.vegetarian,
       upvotes: 0,
       views: 0,
-      ingredients: req.body.ingredients,
-      prep_time: req.body.prep_time,
+      ingredients: req.body.steps,
+      prep_time: req.body.est_time,
       instructions: req.body.instructions
     });
     console.log(req.body.vegetarian)
@@ -370,7 +379,7 @@ router.post('/findMarkers', function(req, res) {
           var cur_array = [marker._id, marker.latitude, marker.longitude]
           new_markers.push(cur_array)
         });
-        //console.log('marker array', new_markers);
+        console.log('marker array', new_markers);
         res.json( {
           new_markers: new_markers
         });
@@ -537,36 +546,28 @@ router.post('/findMarkers', function(req, res) {
   /*Decide if a user CAN vote when the recipe is opened */
   router.post('/canUpvote', isLoggedIn, function(req, res) {
     markerID = req.body.markerID
-    console.log('what is this', markerID);
     user = req.user;
     upvoted_recipes = user.upvoted_recipes;
-    console.log(upvoted_recipes);
     mongoose.model('Marker').find(
-      {_id: markerID}, function(err, results) {
+      {_id: markerID}, function(err, result) {
         if (err) {
           console.log('error in finding can upvote info', err);
           return;
         }
-        console.log('resulting marker', results);
-        result = results[0];
         recipeID = result.recipeId;
-        console.log('this recipe ID should match one above', recipeID);
         mongoose.model('Recipe').find({ $and: 
       [{ _id: recipeID},
-      {_id: {$in: upvoted_recipes}}]}, 
+      {_id: {$nin: upvoted_recipes}}]}, 
       function(err, result) {
         if (err) {
           console.log(err, "error with can upvote route")
           return;
         }
-        console.log('resulting thing', result);
-        if (result.length > 0) {
-          console.log('upvoted is true');
+        if (typeof result !== 'undefined' && result.length > 0) {
           res.json({
             upvoted: true
           });
         } else {
-          console.log('upvoted is false');
           res.json({
             upvoted: false
           });
@@ -575,10 +576,10 @@ router.post('/findMarkers', function(req, res) {
       });
     });
   });
+
   
   router.post('/Upvote', isLoggedIn, function(req, res) {
     markerID = req.body.markerID
-    //console.log('should be getting marker ID', markerID)
     user = req.user
     mongoose.model('Marker').findOneAndUpdate(
     {_id: markerID}, 
@@ -587,9 +588,7 @@ router.post('/findMarkers', function(req, res) {
       if (err) {
         console.log('error in finding marker associated with upvote request', err);
       }
-      //result = results[0];
       recipeId = result.recipeId
-      console.log('recipeID', recipeId);
       mongoose.model('Recipe').findOneAndUpdate(
         {_id: recipeId}, 
         {$inc: {upvotes: 1}}, 
@@ -597,9 +596,7 @@ router.post('/findMarkers', function(req, res) {
           if (err) {
             console.log('error in finding recipe associated with this id', err);
           }
-          //console.log('resulting recipes associated with marker', recipes)
-          //recipe = recipes[0]
-          recipe_upvotes = recipe.upvotes; //store recipe upvotes
+          recipe_upvotes = recipe.upvote; //store recipe upvotes
           mongoose.model('User').findOneAndUpdate(
             {_id:req.user._id}, 
             {$push: {upvoted_recipes: recipeId}}, 
@@ -608,7 +605,7 @@ router.post('/findMarkers', function(req, res) {
               console.log('error having user upvote this recipe in database', err);
               }
               res.json({
-                current_upvotes: recipe_upvotes
+                upvoted: true
           });
         });
 

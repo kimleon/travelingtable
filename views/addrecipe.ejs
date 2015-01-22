@@ -14,7 +14,6 @@
     
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <!--END LOGIN-->
-<script src="/javascripts/responsive_3dfoldscroll.js"></script>
 <script src="/javascripts/mapscripts.js"></script>
 <script src="/javascripts/validation.js"></script>
 <script src="/javascripts/bootstrap.min.js"></script>
@@ -22,8 +21,11 @@
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/javascripts/recipe.js"></script>
 <link rel="stylesheet" type="text/css" href="/stylesheets/recipe.css"/>
-
 <script src="/javascripts/smooth-scroll.js"></script>
+<script src="/javascripts/jquery.ui.widget.js"></script>
+<script src="/javascripts/jquery.iframe-transport.js"></script>
+<script src="/javascripts/jquery.fileupload.js"></script>
+<script src="/javascripts/addInput.js"></script>
     
     
     
@@ -32,12 +34,12 @@
    <div class="page">
 
 
-    <div id="instructionbar" class="foldWrapper clearfix">
+    <div id="instructionbar">
       <div id="mapinstr" id="instructionbar"><h2>Place a marker to label the region your recipe comes from.</h2></div>
     </div>
     
 
-    <div id="instructionbar" class="foldWrapper clearfix">
+    <div id="instructionbar">
         <div id="recipeinstr" id="instructionbar"><h2>Fill out the recipe form with your dish information!</h2></div>
     </div>
 
@@ -62,21 +64,59 @@
 
                         <label for="recipe_name">Recipe Name: </label></br>
                         <input type="text" name="recipe_name" id="rec_name" placeholder="recipe name"  /></br>
-                        <label class="error" for="recipe_name" id="recipe_name_error"> This field is required!</label></br></br>
+                        <label class="error" for="recipe_name" id="recipe_name_error"> This field is required!</label></br><br>
 
 
                         
                         <div class="form-group">
                           <label for="sel1">What kind of dish is this recipe?</label>
                           <select class="form-control" id="sel1" name="dish_type">
-                            <option>Appetizer/Side</option>
-                            <option>Entree</option>
-                            <option>Dessert</option>
+                            <option name="choose">Choose one!</option>
+                            <option name="beverage">Beverage</option>
+                            <option name="appetizer">Appetizer/Side</option>
+                            <option name="entree">Entree</option>
+                            <option name="dessert">Dessert</option>
                           </select>
+                          <label class="error" for="dish_type" id="dish_type_error">Choose one from the dropdown menu above! </label>
                         </div>
+                        </br>
+
+
+                        <div><label for="est">Estimated preparation time in hours:</label>
+                          <input type="text" onkeypress="return isNumberKey(event)" step="any" name="est_time" id="est_time" placeholder="time in hours"  />
+                        <label class="error" for="est_time" id="est_time_error1">This field is required!</label>
+                        <label class="error" for="est_time" id="est_time_error2">Submit a number!</label>
+                      </br></br>
+
+
+                          <div id="dynamicInput">
+                            <label>Ingredients</label><br>
+                                <li><input type="text" name="boxinput1" placeholder="1 egg"/></li>
+                           </div>
+                           <br><input id="submit_btn" style="float:left" type="button" value="Add another ingredient" onClick="addInputbox('dynamicInput');">
+                           <input id="submit_btn" style="float:left" type="button" value="Remove one" onClick="removeInputbox();">
+                           <br><br><br>
+
+
+
+                      
+                           <div id="dynamicInput2">
+                            <label>Recipe Instructions</label><br>
+                                Step 1<br><textarea type="text" class="bigger" name="input1"></textarea><br>
+                           </div><br>
+                           <input id="submit_btn" style="float:left" type="button" value="Add next instruction" onClick="addInput('dynamicInput2');">
+                           <input id="submit_btn" style="float:left" type="button" value="Remove" onClick="removeInput();">
+                           <br><br><br>
+                      
+
 
 
                         <label for="rec_image">Image: </label></br>
+                        <!--https://github.com/blueimp/jQuery-File-Upload/wiki/Basic-plugin-->
+                        <input id="fileupload" type="file" name="files[]" data-url="" ><div id="progress">
+    <div class="bar" style="width: 0%;"></div>
+</div>
+
                         <input type="text" name="recipe_image" id="recipe_image" placeholder="image url"  required /></br>
                         <label class="error" for="recipe_image" id="recipe_image_error"> This field is required!</label></br></br>
                         

@@ -233,7 +233,11 @@ background-color: #2DBEB2;
 	color:white;
 	border:0;
 	float:right;
+	box-shadow:none;
+	padding:3px 10px 3px 10px;
+	font-size:1em;
 }
+
 
 .navbutton {
 	background-color:#35d7b7;
@@ -319,4 +323,21 @@ button {
 	border:0;
 	outline: 0;
 	box-shadow: none;
+}
+
+.bar {
+    height: 18px;
+    background: green;
+}
+
+.error {
+	text-decoration:none;
+	font-weight:100;
+	color: #f90e61;
+}
+
+.bigger {
+	width:75vw;
+	height:10vw;
+	white-space: normal;
 }

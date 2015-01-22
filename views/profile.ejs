@@ -31,10 +31,10 @@ $(document).ready(function(){
                   $("#c2").html('<label><input type="checkbox" name="vegan" id="vegan" value="" checked>Vegan</label>')
                 };
                 if (allergies===true) {
-                  $("#c4").html('<label><input type="checkbox" name="gluten-free" id="gluten-free" value="" checked>Gluten-Free</label>')
+                  $("#c4").html('<label><input type="checkbox" name="allergies" id="allergies" value="" checked>No peanuts/soy</label>')
                 }
                 if (glut===true) {
-                  $("#c3").html('<label><input type="checkbox" name="allergies" id="allergies" value="" checked>No peanuts/soy</label>')
+                  $("#c3").html('<label><input type="checkbox" name="gluten-free" id="gluten-free" value="" checked>Gluten-Free</label>')
                 };
 
 
@@ -70,7 +70,14 @@ $(document).ready(function(){
 <h4>Welcome,</h4><p><%= username %></p>
 
 <script type="text/javascript">randomPic();</script></br>
-<h4>Recipe:</h4><%= recipetitle %>
+<h4>Recipe:</h4>
+
+<ul>
+<% for(var i=0; i<recipetitle.length; i++) {%>
+   <li><%= recipetitle[i][1]+ ": "+ recipetitle[i][0] %></li>
+<% } %>
+</ul>
+
 </br>
 </br>
 <p>Check out the recipes you uploaded---></p>
@@ -103,6 +110,14 @@ $(document).ready(function(){
 
 <div id="back"><a href="/">take me back!</a></div>
 <div id="map"> </div>
+
+
+<!--script type="text/javascript">
+jQuery(".informatiemelding").setTimeout(function () {
+   $(this).fadeOut('slow');
+});
+</script-->
+
 
 </body>
 </html>
