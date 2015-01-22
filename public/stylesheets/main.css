@@ -379,7 +379,9 @@ background-color: #2DBEB2;
   overflow:auto;
 }
 
-
+#search_list {
+	list-style-type: none;
+}
 /*
 #tab:hover {
   right: 35vw;
