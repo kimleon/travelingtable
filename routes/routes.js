@@ -594,23 +594,28 @@ router.post('/findMarkers', function(req, res) {
     markerID = req.body.markerID
     user = req.user;
     upvoted_recipes = user.upvoted_recipes;
+    console.log(upvoted_recipes, 'upvoted recipes');
     mongoose.model('Marker').find(
-      {_id: markerID}, function(err, result) {
+      {_id: markerID}, function(err, results) {
         if (err) {
           console.log('error in finding can upvote info', err);
           return;
         }
+        result = results[0]
+        console.log(result, 'resulting marker')
         recipeID = result.recipeId;
+        console.log('recipeID associted with marker', recipeID);        console.log
         mongoose.model('Recipe').find({ $and: 
-      [{ _id: recipeID},
-      {_id: {$nin: upvoted_recipes}}]}, 
+        [{ _id: recipeID},
+        {_id: {$in: upvoted_recipes}}]}, 
       function(err, result) {
         if (err) {
           console.log(err, "error with can upvote route")
           return;
         }
-        if (typeof result !== 'undefined' && result.length > 0) {
-          res.json({
+        console.log(result, 'result from query');
+        if (result.length > 0) {
+          res.json({   
             upvoted: true
           });
         } else {
@@ -642,7 +647,9 @@ router.post('/findMarkers', function(req, res) {
           if (err) {
             console.log('error in finding recipe associated with this id', err);
           }
-          recipe_upvotes = recipe.upvote; //store recipe upvotes
+          recipe_upvotes = recipe.upvotes
+          console.log(recipe_upvotes); 
+          //store recipe upvotes
           mongoose.model('User').findOneAndUpdate(
             {_id:req.user._id}, 
             {$push: {upvoted_recipes: recipeId}}, 
@@ -651,7 +658,7 @@ router.post('/findMarkers', function(req, res) {
               console.log('error having user upvote this recipe in database', err);
               }
               res.json({
-                upvoted: true
+                upvotes: recipe_upvotes
           });
         });
 

@@ -1,104 +1,128 @@
 
-var map;
-var currentID;
-var markers = []
-var markerClusterer;
-clusterSettings = {
-maxZoom: 6,
-styles: [{
-        height:130,
-        url: "/graphics/cluster1.png",
-        width: 130
-        //anchorIcon: [20, 140]
-        }]}
-function initialize() {
-  var new_locations = [];
-  var mapArea = document.getElementById('map');
-  var mapOptions = {
-    center: new google.maps.LatLng(42.3598, -71.0921),
-    zoom: 6,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-	  minZoom: 3,
-	  maxZoom:7,
-	  mapTypeControl: false,
-	  streetViewControl: false,
-	  zoomControl: false,
-	  panControl: false,
-    //v:2.184,
-    styles: [
-      {
-        "featureType": "landscape.natural",
-        "elementType": "geometry.fill",
-        "stylers": [
-          { "color": "#f5f5f2" },
-          { "visibility": "on" }
-        ]
-      },{
-        "featureType": "poi",
-        "stylers": [
-          { "visibility": "off" }
-        ]
-      },{
-            "featureType": "poi.park",
-            "elementType": "geometry.fill",
-            "stylers": [
-                {
-                    "visibility": "on"
-                },
-                {
-                    "color": "#9BE4C4"
-                }
-            ]
-        },{
-        "featureType": "transit",
-        "stylers": [
-          { "visibility": "off" }
-        ]
-      },{
-        "featureType": "landscape.man_made",
-        "elementType": "geometry.fill",
-        "stylers": [
-          { "color": "#ffffff" },
-          { "visibility": "on" }
-        ]
-      },{
-        "featureType": "road.arterial",
-        "stylers": [
-          { "visibility": "simplified" },
-          { "color": "#fee379" }
-        ]
-      },{
-        "featureType": "road.highway",
-        "elementType": "labels.icon",
-        "stylers": [
-          { "visibility": "off" }
-        ]
-      },{
-        "featureType": "landscape",
-        "stylers": [
-          { "color": "#F7F8FF" }
-        ]
-      },{
-        "featureType": "road",
-        "stylers": [
-          { "color": "#ffffff" }
-        ]
-      },{
-        "featureType": "water",
-        "stylers": [
-          { "color": "#A9D5F1" }
-        ]
-      },{
-        "featureType": "landscape",
-        "stylers": [
-          { "visibility": "off" }
-        ]
-      },
-    ],
+      var map;
+      var currentID;
+      var markers = []
+      var markerClusterer;
+      clusterSettings = {
+          maxZoom: 4,
+          styles: [{
+                  height:55,
+                  url: "/graphics/cluster1.png",
+                  width: 55,
+                  anchorIcon: ["27px", "28px"],
+                  anchor: [6,0]
+                  //anchorIcon: [20, 140]
+                  },
+                  {
+                  height:55,
+                  url: "/graphics/cluster2.png",
+                  width: 55,
+                  anchorIcon: ["27px", "28px"],
+                  anchor: [6,0]
+                  //anchorIcon: [20, 140]
+                  },
+                  {
+                  height:55,
+                  url: "/graphics/cluster3.png",
+                  width: 55,
+                  anchorIcon: ["27px", "28px"],
+                  anchor: [6,0]
+                  //anchorIcon: [20, 140]
+                  }]}
+        clusterSettings2 = {
+          maxZoom: 4
+        }
+      function initialize() {
+        
+         //var locations = [];
+        var new_locations = [];
+        var mapArea = document.getElementById('map');
+        var mapOptions = {
+          center: new google.maps.LatLng(42.3598, -71.0921),
+          zoom: 6,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+    		  minZoom: 3,
+    		  maxZoom:7,
+    		  mapTypeControl: false,
+    		  streetViewControl: false,
+    		  zoomControl: false,
+    		  panControl: false,
+          //v:2.184,
+          styles: [
 
-}
+            {
+              "featureType": "landscape.natural",
+              "elementType": "geometry.fill",
+              "stylers": [
+                { "color": "#f5f5f2" },
+                { "visibility": "on" }
+              ]
+            },{
+              "featureType": "poi",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },{
+                  "featureType": "poi.park",
+                  "elementType": "geometry.fill",
+                  "stylers": [
+                      {
+                          "visibility": "on"
+                      },
+                      {
+                          "color": "#9BE4C4"
+                      }
+                  ]
+              },{
+              "featureType": "transit",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },{
+              "featureType": "landscape.man_made",
+              "elementType": "geometry.fill",
+              "stylers": [
+                { "color": "#ffffff" },
+                { "visibility": "on" }
+              ]
+            },{
+              "featureType": "road.arterial",
+              "stylers": [
+                { "visibility": "simplified" },
+                { "color": "#fee379" }
+              ]
+            },{
+              "featureType": "road.highway",
+              "elementType": "labels.icon",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },{
+              "featureType": "landscape",
+              "stylers": [
+                { "color": "#F7F8FF" }
+              ]
+            },{
+              "featureType": "road",
+              "stylers": [
+                { "color": "#ffffff" }
+              ]
+            },{
+              "featureType": "water",
+              "stylers": [
+                { "color": "#A9D5F1" }
+              ]
+            },{
+              "featureType": "landscape",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },
+          ],
 
-map = new google.maps.Map(mapArea, mapOptions);
+      }
+		
+      var map = new google.maps.Map(mapArea, mapOptions);
 
       google.maps.event.addListener(map, 'idle', function()  {
             //console.log('function refreshmap called')
@@ -152,7 +176,7 @@ map = new google.maps.Map(mapArea, mapOptions);
           setMarkers(new_locations);
           //setImagePath(imagePath:'/graphics/cluster');
           //setImageExtension(imageExtension:'.png');
-          var markerCluster = new MarkerClusterer(map, markers, clusterSettings);
+          var markerCluster = new MarkerClusterer(map, markers, clusterSettings2);
           //var markerCluster = new MarkerClusterer(map, markers);
           //refreshMapCluster(); 
           //Create markers from the initial dataset served with the document.
@@ -202,7 +226,7 @@ map = new google.maps.Map(mapArea, mapOptions);
           setMarkers(new_locations);
           //setImagePath(imagePath:'/graphics/cluster');
           //setImageExtension(imageExtension:'.png');
-          var markerCluster = new MarkerClusterer(map, markers, clusterSettings);
+          var markerCluster = new MarkerClusterer(map, markers, clusterSettings2);
  //Create markers from the initial dataset served with the document.
           //ajaxObj.get(); //Start the get cycle.
           //refreshMapCluster();
@@ -291,7 +315,7 @@ map = new google.maps.Map(mapArea, mapOptions);
                         url: "/canUpvote",
                         data: "&markerID="+marker.customInfo,
                         success: function(data) {
-                          //console.log(data.upvoted+" = upvoted or not");
+                           console.log(data.upvoted+" = upvoted or not");
                            if (data.upvoted) {
                             //$('.upvotebutton').html('You upvoted this!');
                             $('.voted').show();
@@ -365,20 +389,21 @@ map = new google.maps.Map(mapArea, mapOptions);
 
 //if you can vote and you choose to...
 $(function() {
-  $(".upvotebutton2").click(function() {
-    //console.log('are we gettitng here', currentID);
-  $.ajax({
-      type: "POST",
-      url: "/Upvote",
-      data: "&markerID="+currentID,
-      success: function(data) {
-        upvotes = data.current_upvotes;
-        //$('.upvotebutton').html('You upvoted this!');
-        $('.voted').show();
-        $('.upvotebutton').hide();
-        $('.upvotes').html('<div>'+upvotes+' upvotes</div>') 
-      }
-    });
+    $(".upvotebutton2").click(function() {
+      console.log('are we gettitng here', currentID);
+    $.ajax({
+        type: "POST",
+        url: "/Upvote",
+        data: "&markerID="+currentID,
+        success: function(data) {
+          upvotes = data.upvotes;
+          console.log('current upvotes,', upvotes)
+          //$('.upvotebutton').html('You upvoted this!');
+          $('.voted').show();
+          $('.upvotebutton').hide();
+          $('.upvotes').html('<div>'+upvotes+' upvotes</div>') 
+        }
+      });
   });
 });
 
@@ -389,6 +414,6 @@ function refreshMapCluster() {
         }
         markerClusterer = new MarkerClusterer(map, markers);
         console.log(markerClusterer);
-}
+      }
 
       
