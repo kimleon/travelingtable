@@ -268,9 +268,9 @@ module.exports = function(passport) {
       vegetarian: req.body.vegetarian,
       upvotes: 0,
       views: 0,
-      ingredients: req.body.steps,
+      ingredients: req.body.ingredients,
       prep_time: req.body.est_time,
-      instructions: req.body.instructions
+      instructions: req.body.steps
     });
     console.log(req.body.vegetarian)
 
