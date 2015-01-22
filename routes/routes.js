@@ -640,6 +640,7 @@ router.post('/findRecipeOnMap', function(req, res) {
     });
   });
 
+//PLEASE LET ME PUSH GITHUB PLS PLS PLS
 /*Viewing top 5 recipes on the map within a given bounds*/
 router.post('/findTop5', function(req, res) {
   var bottom = req.body.bottom_coord
@@ -648,7 +649,7 @@ router.post('/findTop5', function(req, res) {
   var right = req.body.right_coord
 
   //console.log(bottom, top, left, right)
-  recipe_results = []
+  recipes = []
   mongoose.model('Recipe').find({ $and: 
       [{ latitude: { $gte: bottom, $lte: top }},
       {longitude: {$gte: left, $lte: right}}]},
@@ -659,11 +660,11 @@ router.post('/findTop5', function(req, res) {
       //push all of the recipe items to send to front end
       returned_recipes.forEach(function(recipe) {
       var cur_array = [recipe._id, recipe.latitude, recipe.longitude, recipe.upvotes]
-      recipe_results.push(cur_array);
+      recipes.push(cur_array);
       });
 
       res.json({
-        recipes: recipe_results
+        recipes: recipes
       });
     });
  });
