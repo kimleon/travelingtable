@@ -94,17 +94,17 @@
       var map = new google.maps.Map(mapArea, mapOptions);
 
       google.maps.event.addListener(map, 'idle', function()  {
-            console.log('function refreshmap called')
+            //console.log('function refreshmap called')
             //console.log(locations)
           // get edges
           var edges = map.getBounds();
-          console.log(edges);
+          //console.log(edges);
           var left_coord = edges.getSouthWest().lng();
           var top_coord = edges.getNorthEast().lat();
           var right_coord = edges.getNorthEast().lng();
           var bottom_coord = edges.getSouthWest().lat();
-          console.log('got all the edges');
-          console.log(left_coord, top_coord, right_coord, bottom_coord);
+          //console.log('got all the edges');
+          //console.log(left_coord, top_coord, right_coord, bottom_coord);
 
           //ajax post edges
             $.ajax({
@@ -112,8 +112,8 @@
                 url: "/findMarkers",
                 data: '&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&bottom_coord='+bottom_coord,
                 success: function(data) {
-                  console.log('recieving the data of markers');
-                  console.log(data.new_markers)
+                  //console.log('recieving the data of markers');
+                  //console.log(data.new_markers)
                   new_locations = data.new_markers
                 }
           });
@@ -124,7 +124,7 @@
           //append to locations
           var setMarkers = function(locObj) {
               $.each(locObj, function (index, loc) {
-                    console.log(loc)
+                    //console.log(loc)
                   
                       loc.marker = new google.maps.Marker({
                           position: new google.maps.LatLng(loc[1], loc[2]),
@@ -150,30 +150,30 @@
        setInterval(function(){ 
     
       google.maps.event.addDomListener(map, 'load', function()  {
-            console.log('function refreshmap called')
+            //console.log('function refreshmap called')
             //console.log(locations)
           var edges = map.getBounds();
-          console.log(edges);
+          //console.log(edges);
           var left_coord = edges.getSouthWest().lng();
           var top_coord = edges.getNorthEast().lat();
           var right_coord = edges.getNorthEast().lng();
           var bottom_coord = edges.getSouthWest().lat();
-          console.log('got all the edges');
-          console.log(left_coord, top_coord, right_coord, bottom_coord);
+          //console.log('got all the edges');
+          //console.log(left_coord, top_coord, right_coord, bottom_coord);
           //ajax post edges
             $.ajax({
                 type: "POST",
                 url: "/findMarkers",
                 data: '&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&bottom_coord='+bottom_coord,
                 success: function(data) {
-                  console.log('recieving the data of markers');
-                  console.log(data.new_markers)
+                  //console.log('recieving the data of markers');
+                  //console.log(data.new_markers)
                   new_locations = data.new_markers
                 }
           });
           var setMarkers = function(locObj) {
               $.each(locObj, function (index, loc) {
-                    console.log(loc)
+                    //console.log(loc)
                       loc.marker = new google.maps.Marker({
                           position: new google.maps.LatLng(loc[1], loc[2]),
                           map: map,
@@ -202,16 +202,16 @@
       var est_time
       var views
       google.maps.event.addListener(marker,'click',function() {
-            console.log('marker info');
-            console.log(this.customInfo);
+            //console.log('marker info');
+            //console.log(this.customInfo);
             currentID = marker.customInfo;
             $.ajax({
                 type: "POST",
                 url: "/viewRecipe",
                 data: '&markerID='+marker.customInfo,
                 success: function(data) {
-                  console.log('recieving the marker ID');
-                  console.log(data);
+                  //console.log('recieving the marker ID');
+                  //console.log(data);
                   recipe_name = data.recipe_name
                   recipe_type = data.recipe_type
                   recipe_image = data.recipe_image
@@ -220,31 +220,31 @@
                   gluten = data.gluten
                   allergies = data.allergies
                   upvotes = data.upvotes
-                  ingredients = data.ingredients
-                  steps = data.instructions
+                  ingredients = data.ingredients[0].split('~`~,');
+                  steps = data.instructions[0].split('~`~,');
                   est_time = data.prep_time
                   views = data.views
-                  console.log('stuff', views, ingredients, steps, est_time);
+                  //console.log('stuff', views, ingredients, steps, est_time);
                        
             if (vegetarian===true) {
-              vegetarian='checked="checked">';
+              vegetarian=' checked/> Vegetarian</br>';
             } else {
-              vegetarian='>';
+              vegetarian='/> Vegetarian</br>';
             }
             if (vegan===true) {
-              vegan='checked="checked">';
+              vegan=' checked/> Vegan</br>';
             } else {
-              vegan='>';
+              vegan='/> Vegan</br>';
             }
             if (gluten===true) {
-              gluten='checked="checked">';
+              gluten=' checked/> Gluten-Free</br>';
             } else {
-              gluten='>';
+              gluten='/> Gluten-Free</br>';
             }
             if (allergies===true) {
-              allergies ='checked="checked">';
+              allergies =' checked/> No Peanuts/Soy</br>';
             } else {
-              allergies ='>';
+              allergies ='/> No Peanuts/Soy</br>';
             }
              /*
      var contentString = '<div id="window"><div id="title">'+recipe_name+'</div><div id="inside"><div class="label">
@@ -261,8 +261,8 @@
         url: "/Refresh",
         data: "&markerID="+marker.customInfo,
         success: function(data) {
-          console.log('LOGGED in var below')
-          console.log(data.authenticated);
+          //console.log('LOGGED in var below')
+          //console.log(data.authenticated);
            if (data.authenticated) {
                 $.ajax({
                         type: "POST",
@@ -283,9 +283,23 @@
                        })
               }}});
 
+      //var newing = ingredients.split(',');
+      console.log('totals');
+      console.log(ingredients.length);
+      console.log(steps.length);
+      console.log(ingredients[0]);
 
 
-  
+      var ingredient_display=''
+      for (var i=0; i<ingredients.length;i++) {
+        ingredient_display=ingredient_display+'<li>'+ingredients[i]+'</li>'
+      }
+      //console.log(newing)
+
+      var instruction_display=''
+      for (var j=0; j<steps.length;j++) {
+        instruction_display=instruction_display+'<li>'+steps[j]+'</li>'
+      }
 
 
 
@@ -295,15 +309,27 @@
       content: contentString
        });   
       //infowindow.open(map,marker);
+
+      //console.log(vegetarian);
+
+
       map.panTo(marker.getPosition());
       $('.recipetitle').html('<div>'+recipe_name+'</div>');
       $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
       $('.recipetype').html('<div>'+recipe_type+'</div>'); 
       $('.upvotes').html('<div>'+upvotes+' upvotes</div>') 
       $('.views').html('<div>'+views+' views</div>');
-      $('.instructions').html('<div>'+steps+'</div>');
-      $('.ingredients').html('<div>'+ingredients+'</div>');
+      $('.instructions').html('<div><ol>'+instruction_display+'</ol></div>');
+      $('.ingredients').html('<div><ul>'+ingredient_display+'</ul></div>');
       $('.est_time').html('<div'+est_time+'</div>');
+      $('.vegcheck').html('<input type="checkbox" onclick="return false"'+vegetarian);
+      $('.vegancheck').html('<input type="checkbox" onclick="return false"'+vegan);
+      $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
+      $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
+
+
+
+
 //$('.').html('');
       }
       });
@@ -318,7 +344,7 @@
 //if you can vote and you choose to...
 $(function() {
     $(".upvotebutton2").click(function() {
-      console.log('are we gettitng here', currentID);
+      //console.log('are we gettitng here', currentID);
     $.ajax({
         type: "POST",
         url: "/Upvote",

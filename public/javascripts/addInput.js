@@ -6,7 +6,7 @@ function addInput(divName){
      }
      else {
           var newdiv = document.createElement('div');
-          newdiv.innerHTML = "<div id='input"+(counter + 1)+"'><br> Step " + (counter + 1) + " <br><textarea  class='bigger' type='text' name='input"+(counter + 1)+"'></textarea><br></div>";
+          newdiv.innerHTML = "<div id='input"+(counter + 1)+"'><br> Step " + (counter + 1) + " <br><textarea  class='bigger' type='text'  onkeypress='return separateKey(event)' name='input"+(counter + 1)+"'></textarea><br></div>";
           counter=counter+1;
           document.getElementById(divName).appendChild(newdiv);
           //console.log(counter)
@@ -43,7 +43,7 @@ function addInputbox(divName){
      }
      else {
           var newdiv = document.createElement('div');
-          newdiv.innerHTML = "<div id='boxinput"+(counterbox + 1)+"'><li style='padding-top: 7px;'><input type='text' name='boxinput"+(counterbox + 1)+"' /></li></div>";
+          newdiv.innerHTML = "<div id='boxinput"+(counterbox + 1)+"'><li style='padding-top: 7px;'><input type='text'  onkeypress='return separateKey(event)' name='boxinput"+(counterbox + 1)+"' /></li></div>";
           counterbox++;
           document.getElementById(divName).appendChild(newdiv);
           //console.log(counterbox)
@@ -56,7 +56,7 @@ function removeInputbox(){
      //console.log(contents);
      if (counterbox === 1)  {
           //console.log(counterbox);
-          alert("You cannot remove any more " + counterbox + " inputs");
+          alert("You can't remove any more boxes!");
      }
      else {
 

@@ -91,7 +91,7 @@
 
                           <div id="dynamicInput">
                             <label>Ingredients</label><br>
-                                <li><input type="text" name="boxinput1" placeholder="1 egg"/></li>
+                                <li><input type="text" name="boxinput1" placeholder="1 egg" onkeypress="return separateKey(event)" /></li>
                            </div>
                            <br><input id="submit_btn" style="float:left" type="button" value="Add another ingredient" onClick="addInputbox('dynamicInput');">
                            <input id="submit_btn" style="float:left" type="button" value="Remove one" onClick="removeInputbox();">
@@ -102,7 +102,7 @@
                       
                            <div id="dynamicInput2">
                             <label>Recipe Instructions</label><br>
-                                Step 1<br><textarea type="text" class="bigger" name="input1"></textarea><br>
+                                Step 1<br><textarea type="text" class="bigger" name="input1"  onkeypress="return separateKey(event)" ></textarea><br>
                            </div><br>
                            <input id="submit_btn" style="float:left" type="button" value="Add next instruction" onClick="addInput('dynamicInput2');">
                            <input id="submit_btn" style="float:left" type="button" value="Remove" onClick="removeInput();">
