@@ -197,6 +197,10 @@
       var gluten
       var allergies
       var upvotes
+      var ingredients
+      var steps
+      var est_time
+      var views
       google.maps.event.addListener(marker,'click',function() {
             console.log('marker info');
             console.log(this.customInfo);
@@ -216,6 +220,11 @@
                   gluten = data.gluten
                   allergies = data.allergies
                   upvotes = data.upvotes
+                  ingredients = data.ingredients
+                  steps = data.instructions
+                  est_time = data.prep_time
+                  views = data.views
+
                        
             if (vegetarian===true) {
               vegetarian='checked="checked">';
@@ -291,7 +300,11 @@
       $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
       $('.recipetype').html('<div>'+recipe_type+'</div>'); 
       $('.upvotes').html('<div>'+upvotes+' upvotes</div>') 
-
+      $('.views').html('<div>'+views+' views</div>');
+      $('.instructions').html('<div>'+steps+'</div>');
+      $('.ingredients').html('<div>'+ingredients+'</div>');
+      $('.est_time').html('<div'+est_time+'</div>');
+//$('.').html('');
       }
       });
 

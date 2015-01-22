@@ -242,6 +242,7 @@ function buttondisplay() {
       //console.log(ingredients);
 
 
+
       var steps = [];
       //console.log(counterbox);
 
@@ -310,7 +311,7 @@ function buttondisplay() {
       console.log("are we getting here")
 		  var dataString2 = '&recipe_name='+ recipe_name +'&recipe_image=' + recipe_image + '&dish_type=' + dish_type
                         +'&vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies
-                        +'&latitude=' + latitude + '&longitude=' + longitude + "&ingredients="+ingredients+"&steps="+steps;
+                        +'&latitude=' + latitude + '&longitude=' + longitude + "&ingredients="+ingredients+"&steps="+steps+"&est_time="+est_time;
 		  //alert (dataString);return false;
       console.log("are we getting to this 2nd here")
 		  $.ajax({
@@ -382,28 +383,37 @@ function buttondisplay() {
 
 
 //<!--=========================== SEARCH FORM-=========================================->
-/*
+
 $(function() {
     console.log('Search function is happening')
-    $('.error').hide();
-    $(".search_button").click(function() {
+    //$('.error').hide();
+    $("#search_button").click(function() {
       // validate and process form here
       
-      $('.error').hide();
+      //$('.error').hide();
       var search_input = $("input[name=search_input]").val();
       if (search_input === "") {
         //$("label#search_input_error").show();
         //$("input#search_input").focus();
         return false;
       }
-    var search_text = search_input; 
-    console.log("hereeee");
-    console.log(search_text); 
+    //var search_text = search_input; 
+    //console.log("hereeee");
+    console.log(search_input); 
       //alert (dataString);return false;
+
+
+
       $.ajax({
         type: "POST",
-        url: "/Search/"+search_text,
-        data: dataString
+        url: "/Search/"+search_input,
+        data: '&search_input='+search_input,
+        success: function() {
+          console.log('success in search');
+          var results = data.search_array;
+          console.log(results);
+
+        }
           //$('#message').html("<h2>Login Form Submitted!</h2>")
           
 
@@ -411,21 +421,18 @@ $(function() {
           //.hide()
           //.fadeIn(1500, function() {
            //});
-        }
+        })
       });
       return false;
 
 
 
-    $('#search_form').html("<div id='message'></div>");
+    //$('#search_form').html("<div id='message'></div>");
 
 
-
-
-    });
   });
 
-*/
+
 
 
 
