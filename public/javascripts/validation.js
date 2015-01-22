@@ -385,11 +385,15 @@ function buttondisplay() {
 
 //<!--=========================== SEARCH FORM-=========================================->
 
+var search_array = [];
+
 $(function() {
     console.log('Search function is happening')
-    $("#search_button").click(function() {
+    $(".search2").click(function() {
       // validate and process form here
-      
+
+
+
       // $('.error').hide();
       var search_input = $("input[name=search_input]").val();
       if (search_input === "") {
@@ -405,28 +409,34 @@ $(function() {
         type: "POST",
         url: "/Search/"+search_input,
         data: '&search_input='+search_input,
-        success: function() {
+        success: function(data) {
           console.log('success in search');
-          var results = data.search_array;
-          console.log(results);
+          search_array = data.search_array;
+          console.log(search_array.length);
 
+
+          var replace = '';
+          for (var i=0; i<search_array.length; i++) {
+            replace=replace+"<div><li>"+search_array[i][1]+': '+search_array[i][2]+"</li></div>"
+          }
+          $("#search_inner").html(replace);
+
+          /*for (var i; i<search_array.length; i++) {
+            var newDiv = document.createElement('li');
+            newdiv.innerHTML = "<div style='color:black'>"+search_array[i]+"</div>";
+            document.getElementById(search_inner).appendChild(newDiv);
+          }*/
 
         }
-          //$('#message').html("<h2>Login Form Submitted!</h2>")
-          
-
-          //.append("<p>Enjoy the site!</p>")
-          //.hide()
-          //.fadeIn(1500, function() {
-           //});
-        })
-      });
+        });
       return false;
+      });
 });
 
 
 
 //<!--=========================== Logout =========================================->
+
 
  $(function() {
     $(".logoutbutton2").click(function() {

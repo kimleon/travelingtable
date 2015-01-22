@@ -138,6 +138,7 @@ background-color: #2DBEB2;
 */
 
 .navbar{
+	z-index: 3;
 	color: white; /*BACKGROUND color for active*/
 /*background-color: #2DBEB2;*/
     background-color: #35d7b7;
@@ -314,7 +315,7 @@ background-color: #2DBEB2;
 
 #inner {
   position: fixed;
-  z-index:5;
+  z-index:2;
   top: 8vh;
   height:80vh;
   /*right:-25vw;*/
@@ -332,6 +333,30 @@ background-color: #2DBEB2;
   padding:2em;
   overflow:auto;
 }
+
+#search_inner {
+  float: left;
+  clear:left;
+  color: black;
+  position: fixed;
+  z-index: 2;
+  top: 50px;
+  height:30vh;
+  right:50vw;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  width:35vw;
+  display:inline-block;
+  background-color:white;
+  border-bottom-right-radius:3em;
+  border-bottom-left-radius: 3em;
+  padding:2em;
+  overflow:auto;
+}
+
+
 
 /*
 #tab:hover {

@@ -76,15 +76,15 @@ module.exports = function(passport) {
   router.post('/Search/:search_input', function(req, res) {
     var final_find = "";
     var search_keywords = req.param('search_input');
-    var split = search_keywords.split("+");
-    console.log(split);
+    console.log("the search input");
+    console.log(search_keywords);
+    var split = search_keywords.split(" ");
     for (i in split) {
-      console.log(split[i]);
       final_find += split[i]+"|";
     }
-    console.log(final_find);
     //following line removes the last comma
     final_find = final_find.substring(0, final_find.length - 1);
+    console.log("final find");
     console.log(final_find);
     search_array = []
     //finds recipes containing search words
@@ -94,6 +94,7 @@ module.exports = function(passport) {
         cur_array = [recipe._id, recipe.name, recipe.dish_type]
         search_array.push(cur_array);
       });
+      console.log("we are here");
       console.log(search_array);
       //send array of result arrays to kiran
       res.json({
