@@ -252,6 +252,7 @@ function buttondisplay() {
         //console.log(test);
         steps.push($("textarea[name='input"+i+"']").val());
       };
+      console.log(steps);
 
       //console.log(steps);
 
@@ -311,7 +312,7 @@ function buttondisplay() {
       console.log("are we getting here")
 		  var dataString2 = '&recipe_name='+ recipe_name +'&recipe_image=' + recipe_image + '&dish_type=' + dish_type
                         +'&vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies
-                        +'&latitude=' + latitude + '&longitude=' + longitude + "&ingredients="+ingredients+"&steps="+steps+"&est_time="+est_time;
+                        +'&latitude=' + latitude + '&longitude=' + longitude + "&ingredients="+ingredients+"&steps="+steps + "&est_time="+est_time;
 		  //alert (dataString);return false;
       console.log("are we getting to this 2nd here")
 		  $.ajax({

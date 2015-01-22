@@ -16,10 +16,43 @@ var isLoggedIn = function(req, res, next) {
 }
 
 module.exports = function(passport) {
-
+  /**Get heatmap page*/
+  router.get('/Heatmap', function(req, res) {
+    res.render('heatmap');
+  });
     /* GET home page. */
   router.get('/', function(req, res) {
     res.render('home');
+  });
+
+  router.post('/getHeatMapData', function(req, res){
+    console.log('trying to get marker data for heatmaps');
+    mongoose.model('Marker').find(function(err, all_markers){
+      if (err) {
+        console.log('error in finding all markers for heatmap', err);
+        return;
+      }
+      return_array = []
+      all_markers.forEach(function(marker){
+        if (typeof marker.upvotes === 'undefined'){
+          upvotes = 0;
+        } else {
+          upvotes = marker.upvotes;
+        }
+        if (typeof marker.views === 'undefined'){
+          views = 0;
+        } else {
+          views = marker.views;
+        }
+        cur_array = [marker.latitude, marker.longitude, upvotes, views]
+        return_array.push(cur_array);
+      });
+      console.log(return_array);
+
+      res.json({
+        markers: return_array
+      });
+    }); 
   });
 
   
@@ -222,6 +255,8 @@ module.exports = function(passport) {
   router.post('/new_recipe', function(req, res) {
     // store itthe submitted recipe
     console.log('this post request is happening new recip');
+    console.log('ingredients', req.body.ingredients)
+    console.log('steps', req.body.steps);
     var newRecipe = new recipes.Recipe({
       name: req.body.recipe_name,
       image: req.body.recipe_image,
@@ -233,15 +268,20 @@ module.exports = function(passport) {
       gluten: req.body.gluten_free,
       vegan: req.body.vegan,
       vegetarian: req.body.vegetarian,
-      upvotes: 0
+      upvotes: 0,
+      views: 0,
+      ingredients: req.body.ingredients,
+      prep_time: req.body.est_time,
+      instructions: req.body.steps
     });
-    console.log(req.body.vegetarian)
+    //console.log(req.body.steps, 'steps');
+    //console.log(req.body.ingredients, 'ingredients');
 
     newRecipe.save(function(err, result) {
       if (err)
         console.log('something with recipes going wrong', err);
-      console.log(result);
-      console.log(req.user.recipe_list)
+      //console.log(result);
+      //console.log(req.user.recipe_list)
       var newMarker = new markers.Marker({
             latitude: req.body.latitude,
             longitude: req.body.longitude,
@@ -250,7 +290,10 @@ module.exports = function(passport) {
             vegan: result.vegan,
             allergies: result.allergies,
             gluten: result.gluten,
-            dish_type: result.dish_type
+            dish_type: result.dish_type,
+            upvotes: result.upvotes,
+            views: result.views,
+            recipe_title: result.name
           });
       console.log(newMarker);
       users.User.findOneAndUpdate(
@@ -261,7 +304,7 @@ module.exports = function(passport) {
           newMarker.save(function(err, result2) {
             if (err)
               console.log('what is going on savign marker', err)
-            console.log('result 2', result2);
+            //console.log('result 2', result2);
             res.redirect('/new_recipe');  
           });
       });
@@ -355,7 +398,7 @@ router.post('/findMarkers', function(req, res) {
         }        
         //push all of the marker items to send to front end
         returned_markers.forEach(function(marker) {
-          var cur_array = [marker._id, marker.latitude, marker.longitude]
+          var cur_array = [marker._id, marker.latitude, marker.longitude, marker.dish_type, marker.upvotes]
           new_markers.push(cur_array)
         });
         //console.log('marker array', new_markers);
@@ -404,28 +447,50 @@ router.post('/findMarkers', function(req, res) {
 
   //recieving and displaying the recipe info for the marker on a modal
   router.post('/viewRecipe', function(req, res) {
-    console.log('getting to post reques');
+    //console.log('getting to post reques');
     var markerID = req.body.markerID
-    console.log(markerID)
-    mongoose.model('Marker').find(
-      { _id: markerID }, function(err, markerResult) {
+    //console.log(markerID)
+    mongoose.model('Marker').findOneAndUpdate(
+      { _id: markerID }, 
+      {$inc: {views: 1}},
+      function(err, marker) {
       if (err) {
         console.log('error in retrieving marker below:');
         console.log(err);
         return;
       }
-      marker = markerResult[0]
-      mongoose.model('Recipe').find(
+      //marker = markerResult[0]
+      mongoose.model('Recipe').findOneAndUpdate(
       {_id: marker.recipeId}, 
-      function(err, recipe) {
+      {$inc: {views: 1}},
+      function(err, recipeResult) {
         if (err) {
           console.log('error in retrieving recipe shown');
           console.log(err)
           return;
         }
-        recipeResult = recipe[0]
-        console.log('current recipe name')
-        console.log(recipeResult.name);
+        //recipeResult = recipe[0]
+        //console.log('current recipe name')
+        //console.log(recipeResult.name);
+        if (typeof recipeResult.ingredients === 'undefined') {
+          var ingredients = []
+        } else {
+          var ingredients = recipeResult.ingredients;
+        }
+        if (typeof recipeResult.instructions === 'undefined') {
+          var instructions = []
+        } else {
+          var instructions = recipeResult.instructions;
+        }
+        if (typeof recipeResult.prep_time === 'undefined') {
+          var prep_time = 0
+        } else {
+          var prep_time = recipeResult.prep_time;
+        }
+        //console.log(prep_time, 'prep_time')
+        //console.log(instructions, 'instructions')
+        console.log('views', recipeResult.views);
+        //console.log(ingredients, 'ingredients');
         res.json ({
           recipe_name: recipeResult.name,
           recipe_type: recipeResult.dish_type,
@@ -434,7 +499,12 @@ router.post('/findMarkers', function(req, res) {
           vegetarian: recipeResult.vegetarian,
           gluten: recipeResult.gluten,
           allergies: recipeResult.allergies,
-          upvotes: recipeResult.upvotes
+          upvotes: recipeResult.upvotes,
+          dish_type: recipeResult.dish_type,
+          ingredients: ingredients,
+          instructions: instructions,
+          prep_time: prep_time,
+          views: recipeResult.views
         });
       });
     });
@@ -514,8 +584,10 @@ router.post('/findMarkers', function(req, res) {
   router.post('/Upvote', isLoggedIn, function(req, res) {
     markerID = req.body.markerID
     user = req.user
-    mongoose.model('Marker').find(
-    {_id: markerID}, function(err, result){
+    mongoose.model('Marker').findOneAndUpdate(
+    {_id: markerID}, 
+    {$inc: {upvotes: 1}},
+    function(err, result){
       if (err) {
         console.log('error in finding marker associated with upvote request', err);
       }

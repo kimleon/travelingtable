@@ -197,8 +197,8 @@
       var gluten
       var allergies
       var upvotes
-      var ingredients
       var steps
+      var ingredients
       var est_time
       var views
       google.maps.event.addListener(marker,'click',function() {
@@ -224,7 +224,7 @@
                   steps = data.instructions
                   est_time = data.prep_time
                   views = data.views
-
+                  console.log('stuff', views, ingredients, steps, est_time);
                        
             if (vegetarian===true) {
               vegetarian='checked="checked">';

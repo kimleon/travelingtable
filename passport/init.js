@@ -17,7 +17,7 @@ module.exports = function(passport) {
 	//used to serialize the user for the session
 	passport.serializeUser(function(user, done){
 		done(null, user._id);
-		console.log('serialize function getting called');
+		//console.log('serialize function getting called');
 
 	});
 
@@ -25,7 +25,7 @@ module.exports = function(passport) {
 	passport.deserializeUser(function(id, done){
 		User.findOne({_id: id}, function(err, user){
 			done(err, user);
-			console.log('deserializefunction getting called');
+			//console.log('deserializefunction getting called');
 		});
 	});
 
