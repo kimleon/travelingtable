@@ -621,16 +621,17 @@ router.post('/findMarkers', function(req, res) {
 /*VIEWING A SEARCH QUERY FROM A LINK*/
 router.post('/findRecipeOnMap', function(req, res) {
   var recipeId = req.body.recipeId; //info from ajax get request
-  mongoose.model('Recipe').find(
-    {_id: recipeId}, 
-    function(err, recipe) {
+  mongoose.model('Marker').find(
+    {recipeId: recipeId}, 
+    function(err, markers) {
       if (err){
-        console.log('error in finding associated recipe given the id');
+        console.log('error in finding associated marker given the recipe id');
         console.log(err);
       }
+      marker = markers[0]
       res.json({
-        latitude: recipe.latitude,
-        longitude: recipe.longitude
+        latitude: marker.latitude,
+        longitude: marker.longitude
       });
     });
   });
