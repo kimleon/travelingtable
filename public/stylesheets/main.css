@@ -318,13 +318,13 @@ background-color: #2DBEB2;
   z-index:2;
   top: 8vh;
   height:80vh;
-  /*right:-25vw;*/
+  /*right:-35vw;*/
   right:0vw;
   -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  width:25vw;
+  width:35vw;
   display:inline-block;
   background-color:white;
   float:right;
@@ -360,10 +360,10 @@ background-color: #2DBEB2;
 
 /*
 #tab:hover {
-  right: 25vw;
+  right: 35vw;
 }
 #tab:hover #inner {
   right: 0;
 }
 
-*/
+

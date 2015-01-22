@@ -217,6 +217,18 @@ function buttondisplay() {
       }
 
 
+
+  function separateKey(evt)
+      {
+         var charCode2 = (evt.which) ? evt.which : event.keyCode
+         if (charCode2===126 || charCode2===96)
+            return false;
+
+         return true;
+      }
+
+
+
  $(function() {
     console.log('this recipe submit button is happening')
     $('.error').hide();
@@ -234,7 +246,12 @@ function buttondisplay() {
         //console.log(counterbox);
         //var test = $("input[name='boxinput"+i+"']").val();
         //console.log(test);
+        if (i<counterbox) {
+        ingredients.push($("input[name='boxinput"+i+"']").val()+"~`~");
+        } else {
         ingredients.push($("input[name='boxinput"+i+"']").val());
+        }
+
       };
 
       //console.log(ingredients);
@@ -250,9 +267,13 @@ function buttondisplay() {
         //console.log(counterbox);
         //var test = $("input[name='input"+i+"']").val();
         //console.log(test);
+        if (i<counter) {
+        steps.push($("textarea[name='input"+i+"']").val()+"~`~");
+        } else {
         steps.push($("textarea[name='input"+i+"']").val());
+      }
       };
-      console.log(steps);
+      //console.log(steps);
 
       //console.log(steps);
 
@@ -432,6 +453,8 @@ $(function() {
       return false;
       });
 });
+    })
+})
 
 
 
