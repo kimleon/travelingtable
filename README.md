@@ -14,7 +14,6 @@ Things we still have to do FOR MVP:
 -Kim: write a search algorithm to allow users to search our database based on keywords in title<----yussss this is done (res.json and ajax, make button work)
 and later ingredients list
 -Kim: once deepti signs up for an S3 account, figure out how photo uploading works for database and integrate that in
--Kim: integrate app tomorrow with heroku so we can see it deployed
 -Kim: top 5?10? recipes in current view by upvotes (sort the input)
 ---input: array of arrays for which each array gives you title, dishtype, upvotes 
 ---output: top recipes by 

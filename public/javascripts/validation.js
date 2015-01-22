@@ -217,6 +217,18 @@ function buttondisplay() {
       }
 
 
+
+  function separateKey(evt)
+      {
+         var charCode2 = (evt.which) ? evt.which : event.keyCode
+         if (charCode2===126 || charCode2===96)
+            return false;
+
+         return true;
+      }
+
+
+
  $(function() {
     console.log('this recipe submit button is happening')
     $('.error').hide();
@@ -234,12 +246,18 @@ function buttondisplay() {
         //console.log(counterbox);
         //var test = $("input[name='boxinput"+i+"']").val();
         //console.log(test);
+        if (i<counterbox) {
+        ingredients.push($("input[name='boxinput"+i+"']").val()+"~`~");
+        } else {
         ingredients.push($("input[name='boxinput"+i+"']").val());
+        }
+
       };
 
       //console.log(ingredients);
 
       //console.log(ingredients);
+
 
 
       var steps = [];
@@ -249,9 +267,13 @@ function buttondisplay() {
         //console.log(counterbox);
         //var test = $("input[name='input"+i+"']").val();
         //console.log(test);
+        if (i<counter) {
+        steps.push($("textarea[name='input"+i+"']").val()+"~`~");
+        } else {
         steps.push($("textarea[name='input"+i+"']").val());
+      }
       };
-      console.log(steps);
+      //console.log(steps);
 
       //console.log(steps);
 
@@ -383,28 +405,42 @@ function buttondisplay() {
 
 
 //<!--=========================== SEARCH FORM-=========================================->
-/*
+
+var search_array;
+
 $(function() {
     console.log('Search function is happening')
-    $('.error').hide();
-    $(".search_button").click(function() {
+    $("#search_button").click(function() {
       // validate and process form here
       
-      $('.error').hide();
+      // $('.error').hide();
       var search_input = $("input[name=search_input]").val();
       if (search_input === "") {
         //$("label#search_input_error").show();
         //$("input#search_input").focus();
         return false;
       }
-    var search_text = search_input; 
-    console.log("hereeee");
-    console.log(search_text); 
       //alert (dataString);return false;
+
+
+
       $.ajax({
         type: "POST",
-        url: "/Search/"+search_text,
-        data: dataString
+        url: "/Search/"+search_input,
+        data: '&search_input='+search_input,
+        success: function() {
+          console.log('success in search');
+          search_array = data.search_array;
+          console.log(results);
+              $.ajax({
+                    type: "POST",
+                    url: "/findRecipeOnMap",
+                    data: '&search_input='+search_array,
+                    success: function() {
+                      console.log('success in search');
+
+
+        }
           //$('#message').html("<h2>Login Form Submitted!</h2>")
           
 
@@ -412,23 +448,12 @@ $(function() {
           //.hide()
           //.fadeIn(1500, function() {
            //});
-        }
-      });
-      return false;
-
-
-
-    $('#search_form').html("<div id='message'></div>");
-
-
-
-
-    });
-  });
-
-*/
-
-
+        })
+      }
+      //return false;
+});
+    })
+})
 
 
 
@@ -459,6 +484,6 @@ $(function() {
 		    //data: status
 		});
 		return false;
-});
+})
 
-});
+})

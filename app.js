@@ -13,6 +13,20 @@ var fs = require('fs');
 //mongoose.connect('mongodb://heroku_app33378596:l23r9tqm2tv462bjdbpsn2v0no@ds031741.mongolab.com:31741/heroku_app33378596');
 mongoose.connect('mongodb://localhost/test');
 
+// //require the AWS module
+// var AWS = require('aws-sdk');
+// // load the json file in
+// AWS.config.loadFromPath('/s3/config.json');
+// //Create a new instance of S3
+// var s3 = new AWS.S3();
+
+// //create bucket
+// var bucketParams = {Bucket: 'myBucket'};
+// s3.createBucket(bucketParams)
+
+// //connect directly to that bucket when instantiating an 
+// //AWS.S3 object by passing in the bucket name as a paramter
+// var s3Bucket = new AWS.S3( { params: {Bucket: 'myBucket'} } )
 
 var app = express();
 
