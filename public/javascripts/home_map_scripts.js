@@ -3,6 +3,14 @@
       var currentID;
       var markers = []
       var markerClusterer;
+      clusterSettings = {
+          maxZoom: 6,
+          styles: [{
+                  height:130,
+                  url: "/graphics/cluster1.png",
+                  width: 130
+                  //anchorIcon: [20, 140]
+                  }]}
       function initialize() {
         
          //var locations = [];
@@ -147,8 +155,7 @@
           setMarkers(new_locations);
           //setImagePath(imagePath:'/graphics/cluster');
           //setImageExtension(imageExtension:'.png');
-          var markerCluster = new MarkerClusterer(map, markers, {setImageExtension:'png', setImagePath:'/graphics/cluster'}); //Create markers from the initial dataset served with the document.
-
+          var markerCluster = new MarkerClusterer(map, markers, clusterSettings);
           //var markerCluster = new MarkerClusterer(map, markers);
           //refreshMapCluster(); 
           //Create markers from the initial dataset served with the document.
@@ -198,7 +205,8 @@
           setMarkers(new_locations);
           //setImagePath(imagePath:'/graphics/cluster');
           //setImageExtension(imageExtension:'.png');
-          var markerCluster = new MarkerClusterer(map, markers, {setImageExtension:'png', setImagePath:'/graphics/cluster'}); //Create markers from the initial dataset served with the document.
+          var markerCluster = new MarkerClusterer(map, markers, clusterSettings);
+ //Create markers from the initial dataset served with the document.
           //ajaxObj.get(); //Start the get cycle.
           //refreshMapCluster();
         });
