@@ -70,7 +70,14 @@ $(document).ready(function(){
 <h4>Welcome,</h4><p><%= username %></p>
 
 <script type="text/javascript">randomPic();</script></br>
-<h4>Recipe:</h4><%= recipetitle %>
+<h4>Recipe:</h4>
+
+<ul>
+<% for(var i=0; i<recipetitle.length; i++) {%>
+   <li><%= recipetitle[i][1]+ ": "+ recipetitle[i][0] %></li>
+<% } %>
+</ul>
+
 </br>
 </br>
 <p>Check out the recipes you uploaded---></p>

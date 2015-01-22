@@ -11,7 +11,7 @@ Things we still have to do FOR MVP:
 
 ***FOR BOTH SEARCH AND PROFILE: when you click on a recipe title link, will bring you to the location on the map where you have posted that recipe and will animate it-figure out how this works
 
--Kim: write a search algorithm to allow users to search our database based on keywords in title<----yussss this is done (make into re.json post request for kiran)
+-Kim: write a search algorithm to allow users to search our database based on keywords in title<----yussss this is done (res.json and ajax, make button work)
 and later ingredients list
 -Kim: once deepti signs up for an S3 account, figure out how photo uploading works for database and integrate that in
 -Kim: integrate app tomorrow with heroku so we can see it deployed
