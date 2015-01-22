@@ -125,6 +125,7 @@
           //iterate through them if within bounds, and not already in locations (already loaded) markers, then display
           //append to locations
           var setMarkers = function(locObj) {
+              markers = []
               $.each(locObj, function (index, loc) {
                     //console.log(loc)
                   
@@ -180,6 +181,7 @@
                 }
           });
           var setMarkers = function(locObj) {
+            markers = []
               $.each(locObj, function (index, loc) {
                     //console.log(loc)
                       loc.marker = new google.maps.Marker({
