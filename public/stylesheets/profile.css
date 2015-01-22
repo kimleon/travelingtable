@@ -17,7 +17,7 @@ body {
 
 #profile {
 	height:100vh;
-	width:30vw;
+	width:40vw;
 	background-color:#2dbeb2;
 	color:white;
 	font-family:Helvetica, sans-serif;
@@ -28,7 +28,7 @@ body {
 
 #profcontents {
 	margin: 0 auto;
-	width:21vw;
+	width:31vw;
 	margin-top: 5vh;
 	z-index:1;
 	}
@@ -70,9 +70,15 @@ a:hover {
 }
 
 
-display {
-
-	
+#display {
+	z-index:1;
+	width: 60vw;
+	height:50vh;
+	background-color:white;
+	left:40vw;
+	bottom:0;
+	position:fixed;
+	padding:15px;
 }
 
 

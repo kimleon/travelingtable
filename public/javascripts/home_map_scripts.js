@@ -147,7 +147,7 @@
           setMarkers(new_locations);
           //setImagePath(imagePath:'/graphics/cluster');
           //setImageExtension(imageExtension:'.png');
-          var markerCluster = new MarkerClusterer(map, markers, {setImageExtension:'.png', setImagePath:'/graphics/cluster'}); //Create markers from the initial dataset served with the document.
+          var markerCluster = new MarkerClusterer(map, markers, {setImageExtension:'png', setImagePath:'/graphics/cluster'}); //Create markers from the initial dataset served with the document.
 
           //var markerCluster = new MarkerClusterer(map, markers);
           //refreshMapCluster(); 
@@ -198,7 +198,7 @@
           setMarkers(new_locations);
           //setImagePath(imagePath:'/graphics/cluster');
           //setImageExtension(imageExtension:'.png');
-          var markerCluster = new MarkerClusterer(map, markers, {setImageExtension:'.png', setImagePath:'/graphics/cluster'}); //Create markers from the initial dataset served with the document.
+          var markerCluster = new MarkerClusterer(map, markers, {setImageExtension:'png', setImagePath:'/graphics/cluster'}); //Create markers from the initial dataset served with the document.
           //ajaxObj.get(); //Start the get cycle.
           //refreshMapCluster();
         });
