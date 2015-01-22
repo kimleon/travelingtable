@@ -5,21 +5,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Food for Thought</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
 <script src="https://maps.google.com/maps/api/js?sensor=true"></script>
 <!--<script src="https://maps.googleapis.com/maps/api/js"></script>-->
-<link href='https://fonts.googleapis.com/css?family=News+Cycle|Raleway:600,400,300' rel='stylesheet' type='text/css'>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src ="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js"></script>
 
 
 <script type="text/javascript">
   $("#signupmessage").hide();
+  //$("#features").hide();
+  //console.log("hiding features tab");
 </script>
 
 
 <!-- onload script-->
 <script type="text/javascript">
+
+
 function buttondisplay() {
     $.ajax({
         type: "POST",
@@ -84,16 +87,17 @@ function buttondisplay() {
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
          </button>
-         <!--<a class="navbar-brand hidden-xs" href="#" style="vertical-align:center"><img src="GlobalGobi.png" class="brand"></a>
-         <a class="navbar-brand visible-xs" href="#" style="vertical-align:center"><img src="GlobalGobi.png" class="brand"></a>-->
 
-         <a class="navbar-brand hidden-xs" href="#" style="vertical-align:center"><img src="graphics/GlobalGobi.png" class="brand"></a>
-         <a class="navbar-brand visible-xs" href="#" style="vertical-align:center"><img src="graphics/GlobalGobi.png" class="brand"></a>
+         <a class="navbar-brand hidden-xs" href="#" style="vertical-align:center"><img src="graphics/GlobalGobi.png" class="brand" style="max-width:40px;height:auto"></a>
+         <a class="navbar-brand visible-xs" href="#" style="vertical-align:center"><img src="graphics/GlobalGobi.png" class="brand" style="max-width:40px;height:auto"></a>
          
-         
-         <!--================================================================================-->
-         <!--                              s e a r c h
-         <!================================================================================-->
+
+
+
+
+<!--================================================================================-->
+<!--                              s e a r c h
+<!================================================================================-->
          
          <form class="navbar-form pull-left" role="search">
             <div class="input-group">
@@ -140,9 +144,7 @@ function buttondisplay() {
             
 
             <div class="modal-body" id="signup_form">
-<!--             <form method="post"  name="signup" action="Register">
- -->              
-   <!-- <fieldset> -->
+
                     <label for="new_username">Don't have a username? Choose one!</label></br>
                     <input type="text" name="new_username" id="username" placeholder="Username"></br>
                     <label class="error" for="new_username" id="new_username_error"> This field is required!</label></br></br>
@@ -152,26 +154,8 @@ function buttondisplay() {
                     <label for="new_password">Choose a password:</label></br>
                     <input type="password" name="new_password" id="password" placeholder="Password"></br>
                      <label class="error" for="new_password" id="new_password_error"> This field is required!</label></br></br>
-
-
-                   <!-- <label for="dietary_checkbox">Dietary Restrictions</label></br>
-                        <div class="checkbox">
-                          <label><input type="checkbox" name="vegetarian" value="">Vegetarian</label>
-                        </div>
-                        <div class="checkbox">
-                          <label><input type="checkbox" name="vegan" value="">Vegan</label>
-                        </div>
-                        <div class="checkbox">
-                          <label><input type="checkbox" name="gluten-free" value="">Gluten-Free</label>
-                        </div>
-                        <div class="checkbox">
-                          <label><input type="checkbox" name="allergies" value="">No peanuts/soy</label>
-                        </div>-->
-                  <!--button-->
                   <input type="submit" name="submit" class="signupbutton btn-large" id="submit_btn" value="Send" />
-<!--                     
-                <fieldset>    
-             </form> -->
+
           </div>
 
           <div id='signupmessage1' class="hidden" style="color:black"></br></br><h2>Registration form submitted!</h2><p>Welcome gobi!</p></div>
@@ -280,31 +264,26 @@ function buttondisplay() {
 <!--                       r e c i p e   t a b    
 <!--============================================================================-->
 
-
-<div id="tab"
 <a href="#"><img src="/graphics/tab.png"  class="handle"/></a>
-<div id="inner">
-        <h3><div class="recipetitle">Recipe Title</div></h3>
-        <div class="views">Views</div>
-        Estimated cook time: <div class="est_time">Estimated time</div>
-        <div class="recipeimage"></div>
-        Dish Type:<div class="recipetype">Dish Type</div>
-        Ingredients:<div class="ingredients">Ingredients</div>
-        Instructions:<div class="instructions">Recipe Instructions</div>
-        
-        <div class="reciperestrictions">Recipe Restrictions</div>
-        <div class="vegcheck"><input type="checkbox" onclick="return false" checked/>Vegetarian</div>
-        <div class="vegancheck"><input type="checkbox" onclick="return false" checked/>Vegan</div>
-        <div class="gfcheck"><input type="checkbox" onclick="return false" checked/>Gluten-Free</div>
-        <div class="allergiescheck"><input type="checkbox" onclick="return false" checked/>No peanuts/soy</div>
+<div id="tab">
 
-        
-        <div><h3>Total Votes: </h3></div>
-        <div class="upvotes">X votes</div>
-        <div class="upvotebutton"><a href="#" class="upvotebutton2">Upvote</a></div>
+<div id="inner">
+        <h3><div class="recipetitle">Welcome to our site!</div></h3>
+        <div class="views">Whenever you click on a marker, its recipe will display here in the window.</div><br>
+        <div class="est_time">(You can minimize the window by clicking on it)</div><br>
+        <div class="recipeimage"></div><br>
+        <div class="recipetype"></div><br>
+        <div class="ingredients">Enjoy!</div><br>
+        <div class="instructions"></div><br>
+        <div class="vegcheck"></div>
+        <div class="vegancheck"></div>
+        <div class="gfcheck"><br></div>
+        <div class="allergiescheck"></div><br>
+        <div class="upvotes"></div>
+        <div class="upvotebutton" hidden><a href="#" class="upvotebutton2">Upvote</a></div>
         <div class="voted">You upvoted this!</div>
 </div>
-
+</div>
 
 
 
@@ -312,8 +291,8 @@ function buttondisplay() {
 <!--                       s e a r c h   t a b    
 <!-============================================================================-->
 
-  <div id="search_tab">
-<ul>
+  <div id="search_tab" hidden>
+<ul id="search_list">
 <div id="search_inner">
 </div>
 </ul>
@@ -326,13 +305,82 @@ function buttondisplay() {
 <!--                       t o p 5   t a b    
 <!-============================================================================-->
 
-  <div id="features">
+<div id="features" class="hidden brand">
 <a href="#" class="gray">Test</a><br>
 <a href="#" class="white">Test</a><br>
 <a href="#" class="gray">Test</a><br>
 <a href="#" class="white">Test</a><br>
 <a href="#" class="gray">Test</a><br>
 </div>
+
+
+
+<!--script>
+$(function() {
+    $(".brand").hover(function() {
+        if ( $("#features").is(":hidden")) {
+          console.log('hover');
+          $("#features").slideDown("slow");
+        } else {
+          $("#features").slideUp("slow");
+          //$("#features").hide();
+        }
+      
+})
+  })
+</script-->
+
+
+<script>
+$('.handle').click(function() {
+  $( "#tab" ).toggle(300);
+});
+
+$('#tab').click(function() {
+  $( "#tab" ).toggle(300);
+});
+
+</script>
+
+<script>
+
+
+$(function() {
+
+              $(".brand").click(function() {
+                  if ( $("#features").hasClass("hidden")) {
+                       $("#features").removeClass("hidden");
+                       $("#features").slideDown("slow");              
+                  } else {
+                       if ( $("#features").is(":hidden")) {
+                           $("#features").slideDown("slow");
+                       } else {
+                          $("#features").slideUp("slow");
+                        }
+              }
+            })
+
+          })
+/*
+    $(".brand").hover(function() {
+        if ( $("#features").hasClass("hidden")) {
+          $("#features").removeClass("hidden");
+          $("#features").slideDown("slow");              
+            } else {
+
+
+                  if ( $("#features").is(":hidden")) {
+                     $("#features").slideDown("slow");
+                  } else {
+                  $("#features").slideUp("slow");
+                  }            
+            
+
+            }
+  })
+  })
+*/
+</script>
 
 
 </body>

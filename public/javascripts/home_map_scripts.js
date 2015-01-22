@@ -3,6 +3,14 @@
       var currentID;
       var markers = []
       var markerClusterer;
+      clusterSettings = {
+          maxZoom: 6,
+          styles: [{
+                  height:130,
+                  url: "/graphics/cluster1.png",
+                  width: 130
+                  //anchorIcon: [20, 140]
+                  }]}
       function initialize() {
         
          //var locations = [];
@@ -147,8 +155,7 @@
           setMarkers(new_locations);
           //setImagePath(imagePath:'/graphics/cluster');
           //setImageExtension(imageExtension:'.png');
-          var markerCluster = new MarkerClusterer(map, markers, {setImageExtension:'png', setImagePath:'/graphics/cluster'}); //Create markers from the initial dataset served with the document.
-
+          var markerCluster = new MarkerClusterer(map, markers, clusterSettings);
           //var markerCluster = new MarkerClusterer(map, markers);
           //refreshMapCluster(); 
           //Create markers from the initial dataset served with the document.
@@ -198,7 +205,8 @@
           setMarkers(new_locations);
           //setImagePath(imagePath:'/graphics/cluster');
           //setImageExtension(imageExtension:'.png');
-          var markerCluster = new MarkerClusterer(map, markers, {setImageExtension:'png', setImagePath:'/graphics/cluster'}); //Create markers from the initial dataset served with the document.
+          var markerCluster = new MarkerClusterer(map, markers, clusterSettings);
+ //Create markers from the initial dataset served with the document.
           //ajaxObj.get(); //Start the get cycle.
           //refreshMapCluster();
         });
@@ -333,13 +341,13 @@
       map.panTo(marker.getPosition());
       $('.recipetitle').html('<div>'+recipe_name+'</div>');
       $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
-      $('.recipetype').html('<div>'+recipe_type+'</div>'); 
-      $('.upvotes').html('<div>'+upvotes+' upvotes</div>') 
+      $('.recipetype').html('<div>Dish Type: '+recipe_type+'</div>'); 
+      $('.upvotes').html('<div><h3>Total Votes: </h3></div><div>'+upvotes+' upvotes</div>') 
       $('.views').html('<div>'+views+' views</div>');
-      $('.instructions').html('<div><ol>'+instruction_display+'</ol></div>');
-      $('.ingredients').html('<div><ul>'+ingredient_display+'</ul></div>');
-      $('.est_time').html('<div'+est_time+'</div>');
-      $('.vegcheck').html('<input type="checkbox" onclick="return false"'+vegetarian);
+      $('.instructions').html('<div>Instructions: <ol>'+instruction_display+'</ol></div>');
+      $('.ingredients').html('<div>Ingredients: <ul>'+ingredient_display+'</ul></div>');
+      $('.est_time').html('<div>Estimated cook time:   '+est_time+' hours</div>');
+      $('.vegcheck').html('<div class="reciperestrictions">Meets these dietary restrictions:</div><input type="checkbox" onclick="return false"'+vegetarian);
       $('.vegancheck').html('<input type="checkbox" onclick="return false"'+vegan);
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);

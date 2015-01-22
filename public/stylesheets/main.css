@@ -332,10 +332,11 @@ background-color: #2DBEB2;
   color: black;
   position: fixed;
   z-index: 2;
+  /*top: 50px-35vh;*/
   top: 50px;
-  height:35vh;
-  left: 2vw;
-  width:10vw;
+  height:auto;
+  left: 2.5vw;
+  width:100px;
   display:inline-block;
   background-color:#F0F5FF;
   border-bottom-right-radius:3em;
@@ -343,14 +344,15 @@ background-color: #2DBEB2;
   text-align:center;
   margin:0;
   display:block;
-  overflow:hidden;
+  overflow:auto;
 }
+
 
 .gray {
 	background-color:white;
 	float:left;
 	display:inline-block;
-	width:10vw;
+	width:100px;
 	margin:5 auto;
 	padding:.5em;
 }
@@ -359,10 +361,11 @@ background-color: #2DBEB2;
 	background-color:#F0F5FF;
 	float:left;
 	display:inline-block;
-	width:10vw;
+	width:100px;
 	margin:0 auto;
 	padding:.5em;
 }
+
 .handle {
 	z-index:6;
 	position:fixed;
@@ -381,7 +384,7 @@ background-color: #2DBEB2;
   top: 7vh;
   height:80vh;
   /*right:-35vw;*/
-  right:-35vw;
+  right:0vw;
   -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
@@ -395,11 +398,17 @@ background-color: #2DBEB2;
   padding:2em;
   overflow:auto;
 }
+
+
+#search_list {
+	list-style-type: none;
+}
+/*
 #tab:hover {
   right: 35vw;
 }
 #tab:hover #inner {
   right: 0;
 }
-
+*/
 
