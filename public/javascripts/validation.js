@@ -415,39 +415,51 @@ $(function() {
 
       // $('.error').hide();
       var search_input = $("input[name=search_input]").val();
+      console.log(search_input)
       if (search_input === "") {
         //$("label#search_input_error").show();
         //$("input#search_input").focus();
         return false;
-      }
-      //alert (dataString);return false;
+      } else if (search_input === "top 5") {
+        console.log("yeehhh top 5");
+        $.ajax({
+          type: "POST",
+          url: "/Top5/"+search_input,
+          data: '&top5_input='+search_input,
+          success: function(data) {
+            console.log('success in search');
+            top5_array = data.top5_array;
+            console.log(top5_array.length);
 
 
+            var replace = '';
+            for (var i=0; i<top5_array.length; i++) {
+              replace=replace+"<div><li>"+[i+1]+'. '+top5_array[i][1]+': '+top5_array[i][2]+"</li></div>"
+            }
+            $("#search_inner").html(replace);
 
-      $.ajax({
-        type: "POST",
-        url: "/Search/"+search_input,
-        data: '&search_input='+search_input,
-        success: function(data) {
-          console.log('success in search');
-          search_array = data.search_array;
-          console.log(search_array.length);
-
-
-          var replace = '';
-          for (var i=0; i<search_array.length; i++) {
-            replace=replace+"<div><li>"+search_array[i][1]+': '+search_array[i][2]+"</li></div>"
           }
-          $("#search_inner").html(replace);
-
-          /*for (var i; i<search_array.length; i++) {
-            var newDiv = document.createElement('li');
-            newdiv.innerHTML = "<div style='color:black'>"+search_array[i]+"</div>";
-            document.getElementById(search_inner).appendChild(newDiv);
-          }*/
-
-        }
         });
+      } else{
+        $.ajax({
+          type: "POST",
+          url: "/Search/"+search_input,
+          data: '&search_input='+search_input,
+          success: function(data) {
+            console.log('success in search');
+            search_array = data.search_array;
+            console.log(search_array.length);
+
+
+            var replace = '';
+            for (var i=0; i<search_array.length; i++) {
+              replace=replace+"<div><li>"+search_array[i][1]+': '+search_array[i][2]+"</li></div>"
+            }
+            $("#search_inner").html(replace);
+
+          }
+        });
+      }
       return false;
       });
 
