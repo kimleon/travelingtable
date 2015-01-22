@@ -71,6 +71,45 @@ module.exports = function(passport) {
   });
 
   
+  //PLEASE LET ME PUSH GITHUB PLS PLS PLS
+  /*Viewing top 5 recipes on the map within a given bounds*/
+  router.post('/Top5', function(req, res) {
+    var bottom = req.body.bottom_coord
+    var top = req.body.top_coord
+    var left = req.body.left_coord
+    var right = req.body.right_coord
+    console.log("top coord")
+    console.log(top)
+
+    all_array = []
+    recipes.Recipe.find({ $and: 
+        [{ latitude: { $gte: bottom, $lte: top }},
+        {longitude: {$gte: left, $lte: right}}]}, function(err, results){
+      results.forEach(function(recipe){
+        //array of arrays with result ids, names, dish types, upvotes
+        cur_array = [recipe._id, recipe.name, recipe.dish_type, recipe.upvotes]
+        all_array.push(cur_array);
+      });
+      console.log("we are heree");
+      //order by number of upvotes
+      all_array.sort(function(a, b) {return b[3] - a[3]})
+      console.log("order by upvotes")
+      console.log(all_array);
+      //only have 5 max
+      var top5_array = all_array.slice(0, 5);
+      console.log("top 5")
+      console.log(top5_array)
+      console.log(all_array)
+      //send array of result arrays to validation.js
+      res.json({
+        top5_array: top5_array
+      });
+    }); 
+  });
+
+
+
+
   //search works for multiple words
   //search only goes by recipe name
   router.post('/Search/:search_input', function(req, res) {
@@ -640,34 +679,6 @@ router.post('/findRecipeOnMap', function(req, res) {
     });
   });
 
-//PLEASE LET ME PUSH GITHUB PLS PLS PLS
-/*Viewing top 5 recipes on the map within a given bounds*/
-router.post('/findTop5', function(req, res) {
-  var bottom = req.body.bottom_coord
-  var top = req.body.top_coord
-  var left = req.body.left_coord
-  var right = req.body.right_coord
-
-  //console.log(bottom, top, left, right)
-  recipes = []
-  mongoose.model('Recipe').find({ $and: 
-      [{ latitude: { $gte: bottom, $lte: top }},
-      {longitude: {$gte: left, $lte: right}}]},
-      function(err, returned_recipes){
-      if (err) {
-        console.log('error in find recipes associated with this top 5 query', err);
-      }
-      //push all of the recipe items to send to front end
-      returned_recipes.forEach(function(recipe) {
-      var cur_array = [recipe._id, recipe.latitude, recipe.longitude, recipe.upvotes]
-      recipes.push(cur_array);
-      });
-
-      res.json({
-        recipes: recipes
-      });
-    });
- });
 return router;
 }
 
