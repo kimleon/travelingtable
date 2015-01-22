@@ -71,9 +71,9 @@ module.exports = function(passport) {
   });
 
   
-
+  //search works for multiple words
+  //search only goes by recipe name
   router.post('/Search/:search_input', function(req, res) {
-    //search only works if a single word entered into the search
     var final_find = "";
     var search_keywords = req.param('search_input');
     var split = search_keywords.split("+");
@@ -87,32 +87,20 @@ module.exports = function(passport) {
     final_find = final_find.substring(0, final_find.length - 1);
     console.log(final_find);
     search_array = []
+    //finds recipes containing search words
     recipes.Recipe.find({ name: {$regex : '.*'+final_find+'.*'}}, function(err, results){
       results.forEach(function(recipe){
+        //array of arrays with result ids, names, dish types
         cur_array = [recipe._id, recipe.name, recipe.dish_type]
         search_array.push(cur_array);
       });
       console.log(search_array);
+      //send array of result arrays to kiran
       res.json({
         search_array: search_array
       });
     }); 
-
   });
-
-
-      // for (j in results):
-      //   temp = [results[j]._id, results[j].name, results[j].dish_type]
-      //   results_array.push(temp);
-      // res.send(results_array)
-
-
-    //   res.json({
-    //     //send results
-    //     search_results: results
-    // });
-  
-
 
   
   //NOTE FOR THE TWO BELOW WE WON'T ACTUALLY NEED THEM EVENTUALLY
