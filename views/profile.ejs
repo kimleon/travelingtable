@@ -31,10 +31,10 @@ $(document).ready(function(){
                   $("#c2").html('<label><input type="checkbox" name="vegan" id="vegan" value="" checked>Vegan</label>')
                 };
                 if (allergies===true) {
-                  $("#c4").html('<label><input type="checkbox" name="gluten-free" id="gluten-free" value="" checked>Gluten-Free</label>')
+                  $("#c4").html('<label><input type="checkbox" name="allergies" id="allergies" value="" checked>No peanuts/soy</label>')
                 }
                 if (glut===true) {
-                  $("#c3").html('<label><input type="checkbox" name="allergies" id="allergies" value="" checked>No peanuts/soy</label>')
+                  $("#c3").html('<label><input type="checkbox" name="gluten-free" id="gluten-free" value="" checked>Gluten-Free</label>')
                 };
 
 
@@ -103,6 +103,14 @@ $(document).ready(function(){
 
 <div id="back"><a href="/">take me back!</a></div>
 <div id="map"> </div>
+
+
+<!--script type="text/javascript">
+jQuery(".informatiemelding").setTimeout(function () {
+   $(this).fadeOut('slow');
+});
+</script-->
+
 
 </body>
 </html>
