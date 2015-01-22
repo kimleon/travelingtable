@@ -1,6 +1,8 @@
 
       var map;
       var currentID;
+      var markers = []
+      var markerClusterer;
       function initialize() {
         
          //var locations = [];
@@ -133,6 +135,7 @@
                       });
 
                       setListener(loc.marker);
+                      markers.push(loc.marker);
                      
                       //Remember loc in the `locations` so its info can be displayed and so its marker can be deleted.
                       //locations.push(loc[0]);
@@ -140,7 +143,12 @@
            });
            }
 
-          setMarkers(new_locations); //Create markers from the initial dataset served with the document.
+          setMarkers(new_locations);
+          var markerCluster = new MarkerClusterer(map, markers); //Create markers from the initial dataset served with the document.
+
+          //var markerCluster = new MarkerClusterer(map, markers);
+          //refreshMapCluster(); 
+          //Create markers from the initial dataset served with the document.
           //ajaxObj.get(); //Start the get cycle.
         });
 
@@ -180,10 +188,13 @@
                           customInfo: loc[0]
                       });
                       setListener(loc.marker);
+                      markers.push(loc.marker);
            });
            }
-          setMarkers(new_locations); //Create markers from the initial dataset served with the document.
+          setMarkers(new_locations);
+          var markerCluster = new MarkerClusterer(map, markers); //Create markers from the initial dataset served with the document.
           //ajaxObj.get(); //Start the get cycle.
+          //refreshMapCluster();
         });
       }, 5000);
 
@@ -329,5 +340,14 @@ $(function() {
       });
   });
 });
+
+function refreshMapCluster() {
+        console.log('refresh map is called');
+        if (markerClusterer != null) {
+          markerClusterer.clearMarkers();
+        }
+        markerClusterer = new MarkerClusterer(map, markers);
+        console.log(markerClusterer);
+      }
 
       
