@@ -402,8 +402,6 @@ function buttondisplay() {
 
 
 
-
-
 //<!--=========================== SEARCH FORM-=========================================->
 
 var search_array = [];
