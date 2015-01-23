@@ -455,9 +455,9 @@ $(function() {
           url: "/Search/"+search_input,
           data: '&search_input='+search_input,
           success: function(data) {
-            console.log('success in search');
+            //console.log('success in search');
             search_array = data.search_array;
-            console.log(search_array.length);
+            //console.log(search_array.length);
 
 
 
@@ -481,8 +481,7 @@ $(function() {
 
               //console.log(intro+counter+next+search_array[i][0]+next2+next3+search_array[i][1]+next4+search_array[i][2]+next5);
               var input = String(search_array[i][0]);
-              console.log(input);
-              console.log(intro+counter+'"><li><a href="#" onclick="result()" id="'+input+'">'+search_array[i][1]+': '+search_array[i][2]+"</a></li></div>");
+  
               //replace=replace+"<div class='"+counter+"'><li><a href='#' onclick='resultClick('"+search_array[i][0]+"')"+"'>"+search_array[i][1]+': '+search_array[i][2]+"</a></li></div>"
               //replace = replace+intro+counter+next+search_array[i][0]+next2+next3+search_array[i][1]+next4+search_array[i][2]+next5;
               //replace=replace+intro+counter+'"><li><a href="#" onclick="result('+quote+input+quote+');">'+search_array[i][1]+': '+search_array[i][2]+"</a></li></div>";
@@ -525,8 +524,8 @@ $(function() {
 
  function result() {
     var recipeID = event.target.id;
- 
-      console.log('recipeID:   '+recipeID)
+    var markerID2;
+      //console.log('recipeID:   '+recipeID)
       var dataString6 = '&recipeID=' + recipeID
   
 
@@ -534,15 +533,129 @@ $(function() {
             type: "POST",
             url: "/findRecipeOnMap",
             data: dataString6,
-            success: function() {
+            success: function(data) {
               var latitude = data.latitude;
               var longitude = data.longitude;
-              var markerID = data.markerID;
-
-            }
+              markerID2 = data.markerID;
+              //console.log('markerid: '+markerID2);
+              var panPoint = new google.maps.LatLng(latitude,longitude);
+              map.panTo(panPoint);
+            },
+            async: false
           });
-  };
+        //console.log(markerID2);
+        //console.log(recipeID);
+        var recipe_name;
+        var recipe_type;
+        var recipe_image;
+        var vegetarian;
+        var vegan;
+        var gluten;
+        var allergies;
+        var upvotes;
+        var ingredients;
+        var steps;
+        var est_time;
+        var views;
 
+          $.ajax({
+                type: "POST",
+                url: "/viewRecipe",
+                data: '&markerID='+markerID2,
+                success: function(data) {
+                  //console.log('breakpoint 2')
+                  recipe_name = data.recipe_name
+                  recipe_type = data.recipe_type
+                  recipe_image = data.recipe_image
+                  vegetarian = data.vegetarian
+                  vegan = data.vegan
+                  gluten = data.gluten
+                  allergies = data.allergies
+                  upvotes = data.upvotes
+                  ingredients = data.ingredients[0].split('~`~,');
+                  steps = data.instructions[0].split('~`~,');
+                  est_time = data.prep_time
+                  views = data.views
+                  //console.log('stuff', views, ingredients, steps, est_time);
+                   
+            if (vegetarian===true) {
+              vegetarian=' checked/> Vegetarian</br>';
+            } else {
+              vegetarian='/> Vegetarian</br>';
+            }
+            if (vegan===true) {
+              vegan=' checked/> Vegan</br>';
+            } else {
+              vegan='/> Vegan</br>';
+            }
+            if (gluten===true) {
+              gluten=' checked/> Gluten-Free</br>';
+            } else {
+              gluten='/> Gluten-Free</br>';
+            }
+            if (allergies===true) {
+              allergies =' checked/> No Peanuts/Soy</br>';
+            } else {
+              allergies ='/> No Peanuts/Soy</br>';
+            }
+          },
+            async: false
+          });
+
+//check if you can upvote or no, if not, itll replace it with a thing that says you voted luls no button nemorez
+    $.ajax({
+        type: "POST",
+        url: "/Refresh",
+        data: "&markerID="+markerID2,
+        success: function(data) {
+          //console.log('LOGGED in var below')
+          //console.log(data.authenticated);
+           if (data.authenticated) {
+                $.ajax({
+                        type: "POST",
+                        url: "/canUpvote",
+                        data: "&markerID="+markerID2,
+                        success: function(data) {
+                           //console.log(data.upvoted+" = upvoted or not");
+                           if (data.upvoted) {
+                            //$('.upvotebutton').html('You upvoted this!');
+                            $('.voted').show();
+                            $('.upvotebutton').hide();
+                           } else {
+                            //$('.upvotebutton').html('<a href="#" class="upvotebutton2">Upvote</a>');
+                            $('.voted').hide();
+                            $('.upvotebutton').show();
+                           }
+                         }
+                       })
+              }}});
+
+      console.log(ingredients);
+      var ingredient_display=''
+      for (var i=0; i<ingredients.length;i++) {
+        ingredient_display=ingredient_display+'<li>'+ingredients[i]+'</li>'
+      }
+
+      var instruction_display=''
+      for (var j=0; j<steps.length;j++) {
+        instruction_display=instruction_display+'<li>'+steps[j]+'</li>'
+      }
+
+      $('.recipetitle').html('<div>'+recipe_name+'</div>');
+      $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
+      $('.recipetype').html('<div>Dish Type: '+recipe_type+'</div>'); 
+      $('.upvotes').html('<div><h3>Total Votes: </h3></div><div>'+upvotes+' upvotes</div>') 
+      $('.views').html('<div>'+views+' views</div>');
+      $('.instructions').html('<div>Instructions: <ol>'+instruction_display+'</ol></div>');
+      $('.ingredients').html('<div>Ingredients: <ul>'+ingredient_display+'</ul></div>');
+      $('.est_time').html('<div>Estimated cook time:   '+est_time+' hours</div>');
+      $('.vegcheck').html('<div class="reciperestrictions">Meets these dietary restrictions:</div><input type="checkbox" onclick="return false"'+vegetarian);
+      $('.vegancheck').html('<input type="checkbox" onclick="return false"'+vegan);
+      $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
+      $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
+
+
+};
 
 //<!--=========================== Logout =========================================->
 

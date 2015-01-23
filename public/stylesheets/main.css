@@ -302,27 +302,6 @@ body {
 }*/
 
 
-#search_inner {
-  float: left;
-  clear:left;
-  color: black;
-  position: fixed;
-  z-index: 2;
-  top: 50px;
-  height:25vh;
-  left: 130px;
-  -webkit-transition-duration: 0.3s;
-  -moz-transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  width:35vw;
-  display:inline-block;
-  background-color:white;
-  border-bottom-right-radius:3em;
-  border-bottom-left-radius: 3em;
-  padding:2em;
-  overflow:auto;
-}
 
 
 #features {
@@ -389,7 +368,7 @@ body {
   position: fixed;
   z-index:2;
   top: 7vh;
-  height:auto;
+  /*height:auto;*/
   /*right:-35vw;*/
   right:0vw;
   -webkit-transition-duration: 0.3s;
@@ -402,25 +381,17 @@ body {
   border-top-left-radius:0em;
   border-bottom-left-radius: 5em;
   padding:2em;
-  text-align:center;
   margin:0;
   display:block;
+  height:80vh;
   overflow:auto;
 }
 
 
-
 #search_list {
 	list-style-type: none;
+	padding:0;
 }
-/*
-#tab:hover {
-  right: 35vw;
-}
-#tab:hover #inner {
-  right: 0;
-}
-*/
 
 .fade {
     opacity: 0;
@@ -444,25 +415,34 @@ a:hover {
 	color:#000099;
 }
 
-/*
-.panel {
-	display: inline-block;
-	border-radius:10px;
-	background-color:#35d7b7;
-	color:white;
-	border:0;
-	float:left;
-	padding:0px 5px 0px 5px;
-}*/
-
+#search_inner {
+  float: left;
+  clear:left;
+  color: black;
+  position: fixed;
+  z-index: 2;
+  top: 50px;
+  height:auto;
+  left: 130px;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  width:35vw;
+  display:inline-block;
+  background-color:white;
+  border-bottom-right-radius:3em;
+  border-bottom-left-radius: 3em;
+  overflow:auto;
+}
 
 .white2 {
 	background-color:white;
 	float:left;
 	display:inline-block;
 	width:35vw;
-	margin:5 auto;
-	padding:.5em;
+	padding:1vw;
+	padding-left:20px;
 }
 .white2:hover {
 	background-color: #F9FBFF;
@@ -473,8 +453,8 @@ a:hover {
 	float:left;
 	display:inline-block;
 	width:35vw;
-	margin:0 auto;
-	padding:.5em;
+	padding:1vw;
+	padding-left:20px;
 }
 
 .gray2:hover {

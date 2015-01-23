@@ -100,7 +100,7 @@ function buttondisplay() {
          
          <form class="navbar-form pull-left" role="search">
             <div class="input-group">
-               <input type="text" id="search_input" name="search_input" class="form-control search" placeholder="Search for a recipe...">
+               <input type="text" autocomplete="off" id="search_input" name="search_input" class="form-control search" placeholder="Search for a recipe...">
                <!--<label class="error" for="search_input" id="search_error"> This field is required!</label></br>-->
                <div class="input-group-btn">
                   <button id="search_button" type="submit" class="search2 btn btn-default round"><span class="glyphicon glyphicon-search"></span></button>
@@ -289,14 +289,31 @@ function buttondisplay() {
 <!--                       s e a r c h   t a b    
 <!-============================================================================-->
 
-<div id="search_tab">
+<div id="search_tab" hidden>
   <ul id="search_list">
     <div id="search_inner"></div>
   </ul>
 </div>
 
 
+<script>
 
+
+$(function() {
+  $("#search_input").hover(function() {
+    if ( $("#search_tab").hasClass("hidden")) {
+         $("#search_tab").removeClass("hidden");
+         $("#search_tab").slideDown("slow");              
+    } else {
+       if ( $("#search_tab").is(":hidden")) {
+           $("#search_tab").slideDown("slow");
+       } else {
+          $("#search_tab").slideUp("slow");
+        }
+  }
+})
+})
+</script>
 
 <!--===========================================================================-->
 <!--                       e x t r a s   t a b    
