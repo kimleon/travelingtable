@@ -50,9 +50,10 @@ function buttondisplay() {
 //<!--=========================== LOGIN FORM =========================================-> 
 
  $(function() {
-    console.log('Login function is happening')
+    //console.log('Login function is happening')
     $('.error').hide();
     $(".button").click(function() {
+      console.log('login button');
       // validate and process form here
       
       $('.error').hide();
@@ -126,12 +127,11 @@ function buttondisplay() {
 
  $(function() {
     $('.error').hide();
-    console.log("asdf");
-    console.log($(".signupbutton"));
+
     $(".signupbutton").click(function() {
     //$("#submit_btn.signupbutton.btn-large").submit(function() {
       // validate and process form here
-      console.log('button click happening');
+      console.log('signup happening');
       $('.error').hide();
       var new_username = $("input[name=new_username]").val();
       console.log(new_username);
@@ -216,8 +216,6 @@ function buttondisplay() {
          return true;
       }
 
-
-
   function separateKey(evt)
       {
          var charCode2 = (evt.which) ? evt.which : event.keyCode
@@ -227,18 +225,10 @@ function buttondisplay() {
          return true;
       }
 
-
-
  $(function() {
-    console.log('this recipe submit button is happening')
     $('.error').hide();
     $(".recipebutton").click(function() {
-      //console.log(counterbox);
-      //console.log(counter);
-      //var test = $("input[name='boxinput1']").val();
-      //console.log(test);
-
-
+      console.log('recipe form submit')
       var ingredients = [];
       //console.log(counterbox);
 
@@ -253,12 +243,6 @@ function buttondisplay() {
         }
 
       };
-
-      //console.log(ingredients);
-
-      //console.log(ingredients);
-
-
 
       var steps = [];
       //console.log(counterbox);
@@ -297,9 +281,6 @@ function buttondisplay() {
         $('input#sel1').focus();
         return false;
       }
-
-
-
 
 
       var est_time = $("input[name=est_time]").val();
@@ -372,7 +353,7 @@ function buttondisplay() {
 
  $(function() {
     $(".dietprefbutton").click(function() {
-      console.log('this is being called')
+      console.log('diet pref button')
 
       var vegetarian = $("input[name=vegetarian]").prop("checked");
       var vegan = $("input[name=vegan]").prop("checked");
@@ -407,7 +388,7 @@ function buttondisplay() {
 var search_array = [];
 
 $(function() {
-    console.log('Search function is happening')
+    //console.log('Search function is happening')
     $(".search2").click(function() {
       var search_input = $("input[name=search_input]").val();
       console.log("search input")
