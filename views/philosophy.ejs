@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Gobi Philosophy | Traveling Table</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+
+<script type="text/javascript">
+  $("#signupmessage").hide();
+  //$("#features").hide();
+  //console.log("hiding features tab");
+</script>
+
+
+<!-- onload script-->
+<script type="text/javascript">
+
+
+function buttondisplay() {
+    $.ajax({
+        type: "POST",
+        url: "/Refresh",
+        success: function(data) {
+          console.log('LOGGED in var below')
+          console.log(data.authenticated);
+           if (data.authenticated) {
+             $("#log_out").show();
+             $("#log_in").hide();
+             $("#add_recipe").show();
+             $("#sign_up").hide();
+             $("#profile").show();
+             $(".upvotebutton").show();
+             $(".voted").hide();
+           } else {
+             $("#log_out").hide();
+             $("#log_in").show();
+             $("#add_recipe").hide();
+             $("#sign_up").show();
+             $("#profile").hide;
+             $(".upvotebutton").hide();
+             $(".voted").hide();
+           }
+}
+});
+};
+</script>
+
+
+    <script src="/javascripts/validation.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <script src="/javascripts/recipe.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css"/>
+
+  </head>
+
+  <body onload="buttondisplay()">
+
+
+<!--================================================================================-->
+<!--                          n a v b a r    s t a r t  
+<!================================================================================-->
+
+
+<div class="navbar navbar-inverse navbar-default navbar-fixed-top">
+   <div class="container">
+      <div class="navbar-header">
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         </button>
+
+         <a class="navbar-brand hidden-xs" href="#" style="vertical-align:center"><img src="graphics/GlobalGobi.png" class="brand" style="max-width:40px;height:auto"></a>
+         <a class="navbar-brand visible-xs" href="#" style="vertical-align:center"><img src="graphics/GlobalGobi.png" class="brand" style="max-width:40px;height:auto"></a>
+           
+
+      </div>
+      <div class="navbar-collapse collapse">
+
+ 
+        
+
+<!--================================================================================-->
+<!--                                       h o m e  
+<!================================================================================-->
+      <!--li style="vertical-align:center">Toggle settings: </li-->
+
+
+<ul class="nav navbar-nav navbar-right">
+
+    <li><a href="/">Home</a></li>
+
+
+
+            
+      
+
+
+<!--================================================================================-->
+<!--                                    l o g o u t
+<!================================================================================-->
+
+<li><a href='#' class="logoutbutton2" id="log_out">Logout</a></li>
+
+
+         </ul>
+      </div>
+      <!--/.navbar-collapse -->
+   </div>
+</div>
+
+
+
+<!--===========================================================================-->
+<!--                       f e a t u r e s   t a b    
+<!-============================================================================-->
+
+<div id="features" class="hidden brand">
+<a href="/heatmap" class="gray">Heatmap</a><br>
+<a href="/gobiphilosophy" class="white">Our story</a><br>
+<a href="#" class="gray">About us</a><br>
+<a href="#" class="white">Test</a><br>
+<a href="#" class="gray">Test</a><br>
+</div>
+
+
+<script>
+$('.handle').click(function() {
+  $( "#tab" ).toggle(300);
+});
+
+$('#tab').click(function() {
+  $( "#tab" ).toggle(300);
+});
+</script>
+
+<script>
+$(function() {
+              $(".brand").click(function() {
+                  if ( $("#features").hasClass("hidden")) {
+                       $("#features").removeClass("hidden");
+                       $("#features").slideDown("slow");              
+                  } else {
+                       if ( $("#features").is(":hidden")) {
+                           $("#features").slideDown("slow");
+                       } else {
+                          $("#features").slideUp("slow");
+                        }
+              }
+            })
+          })
+</script>
+
+
+
+<!--===========================================================================-->
+<!--                      i t s   o u r   p h i l o s o p h y      
+<!-============================================================================-->
+
+
+<div id="all_content">
+  <div id="philosophy">
+    <h3>The Gobi Philosophy</h3>
+    <p>
+      By the way, if you were wondering, “Gobi” means cauliflower in Hindi.  We are three MIT developers who all share a love of food, and, more importantly, we believe in the power of GOBI.  Having travelled around the world on different adventures, we thought to ourselves: IF ONLY there were way to recreate and SEE the unique tastes and flavors of Gobi we sampled (and maybe the other food), in one spot!  This website is meant to allow users to look for and share recipes around the world.  You can explore a cuisine you have always been interested in.  If you create an account, post recipes to share knowledge about the cuisine of your expertise! We can then personalize your experience even more by filtering recipes based on dietary restrictions you specify to us.  Search for recipes by their title, look at the top 5 recipes in a given area, or just go around the world and explore all the recipes our users have shared.  We, the Global Gobis, have really enjoyed making this website and we hope you enjoy this experience as well!  Be sure to test out our “I’m feeling lucky” feature!
+
+
+
+<br><Br><br>If you create an account, post recipes to share knowledge about the cuisine of your expertise! We can then personalize your experience even more by filtering recipes based on dietary restrictions you specify to us.  Search for recipes by their title, look at the top 5 recipes in a given area, or just go around the world and explore all the recipes our users have shared.  We, the Global Gobis, have really enjoyed making this website and we hope you enjoy this experience as well!  Be sure to test out our “I’m feeling lucky” feature!
+    </p>
+  </div>
+  <div id="about_us">
+    <h3>About Us</h3>
+    <div id="our_stories">
+      <div id="kiran" class="single_story">
+        <h4>Kiran</h4>
+<!--         do we want pictures on this page?? -->
+        <div class="our_pictures"></div>
+        <p>
+          Stuff about Kiran lalalallkmlkdfasadlaskdmlkasmdn gjksndfjdsfsdfskjdfks sfkjnsdfkjsdf ksdf sdfkjsfs sdfsdfjneirg wefnksdjnfkwjeg sgwenesjnkefs sdfkjnsdf sdfkjsdfnwugrg sxvksjdnsdfksf.
+        </p>
+      </div>
+      <div id="deepti" class="single_story">
+        <h4>Deep.... DAAAY</h4>
+        <div class="our_pictures"></div>
+        <p>
+          Stuff about Deepti lalalallkmlkdfasadlaskdmlkasmdn gjksndfjdsfsdfskjdfks sfkjnsdfkjsdf ksdf sdfkjsfs sdfsdfjneirg wefnksdjnfkwjeg sgwenesjnkefs sdfkjnsdf sdfkjsdfnwugrg sxvksjdnsdfksf.
+        </p>
+      </div>
+      <div id="kim" class="single_story">
+        <h4>Kim</h4>
+        <div class="our_pictures"></div>
+        <p>
+          Stuff about Kim lalalallkmlkdfasadlaskdmlkasmdn gjksndfjdsfsdfskjdfks sfkjnsdfkjsdf ksdf sdfkjsfs sdfsdfjneirg wefnksdjnfkwjeg sgwenesjnkefs sdfkjnsdf sdfkjsdfnwugrg sxvksjdnsdfksf.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+  </body>
+</html>
