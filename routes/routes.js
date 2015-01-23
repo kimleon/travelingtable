@@ -25,6 +25,8 @@ module.exports = function(passport) {
     res.render('home');
   });
 
+
+  //get heat map data and send back
   router.post('/getHeatMapData', function(req, res){
     console.log('trying to get marker data for heatmaps');
     mongoose.model('Marker').find(function(err, all_markers){
@@ -158,18 +160,6 @@ module.exports = function(passport) {
   });
   
 
-  /* GET /Recipes/123 
-    view a specific recipe */
-  router.get('/Recipes/:id', function(req, res) {
-    var recipeId = req.param('id');
-    recipes.Recipe.findOne({_id: recipeId}, function(err, result) {
-      console.log(result);
-      res.render('singlerecipe', { recipe: result });
-    });
-  });
-
-
-
   /*HANDLE register things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
   router.get('/RegisterFail', function(req, res){
     console.log(req.flash('signupMessage'))
@@ -231,6 +221,7 @@ module.exports = function(passport) {
 
 
   /*TRY TO ACCESS YOUR OWN PROFILE: should be protected to when you are logged in*/
+  //we should delete this??
   router.get('/Profile:id', isLoggedIn, function(req, res) {
     var userId = req.param('id');
     var vegetarian = req.body.vegetarian;

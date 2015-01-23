@@ -62,14 +62,4 @@ router.get('/Recipes/:id', function(req, res) {
 });
 
 
-// //recipes from specific user by userId, also gives user info
-// router.get('/Recipes/:userId', function(req, res) {
-// 	mongoose.model('Recipes').find({user: req.params.userId}, function(err, recipes) {
-// 		mongoose.model('Recipes').populate(recipes, {path: 'User'}, function(err, recipes) {
-// 			res.send(recipes);
-// 		});
-// 	});
-// });
-
-
 module.exports = router;
