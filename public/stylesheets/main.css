@@ -389,7 +389,7 @@ body {
   position: fixed;
   z-index:2;
   top: 7vh;
-  height:80vh;
+  height:auto;
   /*right:-35vw;*/
   right:0vw;
   -webkit-transition-duration: 0.3s;
@@ -397,14 +397,17 @@ body {
   -o-transition-duration: 0.3s;
   transition-duration: 0.3s;
   width:35vw;
-  display:inline-block;
   background-color:white;
   float:right;
   border-top-left-radius:0em;
   border-bottom-left-radius: 5em;
   padding:2em;
+  text-align:center;
+  margin:0;
+  display:block;
   overflow:auto;
 }
+
 
 
 #search_list {
@@ -435,11 +438,6 @@ body {
 	margin-left:5px;
 }
 
-#username:focus {
-	box-shadow:none;
-	background-color:black;
-
-}
 
 a:hover {
 	text-decoration:none;
@@ -458,3 +456,27 @@ a:hover {
 }*/
 
 
+.white2 {
+	background-color:white;
+	float:left;
+	display:inline-block;
+	width:35vw;
+	margin:5 auto;
+	padding:.5em;
+}
+.white2:hover {
+	background-color: #F9FBFF;
+}
+
+.gray2 {
+	background-color:#F0F5FF;
+	float:left;
+	display:inline-block;
+	width:35vw;
+	margin:0 auto;
+	padding:.5em;
+}
+
+.gray2:hover {
+	background-color: #e7eefc;
+}

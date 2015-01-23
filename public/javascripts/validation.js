@@ -437,9 +437,33 @@ $(function() {
             console.log(search_array.length);
 
 
+
+//values in search array: array of [recipeID,name,type]
+
             var replace = '';
+            counter='white2';
             for (var i=0; i<search_array.length; i++) {
-              replace=replace+"<div><li>"+search_array[i][1]+': '+search_array[i][2]+"</li></div>"
+              if (counter==='white2') {
+                counter = 'gray2'
+              } else {
+                counter = 'white2'
+              }
+              var intro = '<div class="';
+              var next = '"><li><a href="#" onclick="resultClick(';
+              var next2 = ')';
+              var next3 = '">';
+              var next4 = ': ';
+              var next5 = "</a></li></div>";
+              var quote = '"';
+
+              //console.log(intro+counter+next+search_array[i][0]+next2+next3+search_array[i][1]+next4+search_array[i][2]+next5);
+              var input = String(search_array[i][0]);
+              console.log(input);
+              console.log(intro+counter+'"><li><a href="#" onclick="result()" id="'+input+'">'+search_array[i][1]+': '+search_array[i][2]+"</a></li></div>");
+              //replace=replace+"<div class='"+counter+"'><li><a href='#' onclick='resultClick('"+search_array[i][0]+"')"+"'>"+search_array[i][1]+': '+search_array[i][2]+"</a></li></div>"
+              //replace = replace+intro+counter+next+search_array[i][0]+next2+next3+search_array[i][1]+next4+search_array[i][2]+next5;
+              //replace=replace+intro+counter+'"><li><a href="#" onclick="result('+quote+input+quote+');">'+search_array[i][1]+': '+search_array[i][2]+"</a></li></div>";
+              replace = replace+intro+counter+'"><li><a href="#" onclick="result()" id="'+input+'">'+search_array[i][1]+': '+search_array[i][2]+"</a></li></div>"
             }
             $("#search_inner").html(replace);
 
@@ -476,7 +500,25 @@ $(function() {
       //     }
       //   });
 
+ function result() {
+    var recipeID = event.target.id;
+ 
+      console.log('recipeID:   '+recipeID)
+      var dataString6 = '&recipeID=' + recipeID
+  
 
+      $.ajax({
+            type: "POST",
+            url: "/findRecipeOnMap",
+            data: dataString6,
+            success: function() {
+              var latitude = data.latitude;
+              var longitude = data.longitude;
+              var markerID = data.markerID;
+
+            }
+          });
+  };
 
 
 //<!--=========================== Logout =========================================->
