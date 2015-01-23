@@ -73,6 +73,12 @@ module.exports = function(passport) {
   });
 
   
+  //list of recipes
+  router.get('/GobiPhilosophy', function(req, res) {
+    console.log("going to philosophy");
+    res.render('philosophy');
+  });
+
   /*Viewing top 5 recipes on the map within the current bounds*/
   router.post('/Top5', function(req, res) {
     var bottom = req.body.bottom_coord
