@@ -17,7 +17,8 @@ var recipesSchema = new Schema({
 	views: Number,
 	ingredients: [String],
 	instructions: [String],
-	prep_time: Number
+	prep_time: Number,
+	gobi: Boolean
 });
 
 var Recipe = mongoose.model('Recipe', recipesSchema);

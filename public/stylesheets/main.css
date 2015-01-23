@@ -231,13 +231,21 @@ body {
 	left: 15%;
 	width:auto;
 	max-width:70%;
-	top:10vh;
+	/*top:10vh;*/
 	overflow:auto;
 	margin:10px;
 }
 
 .modal-tite {
-		font-size:400%;
+	font-size:400%;
+
+}
+
+.modal-dialogue {
+	top:80%;
+	left:50%;
+	position:absolute;
+	z-index:7;
 
 }
 
@@ -245,6 +253,7 @@ body {
 	text-decoration: none;
 	font-weight:100;
 	padding: 2vw;
+	z-index:7;
 }
 
 
@@ -329,8 +338,8 @@ body {
   width:100px;
   display:inline-block;
   background-color:#F0F5FF;
-  border-bottom-right-radius:3em;
-  border-bottom-left-radius: 3em;
+  border-bottom-right-radius:2em;
+  border-bottom-left-radius: 2em;
   text-align:center;
   margin:0;
   display:block;
@@ -338,7 +347,7 @@ body {
 }
 
 
-.gray {
+.white {
 	background-color:white;
 	float:left;
 	display:inline-block;
@@ -346,8 +355,11 @@ body {
 	margin:5 auto;
 	padding:.5em;
 }
+.white:hover {
+	background-color: #F9FBFF;
+}
 
-.white {
+.gray {
 	background-color:#F0F5FF;
 	float:left;
 	display:inline-block;
@@ -355,6 +367,11 @@ body {
 	margin:0 auto;
 	padding:.5em;
 }
+
+.gray:hover {
+	background-color: #e7eefc;
+}
+
 
 .handle {
 	z-index:6;
@@ -410,15 +427,34 @@ body {
 
 
 #username {
-	width:70%;
+	width:90%;
 	background-color:#F2F2F9;
 	border-radius:20px;
 	border:none;
-	padding:0px 8px 0px 2px;
+	padding:4px 0px 4px 10px;
 	margin-left:5px;
 }
 
 #username:focus {
 	box-shadow:none;
+	background-color:black;
 
 }
+
+a:hover {
+	text-decoration:none;
+	color:#000099;
+}
+
+/*
+.panel {
+	display: inline-block;
+	border-radius:10px;
+	background-color:#35d7b7;
+	color:white;
+	border:0;
+	float:left;
+	padding:0px 5px 0px 5px;
+}*/
+
+

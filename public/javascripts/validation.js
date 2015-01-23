@@ -50,9 +50,10 @@ function buttondisplay() {
 //<!--=========================== LOGIN FORM =========================================-> 
 
  $(function() {
-    console.log('Login function is happening')
+    //console.log('Login function is happening')
     $('.error').hide();
     $(".button").click(function() {
+      console.log('login button');
       // validate and process form here
       
       $('.error').hide();
@@ -126,12 +127,11 @@ function buttondisplay() {
 
  $(function() {
     $('.error').hide();
-    console.log("asdf");
-    console.log($(".signupbutton"));
+
     $(".signupbutton").click(function() {
     //$("#submit_btn.signupbutton.btn-large").submit(function() {
       // validate and process form here
-      console.log('button click happening');
+      console.log('signup happening');
       $('.error').hide();
       var new_username = $("input[name=new_username]").val();
       console.log(new_username);
@@ -216,8 +216,6 @@ function buttondisplay() {
          return true;
       }
 
-
-
   function separateKey(evt)
       {
          var charCode2 = (evt.which) ? evt.which : event.keyCode
@@ -227,18 +225,10 @@ function buttondisplay() {
          return true;
       }
 
-
-
  $(function() {
-    console.log('this recipe submit button is happening')
     $('.error').hide();
     $(".recipebutton").click(function() {
-      //console.log(counterbox);
-      //console.log(counter);
-      //var test = $("input[name='boxinput1']").val();
-      //console.log(test);
-
-
+      console.log('recipe form submit')
       var ingredients = [];
       //console.log(counterbox);
 
@@ -254,11 +244,22 @@ function buttondisplay() {
 
       };
 
-      //console.log(ingredients);
-
-      //console.log(ingredients);
-
-
+      var gobi = false
+      var Gobi = "cauliflower"
+      var Gobis = "cauliflower"
+      var indiangobi = "gobi"
+      var indiangobis = "gobis"
+      gobi_array = [Gobi, Gobis, indiangobi, indiangobis]
+      $.each(ingredients, function(ind, ingd){
+        var ingd_lower= ingd.toLowerCase();
+        $.each(gobi_array, function(ind, test){
+          var n = ingd_lower.indexOf(test)
+          if (n !== -1) {
+            gobi = true
+          }
+        });
+      });
+      console.log('gobi', gobi);
 
       var steps = [];
       //console.log(counterbox);
@@ -291,6 +292,12 @@ function buttondisplay() {
         return false;
       }
   		var recipe_name_lower = recipe_name.toLowerCase();
+      $.each(gobi_array, function(ind, test){
+          var n = recipe_name_lower.indexOf(test)
+          if (n !== -1) {
+            gobi = true
+          }
+        });
 
   		var dish_type = $('#sel1 :selected').text();
       if (dish_type === "Choose one!") {
@@ -298,9 +305,6 @@ function buttondisplay() {
         $('input#sel1').focus();
         return false;
       }
-
-
-
 
 
       var est_time = $("input[name=est_time]").val();
@@ -332,7 +336,7 @@ function buttondisplay() {
       var gluten_free = $("input[name=gluten-free]").prop("checked");
       var allergies = $("input[name=allergies]").prop("checked");
       console.log("are we getting here")
-		  var dataString2 = '&recipe_name='+ recipe_name + '&recipe_name_lower='+ recipe_name_lower +'&recipe_image=' + recipe_image + '&dish_type=' + dish_type
+		  var dataString2 = '&recipe_name='+ recipe_name + '&gobi=' + gobi + '&recipe_name_lower='+ recipe_name_lower +'&recipe_image=' + recipe_image + '&dish_type=' + dish_type
                         +'&vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies
                         +'&latitude=' + latitude + '&longitude=' + longitude + "&ingredients="+ingredients+"&steps="+steps + "&est_time="+est_time;
 		  //alert (dataString);return false;
@@ -373,7 +377,7 @@ function buttondisplay() {
 
  $(function() {
     $(".dietprefbutton").click(function() {
-      console.log('this is being called')
+      console.log('diet pref button')
 
       var vegetarian = $("input[name=vegetarian]").prop("checked");
       var vegan = $("input[name=vegan]").prop("checked");
@@ -408,7 +412,7 @@ function buttondisplay() {
 var search_array = [];
 
 $(function() {
-    console.log('Search function is happening')
+    //console.log('Search function is happening')
     $(".search2").click(function() {
       var search_input = $("input[name=search_input]").val();
       console.log("search input")
