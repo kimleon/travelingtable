@@ -244,6 +244,23 @@ function buttondisplay() {
 
       };
 
+      var gobi = false
+      var Gobi = "cauliflower"
+      var Gobis = "cauliflower"
+      var indiangobi = "gobi"
+      var indiangobis = "gobis"
+      gobi_array = [Gobi, Gobis, indiangobi, indiangobis]
+      $.each(ingredients, function(ind, ingd){
+        var ingd_lower= ingd.toLowerCase();
+        $.each(gobi_array, function(ind, test){
+          var n = ingd_lower.indexOf(test)
+          if (n !== -1) {
+            gobi = true
+          }
+        });
+      });
+      console.log('gobi', gobi);
+
       var steps = [];
       //console.log(counterbox);
 
@@ -275,6 +292,12 @@ function buttondisplay() {
         return false;
       }
   		var recipe_name_lower = recipe_name.toLowerCase();
+      $.each(gobi_array, function(ind, test){
+          var n = recipe_name_lower.indexOf(test)
+          if (n !== -1) {
+            gobi = true
+          }
+        });
 
   		var dish_type = $('#sel1 :selected').text();
       if (dish_type === "Choose one!") {
@@ -313,7 +336,7 @@ function buttondisplay() {
       var gluten_free = $("input[name=gluten-free]").prop("checked");
       var allergies = $("input[name=allergies]").prop("checked");
       console.log("are we getting here")
-		  var dataString2 = '&recipe_name='+ recipe_name + '&recipe_name_lower='+ recipe_name_lower +'&recipe_image=' + recipe_image + '&dish_type=' + dish_type
+		  var dataString2 = '&recipe_name='+ recipe_name + '&gobi=' + gobi + '&recipe_name_lower='+ recipe_name_lower +'&recipe_image=' + recipe_image + '&dish_type=' + dish_type
                         +'&vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies
                         +'&latitude=' + latitude + '&longitude=' + longitude + "&ingredients="+ingredients+"&steps="+steps + "&est_time="+est_time;
 		  //alert (dataString);return false;

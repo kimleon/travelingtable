@@ -8,9 +8,7 @@ var recipesSchema = new Schema({
 	latitude: Number,
 	longitude: Number,
 	dish_type: String,
-	// instructions: [String],
 	userId: {type: mongoose.Schema.ObjectId, ref: "User"},
-	//ingredients: [String],
 	allergies: Boolean,
 	gluten: Boolean,
 	vegan: Boolean,
@@ -19,7 +17,8 @@ var recipesSchema = new Schema({
 	views: Number,
 	ingredients: [String],
 	instructions: [String],
-	prep_time: Number
+	prep_time: Number,
+	gobi: Boolean
 });
 
 var Recipe = mongoose.model('Recipe', recipesSchema);

@@ -304,7 +304,8 @@ module.exports = function(passport) {
       views: 0,
       ingredients: req.body.ingredients,
       prep_time: req.body.est_time,
-      instructions: req.body.steps
+      instructions: req.body.steps,
+      gobi: req.body.gobi
     });
     //console.log(req.body.steps, 'steps');
     //console.log(req.body.ingredients, 'ingredients');
@@ -656,22 +657,53 @@ router.post('/findMarkers', function(req, res) {
 
 /*VIEWING A SEARCH QUERY FROM A LINK*/
 router.post('/findRecipeOnMap', function(req, res) {
-  var recipeId = req.body.recipeId; //info from ajax get request
-  mongoose.model('Marker').find(
+  var recipeId = req.body.recipeID; //info from ajax get request to find correct marker
+  mongoose.model('Marker').findOne(
     {recipeId: recipeId}, 
-    function(err, markers) {
+    function(err, marker) {
       if (err){
         console.log('error in finding associated marker given the recipe id');
         console.log(err);
+        return;
       }
-      marker = markers[0]
       res.json({
         latitude: marker.latitude,
-        longitude: marker.longitude
+        longitude: marker.longitude,
+        markerID: marker._id
       });
     });
   });
 
+/*I'M FEELING LUCKY*/
+router.post('/feelingLucky', function(req, res) {
+  mongoose.model('Recipe').find(
+    {gobi: true},
+    function(err, recipes){
+      if (err){
+        console.log('error in finding recipes with gobi', err)
+        return;
+      }
+      var total_array = []
+      recipes.forEach(function(recipe){
+        total_array.push(recipe._id)
+      });
+      console.log(total_array);
+      var gobiId = total_array[Math.floor(Math.random() * total_array.length)]
+      mongoose.model('Marker').findOne(
+        {recipeId: gobiId},
+        function(err, marker){
+          if (err) {
+            console.log('error in finding gobi random', err);
+            return;
+          }
+          res.json({
+            latitude: marker.latitude,
+            longitude: marker.longitude,
+            markerID: marker._id 
+          });
+        });
+    });
+});
 return router;
 }
 
