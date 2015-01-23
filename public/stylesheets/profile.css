@@ -6,7 +6,8 @@
 }
 
 body {
-	margin:0
+	margin:0;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .avatar {
@@ -20,7 +21,6 @@ body {
 	width:40vw;
 	background-color:#2dbeb2;
 	color:white;
-	font-family:Helvetica, sans-serif;
 	position:fixed;
 	z-index:2;
 	overflow: auto;
@@ -54,19 +54,8 @@ body {
 	font-size:1.2em;
 }
 
-a:link {
-    color: #f90e61;
-}
-
-/* visited link */
-a:visited {
-    color: #f90e61;
-}
-
-/* mouse over link */
-a:hover {
-    color: 	#FB5690;
-    text-decoration: none;
+.recipes {
+color:white;
 }
 
 
@@ -79,8 +68,13 @@ a:hover {
 	bottom:0;
 	position:fixed;
 	padding:15px;
+	padding-left:40px;
 	overflow:auto;
 }
 
+.recipeimage {
+	float:right;
+	vertical-align: center;
+}
 
 

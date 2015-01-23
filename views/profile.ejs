@@ -53,10 +53,8 @@ $(document).ready(function(){
 <script src="/javascripts/profile_map_scripts.js"></script>
 <script src="/javascripts/validation.js"></script>
 <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/stylesheets/profile.css"/>
-
 <link rel="stylesheet" type="text/css" href="/stylesheets/main.css"/>
-
+<link rel="stylesheet" type="text/css" href="/stylesheets/profile.css"/>
 
 </head>
 
@@ -67,19 +65,21 @@ $(document).ready(function(){
 <div id="profile">
             <div id="profcontents">
 
-            <h4>Welcome,</h4><p><%= username %></p>
+            <h2 style="text-align:center">Welcome, <%= username %></h2>
 
             <script type="text/javascript">randomPic();</script></br>
-            <h4>Recipe:</h4>
-
-            <ul>
+            <h4 style="text-align:center">Check out the recipes you uploaded!</h4><br>
+            <div class="recipes"><ul>
+              <!--": "+ recipetitle[i][0] + is the value of the dish type-->
             <% for(var i=0; i<recipetitle.length; i++) {%>
-               <li><%= recipetitle[i][1]+ ": "+ recipetitle[i][0] %></li>
+               <!--<li><%= "<div id="+recipetitle[i][2]+">"+recipetitle[i][1]+ "</div>" %></li>-->
+               <li><a onclick="profileresult();" id="<%=recipetitle[i][2]%>"><%=recipetitle[i][1]%></a></li>
             <% } %>
-            </ul>
+            </ul></div>
+
+
             </br>
             </br>
-            <p>Check out the recipes you uploaded---></p>
             </br>
             </br>
             <p>Edit your dietary restriction:</p>
@@ -95,16 +95,24 @@ $(document).ready(function(){
                       <div class="checkbox" id="c4">
                         <label><input type="checkbox" name="allergies" id="allergies" value="">No peanuts/soy</label>
                       </div>
-                      <div id="submitted" class="hidden">Preferences submitted! We'll update those for you</div></br>
+                      <div id="submitted" class="hidden">Preferences submitted! We'll update those for you when you search.</div></br>
                       <input type="submit" name="submit" class="dietprefbutton btn-large" id="submit_btn" value="Submit changes" />
             </div>
 </div>
 
 <div id="display">
-  recipe contents display here
-  <h3><div class="recipetitle">Recipe Title</div></h3>
-  <div class="est_time">time</div>
-  <div class="views">views</div>
+            <h3><div class="recipetitle">recipe contents display here</div></h3>
+            <div class="recipeimage"></div>
+            <div class="viewsvotes"></div>
+            <div class="est_time"></div>
+            <div class="recipetype"></div><br>
+            <div class="ingredients"></div>
+            <div class="instructions"></div>
+            <!--div class="vegcheck"></div>
+            <div class="vegancheck"></div>
+            <div class="gfcheck"><br></div>
+            <div class="allergiescheck"></div><br-->
+            
   </div>
 
 

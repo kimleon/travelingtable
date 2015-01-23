@@ -1,3 +1,5 @@
+var map;
+      
 
       function initialize() {
         var new_locations = [];
@@ -86,7 +88,7 @@
 
 		}
 		
-    var map = new google.maps.Map(mapArea, mapOptions);
+    map = new google.maps.Map(mapArea, mapOptions);
 
       google.maps.event.addListener(map, 'idle', function()  {
             console.log('function refreshmap called')
@@ -235,12 +237,12 @@
       'Vegan <input type="checkbox" class="checkbox" disabled="disabled" '+gluten+'Gluten-Free <input type="checkbox"
        class="checkbox" disabled="disabled" '+allergies+'No peanuts/soy <div class="label">Upvotes: </div>'+upvotes+'</div></div>';
        */
-      var contentString = recipe_name + recipe_image;
+      /*var contentString = recipe_name + recipe_image;
       //<div class="checkbox"><label><input type="checkbox" name="upvote" value="">Upvote</label></div>'; 
       var infowindow = new google.maps.InfoWindow({
       content: contentString
        });   
-      infowindow.open(map,marker);
+      infowindow.open(map,marker);*/
       }
       });
 
