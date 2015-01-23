@@ -116,6 +116,7 @@ function initialize() {
   });
 
   heatmap.setMap(map);
+  
 }
 
 function toggleHeatmap() {
