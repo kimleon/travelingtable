@@ -9,14 +9,11 @@ function addInput(divName){
           newdiv.innerHTML = "<div id='input"+(counter + 1)+"'><br> Step " + (counter + 1) + " <br><textarea  class='bigger' type='text'  onkeypress='return separateKey(event)' name='input"+(counter + 1)+"'></textarea><br></div>";
           counter=counter+1;
           document.getElementById(divName).appendChild(newdiv);
-          //console.log(counter)
      }
 }
 
 function removeInput(){
      //find out if last box is empty
-     //var contents = $('#input'+counter).val();
-     //console.log(contents);
      if (counter === 1)  {
           //console.log(counter);
           alert("You cannot remove any more " + counter + " inputs");

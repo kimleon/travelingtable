@@ -228,6 +228,7 @@ body {
 
 .modal-content {
 	border-radius:50px;
+	left: 15%;
 	width:auto;
 	max-width:70%;
 	top:10vh;
