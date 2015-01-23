@@ -262,27 +262,26 @@ function buttondisplay() {
 
 <!--===========================================================================-->
 <!--                       r e c i p e   t a b    
-<!--============================================================================-->
+<!-============================================================================-->
 
 <a href="#"><img src="/graphics/tab.png"  class="handle"/></a>
 <div id="tab">
-
-<div id="inner">
-        <h3><div class="recipetitle"></div></h3>
-        <div class="views"><h3>Welcome to the Travelling Table!</h3><br>Whenever you click on a marker, you can view its recipe in this window. If you log in, you can also upvote and add your own recipes! <br><br>If you want to be particularly adventurous, check out our menu for extras by clicking on the cauliflower icon at the top!<br><br>To see the top 5 recipes on the section of the map you're viewing, search 'top 5' in the search bar.</div><br>
-        <div class="est_time"></div><br>
-        <div class="recipeimage"></div><br>
-        <div class="recipetype">Enjoy!</div><br>
-        <div class="ingredients"></div><br>
-        <div class="instructions"></div><br>
-        <div class="vegcheck"></div>
-        <div class="vegancheck"></div>
-        <div class="gfcheck"><br></div>
-        <div class="allergiescheck"></div><br>
-        <div class="upvotes"></div>
-        <div class="upvotebutton" hidden><a href="#" class="upvotebutton2">Upvote</a></div>
-        <div class="voted">You upvoted this!</div>
-</div>
+    <div id="inner">
+            <h3><div class="recipetitle"></div></h3>
+            <div class="views"><h3>Welcome to the Traveling Table!</h3><br>Whenever you click on a marker, you can view its recipe in this window. If you log in, you can also upvote and add your own recipes! <br><br>If you want to be particularly adventurous, check out our menu for extras by clicking on the cauliflower icon at the top!<br><br>To see the top 5 recipes on the section of the map you're viewing, search 'top 5' in the search bar.</div><br>
+            <div class="est_time"></div><br>
+            <div class="recipeimage"></div><br>
+            <div class="recipetype">Enjoy!</div><br>
+            <div class="ingredients"></div><br>
+            <div class="instructions"></div><br>
+            <div class="vegcheck"></div>
+            <div class="vegancheck"></div>
+            <div class="gfcheck"><br></div>
+            <div class="allergiescheck"></div><br>
+            <div class="upvotes"></div>
+            <div class="upvotebutton" hidden><a href="#" class="upvotebutton2">Upvote</a></div>
+            <div class="voted">You upvoted this!</div>
+    </div>
 </div>
 
 
@@ -291,32 +290,35 @@ function buttondisplay() {
 <!--                       s e a r c h   t a b    
 <!-============================================================================-->
 
-  <div id="search_tab">
-<ul id="search_list">
-<div id="search_inner">
-</div>
-</ul>
+<div id="search_tab">
+  <ul id="search_list">
+    <div id="search_inner"></div>
+  </ul>
 </div>
 
 
 
 
 <!--===========================================================================-->
-<!--                       t o p 5   t a b    
+<!--                       e x t r a s   t a b    
 <!-============================================================================-->
 
 <div id="features" class="hidden brand">
 <a href="/heatmap" class="gray">Heatmap</a><br>
-<a href="#" class="white">Our story</a><br>
+<a id="feeling_lucky" href="/#" onClick="lucky_click()" class="white">I'm feeling lucky</a><br>
 <a href="#" class="gray">About us</a><br>
-<a href="#" class="white">Test</a><br>
-<a href="#" class="gray">Test</a><br>
+<a href="#" class="white">Our story</a><br>
+<!--a href="#" class="gray">Test</a><br>
+<a href="#" class="white">Test</a><br-->
 </div>
 
+<script type="text/javascript">
 
 
-<!--script>
-$(function() {
+
+
+<script>
+/*$(function() {
     $(".brand").hover(function() {
         if ( $("#features").is(":hidden")) {
           console.log('hover');
@@ -327,8 +329,8 @@ $(function() {
         }
       
 })
-  })
-</script-->
+  })*/
+</script>
 
 
 <script>
@@ -336,9 +338,9 @@ $('.handle').click(function() {
   $( "#tab" ).toggle(300);
 });
 
-$('#tab').click(function() {
+/*$('#tab').click(function() {
   $( "#tab" ).toggle(300);
-});
+});*/
 
 </script>
 
@@ -346,21 +348,19 @@ $('#tab').click(function() {
 
 
 $(function() {
-
-              $(".brand").click(function() {
-                  if ( $("#features").hasClass("hidden")) {
-                       $("#features").removeClass("hidden");
-                       $("#features").slideDown("slow");              
-                  } else {
-                       if ( $("#features").is(":hidden")) {
-                           $("#features").slideDown("slow");
-                       } else {
-                          $("#features").slideUp("slow");
-                        }
-              }
-            })
-
-          })
+  $(".brand").click(function() {
+    if ( $("#features").hasClass("hidden")) {
+         $("#features").removeClass("hidden");
+         $("#features").slideDown("slow");              
+    } else {
+       if ( $("#features").is(":hidden")) {
+           $("#features").slideDown("slow");
+       } else {
+          $("#features").slideUp("slow");
+        }
+    }
+  })
+})
 /*
     $(".brand").hover(function() {
         if ( $("#features").hasClass("hidden")) {

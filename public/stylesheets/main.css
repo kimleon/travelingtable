@@ -228,6 +228,7 @@ body {
 
 .modal-content {
 	border-radius:50px;
+	left: 15%;
 	width:auto;
 	max-width:70%;
 	/*top:10vh;*/
@@ -295,7 +296,10 @@ body {
 }
 */
 
-
+/*#search_tab {
+	position: absolute;
+	bottom:0;
+}*/
 
 
 #search_inner {

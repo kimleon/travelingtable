@@ -23,8 +23,8 @@ function initialize() {
   console.log(heatmapdata)
   var mapArea = document.getElementById('map-canvas');
         var mapOptions = {
-          center: new google.maps.LatLng(42.3598, -71.0921),
-          zoom: 6,
+          center: new google.maps.LatLng(40.3598, -98.0921),
+          zoom: 5,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           minZoom: 3,
           maxZoom:7,
@@ -116,7 +116,7 @@ function initialize() {
   });
 
   heatmap.setMap(map);
-  
+
 }
 
 function toggleHeatmap() {
