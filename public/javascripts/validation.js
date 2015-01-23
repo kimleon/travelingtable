@@ -274,8 +274,9 @@ function buttondisplay() {
         $("input#recipe_name").focus();
         return false;
       }
-  		
-  		 var dish_type = $('#sel1 :selected').text();
+  		var recipe_name_lower = recipe_name.toLowerCase();
+
+  		var dish_type = $('#sel1 :selected').text();
       if (dish_type === "Choose one!") {
         $('label#dish_type_error').show();
         $('input#sel1').focus();
@@ -312,7 +313,7 @@ function buttondisplay() {
       var gluten_free = $("input[name=gluten-free]").prop("checked");
       var allergies = $("input[name=allergies]").prop("checked");
       console.log("are we getting here")
-		  var dataString2 = '&recipe_name='+ recipe_name +'&recipe_image=' + recipe_image + '&dish_type=' + dish_type
+		  var dataString2 = '&recipe_name='+ recipe_name + '&recipe_name_lower='+ recipe_name_lower +'&recipe_image=' + recipe_image + '&dish_type=' + dish_type
                         +'&vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies
                         +'&latitude=' + latitude + '&longitude=' + longitude + "&ingredients="+ingredients+"&steps="+steps + "&est_time="+est_time;
 		  //alert (dataString);return false;
@@ -396,7 +397,10 @@ $(function() {
       search_input = search_input.toLowerCase();
       if (search_input === "") {
         return false;
-      } else if (search_input === "top 5"){
+      } else if (search_input === "tea"){
+        console.log("teaaaaa")
+      }
+        else if (search_input === "top 5"){
         console.log("yeeeeeeeeeh")
         var current_edges = map.getBounds()
         var left_coord = current_edges.getSouthWest().lng();

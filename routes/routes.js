@@ -127,7 +127,7 @@ module.exports = function(passport) {
     console.log(final_find);
     search_array = []
     //finds recipes containing search words
-    recipes.Recipe.find({ name: {$regex : '.*'+final_find+'.*'}}, function(err, results){
+    recipes.Recipe.find({ name_lower: {$regex : '.*'+final_find+'.*'}}, function(err, results){
       results.forEach(function(recipe){
         //array of arrays with result ids, names, dish types
         cur_array = [recipe._id, recipe.name, recipe.dish_type]
@@ -302,6 +302,7 @@ module.exports = function(passport) {
     console.log('steps', req.body.steps);
     var newRecipe = new recipes.Recipe({
       name: req.body.recipe_name,
+      name_lower: req.body.recipe_name_lower,
       image: req.body.recipe_image,
       latitude: req.body.latitude,
       longitude: req.body.longitude,
