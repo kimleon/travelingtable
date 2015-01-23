@@ -71,8 +71,7 @@ module.exports = function(passport) {
   });
 
   
-  //PLEASE LET ME PUSH GITHUB PLS PLS PLS
-  /*Viewing top 5 recipes on the map within a given bounds*/
+  /*Viewing top 5 recipes on the map within the current bounds*/
   router.post('/Top5', function(req, res) {
     var bottom = req.body.bottom_coord
     var top = req.body.top_coord
@@ -127,7 +126,7 @@ module.exports = function(passport) {
     console.log(final_find);
     search_array = []
     //finds recipes containing search words
-    recipes.Recipe.find({ name_lower: {$regex : '.*'+final_find+'.*'}}, function(err, results){
+    recipes.Recipe.find({ name_lower : {$regex : '.*'+final_find+'.*'}}, function(err, results){
       results.forEach(function(recipe){
         //array of arrays with result ids, names, dish types
         cur_array = [recipe._id, recipe.name, recipe.dish_type]
@@ -169,15 +168,6 @@ module.exports = function(passport) {
   });
 
 
-  // //recipes from specific user by userId, also gives user info
-  // router.get('/Recipes/:userId', function(req, res) {
-  //  mongoose.model('Recipes').find({user: req.params.userId}, function(err, recipes) {
-  //    mongoose.model('Recipes').populate(recipes, {path: 'User'}, function(err, recipes) {
-  //      res.send(recipes);
-  //    });
-  //  });
-  // });
-
 
   /*HANDLE register things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
   router.get('/RegisterFail', function(req, res){
@@ -186,7 +176,7 @@ module.exports = function(passport) {
       loggedIn: false,
       message: req.flash('signupMessage')
     });
-    });
+  });
 
   router.get('/Register', function(req, res){
   console.log(req.flash('signupMessage'))
@@ -194,7 +184,6 @@ module.exports = function(passport) {
         loggedIn: true,
         message: ' '
       });
-
   });
 
 
@@ -216,8 +205,7 @@ module.exports = function(passport) {
     console.log(req.flash('loginMessage'))
     res.json({
       loggedIn: false,
-      message: req.flash('loginMessage')
-   
+      message: req.flash('loginMessage')   
     });
   });
 
@@ -285,8 +273,7 @@ module.exports = function(passport) {
     console.log('logging out');
     req.logout();
     //console.log("after", req.user.username);
-    res.redirect('/');
-    
+    res.redirect('/');   
   });
 
   /*Adding a new recipe sends you to addrecipe.ejs*/
@@ -486,7 +473,6 @@ router.post('/findMarkers', function(req, res) {
         new_markers: new_markers
       });
     });
-
   });
 
   //recieving and displaying the recipe info for the marker on a modal
@@ -662,10 +648,8 @@ router.post('/findMarkers', function(req, res) {
                 upvotes: recipe_upvotes
           });
         });
-
-        });
+      });
     });
-
   });
 
 

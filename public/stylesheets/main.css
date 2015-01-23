@@ -287,7 +287,10 @@ body {
 }
 */
 
-
+/*#search_tab {
+	position: absolute;
+	bottom:0;
+}*/
 
 
 #search_inner {
