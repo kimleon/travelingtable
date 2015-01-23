@@ -1,34 +1,33 @@
-
-      var map;
-      var currentID;
-      var markers = []
-      var markerClusterer;
-      clusterSettings = {
-          maxZoom: 4,
-          styles: [{
-                  height:55,
-                  url: "/graphics/cluster1.png",
-                  width: 55,
-                  anchorIcon: ["27px", "28px"],
-                  anchor: [6,0]
-                  //anchorIcon: [20, 140]
-                  },
-                  {
-                  height:55,
-                  url: "/graphics/cluster2.png",
-                  width: 55,
-                  anchorIcon: ["27px", "28px"],
-                  anchor: [6,0]
-                  //anchorIcon: [20, 140]
-                  },
-                  {
-                  height:55,
-                  url: "/graphics/cluster3.png",
-                  width: 55,
-                  anchorIcon: ["27px", "28px"],
-                  anchor: [6,0]
-                  //anchorIcon: [20, 140]
-                  }]}
+var map;
+var currentID;
+var markers = []
+var markerClusterer;
+clusterSettings = {
+    maxZoom: 4,
+    styles: [{
+            height:55,
+            url: "/graphics/cluster1.png",
+            width: 55,
+            anchorIcon: ["27px", "28px"],
+            anchor: [6,0]
+            //anchorIcon: [20, 140]
+            },
+            {
+            height:55,
+            url: "/graphics/cluster2.png",
+            width: 55,
+            anchorIcon: ["27px", "28px"],
+            anchor: [6,0]
+            //anchorIcon: [20, 140]
+            },
+            {
+            height:55,
+            url: "/graphics/cluster3.png",
+            width: 55,
+            anchorIcon: ["27px", "28px"],
+            anchor: [6,0]
+            //anchorIcon: [20, 140]
+            }]}
         clusterSettings2 = {
           maxZoom: 4
         }
@@ -122,7 +121,7 @@
 
       }
 		
-      var map = new google.maps.Map(mapArea, mapOptions);
+      map = new google.maps.Map(mapArea, mapOptions);
 
       google.maps.event.addListener(map, 'idle', function()  {
             //console.log('function refreshmap called')
