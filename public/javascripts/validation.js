@@ -410,8 +410,10 @@ function buttondisplay() {
 //<!--=========================== SEARCH FORM-=========================================->
 
 var search_array = [];
+var replace = '';
 
 $(function() {
+
     //console.log('Search function is happening')
     $(".search2").click(function() {
       var search_input = $("input[name=search_input]").val();
@@ -459,11 +461,15 @@ $(function() {
             search_array = data.search_array;
             //console.log(search_array.length);
 
+            if (search_array.length === 0) {
+              console.log('no results');
+              replace = '<div class="white2">no results found</div>'
+            } else {
 
 
 //values in search array: array of [recipeID,name,type]
 
-            var replace = '';
+            replace='';
             counter='white2';
             for (var i=0; i<search_array.length; i++) {
               if (counter==='white2') {
@@ -487,6 +493,7 @@ $(function() {
               //replace=replace+intro+counter+'"><li><a href="#" onclick="result('+quote+input+quote+');">'+search_array[i][1]+': '+search_array[i][2]+"</a></li></div>";
               replace = replace+intro+counter+'"><li><a href="#" onclick="result()" id="'+input+'">'+search_array[i][1]+': '+search_array[i][2]+"</a></li></div>"
             }
+          }
             $("#search_inner").html(replace);
 
           }
