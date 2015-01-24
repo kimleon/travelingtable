@@ -465,7 +465,7 @@ a:hover {
 #all_content {
 	position: fixed;
 	top: 50px;
-	height: 700px;
+	height: 100%;
 	overflow: auto;
 	display: block;
 }
