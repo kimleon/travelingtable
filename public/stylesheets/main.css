@@ -366,7 +366,7 @@ body {
 
 #inner {
   position: fixed;
-  z-index:2;
+  z-index: 2;
   top: 7vh;
   /*height:auto;*/
   /*right:-35vw;*/
@@ -524,7 +524,7 @@ a:hover {
 
 div.our_pictures {
    content:url(https://keralahut.files.wordpress.com/2011/03/gobi-manchurian.jpg);
-   width: 243px;
+   width: 90%;
    height: auto;
    margin-bottom: 10px;
 }​
