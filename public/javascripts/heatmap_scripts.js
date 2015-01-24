@@ -10,24 +10,39 @@ $(document).ready(function(){
           
           $.each(data.markers,function(i,r) {
             heatmapdata.push({
-              location: new google.maps.LatLng(r[0], r[1]),
-              weight: r[3]
+              location: new google.maps.LatLng(r[0], r[1]), weight: r[3]
             }); 
           });
-        }
+        }, async: false
       });
   });
 
+var heatMapData = [
+  {location: new google.maps.LatLng(37.782, -122.447), weight: 3},
+  new google.maps.LatLng(37.782, -122.445),
+  {location: new google.maps.LatLng(37.782, -122.443), weight: 2},
+  {location: new google.maps.LatLng(37.782, -122.441), weight: 3},
+  {location: new google.maps.LatLng(37.782, -122.439), weight: 2},
+  new google.maps.LatLng(37.782, -122.437),
+  {location: new google.maps.LatLng(37.782, -122.435), weight: 0.5},
+
+  {location: new google.maps.LatLng(37.785, -122.447), weight: 3},
+  {location: new google.maps.LatLng(37.785, -122.445), weight: 2},
+  new google.maps.LatLng(37.785, -122.443),
+  {location: new google.maps.LatLng(37.785, -122.441), weight: 0.5},
+  new google.maps.LatLng(37.785, -122.439),
+  {location: new google.maps.LatLng(37.785, -122.437), weight: 2},
+  {location: new google.maps.LatLng(37.785, -122.435), weight: 3}
+];
+
 
 function initialize() {
-  console.log(heatmapdata)
   var mapArea = document.getElementById('map-canvas');
         var mapOptions = {
           center: new google.maps.LatLng(40.3598, -98.0921),
-          zoom: 5,
+          zoom: 1,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           minZoom: 3,
-          maxZoom:7,
           mapTypeControl: false,
           streetViewControl: false,
           zoomControl: false,
@@ -106,7 +121,13 @@ function initialize() {
           ],
 
       }
-    
+  
+  console.log("hmd");
+  console.log(heatmapdata);
+
+  console.log("HMD");
+  console.log(heatMapData);
+
   var map = new google.maps.Map(mapArea, mapOptions);
 
   //var pointArray = new google.maps.MVCArray(taxiData);
@@ -144,6 +165,7 @@ function changeGradient() {
 }
 
 function changeRadius() {
+  console.log(heatmap.get('radius'));
   heatmap.set('radius', heatmap.get('radius') ? null : 20);
 }
 
