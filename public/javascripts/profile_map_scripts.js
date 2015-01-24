@@ -86,7 +86,7 @@ var map;
           },
         ],
 
-		}
+		}//mapoptions
 		
     map = new google.maps.Map(mapArea, mapOptions);
 
@@ -139,7 +139,7 @@ var map;
 
           setMarkers(new_locations); //Create markers from the initial dataset served with the document.
           //ajaxObj.get(); //Start the get cycle.
-        });
+        }); //send the idle function call
 
 
       google.maps.event.addDomListener(map, 'load', function()  {
@@ -181,25 +181,26 @@ var map;
 
 
     var setListener = function(marker) {
-
-      var recipe_name 
-      var recipe_type 
-      var recipe_image
-      var vegetarian
-      var vegan
-      var gluten
-      var allergies
-      var upvotes
-      google.maps.event.addListener(marker,'click',function() {
-            console.log('marker info');
-            console.log(this.customInfo);
-            $.ajax({
+        google.maps.event.addListener(marker,'click',function() {
+        var markerID2 = marker.customInfo;
+        map.panTo(marker.getPosition());
+        var recipe_name;
+        var recipe_type;
+        var recipe_image;
+        var vegetarian;
+        var vegan;
+        var gluten;
+        var allergies;
+        var upvotes;
+        var ingredients;
+        var steps;
+        var est_time;
+        var views;
+          $.ajax({
                 type: "POST",
                 url: "/viewRecipe",
-                data: '&markerID='+marker.customInfo,
+                data: '&markerID='+markerID2,
                 success: function(data) {
-                  console.log('recieving the marker ID');
-                  console.log(data);
                   recipe_name = data.recipe_name
                   recipe_type = data.recipe_type
                   recipe_image = data.recipe_image
@@ -208,46 +209,46 @@ var map;
                   gluten = data.gluten
                   allergies = data.allergies
                   upvotes = data.upvotes
-                       
-            if (vegetarian===true) {
-              vegetarian='checked="checked">';
-            } else {
-              vegetarian='>';
-            }
-            if (vegan===true) {
-              vegan='checked="checked">';
-            } else {
-              vegan='>';
-            }
-            if (gluten===true) {
-              gluten='checked="checked">';
-            } else {
-              gluten='>';
-            }
-            if (allergies===true) {
-              allergies ='checked="checked">';
-            } else {
-              allergies ='>';
-            }
-             /*
-     var contentString = '<div id="window"><div id="title">'+recipe_name+'</div><div id="inside"><div class="label">
-     Dish type:</div></br>'+recipe_type+'</br><div class="label">Recipe Image</div></br><img src="'+recipe_image
-     ' class="image"></br><div class="label">Dietary Restrictions:</div></br>'+'<input type="checkbox" class="checkbox"
-      disabled="disabled" '+vegetarian+' Vegetarian <input type="checkbox" class="checkbox" disabled="disabled" '+vegan+
-      'Vegan <input type="checkbox" class="checkbox" disabled="disabled" '+gluten+'Gluten-Free <input type="checkbox"
-       class="checkbox" disabled="disabled" '+allergies+'No peanuts/soy <div class="label">Upvotes: </div>'+upvotes+'</div></div>';
-       */
-      /*var contentString = recipe_name + recipe_image;
-      //<div class="checkbox"><label><input type="checkbox" name="upvote" value="">Upvote</label></div>'; 
-      var infowindow = new google.maps.InfoWindow({
-      content: contentString
-       });   
-      infowindow.open(map,marker);*/
-      }
-      });
+                  //console.log('data upvotes WAOW: '+data.upvotes)
+                  ingredients = data.ingredients[0].split('~`~,');
+                  steps = data.instructions[0].split('~`~,');
+                  est_time = data.prep_time
+                  views = data.views
+                  //console.log('breakpoint 2')
+                 
+          },
+            async: false
+          });
 
-      });
-    }
+//check if you can upvote or no, if not, itll replace it with a thing that says you voted luls no button nemorez
+
+      console.log(ingredients);
+      var ingredient_display=''
+      for (var i=0; i<ingredients.length;i++) {
+        ingredient_display=ingredient_display+'<li>'+ingredients[i]+'</li>'
+      }
+
+      var instruction_display=''
+      for (var j=0; j<steps.length;j++) {
+        instruction_display=instruction_display+'<li>'+steps[j]+'</li>'
+      }
+
+      $('.recipetitle').html('<div>'+recipe_name+'</div>');
+      $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
+      $('.recipetype').html('<div><strong>Dish Type:</strong> '+recipe_type+'</div>'); 
+      $('.viewsvotes').html('<strong>'+views+'</strong> views, <strong>'+upvotes+'</strong> upvotes');
+      $('.instructions').html('<div><strong>Instructions: </strong><ol>'+instruction_display+'</ol></div>');
+      $('.ingredients').html('<div><strong>Ingredients:</strong> <ul>'+ingredient_display+'</ul></div>');
+      $('.est_time').html('<div><strong>Estimated cook time:</strong>   '+est_time+' hours</div>');
+      
+      })
+      }//closes marker click function
+
+
+      //});
+
+     // });
+    //}
 
   }
 
