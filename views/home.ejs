@@ -145,19 +145,20 @@ function buttondisplay() {
             <div class="modal-body" id="signup_form">
                   Welcome to our site! <br><br>
                     <label for="new_username">Don't have a username? Choose one!</label></br>
-                    <input type="text" name="new_username" id="username" placeholder="Username"></br>
-                    <label class="error" for="new_username" id="new_username_error"> This field is required!</label></br></br>
+                    <input type="text" name="new_username" id="username" placeholder="Username">
+                    <div id="signupfail" class="fail"></div>
+                    <label class="error fail" for="new_username" id="new_username_error"> This field is required!</label></br>
                     
 
 
                     <label for="new_password">Choose a password:</label></br>
                     <input type="password" name="new_password" id="username" placeholder="Password"></br>
-                     <label class="error" for="new_password" id="new_password_error"> This field is required!</label>
+                     <label class="error fail" for="new_password" id="new_password_error"> This field is required!</label>
                   <input type="submit" name="submit" class="signupbutton button2 btn-large" id="submit_btn" value="Send" />
 
           </div>
 
-          <div id='signupmessage1' class="hidden" style="color:black"></br></br><h2>Registration form submitted!</h2><p>Welcome gobi!</p></div>
+          <div id='signupmessage1' class="hidden" style="color:black;text-align:center"></br><h3>Registration form submitted!</h3><br><br></div>
 
 
     </div>
@@ -186,20 +187,21 @@ function buttondisplay() {
               Welcome! Don't have an account? Sign-up!<br><br>
             <label for="username"> Username: </label></br>
               <input type="text" name="username" id="username" placeholder="username"  /></br>
-              <label class="error" for="username" id="username_error"> This field is required!</label></br>
+              <label class="error fail" for="username" id="username_error"> This field is required!</label></br>
               
             <label for="password">Password: </label></br>
               <input type="password" name="password" id="username" placeholder="password"  /></br>
-              <label class="error" for="password" id="password_error"> This field is required!</label>            
+              <label class="error fail" for="password" id="password_error"> This field is required!</label>            
 
 
 
-              <input type="submit" name="submit" class="button button2" id="submit_btn" value="Send" />
+              <input type="submit" name="submit" class="button button2" id="submit_btn" value="Send" /><br>
+              <div id="loginfail" class="fail"></div>
 <!--        </fieldset>
       </form>-->
       </div>
 
-      <div id='loginmessage' class="hidden" style="color:black"></br><h2>Login Form Submitted!</h2></div>
+      <div id='loginmessage' class="hidden" style="color:black;text-align:center"><h3>Login Form Submitted!</h3><br><br></div>
     </div>
   </div>
 </div><!--login bootstrap--></li>

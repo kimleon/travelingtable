@@ -91,8 +91,18 @@ function buttondisplay() {
             $(".upvotebutton").show();
             $(".voted").hide();
             location.reload(true);
-		      }
-          //$('#message').html("<h2>Login Form Submitted!</h2>")
+		      } else {
+            //$('#loginfail').html('failure to log in');
+            console.log('failure');
+            var message = data.message;
+            console.log('message = '+message);
+            console.log(data.message[0]);
+              $('#loginfail').html(message);
+              //$('#loginfail').addClass("informatiemelding");
+              //jQuery("div.informatiemelding").delay(2000).fadeOut("slow");
+            //show failure to login
+          }
+          //$('#message').html("<h3>Login Form Submitted!</h3>")
 		      
 
           //.append("<p>Enjoy the site!</p>")
@@ -181,8 +191,9 @@ function buttondisplay() {
 
             location.reload(true);
 
+            } else {
+            $('#signupfail').html('This username is already taken!');
             }
-            
 		      //$('#signupmessage').html("<h2>Registration form submitted!</h2>")
 		      //.append("<p>Welcome gobi!</p>")
 		      //.hide()

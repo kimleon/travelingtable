@@ -199,10 +199,13 @@ module.exports = function(passport) {
   }))
 
   router.get('/LoginFail', function(req, res) {
-    console.log(req.flash('loginMessage'))
+    //console.log(req.flash('loginMessage'));
+    var message= req.flash('loginMessage')[0]
+    console.log(message)
+    console.log(message)
     res.json({
       loggedIn: false,
-      message: req.flash('loginMessage')   
+      message: message  
     });
   });
 
