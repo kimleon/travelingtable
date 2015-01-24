@@ -10,12 +10,10 @@ var flash = require('connect-flash');
 var mongoose = require('mongoose');
 var fs = require('fs');
 
-<<<<<<< HEAD
-//mongoose.connect('mongodb://heroku_app33378596:u75qr0og5q98feqimtiqmss728@ds031581.mongolab.com:31581/heroku_app33378596');
-=======
-// mongoose.connect('mongodb://heroku_app33378596:u75qr0og5q98feqimtiqmss728@ds031581.mongolab.com:31581/heroku_app33378596');
->>>>>>> 0b60b750ac430140a450184838a97b28fc91446f
-mongoose.connect('mongodb://localhost/test');
+
+mongoose.connect('mongodb://heroku_app33378596:fe1jgskkc0aijfs9lscj4kdgr4@ds031551.mongolab.com:31551/heroku_app33378596');
+
+//mongoose.connect('mongodb://localhost/test');
 
 // //require the AWS module
 // var AWS = require('aws-sdk');
