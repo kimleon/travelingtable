@@ -591,6 +591,8 @@ router.post('/findMarkers', function(req, res) {
       res.render('profile', {
         username: req.user.username,
         recipetitle: []
+        var replace = "<div><h4 tyle='text-align:center'>You haven't uploaded any recipes!</h4><br></div>"
+        $("#recipe_des").html(replace);
       });
     }      
   });
