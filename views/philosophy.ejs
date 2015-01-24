@@ -22,30 +22,30 @@
 
 function buttondisplay() {
     $.ajax({
-        type: "POST",
-        url: "/Refresh",
-        success: function(data) {
-          console.log('LOGGED in var below')
-          console.log(data.authenticated);
-           if (data.authenticated) {
-             $("#log_out").show();
-             $("#log_in").hide();
-             $("#add_recipe").show();
-             $("#sign_up").hide();
-             $("#profile").show();
-             $(".upvotebutton").show();
-             $(".voted").hide();
-           } else {
-             $("#log_out").hide();
-             $("#log_in").show();
-             $("#add_recipe").hide();
-             $("#sign_up").show();
-             $("#profile").hide;
-             $(".upvotebutton").hide();
-             $(".voted").hide();
-           }
-}
-});
+      type: "POST",
+      url: "/Refresh",
+      success: function(data) {
+        console.log('LOGGED in var below')
+        console.log(data.authenticated);
+         if (data.authenticated) {
+           $("#log_out").show();
+           $("#log_in").hide();
+           $("#add_recipe").show();
+           $("#sign_up").hide();
+           $("#profile").show();
+           $(".upvotebutton").show();
+           $(".voted").hide();
+         } else {
+           $("#log_out").hide();
+           $("#log_in").show();
+           $("#add_recipe").hide();
+           $("#sign_up").show();
+           $("#profile").hide;
+           $(".upvotebutton").hide();
+           $(".voted").hide();
+         }
+      }
+    });
 };
 </script>
 
@@ -123,7 +123,7 @@ function buttondisplay() {
 <a href="/heatmap" class="gray">heatmap</a><br>
 <a href="/#" onClick="lucky_click()" class="white">I'm feeling lucky</a><br>
 <a href="/gobiphilosophy" class="gray">the Gobi philosophy</a><br>
-<a href="#" class="white">our story</a><br>
+<a href="/GobiPhilosophy" class="white">our story</a><br>
 </div>
 
 
@@ -132,6 +132,8 @@ function buttondisplay() {
 
 function lucky_click() {
   alert("go home first to use the 'I'm feeling lucky' feature")
+  // console.log("going home");
+  // res.render('home');
 }
 
 
@@ -172,7 +174,11 @@ $(function() {
   <div id="philosophy">
     <h3>The Gobi Philosophy</h3>
     <p>
-      By the way, if you were wondering, “Gobi” means cauliflower in Hindi.  We are three MIT developers who all share a love of food, and, more importantly, we believe in the power of GOBI.  Having travelled around the world on different adventures, we thought to ourselves: IF ONLY there were way to recreate and SEE the unique tastes and flavors of Gobi we sampled (and maybe the other food), in one spot!  This website is meant to allow users to look for and share recipes around the world.  You can explore a cuisine you have always been interested in.  If you create an account, post recipes to share knowledge about the cuisine of your expertise! We can then personalize your experience even more by filtering recipes based on dietary restrictions you specify to us.  Search for recipes by their title, look at the top 5 recipes in a given area, or just go around the world and explore all the recipes our users have shared.  We, the Global Gobis, have really enjoyed making this website and we hope you enjoy this experience as well!  Be sure to test out our “I’m feeling lucky” feature!
+      By the way, if you were wondering, “Gobi” means cauliflower in Hindi.  
+
+      <br><br>
+
+      We are three MIT developers who all share a love of food, and, more importantly, we believe in the power of GOBI.  Having travelled around the world on different adventures, we thought to ourselves: IF ONLY there were way to recreate and SEE the unique tastes and flavors of Gobi we sampled (and maybe the other food), in one spot!  This website is meant to allow users to look for and share recipes around the world.  You can explore a cuisine you have always been interested in.  If you create an account, post recipes to share knowledge about the cuisine of your expertise! We can then personalize your experience even more by filtering recipes based on dietary restrictions you specify to us.  Search for recipes by their title, look at the top 5 recipes in a given area, or just go around the world and explore all the recipes our users have shared.  We, the Global Gobis, have really enjoyed making this website and we hope you enjoy this experience as well!  Be sure to test out our “I’m feeling lucky” feature!
 
 
 
@@ -182,6 +188,7 @@ $(function() {
   <div id="about_us">
     <h3>About Us</h3>
     <div id="our_stories">
+      <div class="group_pic"></div>
       <div id="kiran" class="single_story">
         <h4>Kiran</h4>
 <!--         do we want pictures on this page?? -->

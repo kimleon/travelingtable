@@ -2,7 +2,7 @@
 <!doctype html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Food for Thought</title>
+<title>Traveling Table</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
 <script src="https://maps.google.com/maps/api/js?sensor=true"></script>
@@ -143,7 +143,7 @@ function buttondisplay() {
             
 
             <div class="modal-body" id="signup_form">
-                  Welcome to our site! <br><br>
+                  <div id="welcome_thing">Welcome to our site! </div><br>
                     <label for="new_username">Don't have a username? Choose one!</label></br>
                     <input type="text" name="new_username" id="username" placeholder="Username">
                     <div id="signupfail" class="fail"></div>
@@ -184,7 +184,7 @@ function buttondisplay() {
       <div class="modal-body" id="login_form">
 <!--        <form method="post" name="login" action="">
             <fieldset> -->
-              Welcome! Don't have an account? Sign-up!<br><br>
+            <div id="welcome_thing">  Welcome! <br> Don't have an account? Sign-up instead!</div><br>
             <label for="username"> Username: </label></br>
               <input type="text" name="username" id="username" placeholder="username"  /></br>
               <label class="error fail" for="username" id="username_error"> This field is required!</label></br>
@@ -257,7 +257,7 @@ function buttondisplay() {
 <div id="tab">
     <div id="inner">
             <h3><div class="recipetitle"></div></h3>
-            <div class="views"><h3>Welcome to the Traveling Table!</h3><br>Whenever you click on a marker, you can view its recipe in this window. If you log in, you can also upvote and add your own recipes! <br><br>If you want to be particularly adventurous, check out our menu for extras by clicking on the cauliflower icon at the top!<br><br>To see the top 5 recipes on the section of the map you're viewing, search 'top 5' in the search bar.</div><br>
+            <div class="views"><br><br><h3>Welcome to Traveling Table!</h3><br>Whenever you click on a marker, you can view its recipe in this window. If you log in, you can also upvote and add your own recipes! <br><br>If you want to be particularly adventurous, check out our menu for extras by clicking on the cauliflower icon next to the search bar!<br><br>To see the top 5 recipes on the section of the map you're viewing, search 'top 5' in the search bar.</div><br>
             <div class="est_time"></div><br>
             <div class="recipeimage"></div><br>
             <div class="recipetype">Enjoy!</div><br>
@@ -314,7 +314,7 @@ $(function() {
 <a href="/heatmap" class="gray">heatmap</a><br>
 <a id="feeling_lucky" href="/#" onClick="lucky_click()" class="white" >I'm feeling lucky</a><br>
 <a href="/GobiPhilosophy" class="gray">the Gobi philosophy</a><br>
-<a href="#" class="white">our story</a><br>
+<a href="/GobiPhilosophy" class="white">our story</a><br>
 <!--a href="#" class="gray">Test</a><br>
 <a href="#" class="white">Test</a><br-->
 </div>

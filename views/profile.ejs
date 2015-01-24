@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Profile | Food for Thought</title>
+<title>Profile | Traveling Table</title>
 <script>
 function randomPic() {
     var x = Math.floor((Math.random() * 6) + 1);
@@ -68,7 +68,7 @@ $(document).ready(function(){
             <h2 style="text-align:center">Welcome, <%= username %></h2>
 
             <script type="text/javascript">randomPic();</script></br>
-            <h4 style="text-align:center">Check out the recipes you uploaded!</h4><br>
+            <h4 style="text-align:center"><%= haverecipes %></h4><br>
             <div class="recipes"><ul>
               <!--": "+ recipetitle[i][0] + is the value of the dish type-->
             <% for(var i=0; i<recipetitle.length; i++) {%>

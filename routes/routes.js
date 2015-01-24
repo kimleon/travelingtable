@@ -256,7 +256,8 @@ module.exports = function(passport) {
       console.log(result);
       res.render('profile', {
         username: result.username,
-        recipetitle: "none yet"
+        recipetitle: "none yet",
+        haverecipes: "You don't have any recipes!"
       })
     });
   });
@@ -584,13 +585,15 @@ router.post('/findMarkers', function(req, res) {
          });
         res.render('profile', {
           username: req.user.username,
-          recipetitle: arr
+          recipetitle: arr,
+          haverecipes: "Check out the recipes you uploaded!"
         });
       });
       } else {
       res.render('profile', {
         username: req.user.username,
-        recipetitle: []
+        recipetitle: [],
+        haverecipes: "You haven't uploaded any recipes!"
       });
     }      
   });
