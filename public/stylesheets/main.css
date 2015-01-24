@@ -519,6 +519,17 @@ a:hover {
     border-radius: 10px;
 }
 
+
+
+
+div.our_pictures {
+   content:url(https://keralahut.files.wordpress.com/2011/03/gobi-manchurian.jpg);
+   width: 243px;
+   height: auto;
+   margin-bottom: 10px;
+}​
+
+
 #loginmessage {
 	text-align:center;
 	margin-bottom:10px;
