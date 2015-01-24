@@ -24,4 +24,3 @@ WE NEED TO SEND OUT THE URL SO PEOPLE CAN START ADDING RECIPES
 
 to ask during OH:
 --how to get the search and recipe tabs to stick to the bottom of the nav bar
---replace error images with our default one
