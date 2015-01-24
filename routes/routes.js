@@ -25,6 +25,10 @@ module.exports = function(passport) {
     res.render('home');
   });
 
+  router.get('/plsworkheatmap', function(req, res) {
+    res.render('heatmap2');
+  });
+
 
   //get heat map data and send back
   router.post('/getHeatMapData', function(req, res){
@@ -78,6 +82,7 @@ module.exports = function(passport) {
     console.log("going to philosophy");
     res.render('philosophy');
   });
+
 
   /*Viewing top 5 recipes on the map within the current bounds*/
   router.post('/Top5', function(req, res) {
@@ -305,7 +310,8 @@ module.exports = function(passport) {
       ingredients: req.body.ingredients,
       prep_time: req.body.est_time,
       instructions: req.body.steps,
-      gobi: req.body.gobi
+      gobi: req.body.gobi,
+      extra_info: req.body.extra_info
     });
     //console.log(req.body.steps, 'steps');
     //console.log(req.body.ingredients, 'ingredients');
@@ -537,6 +543,7 @@ router.post('/findMarkers', function(req, res) {
           instructions: instructions,
           prep_time: prep_time,
           views: recipeResult.views
+          extra_info: recipeResult.extra_info
         });
       });
     });
@@ -573,7 +580,7 @@ router.post('/findMarkers', function(req, res) {
       } else {
       res.render('profile', {
         username: req.user.username,
-        recipetitle: "Sorry you have not entered any recipes! please do or else we will disown you."
+        recipetitle: []
       });
     }      
   });
