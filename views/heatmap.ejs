@@ -135,15 +135,20 @@ function buttondisplay() {
 <!-============================================================================-->
 
 <div id="features" class="hidden brand">
-<a href="/heatmap" class="gray">Heatmap</a><br>
-<a href="#" class="white">Our story</a><br>
-<a href="#" class="gray">About us</a><br>
-<a href="#" class="white">Test</a><br>
-<a href="#" class="gray">Test</a><br>
+<a href="/heatmap" class="gray">heatmap</a><br>
+<a href="/#" onClick="lucky_click()" class="white">I'm feeling lucky</a><br>
+<a href="/gobiphilosophy" class="gray">the Gobi philosophy</a><br>
+<a href="#" class="white">our story</a><br>
 </div>
 
 
 <script>
+
+function lucky_click() {
+  alert("go home first to use the 'I'm feeling lucky' feature")
+}
+
+
 $('.handle').click(function() {
   $( "#tab" ).toggle(300);
 });

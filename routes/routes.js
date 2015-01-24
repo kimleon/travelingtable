@@ -692,11 +692,11 @@ router.post('/feelingLucky', function(req, res) {
           if (err) {
             console.log('error in finding gobi random', err);
             return;
+          } else if (marker){
+            var marker_array = [marker.latitude, marker.longitude, marker._id]
           }
           res.json({
-            latitude: marker.latitude,
-            longitude: marker.longitude,
-            markerID: marker._id 
+            marker_array: marker_array
           });
         });
     });
