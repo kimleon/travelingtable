@@ -11,9 +11,11 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 
 
+
 mongoose.connect('mongodb://heroku_app33378596:fe1jgskkc0aijfs9lscj4kdgr4@ds031551.mongolab.com:31551/heroku_app33378596');
 
 //mongoose.connect('mongodb://localhost/test');
+
 
 // //require the AWS module
 // var AWS = require('aws-sdk');
