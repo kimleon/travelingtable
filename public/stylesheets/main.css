@@ -313,7 +313,7 @@ body {
   /*top: 50px-35vh;*/
   top: 50px;
   height:auto;
-  left: 2.5vw;
+  left: 3.5vw;
   width:100px;
   display:inline-block;
   background-color:#F0F5FF;
@@ -545,4 +545,9 @@ div.our_pictures {
 	text-decoration:none;
 	color:#f90e61;
 	font-weight:100;
+}
+
+
+#welcome_thing {
+	text-align: center;
 }
