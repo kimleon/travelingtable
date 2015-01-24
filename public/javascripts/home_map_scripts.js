@@ -246,6 +246,7 @@ clusterSettings = {
       var ingredients
       var est_time
       var views
+      var extra_info
       google.maps.event.addListener(marker,'click',function() {
             //console.log('marker info');
             //console.log(this.customInfo);
@@ -269,6 +270,8 @@ clusterSettings = {
                   steps = data.instructions[0].split('~`~,');
                   est_time = data.prep_time
                   views = data.views
+                  extra_info = data.extra_info
+                  console.log('extra: '+data.extra_info)
                   //console.log('stuff', views, ingredients, steps, est_time);
                        
             if (vegetarian===true) {
@@ -356,23 +359,25 @@ clusterSettings = {
       //infowindow.open(map,marker);
 
       //console.log(vegetarian);
-
+console.log('extra info: '+extra_info);
 
       map.panTo(marker.getPosition());
       $('.recipetitle').html('<div>'+recipe_name+'</div>');
       $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
-      $('.recipetype').html('<div>Dish Type: '+recipe_type+'</div>'); 
-      $('.upvotes').html('<div><h3>Total Votes: </h3></div><div>'+upvotes+' upvotes</div>') 
-      $('.views').html('<div>'+views+' views</div>');
-      $('.instructions').html('<div>Instructions: <ol>'+instruction_display+'</ol></div>');
-      $('.ingredients').html('<div>Ingredients: <ul>'+ingredient_display+'</ul></div>');
-      $('.est_time').html('<div>Estimated cook time:   '+est_time+' hours</div>');
-      $('.vegcheck').html('<div class="reciperestrictions">Meets these dietary restrictions:</div><input type="checkbox" onclick="return false"'+vegetarian);
+      $('.recipetype').html('<div><strong>Dish Type:</strong> '+recipe_type+'</div>'); 
+      $('.upvotes').html('<div><strong>Total Votes: </div><div>'+upvotes+' </strong>upvotes</div>') 
+      $('.views').html('<div><strong>'+views+'</strong> views</div>');
+      $('.instructions').html('<div><strong>Instructions:</strong> <ol>'+instruction_display+'</ol></div>');
+      $('.ingredients').html('<div><strong>Ingredients:</strong> <ul>'+ingredient_display+'</ul></div>');
+      $('.est_time').html('<div><strong>Estimated cook time:  </strong> '+est_time+' hours</div>');
+      $('.vegcheck').html('<div class="reciperestrictions"><strong>Meets these dietary restrictions:</strong></div><input type="checkbox" onclick="return false"'+vegetarian);
       $('.vegancheck').html('<input type="checkbox" onclick="return false"'+vegan);
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
 
-
+            if (extra_info!== '') {
+        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'</div>');
+      }
 
 
 //$('.').html('');

@@ -340,18 +340,20 @@ function buttondisplay() {
 
       //dessert, entree, or appetizer
       //var dish_type = $("#dish_type option:selected").text();
+      var extra_info = $("textarea[name='extra_info']").val();
+      //console.log('extra_info being sent over: '+extra_info);
 
 
       var vegetarian = $("input[name=vegetarian]").prop("checked");
       var vegan = $("input[name=vegan]").prop("checked");
       var gluten_free = $("input[name=gluten-free]").prop("checked");
       var allergies = $("input[name=allergies]").prop("checked");
-      console.log("are we getting here")
+      //console.log("are we getting here")
 		  var dataString2 = '&recipe_name='+ recipe_name + '&gobi=' + gobi + '&recipe_name_lower='+ recipe_name_lower +'&recipe_image=' + recipe_image + '&dish_type=' + dish_type
                         +'&vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies
-                        +'&latitude=' + latitude + '&longitude=' + longitude + "&ingredients="+ingredients+"&steps="+steps + "&est_time="+est_time;
+                        +'&latitude=' + latitude + '&longitude=' + longitude + "&ingredients="+ingredients+"&steps="+steps + "&est_time="+est_time + "&extra_info="+extra_info;
 		  //alert (dataString);return false;
-      console.log("are we getting to this 2nd here")
+      //console.log("are we getting to this 2nd here")
 		  $.ajax({
 		    type: "POST",
 		    url: "/new_recipe",
@@ -575,6 +577,7 @@ $(function() {
         var steps;
         var est_time;
         var views;
+        var extra_info;
 
           $.ajax({
                 type: "POST",
@@ -594,6 +597,7 @@ $(function() {
                   steps = data.instructions[0].split('~`~,');
                   est_time = data.prep_time
                   views = data.views
+                  extra_info = data.extra_info
                   //console.log('stuff', views, ingredients, steps, est_time);
                    
             if (vegetarian===true) {
@@ -659,19 +663,22 @@ $(function() {
         instruction_display=instruction_display+'<li>'+steps[j]+'</li>'
       }
 
-      $('.recipetitle').html('<div>'+recipe_name+'</div>');
+      $('.recipetitle').html('<div><strong>'+recipe_name+'</strong></div>');
       $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
-      $('.recipetype').html('<div>Dish Type: '+recipe_type+'</div>'); 
-      $('.upvotes').html('<div><h3>Total Votes: </h3></div><div>'+upvotes+' upvotes</div>') 
-      $('.views').html('<div>'+views+' views</div>');
-      $('.instructions').html('<div>Instructions: <ol>'+instruction_display+'</ol></div>');
-      $('.ingredients').html('<div>Ingredients: <ul>'+ingredient_display+'</ul></div>');
-      $('.est_time').html('<div>Estimated cook time:   '+est_time+' hours</div>');
-      $('.vegcheck').html('<div class="reciperestrictions">Meets these dietary restrictions:</div><input type="checkbox" onclick="return false"'+vegetarian);
+      $('.recipetype').html('<div><strong>Dish Type:</strong> '+recipe_type+'</div>'); 
+      $('.upvotes').html('<div><strong>Total Votes: </strong></div><div><strong>'+upvotes+' </strong>upvotes</div>') 
+      $('.views').html('<div><strong>'+views+'</strong> views</div>');
+      $('.instructions').html('<div><strong>Instructions: </strong><ol>'+instruction_display+'</ol></div>');
+      $('.ingredients').html('<div><strong>Ingredients: </strong><ul>'+ingredient_display+'</ul></div>');
+      $('.est_time').html('<div><strong>Estimated cook time:</strong>   '+est_time+' hours</div>');
+      $('.vegcheck').html('<div class="reciperestrictions"><strong>Meets these dietary restrictions:</strong></div><input type="checkbox" onclick="return false"'+vegetarian);
       $('.vegancheck').html('<input type="checkbox" onclick="return false"'+vegan);
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
-
+console.log(extra_info);
+      if (extra_info!== '') {
+        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'</div>');
+      }
 
 };
 
@@ -722,6 +729,7 @@ function profileresult() {
         var steps;
         var est_time;
         var views;
+        var extra_info;
           $.ajax({
                 type: "POST",
                 url: "/viewRecipe",
@@ -741,6 +749,7 @@ function profileresult() {
                   steps = data.instructions[0].split('~`~,');
                   est_time = data.prep_time
                   views = data.views
+                  extra_info = data.extra_info
                   //console.log('stuff', views, ingredients, steps, est_time);
             /*       
             if (vegetarian===true) {
@@ -787,6 +796,10 @@ function profileresult() {
       $('.instructions').html('<div><strong>Instructions: </strong><ol>'+instruction_display+'</ol></div>');
       $('.ingredients').html('<div><strong>Ingredients:</strong> <ul>'+ingredient_display+'</ul></div>');
       $('.est_time').html('<div><strong>Estimated cook time:</strong>   '+est_time+' hours</div>');
+      console.log(extra_info);
+      if (extra_info!==''){
+      $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'</div>');
+    }
       /*$('.vegcheck').html('<div class="reciperestrictions">Meets these dietary restrictions:</div><input type="checkbox" onclick="return false"'+vegetarian);
       $('.vegancheck').html('<input type="checkbox" onclick="return false"'+vegan);
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);

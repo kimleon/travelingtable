@@ -542,7 +542,7 @@ router.post('/findMarkers', function(req, res) {
           ingredients: ingredients,
           instructions: instructions,
           prep_time: prep_time,
-          views: recipeResult.views
+          views: recipeResult.views,
           extra_info: recipeResult.extra_info
         });
       });
