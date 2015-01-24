@@ -31,7 +31,7 @@ function buttondisplay() {
              $("#add_recipe").show();
              $("#sign_up").hide();
              $("#profile").show();
-             $(".upvotebutton").show();
+             $(".upvotebutton").hide();
              $(".voted").hide();
            } else {
              $("#log_out").hide();
