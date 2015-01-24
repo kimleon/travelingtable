@@ -359,11 +359,35 @@ clusterSettings = {
       //infowindow.open(map,marker);
 
       //console.log(vegetarian);
-console.log('extra info: '+extra_info);
+      /**
+      console.log('extra info: '+extra_info);
+      $.ajax({
+        type: 'GET',
+        url:recipe_image,
+        success: function(val) {
+          console.log("hi")
+          $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');  
+        },
+        error: function(err) {
+          console.log('happening')
+          recipe_image = "/graphics/GlobalGobi.png"
+          $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');  
+        }, crossDomain: true
+
+      });
+
+*/
+/**
+    var image = new Image(); 
+    image.src = recipe_image
+    if (image.width===0) {
+        recipe_image = '/graphics/GlobalGobi.png'
+    }
+    **/
 
       map.panTo(marker.getPosition());
       $('.recipetitle').html('<div>'+recipe_name+'</div>');
-      $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
+      $('.recipeimage').html('<img id="image" src="'+recipe_image+'" style="width:20vw;height:auto" />');     
       $('.recipetype').html('<div><strong>Dish Type:</strong> '+recipe_type+'</div>'); 
       $('.upvotes').html('<div><strong>Total Votes: </div><div>'+upvotes+' </strong>upvotes</div>') 
       $('.views').html('<div><strong>'+views+'</strong> views</div>');
@@ -377,6 +401,11 @@ console.log('extra info: '+extra_info);
 
             if (extra_info!== '') {
         $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'</div>');
+      }
+
+      var image = document.getElementById('image');
+      image.onerror = function() {
+        image.src = '/graphics/GlobalGobi.png';
       }
 
 
