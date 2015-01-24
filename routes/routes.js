@@ -15,6 +15,16 @@ var isLoggedIn = function(req, res, next) {
   res.redirect('/');
 }
 
+var isAdmin = function(req, res, next) {
+  if (req.isAuthenticated()) {
+    if (req.user.username===deepti)
+      return next();
+  } 
+  res.redirect('/');
+
+
+}
+
 module.exports = function(passport) {
   /**Get heatmap page*/
   router.get('/Heatmap', function(req, res) {
@@ -63,14 +73,14 @@ module.exports = function(passport) {
 
   
   //list of users
-  router.get('/Users', function(req, res) {
+  router.get('/Users', isAdmin, function(req, res) {
     mongoose.model('User').find(function(err, Users) {
       res.send(Users);
     });
   });
 
   //list of recipes
-  router.get('/Recipes', function(req, res) {
+  router.get('/Recipes', isAdmin, function(req, res) {
     mongoose.model('Recipe').find(function(err, recipes) {
       res.send(recipes);
     });
@@ -158,13 +168,13 @@ module.exports = function(passport) {
   
   //NOTE FOR THE TWO BELOW WE WON'T ACTUALLY NEED THEM EVENTUALLY
   //URL to view list of users to check they are getting entered into te database
-  router.get('/Users', function(req, res) {
+  router.get('/Users', isAdmin, function(req, res) {
     mongoose.model('User').find(function(err, users){
       res.send(users);
     });
   });
 
-  router.get('/Markers', function(req, res) {
+  router.get('/Markers', isAdmin, function(req, res) {
     mongoose.model('Marker').find(function(err, markers){
       res.send(markers);
     });
