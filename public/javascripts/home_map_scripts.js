@@ -170,7 +170,8 @@ clusterSettings = {
                           position: new google.maps.LatLng(loc[1], loc[2]),
                           map: map,
                           customInfo: loc[0],
-                          icon:'/graphics/marker.png'
+                          icon:'/graphics/marker.png',
+                          animation: google.maps.Animation.DROP
                       });
 
                       setListener(loc.marker);
@@ -227,7 +228,8 @@ clusterSettings = {
                           position: new google.maps.LatLng(loc[1], loc[2]),
                           map: map,
                           customInfo: loc[0],
-                          icon:'/graphics/marker.png'
+                          icon:'/graphics/marker.png',
+                          //animation: google.maps.Animation.DROP
                       });
                       setListener(loc.marker);
                       markers.push(loc.marker);
