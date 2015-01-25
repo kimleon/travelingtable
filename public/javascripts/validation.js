@@ -167,6 +167,11 @@ function buttondisplay() {
       
       var new_password = $("input[name=new_password]").val();
       console.log(new_password);
+      if( /[^a-zA-Z0-9]/.test( new_password ) ) {
+        $("label#new_password_error2").show();
+        $("input#new_password").focus();
+        return false;
+      }
       new_password = new_password.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
       new_password = new_password.replace(/</g,'');
       new_password = new_password.replace(/>/g,'');
