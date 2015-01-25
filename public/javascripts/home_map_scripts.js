@@ -169,7 +169,8 @@ clusterSettings = {
                       loc.marker = new google.maps.Marker({
                           position: new google.maps.LatLng(loc[1], loc[2]),
                           map: map,
-                          customInfo: loc[0]
+                          customInfo: loc[0],
+                          icon:'/graphics/marker.png'
                       });
 
                       setListener(loc.marker);
@@ -225,7 +226,8 @@ clusterSettings = {
                       loc.marker = new google.maps.Marker({
                           position: new google.maps.LatLng(loc[1], loc[2]),
                           map: map,
-                          customInfo: loc[0]
+                          customInfo: loc[0],
+                          icon:'/graphics/marker.png'
                       });
                       setListener(loc.marker);
                       markers.push(loc.marker);
