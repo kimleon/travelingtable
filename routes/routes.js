@@ -304,6 +304,7 @@ module.exports = function(passport) {
     console.log('this post request is happening new recip');
     console.log('ingredients', req.body.ingredients)
     console.log('steps', req.body.steps);
+    console.log(req.body.dish_type, 'dish_type')
     var newRecipe = new recipes.Recipe({
       name: req.body.recipe_name,
       name_lower: req.body.recipe_name_lower,
@@ -677,7 +678,8 @@ router.post('/findMarkers', function(req, res) {
 
 /*VIEWING A SEARCH QUERY FROM A LINK*/
 router.post('/findRecipeOnMap', function(req, res) {
-  var recipeId = req.body.recipeID; //info from ajax get request to find correct marker
+  var recipeId = req.body.recipeID;
+  //console.log(recipeId, 'reci id') //info from ajax get request to find correct marker
   mongoose.model('Marker').findOne(
     {recipeId: recipeId}, 
     function(err, marker) {

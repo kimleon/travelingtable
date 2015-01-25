@@ -101,11 +101,16 @@ styles: [
   // Adds a marker at the center of the map.
 }
 
+
+
 // Add a marker to the map and push to the array.
 function addMarker(location) {
   var locations = [];
   locations.push(location);
   var elevation;
+
+   //var icon = {"/graphics/add.png",new google.maps.Size(40,39)};
+
   var positionalRequest = { 'locations': locations }
     elevator.getElevationForLocations(positionalRequest, function(results, status) {
     if (status == google.maps.ElevationStatus.OK && results[0]) {
@@ -125,7 +130,8 @@ function addMarker(location) {
   marker = new google.maps.Marker({
     position: location,
     map: map,
-  icon: "graphics/addmarker.png"
+  icon: "graphics/addsmall.png"
+  //icon:icon
 });
   };
     }});

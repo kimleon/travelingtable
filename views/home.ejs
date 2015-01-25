@@ -147,7 +147,7 @@ function buttondisplay() {
                     <label for="new_username">Don't have a username? Choose one!</label></br>
                     <input type="text" name="new_username" id="username" placeholder="Username">
                     <div id="signupfail" class="fail"></div>
-                    <label class="error fail" for="new_username" id="new_username_error"> This field is required!</label></br>
+                    <label class="error fail" for="new_username" id="new_username_error"> This field is required!</label>
                     <label class="error fail" for="new_username" id="new_username_error2"> Your username can only contain numbers and letters!</label></br>
                     
 
@@ -155,6 +155,7 @@ function buttondisplay() {
                     <label for="new_password">Choose a password:</label></br>
                     <input type="password" name="new_password" id="username" placeholder="Password"></br>
                      <label class="error fail" for="new_password" id="new_password_error"> This field is required! Passwords cannot contain these characters: ${}&lt;&gt;</label>
+                     <label class="error fail" for="new_password" id="new_password_error2"> Your password can only contain numbers and letters!</label>
                   <input type="submit" name="submit" class="signupbutton button2 btn-large" id="submit_btn" value="Send" />
 
           </div>
@@ -178,17 +179,17 @@ function buttondisplay() {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+              <button type="button" id = "close_modal" class="close" data-dismiss="modal" aria-hidden="true">X</button>
               <h2 class="modal-title" id="myModalLabel">Login</h2>
             </div>
 
       <div class="modal-body" id="login_form">
 <!--        <form method="post" name="login" action="">
             <fieldset> -->
-            <div id="welcome_thing">  Welcome! <br> Don't have an account? Sign-up instead!</div><br>
+             <div id="welcome_thing">  Welcome! <br> Don't have an account? <a href="#" onclick="linkToSignUp()">Sign-up</a> instead!</div><br>
             <label for="username"> Username: </label></br>
               <input type="text" name="username" id="username" placeholder="username"  /></br>
-              <label class="error fail" for="username" id="username_error"> This field is required!</label></br>
+              <label class="error fail" for="username" id="username_error"> This field is required!</label>
               <label class="error fail" for="username" id="username_error2"> Usernames can only contain numbers and letters!</label></br>
               
             <label for="password">Password: </label></br>
@@ -444,7 +445,7 @@ function lucky_click() {
       }
 
       $('.recipetitle').html('<div>'+recipe_name+'</div>');
-      $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
+      $('.recipeimage').html('<img id = "image" src="'+recipe_image+'" style="width:20vw;height:auto" />');     
       $('.recipetype').html('<div>Dish Type: '+recipe_type+'</div>'); 
       $('.upvotes').html('<div><h3>Total Votes: </h3></div><div>'+upvotes+' upvotes</div>') 
       $('.views').html('<div>'+views+' views</div>');
@@ -455,6 +456,12 @@ function lucky_click() {
       $('.vegancheck').html('<input type="checkbox" onclick="return false"'+vegan);
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
+
+
+      //var image = document.getElementById('image');
+        //image.onerror = function() {
+        //image.src = '/graphics/GlobalGobi.png';
+      //}
 
     }
   });

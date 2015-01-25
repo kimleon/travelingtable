@@ -1,3 +1,11 @@
+//TO PROVIDE USER AUTHENTICATION, we used the Passport library along with these tutorials/documentation:
+//http://passportjs.org/guide/authenticate/
+//http://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
+//https://scotch.io/tutorials/easy-node-authentication-setup-and-local
+
+
+
+
 // load all the things we need
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -19,13 +27,13 @@ module.exports = function(passport) {
 			//if no user is found, return an error message
 			if (!user) {
 
-				return done(null, false, req.flash('loginMessage', 'Are you sure this is the correct username?  It is okay, you can try again!'));
+				return done(null, false, req.flash('loginMessage', 'This username does not seem to exist in our database.  Sorry about that.'));
 			} 
 
 			//else, you want to check username and password match
 			if(!user.validPassword(password)){
 				console.log('The username is wrong we are reaching to this point')
-				return done(null, false, req.flash('loginMessage', 'You did bad, the password is WRONG.  Sorry dude.'));					
+				return done(null, false, req.flash('loginMessage', 'Sorry, this password seems to be incorrect.  Try again, we believe in you!'));					
 			}
 
 			//else, all is well, return the successful user
