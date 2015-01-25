@@ -455,10 +455,24 @@ $(function() {
             top5_array = data.top5_array;
             console.log(top5_array.length);
 
-
+            counter='white2';
             var replace = '';
             for (var i=0; i<top5_array.length; i++) {
-              replace=replace+"<div><li>"+top5_array[i][3]+' upvotes: '+top5_array[i][1]+', '+top5_array[i][2]+"</li></div>"
+              if (counter==='white2') {
+                counter = 'gray2'
+              } else {
+                counter = 'white2'
+              }
+              var intro = '<div class="';
+              var next = '"><li><a href="#" onclick="resultClick(';
+              var next2 = ')';
+              var next3 = '">';
+              var next4 = ': ';
+              var next5 = "</a></li></div>";
+              var quote = '"';
+              var input = String(top5_array[i][0]);
+              replace = replace+intro+counter+'"><li><a href="#" onclick="result()" id="'+input+'">'+top5_array[i][3]+' upvotes: '+top5_array[i][1]+', '+top5_array[i][2]+"</a></li></div>"
+              //replace=replace+"<div><li>"+top5_array[i][3]+' upvotes: '+top5_array[i][1]+', '+top5_array[i][2]+"</li></div>"
             }
             $("#search_inner").html(replace);
 
@@ -504,7 +518,7 @@ $(function() {
               //replace=replace+"<div class='"+counter+"'><li><a href='#' onclick='resultClick('"+search_array[i][0]+"')"+"'>"+search_array[i][1]+': '+search_array[i][2]+"</a></li></div>"
               //replace = replace+intro+counter+next+search_array[i][0]+next2+next3+search_array[i][1]+next4+search_array[i][2]+next5;
               //replace=replace+intro+counter+'"><li><a href="#" onclick="result('+quote+input+quote+');">'+search_array[i][1]+': '+search_array[i][2]+"</a></li></div>";
-              replace = replace+intro+counter+'"><li><a href="#" onclick="result()" id="'+input+'">'+search_array[i][1]+': '+search_array[i][2]+"</a></li></div>"
+              replace = replace+intro+counter+'"><li><a href="#" onclick="result()" id="'+input+'">'+search_array[i][1]+', '+search_array[i][2]+"</a></li></div>"
             }
           }
             $("#search_inner").html(replace);
@@ -666,7 +680,7 @@ $(function() {
       $('.recipetitle').html('<div><strong>'+recipe_name+'</strong></div>');
       $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
       $('.recipetype').html('<div><strong>Dish Type:</strong> '+recipe_type+'</div>'); 
-      $('.upvotes').html('<div><strong>Total Votes: </strong></div><div><strong>'+upvotes+' </strong>upvotes</div>') 
+      $('.upvotes').html('<div><strong>'+upvotes+' </strong>upvotes</div>') 
       $('.views').html('<div><strong>'+views+'</strong> views</div>');
       $('.instructions').html('<div><strong>Instructions: </strong><ol>'+instruction_display+'</ol></div>');
       $('.ingredients').html('<div><strong>Ingredients: </strong><ul>'+ingredient_display+'</ul></div>');
