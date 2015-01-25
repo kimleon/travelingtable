@@ -154,7 +154,7 @@ function buttondisplay() {
 
                     <label for="new_password">Choose a password:</label></br>
                     <input type="password" name="new_password" id="username" placeholder="Password"></br>
-                     <label class="error fail" for="new_password" id="new_password_error"> This field is required!</label>
+                     <label class="error fail" for="new_password" id="new_password_error"> This field is required! Passwords cannot contain these characters: ${}&lt;&gt;</label>
                   <input type="submit" name="submit" class="signupbutton button2 btn-large" id="submit_btn" value="Send" />
 
           </div>
@@ -178,14 +178,14 @@ function buttondisplay() {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+              <button type="button" id = "close_modal" class="close" data-dismiss="modal" aria-hidden="true">X</button>
               <h2 class="modal-title" id="myModalLabel">Login</h2>
             </div>
 
       <div class="modal-body" id="login_form">
 <!--        <form method="post" name="login" action="">
             <fieldset> -->
-            <div id="welcome_thing">  Welcome! <br> Don't have an account? Sign-up instead!</div><br>
+             <div id="welcome_thing">  Welcome! <br> Don't have an account? <a href="#" onclick="linkToSignUp()">Sign-up</a> instead!</div><br>
             <label for="username"> Username: </label></br>
               <input type="text" name="username" id="username" placeholder="username"  /></br>
               <label class="error fail" for="username" id="username_error"> This field is required!</label></br>
@@ -193,7 +193,7 @@ function buttondisplay() {
               
             <label for="password">Password: </label></br>
               <input type="password" name="password" id="username" placeholder="password"  /></br>
-              <label class="error fail" for="password" id="password_error"> This field is required!</label>            
+              <label class="error fail" for="password" id="password_error"> This field is required! Passwords cannot contain these characters: ${}&lt;&gt;</label>            
 
 
 
