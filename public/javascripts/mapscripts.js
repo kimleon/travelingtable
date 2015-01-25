@@ -120,7 +120,7 @@ function addMarker(location) {
       } else {
         elevation = false;
       }
-      console.log(elevation);
+      // console.log(elevation);
 
 
   if (marker) {

@@ -28,13 +28,17 @@ clusterSettings = {
             anchor: [6,0]
             //anchorIcon: [20, 140]
             }]}
-        clusterSettings2 = {
+        clusterSettings3 = {
           maxZoom: 4,
           styles:[{
             height:42,
             width:43,
             url:"/graphics/cluster.png"
           }]
+        }
+
+        clusterSettings2 = {
+          maxZoom: 4
         }
       function initialize() {
         
@@ -345,10 +349,10 @@ clusterSettings = {
               }}});
 
       //var newing = ingredients.split(',');
-      console.log('totals');
-      console.log(ingredients.length);
-      console.log(steps.length);
-      console.log(ingredients[0]);
+      // console.log('totals');
+      // console.log(ingredients.length);
+      // console.log(steps.length);
+      // console.log(ingredients[0]);
 
 
       var ingredient_display=''
@@ -417,7 +421,7 @@ clusterSettings = {
       }
 
       var image = document.getElementById('image');
-      console.log('this one is happening');
+      // console.log('this one is happening');
       image.onerror = function() {
         image.src = '/graphics/GlobalGobi.png';
       }
@@ -444,14 +448,14 @@ clusterSettings = {
 //if you can vote and you choose to...
 $(function() {
     $(".upvotebutton2").click(function() {
-      console.log('are we gettitng here', currentID);
+      // console.log('are we gettitng here', currentID);
     $.ajax({
         type: "POST",
         url: "/Upvote",
         data: "&markerID="+currentID,
         success: function(data) {
           upvotes = data.upvotes;
-          console.log('current upvotes,', upvotes)
+          // console.log('current upvotes,', upvotes)
           //$('.upvotebutton').html('You upvoted this!');
           $('.voted').show();
           $('.upvotebutton').hide();
@@ -462,12 +466,12 @@ $(function() {
 });
 
 function refreshMapCluster() {
-        console.log('refresh map is called');
+        // console.log('refresh map is called');
         if (markerClusterer != null) {
           markerClusterer.clearMarkers();
         }
         markerClusterer = new MarkerClusterer(map, markers);
-        console.log(markerClusterer);
+        // console.log(markerClusterer);
       }
 
 

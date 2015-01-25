@@ -156,7 +156,7 @@ function buttondisplay() {
                     <input type="password" name="new_password" id="username" placeholder="Password"></br>
                      <label class="error fail" for="new_password" id="new_password_error"> This field is required! Passwords cannot contain these characters: ${}&lt;&gt;</label>
                      <label class="error fail" for="new_password" id="new_password_error2"> Your password can only contain numbers and letters!</label>
-                  <input type="submit" name="submit" class="signupbutton button2 btn-large" id="submit_btn" value="Send" />
+                  <input type="submit" name="submit" class="signupbutton button2 btn-large" id="submit_btn" value="Sign Up!" />
 
           </div>
 
@@ -198,7 +198,7 @@ function buttondisplay() {
 
 
 
-              <input type="submit" name="submit" class="button button2" id="submit_btn" value="Send" /><br>
+              <input type="submit" name="submit" class="button button2" id="submit_btn" value="Login!" /><br>
               <div id="loginfail" class="fail"></div>
 <!--        </fieldset>
       </form>-->
@@ -445,7 +445,7 @@ function lucky_click() {
       }
 
       $('.recipetitle').html('<div>'+recipe_name+'</div>');
-      $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
+      $('.recipeimage').html('<img id = "image" src="'+recipe_image+'" style="width:20vw;height:auto" />');     
       $('.recipetype').html('<div>Dish Type: '+recipe_type+'</div>'); 
       $('.upvotes').html('<div><h3>Total Votes: </h3></div><div>'+upvotes+' upvotes</div>') 
       $('.views').html('<div>'+views+' views</div>');
@@ -456,6 +456,12 @@ function lucky_click() {
       $('.vegancheck').html('<input type="checkbox" onclick="return false"'+vegan);
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
+
+
+      //var image = document.getElementById('image');
+        //image.onerror = function() {
+        //image.src = '/graphics/GlobalGobi.png';
+      //}
 
     }
   });

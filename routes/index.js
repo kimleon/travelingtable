@@ -36,7 +36,7 @@ router.post('/Recipes', function(req, res) {
   
   //at this point newRecipe is only in memory
   newRecipe.save(function(err, result) {
-  	console.log(result);
+  	// console.log(result);
   	//this is not redirecting at the moment
   	res.redirect('/recipes/' + result._id);
   });
@@ -56,7 +56,7 @@ router.get('/Recipes', function(req, res) {
 router.get('/Recipes/:id', function(req, res) {
   var recipeId = req.param('id');
   recipes.Recipe.findOne({_id: recipeId}, function(err, result) {
-    console.log(result);
+    // console.log(result);
     res.render('singlerecipe', { recipe: result });
   });
 });

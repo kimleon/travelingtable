@@ -1,3 +1,9 @@
+//TO PROVIDE USER AUTHENTICATION, we used the Passport library along with these tutorials/documentation:
+//http://passportjs.org/guide/authenticate/
+//http://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
+//https://scotch.io/tutorials/easy-node-authentication-setup-and-local
+
+
 //load all the things we need
 var localStrategy = require('passport-local').Strategy;
 
