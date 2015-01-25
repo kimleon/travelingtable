@@ -154,7 +154,7 @@ function buttondisplay() {
 
                     <label for="new_password">Choose a password:</label></br>
                     <input type="password" name="new_password" id="username" placeholder="Password"></br>
-                     <label class="error fail" for="new_password" id="new_password_error"> This field is required!</label>
+                     <label class="error fail" for="new_password" id="new_password_error"> This field is required! Passwords cannot contain these characters: ${}&lt;&gt;</label>
                   <input type="submit" name="submit" class="signupbutton button2 btn-large" id="submit_btn" value="Send" />
 
           </div>
@@ -193,7 +193,7 @@ function buttondisplay() {
               
             <label for="password">Password: </label></br>
               <input type="password" name="password" id="username" placeholder="password"  /></br>
-              <label class="error fail" for="password" id="password_error"> This field is required!</label>            
+              <label class="error fail" for="password" id="password_error"> This field is required! Passwords cannot contain these characters: ${}&lt;&gt;</label>            
 
 
 

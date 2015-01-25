@@ -71,6 +71,9 @@ function buttondisplay() {
       }
   		
   		var password = $("input[name=password]").val();
+      password = password.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
+      password = password.replace(/</g,'');
+      password = password.replace(/>/g,'');
   		if (password === "") {
         $("label#password_error").show();
         $("input#password").focus();
@@ -164,12 +167,14 @@ function buttondisplay() {
       
       var new_password = $("input[name=new_password]").val();
       console.log(new_password);
+      new_password = new_password.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
+      new_password = new_password.replace(/</g,'');
+      new_password = new_password.replace(/>/g,'');
       if (new_password === "") {
         $("label#new_password_error").show();
         $("input#new_password").focus();
         return false;
       }
-      
 
       var vegetarian = $("input[name=vegetarian]").prop("checked");
       var vegan = $("input[name=vegan]").prop("checked");
@@ -457,6 +462,9 @@ $(function() {
     //console.log('Search function is happening')
     $(".search2").click(function() {
       var search_input = $("input[name=search_input]").val();
+      search_input = search_input.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
+      search_input = search_input.replace(/</g,'');
+      search_input = search_input.replace(/>/g,'');
       console.log("search input")
       console.log(search_input)
       search_input = search_input.toLowerCase();
