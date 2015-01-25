@@ -234,14 +234,22 @@ var map;
       }
 
       $('.recipetitle').html('<div>'+recipe_name+'</div>');
-      $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
+      $('.recipeimage').html('<img id="imagez" src="'+recipe_image+'" style="width:20vw;height:auto" />');     
       $('.recipetype').html('<div><strong>Dish Type:</strong> '+recipe_type+'</div>'); 
       $('.viewsvotes').html('<strong>'+views+'</strong> views, <strong>'+upvotes+'</strong> upvotes');
       $('.instructions').html('<div><strong>Instructions: </strong><ol>'+instruction_display+'</ol></div>');
       $('.ingredients').html('<div><strong>Ingredients:</strong> <ul>'+ingredient_display+'</ul></div>');
       $('.est_time').html('<div><strong>Estimated cook time:</strong>   '+est_time+' hours</div>');
       
-      })
+      var images = document.getElementById('imagez');
+
+      images.onerror = function() {
+        console.log('this functn is being applied')
+        images.src = '/graphics/GlobalGobi.png';
+      }
+      });
+
+      
       }//closes marker click function
 
 

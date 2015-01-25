@@ -404,6 +404,7 @@ clusterSettings = {
       }
 
       var image = document.getElementById('image');
+      console.log('this one is happening');
       image.onerror = function() {
         image.src = '/graphics/GlobalGobi.png';
       }
