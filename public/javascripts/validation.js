@@ -342,7 +342,8 @@ function buttondisplay() {
           }
         });
 
-  		var dish_type = $('#sel1 :selected').text();
+      var dish_type = $("#sel1 option:selected").text();
+  		//var dish_type = $('#sel1 :selected').text();
       if (dish_type === "Choose one!") {
         $('label#dish_type_error').show();
         $('input#sel1').focus();
@@ -370,17 +371,18 @@ function buttondisplay() {
         return false;
       }
 
+
       String.prototype.endsWith = function(suffix) {
         return this.match(suffix+"$") == suffix;
       };
 
-      if (!recipe_image.endsWith(".png") && !recipe_image.endsWith(".jpg")) {
+      if (!recipe_image.endsWith(".png") && !recipe_image.endsWith(".jpg") && !recipe_image.endsWith(".gif")) {
         $("label#recipe_image_error234").show();
         $("input#recipe_image").focus();
         return false;
       }
 
-      var dish_type = $("#sel1 option:selected").text();
+
       var extra_info = $("textarea[name='extra_info']").val();
       extra_info = extra_info.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
       extra_info = extra_info.replace(/</g,'');
@@ -403,6 +405,7 @@ function buttondisplay() {
 		    url: "/new_recipe",
 		    data: dataString2,
 		    success: function() {
+          console.log('success');
 		      $('#recipe_form').html("<div id='recipemessage'><h2>Recipe submitted!</h2><p>Thank you so much for your contribution!</p></div>");
           //setTimeout(function() { 
 
@@ -419,7 +422,7 @@ function buttondisplay() {
 		    }
 		  });
 		  return false;
-    $('#recipe_form').html("<div id='recipemessage'></div>");
+    //$('#recipe_form').html("<div id='recipemessage'></div>");
 
 
 
@@ -452,10 +455,12 @@ function buttondisplay() {
             url: "/updateRestrictions",
             data: dataString5,
             success: function() {
-              $('#submitted').removeClass("hidden");
-              $('#submitted').addClass("informatiemelding");
-              jQuery("div.informatiemelding").delay(2000).fadeOut("slow");
-
+              //$('#submitted').removeClass("hidden");
+              //$('#submitted').addClass("informatiemelding");
+              $('#submitted').show();
+              jQuery("#submitted").delay(2500).fadeOut("slow");
+              //jQuery("div.informatiemelding").delay(3000).fadeOut("slow");
+              //setTimeout(hide, 5000);
             }
           });
 
@@ -464,7 +469,9 @@ function buttondisplay() {
   });
           //alert (dataString);return false;
 
-
+function hide(){
+  $('#submitted').addClass("hidden")
+}
 
 //<!--=========================== SEARCH FORM-=========================================->
 
@@ -745,7 +752,7 @@ $(function() {
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
 // console.log(extra_info);
       if (extra_info!== '') {
-        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'</div>');
+        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
       }
 
       var images = document.getElementById('imagez');
@@ -873,7 +880,7 @@ function profileresult() {
       $('.est_time').html('<div><strong>Estimated cook time:</strong>   '+est_time+' hours</div>');
       // console.log(extra_info);
       if (extra_info!==''){
-      $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'</div>');
+      $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
     }
 
     var image = document.getElementById('images');
