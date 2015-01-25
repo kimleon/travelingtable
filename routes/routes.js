@@ -574,7 +574,7 @@ router.post('/findMarkers', function(req, res) {
     if (user_recipes.length !==0) {
     console.log('user recipes below:');
     console.log(user_recipes);
-     mongoose.model('Recipe').find({ _id: { $in: user_recipes}}, function(err, foods) {
+     mongoose.model('Recipe').find({ userId: req.user._id}, function(err, foods) {
         if (err) {
           console.log('error in finding recipe associated with user');
           console.log(err);
@@ -726,6 +726,17 @@ router.post('/feelingLucky', function(req, res) {
           });
         });
     });
+});
+
+router.post('/deleteRecipe', function(req, res) {
+  var recipeID = req.body.recipeID
+  var markerID = req.body.markerID
+
+  Mongoose.model('Recipe').remove(
+    {_id: recipeID});
+
+   Mongoose.model('Marker').remove(
+    {_id: markerID});
 });
 return router;
 }
