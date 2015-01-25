@@ -2,6 +2,10 @@
 //https://developers.google.com/maps/documentation/javascript/examples/layer-heatmap
 var map, pointarray, heatmap;
 var heatmapdata = []
+var heatmapdata2 = []
+
+var upvotes = false;
+var views = true;
 $(document).ready(function(){
     $.ajax({
         type: 'POST',
@@ -12,8 +16,13 @@ $(document).ready(function(){
           $.each(data.markers,function(i,r) {
             heatmapdata.push({
               location: new google.maps.LatLng(r[0], r[1]), weight: r[3]
-            }); 
+            });
+            heatmapdata2.push({
+              location: new google.maps.LatLng(r[0], r[1]), 
+              weight: r[2]
+            });
           });
+        
         }, async: false
       });
   });
@@ -155,6 +164,22 @@ function changeRadius() {
 
 function changeOpacity() {
   heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+}
+
+function changeData() {
+  if (upvotes) {
+    views = true;
+    upvotes = false;
+    heatmap.setData(heatmapdata);
+    $("#viewsvotes").html("Change to Upvotes")
+    changeGradient();
+  } else {
+    upvotes = true;
+    views = false
+    heatmap.setData(heatmapdata2);
+    $("#viewsvotes").html("Change to Views")
+    changeGradient();
+  }
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

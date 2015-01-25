@@ -680,7 +680,7 @@ router.post('/findMarkers', function(req, res) {
 /*VIEWING A SEARCH QUERY FROM A LINK*/
 router.post('/findRecipeOnMap', function(req, res) {
   var recipeId = req.body.recipeID;
-  //console.log(recipeId, 'reci id') //info from ajax get request to find correct marker
+  console.log(recipeId, 'reci id') //info from ajax get request to find correct marker
   mongoose.model('Marker').findOne(
     {recipeId: recipeId}, 
     function(err, marker) {
@@ -689,6 +689,7 @@ router.post('/findRecipeOnMap', function(req, res) {
         console.log(err);
         return;
       }
+      console.log(marker, 'marker');
       res.json({
         latitude: marker.latitude,
         longitude: marker.longitude,
