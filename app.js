@@ -12,9 +12,9 @@ var fs = require('fs');
 
 
 
-mongoose.connect('mongodb://heroku_app33378596:fp34u9pr1em6gl7cccpi3ii5ra@ds031681.mongolab.com:31681/heroku_app33378596');
+//mongoose.connect('mongodb://heroku_app33378596:fp34u9pr1em6gl7cccpi3ii5ra@ds031681.mongolab.com:31681/heroku_app33378596');
 
-//mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/test');
 
 
 // //require the AWS module
@@ -74,7 +74,7 @@ app.use('/', routes);
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
-    res.render('404');
+    next(err);
 });
 
 // error handlers

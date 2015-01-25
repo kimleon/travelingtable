@@ -106,11 +106,11 @@ function initialize() {
 
       }
   
-  console.log("hmd");
-  console.log(heatmapdata);
+  //console.log("hmd");
+  //console.log(heatmapdata);
 
-  console.log("HMD");
-  console.log(heatMapData);
+  //console.log("HMD");
+  //console.log(heatMapData);
 
   var map = new google.maps.Map(mapArea, mapOptions);
 

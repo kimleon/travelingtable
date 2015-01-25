@@ -369,11 +369,12 @@ function buttondisplay() {
         $("input#recipe_image").focus();
         return false;
       }
-      recipe_image = recipe_image.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
-      recipe_image = recipe_image.replace(/</g,'');
-      recipe_image = recipe_image.replace(/>/g,'');
+      //recipe_image = recipe_image.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
+      //recipe_image = recipe_image.replace(/</g,'');
+      //recipe_image = recipe_image.replace(/>/g,'');
       //dessert, entree, or appetizer
-      //var dish_type = $("#dish_type option:selected").text();
+
+      var dish_type = $("#sel1 option:selected").text();
       var extra_info = $("textarea[name='extra_info']").val();
       extra_info = extra_info.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
       extra_info = extra_info.replace(/</g,'');

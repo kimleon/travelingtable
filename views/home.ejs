@@ -445,7 +445,7 @@ function lucky_click() {
       }
 
       $('.recipetitle').html('<div>'+recipe_name+'</div>');
-      $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
+      $('.recipeimage').html('<img id = "image" src="'+recipe_image+'" style="width:20vw;height:auto" />');     
       $('.recipetype').html('<div>Dish Type: '+recipe_type+'</div>'); 
       $('.upvotes').html('<div><h3>Total Votes: </h3></div><div>'+upvotes+' upvotes</div>') 
       $('.views').html('<div>'+views+' views</div>');
@@ -456,6 +456,12 @@ function lucky_click() {
       $('.vegancheck').html('<input type="checkbox" onclick="return false"'+vegan);
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
+
+
+      //var image = document.getElementById('image');
+        //image.onerror = function() {
+        //image.src = '/graphics/GlobalGobi.png';
+      //}
 
     }
   });
