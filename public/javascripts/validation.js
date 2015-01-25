@@ -23,8 +23,8 @@ function buttondisplay() {
         type: "POST",
         url: "/Refresh",
         success: function(data) {
-          console.log('LOGGED in var below')
-          console.log(data.authenticated);
+          // console.log('LOGGED in var below')
+          // console.log(data.authenticated);
            if (data.authenticated) {
              $("#log_out").show();
              $("#log_in").hide();
@@ -53,7 +53,7 @@ function buttondisplay() {
     //console.log('Login function is happening')
     $('.error').hide();
     $(".button").click(function() {
-      console.log('login button');
+      // console.log('login button');
       // validate and process form here
       
       $('.error').hide();
@@ -87,8 +87,8 @@ function buttondisplay() {
 		    url: "/Login",
 		    data: dataString,
 		    success: function(data) {
-          console.log('LOGGED in var below')
-          console.log(data.loggedIn);
+          // console.log('LOGGED in var below')
+          // console.log(data.loggedIn);
           if (data.loggedIn===true) {
             $("#log_out").show();
             $("#log_in").hide();
@@ -102,10 +102,10 @@ function buttondisplay() {
             location.reload(true);
 		      } else {
             //$('#loginfail').html('failure to log in');
-            console.log('failure');
+            // console.log('failure');
             var message = data.message;
-            console.log('message = '+message);
-            console.log(data.message[0]);
+            // console.log('message = '+message);
+            // console.log(data.message[0]);
               $('#loginfail').html(message);
               //$('#loginfail').addClass("informatiemelding");
               //jQuery("div.informatiemelding").delay(2000).fadeOut("slow");
@@ -150,10 +150,10 @@ function buttondisplay() {
     $(".signupbutton").click(function() {
     //$("#submit_btn.signupbutton.btn-large").submit(function() {
       // validate and process form here
-      console.log('signup happening');
+      // console.log('signup happening');
       $('.error').hide();
       var new_username = $("input[name=new_username]").val();
-      console.log(new_username);
+      // console.log(new_username);
       if (new_username === "") {
         $("label#new_username_error").show();
         $("input#new_username").focus();
@@ -166,7 +166,7 @@ function buttondisplay() {
       }
       
       var new_password = $("input[name=new_password]").val();
-      console.log(new_password);
+      // console.log(new_password);
       if( /[^a-zA-Z0-9]/.test( new_password ) ) {
         $("label#new_password_error2").show();
         $("input#new_password").focus();
@@ -195,7 +195,7 @@ function buttondisplay() {
 		    url: "/Register",
 		    data: dataString3,
 		    success: function(data) {
-            console.log(data.loggedIn);
+            // console.log(data.loggedIn);
             if (data.loggedIn===true) {
             $("#log_out").show();
              $("#log_in").hide();
@@ -260,7 +260,7 @@ function buttondisplay() {
  $(function() {
     $('.error').hide();
     $(".recipebutton").click(function() {
-      console.log('recipe form submit')
+      // console.log('recipe form submit')
       var ingredients = [];
       //console.log(counterbox);
 
@@ -295,7 +295,7 @@ function buttondisplay() {
           }
         });
       });
-      console.log('gobi', gobi);
+      // console.log('gobi', gobi);
 
       var steps = [];
       //console.log(counterbox);
@@ -321,7 +321,7 @@ function buttondisplay() {
       // validate and process form here
       
       $('.error').hide();
-      console.log("Is this happening")
+      // console.log("Is this happening")
 
       var latitude = latLng.lat();
       var longitude = latLng.lng();
@@ -369,10 +369,16 @@ function buttondisplay() {
         $("input#recipe_image").focus();
         return false;
       }
-      //recipe_image = recipe_image.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
-      //recipe_image = recipe_image.replace(/</g,'');
-      //recipe_image = recipe_image.replace(/>/g,'');
-      //dessert, entree, or appetizer
+
+      String.prototype.endsWith = function(suffix) {
+        return this.match(suffix+"$") == suffix;
+      };
+
+      if (!recipe_image.endsWith(".png") && !recipe_image.endsWith(".jpg")) {
+        $("label#recipe_image_error234").show();
+        $("input#recipe_image").focus();
+        return false;
+      }
 
       var dish_type = $("#sel1 option:selected").text();
       var extra_info = $("textarea[name='extra_info']").val();
@@ -399,7 +405,11 @@ function buttondisplay() {
 		    success: function() {
 		      $('#recipe_form').html("<div id='recipemessage'><h2>Recipe submitted!</h2><p>Thank you so much for your contribution!</p></div>");
           //setTimeout(function() { 
-              window.location.href = '/'; 
+
+          // yo this line of code don't do shit but WHYYYYYYY
+          window.location.href = '/'; 
+
+
             //}, 2000);
           //$('#recipemessage').html("<h2>Recipe submitted!</h2>")
 		      //.append("<p>Thank you so much for your contribution!</p>")
@@ -409,8 +419,6 @@ function buttondisplay() {
 		    }
 		  });
 		  return false;
-
-
     $('#recipe_form').html("<div id='recipemessage'></div>");
 
 
@@ -428,13 +436,13 @@ function buttondisplay() {
 
  $(function() {
     $(".dietprefbutton").click(function() {
-      console.log('diet pref button')
+      // console.log('diet pref button')
 
       var vegetarian = $("input[name=vegetarian]").prop("checked");
       var vegan = $("input[name=vegan]").prop("checked");
       var gluten_free = $("input[name=gluten-free]").prop("checked");
       var allergies = $("input[name=allergies]").prop("checked");
-      console.log("are we getting the prefs")
+      // console.log("are we getting the prefs")
       
       var dataString5 = '&vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies;
   
@@ -471,30 +479,27 @@ $(function() {
       search_input = search_input.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
       search_input = search_input.replace(/</g,'');
       search_input = search_input.replace(/>/g,'');
-      console.log("search input")
-      console.log(search_input)
+      // console.log("search input")
+      // console.log(search_input)
       search_input = search_input.toLowerCase();
       if (search_input === "") {
         return false;
-      } else if (search_input === "tea"){
-        console.log("teaaaaa")
-      }
-        else if (search_input === "top 5"){
-        console.log("yeeeeeeeeeh")
+      } else if (search_input === "top 5"){
+        // console.log("yeeeeeeeeeh")
         var current_edges = map.getBounds()
         var left_coord = current_edges.getSouthWest().lng();
         var top_coord = current_edges.getNorthEast().lat();
         var right_coord = current_edges.getNorthEast().lng();
         var bottom_coord = current_edges.getSouthWest().lat();
-        console.log('edges', top_coord, bottom_coord, right_coord, left_coord)
+        // console.log('edges', top_coord, bottom_coord, right_coord, left_coord)
         $.ajax({
           type: "POST",
           url: "/Top5",
           data: '&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&bottom_coord='+bottom_coord,
           success: function(data) {
-            console.log('success in top5');
+            // console.log('success in top5');
             top5_array = data.top5_array;
-            console.log(top5_array.length);
+            // console.log(top5_array.length);
 
             counter='white2';
             var replace = '';
@@ -504,7 +509,7 @@ $(function() {
               } else {
                 counter = 'white2'
               }
-              console.log(top5_array[i][2])
+              // console.log(top5_array[i][2])
               if (top5_array[i][2]==="Appetizer/Side") {
                 top5_array[i][2] = 'Appetizer2'
               }
@@ -535,7 +540,7 @@ $(function() {
             //console.log(search_array.length);
 
             if (search_array.length === 0) {
-              console.log('no results');
+              // console.log('no results');
               replace = '<div class="white2">no results found</div>'
             } else {
 
@@ -715,7 +720,7 @@ $(function() {
                        })
               }}});
 
-      console.log(ingredients);
+      // console.log(ingredients);
       var ingredient_display=''
       for (var i=0; i<ingredients.length;i++) {
         ingredient_display=ingredient_display+'<li>'+ingredients[i]+'</li>'
@@ -738,7 +743,7 @@ $(function() {
       $('.vegancheck').html('<input type="checkbox" onclick="return false"'+vegan);
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
-console.log(extra_info);
+// console.log(extra_info);
       if (extra_info!== '') {
         $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'</div>');
       }
@@ -746,7 +751,7 @@ console.log(extra_info);
       var images = document.getElementById('imagez');
 
       images.onerror = function() {
-        console.log('this functn is being applied')
+        // console.log('this functn is being applied')
         images.src = '/graphics/GlobalGobi.png';
       }
 
@@ -848,7 +853,7 @@ function profileresult() {
 
 //check if you can upvote or no, if not, itll replace it with a thing that says you voted luls no button nemorez
 
-      console.log(ingredients);
+      // console.log(ingredients);
       var ingredient_display=''
       for (var i=0; i<ingredients.length;i++) {
         ingredient_display=ingredient_display+'<li>'+ingredients[i]+'</li>'
@@ -866,7 +871,7 @@ function profileresult() {
       $('.instructions').html('<div><strong>Instructions: </strong><ol>'+instruction_display+'</ol></div>');
       $('.ingredients').html('<div><strong>Ingredients:</strong> <ul>'+ingredient_display+'</ul></div>');
       $('.est_time').html('<div><strong>Estimated cook time:</strong>   '+est_time+' hours</div>');
-      console.log(extra_info);
+      // console.log(extra_info);
       if (extra_info!==''){
       $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'</div>');
     }

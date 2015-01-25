@@ -63,13 +63,13 @@
                     <fieldset>-->
 
                         <label for="recipe_name">Recipe Name: </label></br>
-                        <input type="text" name="recipe_name" id="rec_name" placeholder="recipe name"  /></br>
+                        <input type="text" name="recipe_name" id="rec_name" placeholder=""  /></br>
                         <label class="error" for="recipe_name" id="recipe_name_error"> This field is required!</label></br><br>
 
 
                         
                         <div class="form-group">
-                          <label for="sel1">What kind of dish is this recipe?</label>
+                          <label for="sel1">What kind of dish is this?</label>
                           <select class="form-control" id="sel1" name="dish_type">
                             <option name="choose">Choose one!</option>
                             <option name="beverage">Beverage</option>
@@ -83,7 +83,7 @@
 
 
                         <div><label for="est">Estimated preparation time in hours: </label>
-                          <input type="text" onkeypress="return isNumberKey(event)" step="any" name="est_time" id="est_time" placeholder="time in hours"  />
+                          <input type="text" onkeypress="return isNumberKey(event)" step="any" name="est_time" id="est_time" placeholder=""  />
                         <label class="error" for="est_time" id="est_time_error1">This field is required!</label>
                         <label class="error" for="est_time" id="est_time_error2">Submit a number!</label>
                       </br></br>
@@ -119,6 +119,7 @@
 
                         <input type="text" name="recipe_image" id="recipe_image" placeholder="image url"  required /></br>
                         <label class="error" for="recipe_image" id="recipe_image_error"> This field is required!</label></br></br>
+                        <label class="error" for="recipe_image" id="recipe_image_error234"> Only .png and .jpg URLs!</label></br></br>
                         
                         <label for="recipe_checkbox">Dietary restrictions satisfied: </label></br>
                             <div class="checkbox">
@@ -139,7 +140,7 @@
                           <textarea type="text" name="extra_info" id="extra_info" class="bigger" placeholder="Anything else?"  /></textarea>
                         
                       </br></br>
-                        <input type="submit" name="submit" class="recipebutton" id="submit_btn" value="Submit" />
+                        <input type="submit" name="submit" class="recipebutton" id="submit_btn" value="Submit Recipe" />
 <!--                      </fieldset>
                   </form>-->
             </div>

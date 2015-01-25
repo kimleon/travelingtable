@@ -149,7 +149,7 @@ function changeGradient() {
 }
 
 function changeRadius() {
-  console.log(heatmap.get('radius'));
+  // console.log(heatmap.get('radius'));
   heatmap.set('radius', heatmap.get('radius') ? null : 20);
 }
 

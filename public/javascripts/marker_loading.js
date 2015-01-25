@@ -3,7 +3,7 @@
 
 
 	var refreshMap = function(map) {
-		console.log('function refreshmap called')
+		// console.log('function refreshmap called')
 	// get edges
 	var edges = map.getBounds();
 	var left_coord = edges.getSouthWest().lat();
@@ -18,7 +18,7 @@
         url: "/findMarkers",
         data: '&bottom_coord='+bottom_coord+'&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&locations='+locations,//,'&len='+len,
         success: function(data) {
-        	console.log(data.new_markers);
+        	// console.log(data.new_markers);
         	var new_locations = data.new_markers
         }
 	});
