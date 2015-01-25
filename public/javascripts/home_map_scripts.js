@@ -29,7 +29,12 @@ clusterSettings = {
             //anchorIcon: [20, 140]
             }]}
         clusterSettings2 = {
-          maxZoom: 4
+          maxZoom: 4,
+          styles:[{
+            height:42,
+            width:43,
+            url:"/graphics/cluster.png"
+          }]
         }
       function initialize() {
         
