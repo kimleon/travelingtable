@@ -405,7 +405,11 @@ function buttondisplay() {
 		    success: function() {
 		      $('#recipe_form').html("<div id='recipemessage'><h2>Recipe submitted!</h2><p>Thank you so much for your contribution!</p></div>");
           //setTimeout(function() { 
-              window.location.href = '/'; 
+
+          // yo this line of code don't do shit but WHYYYYYYY
+          window.location.href = '/'; 
+
+
             //}, 2000);
           //$('#recipemessage').html("<h2>Recipe submitted!</h2>")
 		      //.append("<p>Thank you so much for your contribution!</p>")
@@ -415,8 +419,6 @@ function buttondisplay() {
 		    }
 		  });
 		  return false;
-
-
     $('#recipe_form').html("<div id='recipemessage'></div>");
 
 
