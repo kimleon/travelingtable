@@ -91,16 +91,16 @@ var initialize = function () {
 
 var refreshMap = function() {
   //console.log()
-  console.log('function refreshmap called')
+  // console.log('function refreshmap called')
   // get edges
   var edges = map.getBounds();
-  console.log('dsjfldajlkjs')
-  console.log(edges);
+  // console.log('dsjfldajlkjs')
+  // console.log(edges);
   var left_coord = edges.getSouthWest().lng();
   var top_coord = edges.getNorthEast().lat();
   var right_coord = edges.getNorthEast().lng();
   var bottom_coord = edges.getSouthWest().lat();
-  console.log('bottomcoord', bottom_coord)
+  // console.log('bottomcoord', bottom_coord)
   //console.log('locations', locations)
 
   //ajax post edges
@@ -109,8 +109,9 @@ var refreshMap = function() {
         url: "/findMarkers",
         data: '&bottom_coord='+bottom_coord+'&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord,
         success: function(data) {
-          console.log('recieving the data of markers');
-          console.log(data);
+          // console.log('recieving the data of markers');
+          // console.log(data);
+          return true;
         
   		}
 	});

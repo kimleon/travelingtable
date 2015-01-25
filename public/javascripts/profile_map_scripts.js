@@ -91,17 +91,17 @@ var map;
     map = new google.maps.Map(mapArea, mapOptions);
 
       google.maps.event.addListener(map, 'idle', function()  {
-            console.log('function refreshmap called')
+            // console.log('function refreshmap called')
             //console.log(locations)
           // get edges
           var edges = map.getBounds();
-          console.log(edges);
+          // console.log(edges);
           var left_coord = edges.getSouthWest().lng();
           var top_coord = edges.getNorthEast().lat();
           var right_coord = edges.getNorthEast().lng();
           var bottom_coord = edges.getSouthWest().lat();
-          console.log('got all the edges');
-          console.log(left_coord, top_coord, right_coord, bottom_coord);
+          // console.log('got all the edges');
+          // console.log(left_coord, top_coord, right_coord, bottom_coord);
 
           //ajax post edges
             $.ajax({
@@ -109,8 +109,8 @@ var map;
                 url: "/findUserMarkers",
                 data: '&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&bottom_coord='+bottom_coord,
                 success: function(data) {
-                  console.log('recieving the data of markers');
-                  console.log(data.new_markers)
+                  // console.log('recieving the data of markers');
+                  // console.log(data.new_markers)
                   new_locations = data.new_markers
                 }
           });
@@ -121,7 +121,7 @@ var map;
           //append to locations
           var setMarkers = function(locObj) {
               $.each(locObj, function (index, loc) {
-                    console.log('location of marker', loc)
+                    // console.log('location of marker', loc)
                     
                       loc.marker = new google.maps.Marker({
                           position: new google.maps.LatLng(loc[1], loc[2]),
@@ -144,30 +144,30 @@ var map;
 
 
       google.maps.event.addDomListener(map, 'load', function()  {
-            console.log('function refreshmap called')
+            // console.log('function refreshmap called')
             //console.log(locations)
           var edges = map.getBounds();
-          console.log(edges);
+          // console.log(edges);
           var left_coord = edges.getSouthWest().lng();
           var top_coord = edges.getNorthEast().lat();
           var right_coord = edges.getNorthEast().lng();
           var bottom_coord = edges.getSouthWest().lat();
-          console.log('got all the edges for USERS');
-          console.log(left_coord, top_coord, right_coord, bottom_coord);
+          // console.log('got all the edges for USERS');
+          // console.log(left_coord, top_coord, right_coord, bottom_coord);
           //ajax post edges
             $.ajax({
                 type: "POST",
                 url: "/findUserMarkers",
                 data: '&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&bottom_coord='+bottom_coord,
                 success: function(data) {
-                  console.log('recieving the data of markers');
-                  console.log(data.new_markers)
+                  // console.log('recieving the data of markers');
+                  // console.log(data.new_markers)
                   new_locations = data.new_markers
                 }
           });
           var setMarkers = function(locObj) {
               $.each(locObj, function (index, loc) {
-                    console.log(loc)
+                    // console.log(loc)
                       loc.marker = new google.maps.Marker({
                           position: new google.maps.LatLng(loc[1], loc[2]),
                           map: map,
@@ -229,7 +229,7 @@ var map;
 
 //check if you can upvote or no, if not, itll replace it with a thing that says you voted luls no button nemorez
 
-      console.log(ingredients);
+      // console.log(ingredients);
       var ingredient_display=''
       for (var i=0; i<ingredients.length;i++) {
         ingredient_display=ingredient_display+'<li>'+ingredients[i]+'</li>'
@@ -251,7 +251,7 @@ var map;
       var images = document.getElementById('imagez');
 
       images.onerror = function() {
-        console.log('this functn is being applied')
+        // console.log('this functn is being applied')
         images.src = '/graphics/GlobalGobi.png';
       }
       });
