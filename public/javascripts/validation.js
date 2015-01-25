@@ -63,6 +63,12 @@ function buttondisplay() {
         $("input#username").focus();
         return false;
       }
+
+      if( /[^a-zA-Z0-9]/.test( username ) ) {
+        $("label#username_error2").show();
+        $("input#username").focus();
+        return false;
+      }
   		
   		var password = $("input[name=password]").val();
   		if (password === "") {
@@ -147,6 +153,11 @@ function buttondisplay() {
       console.log(new_username);
       if (new_username === "") {
         $("label#new_username_error").show();
+        $("input#new_username").focus();
+        return false;
+      }
+      if( /[^a-zA-Z0-9]/.test( new_username ) ) {
+        $("label#new_username_error2").show();
         $("input#new_username").focus();
         return false;
       }
@@ -247,10 +258,14 @@ function buttondisplay() {
         //console.log(counterbox);
         //var test = $("input[name='boxinput"+i+"']").val();
         //console.log(test);
+        temp = $("input[name='boxinput"+i+"']").val();
+        temp = temp.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
+        temp = temp.replace(/</g,'');
+        temp = temp.replace(/>/g,'');
         if (i<counterbox) {
-        ingredients.push($("input[name='boxinput"+i+"']").val()+"~`~");
+        ingredients.push(temp+"~`~");
         } else {
-        ingredients.push($("input[name='boxinput"+i+"']").val());
+        ingredients.push(temp);
         }
 
       };
@@ -279,10 +294,14 @@ function buttondisplay() {
         //console.log(counterbox);
         //var test = $("input[name='input"+i+"']").val();
         //console.log(test);
+        temp2 = $("textarea[name='input"+i+"']").val();
+        temp2 = temp2.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
+        temp2 = temp2.replace(/</g,'');
+        temp2 = temp2.replace(/>/g,'');
         if (i<counter) {
-        steps.push($("textarea[name='input"+i+"']").val()+"~`~");
+        steps.push(temp2+"~`~");
         } else {
-        steps.push($("textarea[name='input"+i+"']").val());
+        steps.push(temp2);
       }
       };
       //console.log(steps);
@@ -302,6 +321,9 @@ function buttondisplay() {
         $("input#recipe_name").focus();
         return false;
       }
+      recipe_name = recipe_name.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
+      recipe_name = recipe_name.replace(/</g,'');
+      recipe_name = recipe_name.replace(/>/g,'');
   		var recipe_name_lower = recipe_name.toLowerCase();
       $.each(gobi_array, function(ind, test){
           var n = recipe_name_lower.indexOf(test)
@@ -337,10 +359,15 @@ function buttondisplay() {
         $("input#recipe_image").focus();
         return false;
       }
-
+      recipe_image = recipe_image.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
+      recipe_image = recipe_image.replace(/</g,'');
+      recipe_image = recipe_image.replace(/>/g,'');
       //dessert, entree, or appetizer
       //var dish_type = $("#dish_type option:selected").text();
       var extra_info = $("textarea[name='extra_info']").val();
+      extra_info = extra_info.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
+      extra_info = extra_info.replace(/</g,'');
+      extra_info = extra_info.replace(/>/g,'');
       //console.log('extra_info being sent over: '+extra_info);
 
 
