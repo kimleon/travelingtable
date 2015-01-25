@@ -17,7 +17,7 @@ var isLoggedIn = function(req, res, next) {
 
 var isAdmin = function(req, res, next) {
   if (req.isAuthenticated()) {
-    if (req.user.username===deepti)
+    if (req.user.username==='deepti')
       return next();
   } 
   res.redirect('/');
