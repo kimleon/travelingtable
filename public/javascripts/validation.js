@@ -369,9 +369,9 @@ function buttondisplay() {
         $("input#recipe_image").focus();
         return false;
       }
-      recipe_image = recipe_image.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
-      recipe_image = recipe_image.replace(/</g,'');
-      recipe_image = recipe_image.replace(/>/g,'');
+      //recipe_image = recipe_image.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
+      //recipe_image = recipe_image.replace(/</g,'');
+      //recipe_image = recipe_image.replace(/>/g,'');
       //dessert, entree, or appetizer
       //var dish_type = $("#dish_type option:selected").text();
       var extra_info = $("textarea[name='extra_info']").val();
@@ -739,7 +739,7 @@ $(function() {
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
 console.log(extra_info);
       if (extra_info!== '') {
-        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'</div>');
+        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
       }
 
       var images = document.getElementById('imagez');
@@ -867,7 +867,7 @@ function profileresult() {
       $('.est_time').html('<div><strong>Estimated cook time:</strong>   '+est_time+' hours</div>');
       console.log(extra_info);
       if (extra_info!==''){
-      $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'</div>');
+      $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
     }
 
     var image = document.getElementById('images');
