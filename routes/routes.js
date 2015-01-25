@@ -103,11 +103,35 @@ module.exports = function(passport) {
     var right = req.body.right_coord
     console.log("top coord")
     console.log(top)
+    vegetarian_arr = [true, false]
+    vegan_arr = [true, false]
+    allergies_arr = [true, false]
+    gluten_arr = [true, false]
+    if (req.isAuthenticated()) {
+      user = req.user;
+      if (user.vegetarian===true){
+        vegetarian_arr = [true]
+      }
+      if (user.vegan===true) {
+        vegan_arr = [true]
+      }
+      if (user.allergies===true) {
+        allergies_array = [true]
+      }
+      if (user.gluten_free===true) {
+        gluten_arr = [true]
+      }   
+    }
 
     all_array = []
     recipes.Recipe.find({ $and: 
         [{ latitude: { $gte: bottom, $lte: top }},
-        {longitude: {$gte: left, $lte: right}}]}, function(err, results){
+        {longitude: {$gte: left, $lte: right}},
+        {vegetarian: {$in: vegetarian_arr}},
+        {vegan: {$in: vegan_arr}},
+        {allergies: {$in: allergies_arr}},
+        {gluten: {$in: gluten_arr}}]}, 
+        function(err, results){
       results.forEach(function(recipe){
         //array of arrays with result ids, names, dish types, upvotes
         cur_array = [recipe._id, recipe.name, recipe.dish_type, recipe.upvotes]
@@ -136,6 +160,26 @@ module.exports = function(passport) {
   //search works for multiple words
   //search only goes by recipe name
   router.post('/Search/:search_input', function(req, res) {
+    //for filtering for dietary restrictions
+    vegetarian_arr = [true, false]
+    vegan_arr = [true, false]
+    allergies_arr = [true, false]
+    gluten_arr = [true, false]
+    if (req.isAuthenticated()) {
+      user = req.user;
+      if (user.vegetarian===true){
+        vegetarian_arr = [true]
+      }
+      if (user.vegan===true) {
+        vegan_arr = [true]
+      }
+      if (user.allergies===true) {
+        allergies_array = [true]
+      }
+      if (user.gluten_free===true) {
+        gluten_arr = [true]
+      }   
+    }
     var final_find = "";
     var search_keywords = req.param('search_input');
     console.log("the search input");
@@ -149,21 +193,38 @@ module.exports = function(passport) {
     console.log("final find");
     console.log(final_find);
     search_array = []
+    id_array = []
     //finds recipes containing search words
     recipes.Recipe.find({ name_lower : {$regex : '.*'+final_find+'.*'}}, function(err, results){
       results.forEach(function(recipe){
         //array of arrays with result ids, names, dish types
-        cur_array = [recipe._id, recipe.name, recipe.dish_type]
-        search_array.push(cur_array);
+        
+        id_array.push(recipe._id);
       });
-      console.log("we are here");
-      console.log(search_array);
-      //send array of result arrays to kiran
-      res.json({
-        search_array: search_array
+      //now make a database query to filter further for dietary restriction
+      recipes.Recipe.find({ $and: 
+        [{ _id: { $in: id_array }},
+        {vegetarian: {$in: vegetarian_arr}},
+        {vegan: {$in: vegan_arr}},
+        {allergies: {$in: allergies_arr}},
+        {gluten: {$in: gluten_arr}}]}, 
+        function(err, results){
+          if (err) {
+            return;
+          }
+          results.forEach(function(recipe){
+            cur_array = [recipe._id, recipe.name, recipe.dish_type]
+            search_array.push(cur_array);
+          });
+          console.log("we are here");
+          console.log(search_array);
+          //send array of result arrays to kiran
+          res.json({
+            search_array: search_array
+          });
+        });
       });
     }); 
-  });
 
 
   
@@ -738,6 +799,8 @@ router.post('/deleteRecipe', function(req, res) {
 
    Mongoose.model('Marker').remove(
     {_id: markerID});
+
+   res.render('Profile');
 });
 return router;
 }

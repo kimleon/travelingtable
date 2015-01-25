@@ -353,6 +353,7 @@ function lucky_click() {
       //console.log('markerid: '+markerID2);
       var panPoint = new google.maps.LatLng(latitude,longitude);
       map.panTo(panPoint);
+      map.setZoom(7)
       var recipe_name;
       var recipe_type;
       var recipe_image;
@@ -463,10 +464,10 @@ function lucky_click() {
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
 
 
-      //var image = document.getElementById('image');
-        //image.onerror = function() {
-        //image.src = '/graphics/GlobalGobi.png';
-      //}
+      var image = document.getElementById('image');
+        image.onerror = function() {
+        image.src = '/graphics/GlobalGobi.png';
+      }
 
     }
   });
