@@ -12,7 +12,7 @@ var fs = require('fs');
 
 
 
-mongoose.connect('mongodb://heroku_app33378596:fp34u9pr1em6gl7cccpi3ii5ra@ds031681.mongolab.com:31681/heroku_app33378596');
+mongoose.connect('mongodb://heroku_app33378596:ifr25qah0moht23oesduahbqno@ds031571.mongolab.com:31571/heroku_app33378596');
 
 //mongoose.connect('mongodb://localhost/test');
 
