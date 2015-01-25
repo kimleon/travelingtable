@@ -372,7 +372,7 @@ function buttondisplay() {
       }
 
 
-      /*String.prototype.endsWith = function(suffix) {
+      String.prototype.endsWith = function(suffix) {
         return this.match(suffix+"$") == suffix;
       };
 
@@ -380,7 +380,7 @@ function buttondisplay() {
         $("label#recipe_image_error234").show();
         $("input#recipe_image").focus();
         return false;
-      }*/
+      }
 
 
       var extra_info = $("textarea[name='extra_info']").val();
@@ -455,10 +455,12 @@ function buttondisplay() {
             url: "/updateRestrictions",
             data: dataString5,
             success: function() {
-              $('#submitted').removeClass("hidden");
-              $('#submitted').addClass("informatiemelding");
-              jQuery("div.informatiemelding").delay(2000).fadeOut("slow");
-
+              //$('#submitted').removeClass("hidden");
+              //$('#submitted').addClass("informatiemelding");
+              $('#submitted').show();
+              jQuery("#submitted").delay(2500).fadeOut("slow");
+              //jQuery("div.informatiemelding").delay(3000).fadeOut("slow");
+              //setTimeout(hide, 5000);
             }
           });
 
@@ -467,7 +469,9 @@ function buttondisplay() {
   });
           //alert (dataString);return false;
 
-
+function hide(){
+  $('#submitted').addClass("hidden")
+}
 
 //<!--=========================== SEARCH FORM-=========================================->
 

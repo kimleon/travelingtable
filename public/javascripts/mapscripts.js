@@ -108,6 +108,13 @@ function addMarker(location) {
   var locations = [];
   locations.push(location);
   var elevation;
+  var pinIcon = new google.maps.MarkerImage(
+    "/graphics/addsmall.png",
+    null, /* size is determined at runtime */
+    null, /* origin is 0,0 */
+    null, /* anchor is bottom center of the scaled image */
+    new google.maps.Size(39,40)
+);  
 
    //var icon = {"/graphics/add.png",new google.maps.Size(40,39)};
 
@@ -130,7 +137,7 @@ function addMarker(location) {
   marker = new google.maps.Marker({
     position: location,
     map: map,
-  icon: "graphics/addsmall.png"
+  icon: pinIcon
   //icon:icon
 });
   };
