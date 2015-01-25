@@ -891,3 +891,19 @@ function profileresult() {
 })
 
 })
+//<!--=========================== for login to link to sign up =========================================->
+function linkToSignUp() {
+  $('#close_modal').click();
+  $('#sign_up').click();
+}
+
+
+
+
+
+
+
+
+
+
+
