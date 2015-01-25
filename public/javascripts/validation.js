@@ -462,6 +462,9 @@ $(function() {
     //console.log('Search function is happening')
     $(".search2").click(function() {
       var search_input = $("input[name=search_input]").val();
+      search_input = search_input.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
+      search_input = search_input.replace(/</g,'');
+      search_input = search_input.replace(/>/g,'');
       console.log("search input")
       console.log(search_input)
       search_input = search_input.toLowerCase();
