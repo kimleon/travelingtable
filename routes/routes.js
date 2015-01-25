@@ -40,6 +40,7 @@ module.exports = function(passport) {
   });
 
 
+
   //get heat map data and send back
   router.post('/getHeatMapData', function(req, res){
     console.log('trying to get marker data for heatmaps');
