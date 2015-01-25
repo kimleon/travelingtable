@@ -678,7 +678,7 @@ $(function() {
       }
 
       $('.recipetitle').html('<div><strong>'+recipe_name+'</strong></div>');
-      $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
+      $('.recipeimage').html('<img id="imagez" src="'+recipe_image+'" style="width:20vw;height:auto" />');     
       $('.recipetype').html('<div><strong>Dish Type:</strong> '+recipe_type+'</div>'); 
       $('.upvotes').html('<div><strong>'+upvotes+' </strong>upvotes</div>') 
       $('.views').html('<div><strong>'+views+'</strong> views</div>');
@@ -692,6 +692,13 @@ $(function() {
 console.log(extra_info);
       if (extra_info!== '') {
         $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'</div>');
+      }
+
+      var images = document.getElementById('imagez');
+
+      images.onerror = function() {
+        console.log('this functn is being applied')
+        images.src = '/graphics/GlobalGobi.png';
       }
 
 };
@@ -804,7 +811,7 @@ function profileresult() {
       }
 
       $('.recipetitle').html('<div>'+recipe_name+'</div>');
-      $('.recipeimage').html('<img src="'+recipe_image+'" style="width:20vw;height:auto" />');     
+      $('.recipeimage').html('<img id="images" src="'+recipe_image+'" style="width:20vw;height:auto" />');     
       $('.recipetype').html('<div><strong>Dish Type:</strong> '+recipe_type+'</div>'); 
       $('.viewsvotes').html('<strong>'+views+'</strong> views, <strong>'+upvotes+'</strong> upvotes');
       $('.instructions').html('<div><strong>Instructions: </strong><ol>'+instruction_display+'</ol></div>');
@@ -814,6 +821,11 @@ function profileresult() {
       if (extra_info!==''){
       $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'</div>');
     }
+
+    var image = document.getElementById('images');
+      image.onerror = function() {
+        image.src = '/graphics/GlobalGobi.png';
+      }
       /*$('.vegcheck').html('<div class="reciperestrictions">Meets these dietary restrictions:</div><input type="checkbox" onclick="return false"'+vegetarian);
       $('.vegancheck').html('<input type="checkbox" onclick="return false"'+vegan);
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
