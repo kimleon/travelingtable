@@ -167,7 +167,8 @@ clusterSettings = {
                           map: map,
                           customInfo: loc[0],
                           icon:'/graphics/marker.png',
-                          animation: google.maps.Animation.DROP
+                          //animation: null
+                          //animation: google.maps.Animation.DROP
                       });
 
                       setListener(loc.marker);
@@ -225,6 +226,7 @@ clusterSettings = {
                           map: map,
                           customInfo: loc[0],
                           icon:'/graphics/marker.png',
+                          //animation:null
                           //animation: google.maps.Animation.DROP
                       });
                       setListener(loc.marker);
@@ -256,7 +258,9 @@ clusterSettings = {
       var est_time
       var views
       var extra_info
+      
       google.maps.event.addListener(marker,'click',function() {
+
             //console.log('marker info');
             //console.log(this.customInfo);
             currentID = marker.customInfo;
@@ -428,7 +432,14 @@ clusterSettings = {
 
   }
 
+
+
+
+  
+
       google.maps.event.addDomListener(window, 'load', initialize);
+
+
 
 //if you can vote and you choose to...
 $(function() {
@@ -458,5 +469,8 @@ function refreshMapCluster() {
         markerClusterer = new MarkerClusterer(map, markers);
         console.log(markerClusterer);
       }
+
+
+
 
       
