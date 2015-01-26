@@ -45,9 +45,14 @@ clusterSettings = {
          //var locations = [];
         var new_locations = [];
         var mapArea = document.getElementById('map');
+        function randomIntFromInterval(min,max) {
+          return Math.floor(Math.random()*(max-min+1)+min);
+        }
+        var random_latlong = [[-25.3450, 131.0361], [48.8567, 2.3508], [12.9667, 77.5667], [42.3736, -71.1106], [39.9139, 116.3917], [-16.7120, 34.6660], [51.5072, -0.1275], [34.0500, -108.2500], [30.0500, 31.2333]]
+        var ran_num = randomIntFromInterval(0, 8);
         var mapOptions = {
-          center: new google.maps.LatLng(42.3598, -71.0921),
-          zoom: 6,
+          center: new google.maps.LatLng(random_latlong[ran_num][0], random_latlong[ran_num][1]),
+          zoom: 5,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
     		  minZoom: 3,
     		  maxZoom:7,
