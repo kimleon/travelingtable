@@ -282,7 +282,7 @@ function loginvalidate(event) {
       // console.log('recipe form submit')
       var ingredients = [];
       //console.log(counterbox);
-
+      var last = "";
       for (var i=1; (i<counterbox+1); i++) {
         //console.log(counterbox);
         //var test = $("input[name='boxinput"+i+"']").val();
@@ -295,10 +295,19 @@ function loginvalidate(event) {
         temp = temp.replace(/</g,'');
         temp = temp.replace(/>/g,'');
         if (i<counterbox) {
-        ingredients.push(temp+"~`~");
+          if (temp !== "") {
+            ingredients.push(temp+"~`~");
+            last = temp;
+          }
         } else {
-        ingredients.push(temp);
+          if (temp === "") {
+            ingredients.pop();
+            ingredients.push(last);
+          } else{
+            ingredients.push(temp);
+          }      
         }
+
 
       };
 
@@ -321,7 +330,7 @@ function loginvalidate(event) {
 
       var steps = [];
       //console.log(counterbox);
-
+      var last2 = "";
       for (var i=1; (i<counter+1); i++) {
         //console.log(counterbox);
         //var test = $("input[name='input"+i+"']").val();
@@ -334,11 +343,21 @@ function loginvalidate(event) {
         temp2 = temp2.replace(/</g,'');
         temp2 = temp2.replace(/>/g,'');
         if (i<counter) {
-        steps.push(temp2+"~`~");
+          if (temp2 !== "") {
+            steps.push(temp2+"~`~");
+            last2 = temp2;
+          }       
         } else {
-        steps.push(temp2);
-      }
+          if (temp2 === "") {
+            steps.pop();
+            steps.push(last2);
+          } else {
+            steps.push(temp2);
+          }
+        }
       };
+
+
       //console.log(steps);
 
       //console.log(steps);
@@ -347,9 +366,17 @@ function loginvalidate(event) {
       
       $('.error').hide();
       // console.log("Is this happening")
-
+      if(latLng === false) {
+        $('label#marker_error1').show();
+        $('input#submit').focus();
+        return false;
+      } 
       var latitude = latLng.lat();
       var longitude = latLng.lng();
+      
+      
+      
+
       var recipe_name = $("input[name=recipe_name]").val();
       if (recipe_name === "") {
         $("label#recipe_name_error").show();

@@ -219,11 +219,7 @@ var map;
         google.maps.event.addListener(marker,'click',function() {
         var markerID2 = marker.customInfo;
         var recipe_position = marker.getPosition();
-        var rec0 = recipe_position[0];
-        var rec1 = recipe_position[1] + 30;
-        var rec2 = recipe_position[2] + 30;
-        var new_pos = recipe_position
-        map.panTo(new_pos);
+        map.panTo(recipe_position);
         map.setZoom(7);
         var recipe_name;
         var recipe_type;
