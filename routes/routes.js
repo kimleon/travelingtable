@@ -299,14 +299,27 @@ module.exports = function(passport) {
     });  
   });
 
-  /*Figure out if logged in user has dietary restrictions*/
+  /*Figure out if logged in user has dietary restrictions, and recipe list of user*/
   router.post('/getRestrictions', isLoggedIn, function(req, res) {
-    res.json({
-      vegetarian: req.user.vegetarian,
-      vegan: req.user.vegan,
-      allergies: req.user.allergies,
-      gluten_free: req.user.gluten_free
+    recipe_array = []
+    mongoose.model('Recipe').find({userId: req.user._id}, function(err, recipes) {
+      if (err)
+        return;
+      recipes.forEach(function(recipe) {
+        cur_array = [recipe.name, recipe._id]
+        recipe_array.push(cur_array);
+      });
+
+      res.json({
+        username: req.user.username
+        vegetarian: req.user.vegetarian,
+        vegan: req.user.vegan,
+        allergies: req.user.allergies,
+        gluten_free: req.user.gluten_free
+        recipe_array: recipe_array
+      });
     });
+    
   });
 
 
@@ -628,6 +641,7 @@ router.post('/findMarkers', function(req, res) {
   });
 
   /*VIEWING ONE'S PROFILe*/
+  /*
   router.get('/Profile', isLoggedIn, function(req, res) {
     console.log(req.user.username);
     var user_recipes = req.user.recipe_list
@@ -664,6 +678,10 @@ router.post('/findMarkers', function(req, res) {
       });
     }      
   });
+*/
+  router.get('/Profile', isLoggedIn, function(req, res) {
+    res.render('Profile');
+  }
   
   /*Decide if a user CAN vote when the recipe is opened */
   router.post('/canUpvote', isLoggedIn, function(req, res) {
