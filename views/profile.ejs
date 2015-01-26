@@ -22,6 +22,7 @@ $(document).ready(function(){
         url: "/getRestrictions",
         context: document.body,
         success: function(data){
+                console.log()
                 var veg = data.vegetarian
                 var vegan = data.vegan
                 var allergies = data.allergies
@@ -42,9 +43,9 @@ $(document).ready(function(){
                   $("#c3").html('<label><input type="checkbox" name="gluten-free" id="gluten-free" value="" checked>Gluten-Free</label>')
 
 
-              console.log(username);
-              console.log(recipes.length);
-                   /* $("#welcome").html("Welcome,"+username);
+              //console.log(username);
+              //console.log(recipes.length);
+                    $("#welcome").html("Welcome, "+username);
 
 
                         if (recipes===[]){
@@ -55,7 +56,7 @@ $(document).ready(function(){
                             rewrite = rewrite + "<li><a onclick='profileresult();' style='line-height:150%' id='"+recipes[i][1]+"'>"+recipes[i][0]+"</a></li>"
                           }
                           $(".recipes").html(rewrite);
-                        }*/
+                        }
 
                 };
 
