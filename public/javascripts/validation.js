@@ -48,11 +48,13 @@ function buttondisplay() {
 
 
 //<!--=========================== LOGIN FORM =========================================-> 
-
- $(function() {
+function loginvalidate(event) {
+ //$(function() {
     //console.log('Login function is happening')
     $('.error').hide();
-    $(".button").click(function() {
+    event.preventDefault();
+
+    //$(".button").click(function() {
       // console.log('login button');
       // validate and process form here
       
@@ -129,8 +131,8 @@ function buttondisplay() {
 
 
 
-    });
-  });
+    //});
+  };
 
 
 
@@ -144,10 +146,11 @@ function buttondisplay() {
  //    });
  //  }); 
 
- $(function() {
+ function signupvalidate(event) {
     $('.error').hide();
+    event.preventDefault();
 
-    $(".signupbutton").click(function() {
+    //$(".signupbutton").click(function() {
     //$("#submit_btn.signupbutton.btn-large").submit(function() {
       // validate and process form here
       // console.log('signup happening');
@@ -180,6 +183,21 @@ function buttondisplay() {
         $("input#new_password").focus();
         return false;
       }
+
+
+      var confirm_password = $("input[name=confirmpassword]").val();
+      if (confirm_password === '') {
+        $("label#confirmpassword_error2").show();
+        $("input#confirmpassword").focus();
+        return false;
+      }
+
+      if (confirm_password !== new_password) {
+        $("label#confirmpassword_error").show();
+        $("input#confirmpassword").focus();
+        return false;
+      }
+
 
       var vegetarian = $("input[name=vegetarian]").prop("checked");
       var vegan = $("input[name=vegan]").prop("checked");
@@ -231,8 +249,8 @@ function buttondisplay() {
 
 
 
-    });
-  });
+    //});
+  };
 
   
 
@@ -638,7 +656,7 @@ $(function() {
             },
             async: false
           });
-        //console.log(markerID2);
+        //console.log('getting here');
         //console.log(recipeID);
         var recipe_name;
         var recipe_type;
