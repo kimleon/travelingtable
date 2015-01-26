@@ -13,6 +13,11 @@
         margin: 0px;
         padding: 0px
       }
+
+body{
+  overflow: hidden;
+}
+
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization"></script>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
@@ -71,6 +76,27 @@ function buttondisplay() {
 
   <body onload="buttondisplay()">
 
+
+
+<div id="tab2">
+    <div id="inner2">
+      <a href="#" class="x2" style="color:black">x</a>
+          <div id="innerinner2">
+            <div id="rest2">
+            This heatmap shows compares recipes based on their views or upvotes. The higher the density, the more views or upvotes a recipe has.  You can toggle between looking at views or upvotes, and change the radius or color of what you are looking at.<br>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+$('.x2').click(function() {
+  $( "#tab2" ).toggle("fast");
+});
+</script>
 
 <!--================================================================================-->
 <!--                          n a v b a r    s t a r t  
@@ -181,9 +207,8 @@ $(document).click(function(evt){
 
 
 <!--===========================================================================-->
-<!--                       f e a t u r e s   t a b    
+<!--                       e x p l a n a t i o n   t a b    
 <!-============================================================================-->
-
 
 
 
@@ -194,7 +219,7 @@ $(document).click(function(evt){
 <!-============================================================================-->
 
 
-    <div id="map-canvas"></div>
+    <div id="map-canvas" style="top:0"></div>
 
 
 

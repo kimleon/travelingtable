@@ -17,6 +17,11 @@ body {
 	width:100vw;
 }
 
+#map-canvas {
+	height:100vh;
+	width:100vw;
+}
+
 body {
   background-color:#34495e;
 }
@@ -258,6 +263,10 @@ body {
 	margin:20px;
 	padding:5px 10px 5px 10px;
 }
+
+
+
+
 
 .navbutton {
 	background-color:#35d7b7;
@@ -682,7 +691,63 @@ div.our_pictures {
 	/*position:relative;*/
 }
 
-body {
-	overflow:hidden;
+
+#inner2 {
+  position: fixed;
+  z-index: 2;
+  width:35vw;
+  background-color:white;
+  border-top-left-radius:0em;
+  border-bottom-left-radius: 5em;
+  padding:2em;
+  margin:0;
+  height:20vh;
+  overflow:hidden;
+  min-width:200px;
+  margin:0;
+  right:0;
+  top:50px;
+  color:#696969;
+}
+
+#innerinner2 {
+	width:30vw;
+	min-width:180px;
+	height:20vh;
+	margin:0;
+	overflow:auto;
+	top:30px;
+	margin-top:5vh;
+	margin-bottom:5vh;
+	position:fixed;
+	right:2.5vw;
+}
+
+
+
+#tab2{
+	padding:0px;
+}
+
+
+#inner2 > a {
+	background-color:black;
+	color:#FFFFFF!important; 
+	padding:0px 8px 0px 8px;
+	font-size: 1.4em;
+	position:fixed;
+	opacity:.10;
+	right:1.5vw;
+	z-index:10;
+	text-decoration: none;
+}
+
+#inner2 > a:hover {
+	background-color:black;
+	color:#FFFFFF;
+	padding:0px 8px 0px 8px;
+	font-size: 1.4em;
+	opacity:0.4;
+	text-decoration: none;
 }
 

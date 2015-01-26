@@ -131,3 +131,30 @@ a:hover{
 #submit_btn2:hover {
 	background-color:#c54755;
 }
+
+.modal {
+	z-index:100;
+}
+
+.submit_btn {
+	border-radius:50px;
+	background-color:#35d7b7;
+	color:white;
+	border:0;
+	float:right;
+	bottom:2vh;
+	right:2vw;
+	margin:20px;
+	padding:5px 10px 5px 10px;
+	width:auto;
+	text-align:center;
+}
+
+.deletebutton {
+ 	color:#ec0763;
+ }
+
+.deletebutton:hover{
+ 	color:#c80553;
+ }
+}

@@ -14,15 +14,24 @@ function randomPic() {
 </script>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/javascripts/deleterecipes.js"></script>
 
 <script type="text/javascript">
+var veg;
+var vegan;
+var allergies;
+var glut;
+var username;
+var recipes;
+var recID;
+
 $(document).ready(function(){
     $.ajax({
         type: 'POST',
         url: "/getRestrictions",
         context: document.body,
         success: function(data){
-                console.log()
+                //console.log()
                 var veg = data.vegetarian
                 var vegan = data.vegan
                 var allergies = data.allergies
@@ -32,17 +41,20 @@ $(document).ready(function(){
                 $("#welcome").html("Welcome, "+username);
 
 
-                    if (recipes===[]){
-                      $("#status").html("You haven't uploaded any recipes!")
+                    if (recipes.length===0){
+                      $("#status").html("You haven't uploaded any recipes!");
+                      $(".deletebutton").hide();
+
                     } else {
                       rewrite = ''
                       for (var i=0;i<recipes.length;i++) {
-                        rewrite = rewrite + "<li><a onclick='profileresult();' style='line-height:150%' id='"+recipes[i][1]+"'>"+recipes[i][0]+"</a></li>"
+                        rewrite = rewrite + "<li><a onclick='profileresult();' class='recIDselector' style='line-height:150%' id='"+recipes[i][1]+"'>"+recipes[i][0]+"</a></li>"
                       }
                       $(".recipes").html(rewrite);
                     }
 
-                    
+                   
+
                 if (veg===true) {
                   $("#c1").html('<label><input type="checkbox" name="vegetarian" id="vegetarian" value="" checked>Vegetarian</label>')
                 };
@@ -63,9 +75,18 @@ $(document).ready(function(){
                 };
 
 
-
             }});
+
+
     });
+/*
+$(".recIDselector").click(function() {
+  alert(clicked)
+}
+*/
+
+
+
 </script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,13 +98,36 @@ $(document).ready(function(){
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/javascripts/profile_map_scripts.js"></script>
 <script src="/javascripts/validation.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
 <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/stylesheets/main.css"/>
 <link rel="stylesheet" type="text/css" href="/stylesheets/profile.css"/>
 
+
 </head>
 
 <body>
+
+
+<form onSubmit="deletevalidate(event);">
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" id = "close_modal" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+              <h2 class="modal-title" id="myModalLabel">Confirm Delete</h2>
+            </div>
+
+      <div class="modal-body" id="login_form"> Are you sure you want to delete your recipe?
+
+              <input type="submit" name="submit" class="button button2" id="submit_btn" value="Mmhm" /><br>
+              <input data-dismiss="modal" aria-hidden="true" class="submit_btn button button2" id="close_modal" value="Nope" /><br>
+      </div>
+
+      <!--div id='loginmessage' class="hidden" style="color:black;text-align:center"><h3>Login Form Submitted!</h3><br><br></div>-->
+    </div>
+  </div>
+</div></form><iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe>
 
 
 
@@ -94,9 +138,10 @@ $(document).ready(function(){
 
             <script type="text/javascript">randomPic();</script></br>
             <h4 id="status" style="text-align:center">Check out the recipes you uploaded!</h4><br>
-            <div class="recipes"><ul>
+            <ul><div class="recipes"></div>
+            </ul>
      
-            </ul></div>
+
 
 
  
@@ -136,7 +181,7 @@ $(document).ready(function(){
             <div class="vegancheck"></div>
             <div class="gfcheck"><br></div>
             <div class="allergiescheck"></div><br-->
-            
+            <a href="#" type="submit" name="submit" class="deletebutton btn-large pinklink" data-toggle="modal" data-target="#deleteModal" value="Delete Recipes" hidden>Delete Recipe</a>
   </div>
 
 

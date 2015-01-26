@@ -813,6 +813,9 @@ $(function() {
 
 function profileresult() {
     var recipeID = event.target.id;
+    recID = recipeID
+    $(".deletebutton").show();
+    console.log(recID)
     var markerID2;
       //console.log('recipeID:   '+recipeID)
       var dataString6 = '&recipeID=' + recipeID
