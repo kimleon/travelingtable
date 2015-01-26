@@ -311,7 +311,7 @@ module.exports = function(passport) {
         recipe_array.push(cur_array);
       });
       console.log(recipe_array, req.user.username, 'stuff')
-
+      //what
       res.json({
         username: req.user.username,
         vegetarian: req.user.vegetarian,
