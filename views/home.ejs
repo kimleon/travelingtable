@@ -435,6 +435,7 @@ function lucky_click() {
       //console.log('markerid: '+markerID2);
       var panPoint = new google.maps.LatLng(latitude,longitude);
       map.panTo(panPoint);
+      map.setZoom(7)
       var recipe_name;
       var recipe_type;
       var recipe_image;
@@ -447,6 +448,7 @@ function lucky_click() {
       var steps;
       var est_time;
       var views;
+      var extra_info;
 
         $.ajax({
               type: "POST",
@@ -466,6 +468,7 @@ function lucky_click() {
                 steps = data.instructions[0].split('~`~,');
                 est_time = data.prep_time
                 views = data.views
+                extra_info = data.extra_info
                 //console.log('stuff', views, ingredients, steps, est_time);
                  
           if (vegetarian===true) {
@@ -531,18 +534,35 @@ function lucky_click() {
         instruction_display=instruction_display+'<li>'+steps[j]+'</li>'
       }
 
-      $('.recipetitle').html('<div>'+recipe_name+'</div>');
-      $('.recipeimage').html('<img id = "image" src="'+recipe_image+'" style="width:20vw;height:auto" />');     
-      $('.recipetype').html('<div>Dish Type: '+recipe_type+'</div>'); 
-      $('.upvotes').html('<div><h3>Total Votes: </h3></div><div>'+upvotes+' upvotes</div>') 
-      $('.views').html('<div>'+views+' views</div>');
-      $('.instructions').html('<div>Instructions: <ol>'+instruction_display+'</ol></div>');
-      $('.ingredients').html('<div>Ingredients: <ul>'+ingredient_display+'</ul></div>');
-      $('.est_time').html('<div>Estimated cook time:   '+est_time+' hours</div>');
-      $('.vegcheck').html('<div class="reciperestrictions">Meets these dietary restrictions:</div><input type="checkbox" onclick="return false"'+vegetarian);
+
+
+
+      $('.recipetitle').html('<div><strong>'+recipe_name+'</strong></div>');
+      $('.recipeimage').html('<img id="imagez" src="'+recipe_image+'" style="width:20vw;height:auto" />');     
+      $('.recipetype').html('<div><strong>Dish Type:</strong> '+recipe_type+'</div>'); 
+      $('.upvotes').html('<div><strong>'+upvotes+' </strong>upvotes</div>') 
+      $('.views').html('<div><strong>'+views+'</strong> views</div>');
+      $('.instructions').html('<div><strong>Instructions: </strong><ol>'+instruction_display+'</ol></div>');
+      $('.ingredients').html('<div><strong>Ingredients: </strong><ul>'+ingredient_display+'</ul></div>');
+      $('.est_time').html('<div><strong>Estimated cook time:</strong>   '+est_time+' hours</div>');
+      $('.vegcheck').html('<div class="reciperestrictions"><strong>Meets these dietary restrictions:</strong></div><input type="checkbox" onclick="return false"'+vegetarian);
       $('.vegancheck').html('<input type="checkbox" onclick="return false"'+vegan);
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
+// console.log(extra_info);
+      if (extra_info!== '' && extra_info!== undefined) {
+        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
+
+
+
+
+
+
+
+      var image = document.getElementById('image');
+        image.onerror = function() {
+        image.src = '/graphics/GlobalGobi.png';
+      }
 
 
     }

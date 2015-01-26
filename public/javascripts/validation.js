@@ -52,6 +52,7 @@ function loginvalidate(event) {
  //$(function() {
     //console.log('Login function is happening')
     $('.error').hide();
+
     event.preventDefault();
 
     //$(".button").click(function() {
@@ -59,8 +60,8 @@ function loginvalidate(event) {
       // validate and process form here
       
       $('.error').hide();
-  	  var username = $("input[name=username]").val();
-  		if (username === "") {
+      var username = $("input[name=username]").val();
+      if (username === "") {
         $("label#username_error").show();
         $("input#username").focus();
         return false;
@@ -71,24 +72,24 @@ function loginvalidate(event) {
         $("input#username").focus();
         return false;
       }
-  		
-  		var password = $("input[name=password]").val();
+      
+      var password = $("input[name=password]").val();
       password = password.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
       password = password.replace(/</g,'');
       password = password.replace(/>/g,'');
-  		if (password === "") {
+      if (password === "") {
         $("label#password_error").show();
         $("input#password").focus();
         return false;
       }
       
-		var dataString = '&username='+ username +'&password=' + password;
-		  //alert (dataString);return false;
-		  $.ajax({
-		    type: "POST",
-		    url: "/Login",
-		    data: dataString,
-		    success: function(data) {
+    var dataString = '&username='+ username +'&password=' + password;
+      //alert (dataString);return false;
+      $.ajax({
+        type: "POST",
+        url: "/Login",
+        data: dataString,
+        success: function(data) {
           // console.log('LOGGED in var below')
           // console.log(data.loggedIn);
           if (data.loggedIn===true) {
@@ -96,13 +97,13 @@ function loginvalidate(event) {
             $("#log_in").hide();
             $("#add_recipe").show();
             $("#sign_up").hide();
-  		      $('#login_form').addClass("hidden");
+            $('#login_form').addClass("hidden");
             $('#loginmessage').removeClass("hidden");
             $("#profile").show();
             $(".upvotebutton").show();
             $(".voted").hide();
             location.reload(true);
-		      } else {
+          } else {
             //$('#loginfail').html('failure to log in');
             // console.log('failure');
             var message = data.message;
@@ -114,15 +115,15 @@ function loginvalidate(event) {
             //show failure to login
           }
           //$('#message').html("<h3>Login Form Submitted!</h3>")
-		      
+          
 
           //.append("<p>Enjoy the site!</p>")
-		      //.hide()
-		      //.fadeIn(1500, function() {
-		       //});
-		    }
-		  });
-		  return false;
+          //.hide()
+          //.fadeIn(1500, function() {
+           //});
+        }
+      });
+      return false;
 
 
 
@@ -205,14 +206,14 @@ function loginvalidate(event) {
       var allergies = $("input[name=allergies]").prop("checked");
 
 
-		  var dataString3 = '&new_username='+ new_username +'&new_password=' + new_password+'&vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies;
-		  //alert (dataString);return false;
+      var dataString3 = '&new_username='+ new_username +'&new_password=' + new_password+'&vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies;
+      //alert (dataString);return false;
 
-		  $.ajax({
-		    type: "POST",
-		    url: "/Register",
-		    data: dataString3,
-		    success: function(data) {
+      $.ajax({
+        type: "POST",
+        url: "/Register",
+        data: dataString3,
+        success: function(data) {
             // console.log(data.loggedIn);
             if (data.loggedIn===true) {
             $("#log_out").show();
@@ -233,14 +234,14 @@ function loginvalidate(event) {
             } else {
             $('#signupfail').html('This username is already taken!');
             }
-		      //$('#signupmessage').html("<h2>Registration form submitted!</h2>")
-		      //.append("<p>Welcome gobi!</p>")
-		      //.hide()
-		      //.fadeIn(1500, function() {
-		       //});
-		    }
-		  });
-		  return false;
+          //$('#signupmessage').html("<h2>Registration form submitted!</h2>")
+          //.append("<p>Welcome gobi!</p>")
+          //.hide()
+          //.fadeIn(1500, function() {
+           //});
+        }
+      });
+      return false;
 
 
 
@@ -343,8 +344,8 @@ function loginvalidate(event) {
 
       var latitude = latLng.lat();
       var longitude = latLng.lng();
-  	  var recipe_name = $("input[name=recipe_name]").val();
-  		if (recipe_name === "") {
+      var recipe_name = $("input[name=recipe_name]").val();
+      if (recipe_name === "") {
         $("label#recipe_name_error").show();
         $("input#recipe_name").focus();
         return false;
@@ -352,7 +353,7 @@ function loginvalidate(event) {
       recipe_name = recipe_name.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
       recipe_name = recipe_name.replace(/</g,'');
       recipe_name = recipe_name.replace(/>/g,'');
-  		var recipe_name_lower = recipe_name.toLowerCase();
+      var recipe_name_lower = recipe_name.toLowerCase();
       $.each(gobi_array, function(ind, test){
           var n = recipe_name_lower.indexOf(test)
           if (n !== -1) {
@@ -361,7 +362,7 @@ function loginvalidate(event) {
         });
 
       var dish_type = $("#sel1 option:selected").text();
-  		//var dish_type = $('#sel1 :selected').text();
+      //var dish_type = $('#sel1 :selected').text();
       if (dish_type === "Choose one!") {
         $('label#dish_type_error').show();
         $('input#sel1').focus();
@@ -383,7 +384,7 @@ function loginvalidate(event) {
 
 
       var recipe_image = $("input[name=recipe_image]").val();
-  		if (recipe_image === "") {
+      if (recipe_image === "") {
         $("label#recipe_image_error").show();
         $("input#recipe_image").focus();
         return false;
@@ -413,18 +414,18 @@ function loginvalidate(event) {
       var gluten_free = $("input[name=gluten-free]").prop("checked");
       var allergies = $("input[name=allergies]").prop("checked");
       //console.log("are we getting here")
-		  var dataString2 = '&recipe_name='+ recipe_name + '&gobi=' + gobi + '&recipe_name_lower='+ recipe_name_lower +'&recipe_image=' + recipe_image + '&dish_type=' + dish_type
+      var dataString2 = '&recipe_name='+ recipe_name + '&gobi=' + gobi + '&recipe_name_lower='+ recipe_name_lower +'&recipe_image=' + recipe_image + '&dish_type=' + dish_type
                         +'&vegetarian=' + vegetarian + '&vegan=' + vegan + '&gluten_free=' + gluten_free + '&allergies=' + allergies
                         +'&latitude=' + latitude + '&longitude=' + longitude + "&ingredients="+ingredients+"&steps="+steps + "&est_time="+est_time + "&extra_info="+extra_info;
-		  //alert (dataString);return false;
+      //alert (dataString);return false;
       //console.log("are we getting to this 2nd here")
-		  $.ajax({
-		    type: "POST",
-		    url: "/new_recipe",
-		    data: dataString2,
-		    success: function() {
+      $.ajax({
+        type: "POST",
+        url: "/new_recipe",
+        data: dataString2,
+        success: function() {
           console.log('success');
-		      $('#recipe_form').html("<div id='recipemessage'><h2>Recipe submitted!</h2><p>Thank you so much for your contribution!</p></div>");
+          $('#recipe_form').html("<div id='recipemessage'><h2>Recipe submitted!</h2><p>Thank you so much for your contribution!</p></div>");
           //setTimeout(function() { 
 
           // yo this line of code don't do shit but WHYYYYYYY
@@ -433,14 +434,15 @@ function loginvalidate(event) {
 
             //}, 2000);
           //$('#recipemessage').html("<h2>Recipe submitted!</h2>")
-		      //.append("<p>Thank you so much for your contribution!</p>")
-		      //.hide()
-		      //.fadeIn(1500, function() {
-		       //});
-		    }
-		  });
-		  return false;
+          //.append("<p>Thank you so much for your contribution!</p>")
+          //.hide()
+          //.fadeIn(1500, function() {
+           //});
+        }
+      });
+      return false;
     //$('#recipe_form').html("<div id='recipemessage'></div>");
+
 
 
 
@@ -653,6 +655,7 @@ $(function() {
               //console.log('markerid: '+markerID2);
               var panPoint = new google.maps.LatLng(latitude,longitude);
               map.panTo(panPoint);
+              map.setZoom(7);
             },
             async: false
           });
@@ -769,7 +772,7 @@ $(function() {
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
 // console.log(extra_info);
-      if (extra_info!== '') {
+      if (extra_info!== '' && extra_info!== undefined) {
         $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
       }
 
@@ -812,6 +815,7 @@ function profileresult() {
               //console.log('markerid: '+markerID2);
               var panPoint = new google.maps.LatLng(latitude,longitude);
               map.panTo(panPoint);
+              map.setZoom(6);
             },
             async: false
           });
@@ -897,7 +901,7 @@ function profileresult() {
       $('.ingredients').html('<div><strong>Ingredients:</strong> <ul>'+ingredient_display+'</ul></div>');
       $('.est_time').html('<div><strong>Estimated cook time:</strong>   '+est_time+' hours</div>');
       // console.log(extra_info);
-      if (extra_info!==''){
+      if (extra_info!=='' && extra_info!==undefined){
       $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
     }
 
@@ -934,12 +938,12 @@ function profileresult() {
 
             location.reload(true);
 
-		$.ajax({
-		    type: "POST",
-		    url: "/Logout",
-		    //data: status
-		});
-		return false;
+    $.ajax({
+        type: "POST",
+        url: "/Logout",
+        //data: status
+    });
+    return false;
 })
 
 })

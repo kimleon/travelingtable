@@ -435,7 +435,7 @@ clusterSettings = {
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
 
-            if (extra_info!== '') {
+            if (extra_info!== '' && extra_info !==undefined) {
         $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
       }
 
