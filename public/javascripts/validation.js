@@ -612,31 +612,6 @@ $(function() {
 
 })
 
-
-
-      // } else if (search_input === "top 5") {
-      //   console.log("yeehhh top 5")
-      //   var current_edges = map.getBounds()
-      //   console.log(current_edges)
-      //   $.ajax({
-      //     type: "POST",
-      //     url: "/Top5/"+search_input,
-      //     data: '&top5_input='+search_input,
-      //     success: function(data) {
-      //       console.log('success in search');
-      //       top5_array = data.top5_array;
-      //       console.log(top5_array.length);
-
-
-      //       var replace = '';
-      //       for (var i=0; i<top5_array.length; i++) {
-      //         replace=replace+"<div><li>"+[i+1]+'. '+top5_array[i][1]+': '+top5_array[i][2]+"</li></div>"
-      //       }
-      //       $("#search_inner").html(replace);
-
-      //     }
-      //   });
-
  function result() {
     var recipeID = event.target.id;
     var markerID2;
