@@ -818,23 +818,38 @@ router.post('/deleteRecipe', function(req, res) {
   var recipeID = req.body.recipeID
   var markerID = req.body.markerID
   if (req.isAuthenticated()) {
+
     user_list = req.user.recipe_list
     if (user_list.indexOf(recipeID) !== -1) {
-      Mongoose.model('Recipe').remove(
-      {_id: recipeID});
+      console.log('this is happening');
+      mongoose.model('Recipe').remove(
+      {_id: recipeID}, 
+      function(err, result) {
+        mongoose.model('Marker').remove(
+        
 
-      Mongoose.model('Marker').remove(
-      {_id: markerID});
+        {_id: markerID}, function(err, result) {
+          console.log('this is happening 2')
+          res.json({
+            deleted: true});
+        });
+      });
 
-      res.redirect('/Profile');
-      } else {
-        res.redirect('/Profile');
-      }
+      
 
+      
+  } else {
+    res.json({
+            deleted: true});
   }
+  }else {
+    res.json({
+            deleted: true});
+  }
+  });
 
   
-});
+
 return router;
 }
 

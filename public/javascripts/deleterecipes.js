@@ -29,8 +29,8 @@ function deletevalidate(event) {
 			data: datadelete,
 			success: function(data){
 				if (data.success===true) {
-					//$("#"+String(deleteID)).hide();
-					//location.reload();
+					$("#"+String(deleteID)).hide();
+					location.reload();
 					alert('cool');
 				}
 			}
