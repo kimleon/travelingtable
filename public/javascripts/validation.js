@@ -13,7 +13,7 @@
 
 
 
-
+console.log('Why are you inspecting the element? We feel slightly violated and hurt. Have a nice day though! -Love, the Global Gobis');
 
 //<!--=========================== ONLOAD for button display =========================================-> 
 
@@ -444,7 +444,7 @@ function loginvalidate(event) {
         url: "/new_recipe",
         data: dataString2,
         success: function() {
-          console.log('success');
+          //console.log('success');
           $('#recipe_form').html("<div id='recipemessage'><h2>Recipe submitted!</h2><p>Thank you so much for your contribution!</p></div>");
           //setTimeout(function() { 
 

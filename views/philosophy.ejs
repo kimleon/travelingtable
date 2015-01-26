@@ -28,8 +28,8 @@ function buttondisplay() {
       type: "POST",
       url: "/Refresh",
       success: function(data) {
-        console.log('LOGGED in var below')
-        console.log(data.authenticated);
+        //console.log('LOGGED in var below')
+        //console.log(data.authenticated);
          if (data.authenticated) {
            $("#log_out").show();
            $("#log_in").hide();
@@ -106,9 +106,9 @@ function buttondisplay() {
             <a href="#" id="myBtn" data-toggle="dropdown" class="dropdown-toggle">Features<b class="caret"></b></a>
             <ul id="drop" class="dropdown-menu" hidden>
                 <li><a href="/heatmap" id="gray">Heatmap</a></li>
-                <li><a id="feeling_lucky" href="/#" onClick="lucky_click()" >I'm feeling lucky</a></li>
-                <li><a href="/GobiPhilosophy" id="gray">the Gobi philosophy</a></li>
-                <li><a href="/GobiPhilosophy">our story</a></li>
+                <!--<li><a id="feeling_lucky" href="/#" onClick="lucky_click()" >I'm feeling lucky</a></li>-->
+                <li><a href="/GobiPhilosophy" id="white">the Gobi philosophy</a></li>
+                <li><a href="/GobiPhilosophy" id="gray">our story</a></li>
             </ul>
         </li>
 
@@ -153,7 +153,6 @@ $(document).click(function(evt){
       <!--li style="vertical-align:center">Toggle settings: </li-->
 
 
-    <li><a href="/">Home</a></li>
 
 
 

@@ -234,7 +234,7 @@ clusterSettings = {
         
     
       google.maps.event.addDomListener(map, 'load', function()  {
-            console.log('function refreshmap called')
+            //console.log('function refreshmap called')
             //console.log(locations)
           var edges = map.getBounds();
           //console.log(edges);
@@ -330,7 +330,7 @@ clusterSettings = {
                   est_time = data.prep_time
                   views = data.views
                   extra_info = data.extra_info
-                  console.log('extra: '+data.extra_info)
+                  //console.log('extra: '+data.extra_info)
                   //console.log('stuff', views, ingredients, steps, est_time);
                        
             if (vegetarian===true) {
@@ -376,7 +376,7 @@ clusterSettings = {
                         url: "/canUpvote",
                         data: "&markerID="+marker.customInfo,
                         success: function(data) {
-                           console.log(data.upvoted+" = upvoted or not");
+                           //console.log(data.upvoted+" = upvoted or not");
                            if (data.upvoted) {
                             //$('.upvotebutton').html('You upvoted this!');
                             $('.voted').show();
