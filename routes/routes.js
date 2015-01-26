@@ -1,3 +1,5 @@
+//We used mongodb and used the mongodb documentation to find all the database queries we needed
+//In heroku, we used mongolab as the official add on to store our database
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
@@ -72,7 +74,7 @@ module.exports = function(passport) {
     }); 
   });
 
-  
+  /*
   //list of users
   router.get('/Users', isAdmin, function(req, res) {
     mongoose.model('User').find(function(err, Users) {
@@ -86,6 +88,7 @@ module.exports = function(passport) {
       res.send(recipes);
     });
   });
+*/
 
   
   //list of recipes
@@ -227,7 +230,7 @@ module.exports = function(passport) {
     }); 
 
 
-  
+  /*
   //NOTE FOR THE TWO BELOW WE WON'T ACTUALLY NEED THEM EVENTUALLY
   //URL to view list of users to check they are getting entered into te database
   router.get('/Users', isAdmin, function(req, res) {
@@ -241,6 +244,7 @@ module.exports = function(passport) {
       res.send(markers);
     });
   });
+*/
   
 
   /*HANDLE register things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME

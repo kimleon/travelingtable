@@ -575,7 +575,7 @@ function lucky_click() {
 
 
       $('.recipetitle').html('<div><strong>'+recipe_name+'</strong></div>');
-      $('.recipeimage').html('<img id="imagez" src="'+recipe_image+'" style="width:20vw;height:auto" />');     
+      $('.recipeimage').html('<img id="image" src="'+recipe_image+'" style="width:20vw;height:auto" />');     
       $('.recipetype').html('<div><strong>Dish Type:</strong> '+recipe_type+'</div>'); 
       $('.upvotes').html('<div><strong>'+upvotes+' </strong>upvotes</div>') 
       $('.views').html('<div><strong>'+views+'</strong> views</div>');
@@ -589,7 +589,9 @@ function lucky_click() {
 // console.log(extra_info);
       if (extra_info!== '' && extra_info!== undefined) {
         $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
+
 }
+
 
 
 

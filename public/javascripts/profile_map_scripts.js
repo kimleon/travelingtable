@@ -1,3 +1,5 @@
+////We used the google maps API for this part: https://developers.google.com/maps/
+
 var map;
       
 
@@ -89,7 +91,24 @@ var map;
 		}//mapoptions
 		
     map = new google.maps.Map(mapArea, mapOptions);
+    google.maps.event.addListener(map, 'bounds_changed', function() {
+         var edges = map.getBounds()
+          var left_coord = edges.getSouthWest().lng();
+          var top_coord = edges.getNorthEast().lat();
+          var right_coord = edges.getNorthEast().lng();
+          var bottom_coord = edges.getSouthWest().lat();
+         $.ajax({
+                type: "POST",
+                url: "/findMarkers",
+                data: '&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&bottom_coord='+bottom_coord,
+                success: function(data) {
+                  //console.log('recieving the data of markers');
+                  //console.log(data.new_markers)
+                  new_locations = data.new_markers
+                }
+          });
 
+      });
       google.maps.event.addListener(map, 'idle', function()  {
             // console.log('function refreshmap called')
             //console.log(locations)
@@ -203,7 +222,7 @@ var map;
         var rec0 = recipe_position[0];
         var rec1 = recipe_position[1] + 30;
         var rec2 = recipe_position[2] + 30;
-        var new_pos = [rec0, rec1, rec2];
+        var new_pos = recipe_position
         map.panTo(new_pos);
         map.setZoom(7);
         var recipe_name;
