@@ -347,9 +347,17 @@ function loginvalidate(event) {
       
       $('.error').hide();
       // console.log("Is this happening")
-
+      if(latLng === false) {
+        $('label#marker_error1').show();
+        $('input#submit').focus();
+        return false;
+      } 
       var latitude = latLng.lat();
       var longitude = latLng.lng();
+      
+      
+      
+
       var recipe_name = $("input[name=recipe_name]").val();
       if (recipe_name === "") {
         $("label#recipe_name_error").show();

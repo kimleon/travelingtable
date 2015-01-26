@@ -219,6 +219,8 @@ var map;
         google.maps.event.addListener(marker,'click',function() {
         var markerID2 = marker.customInfo;
         var recipe_position = marker.getPosition();
+        console.log("position yooo");
+        console.log(recipe_position);
         var new_pos = recipe_position;
         map.panTo(new_pos);
         map.setZoom(7);

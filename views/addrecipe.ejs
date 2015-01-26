@@ -42,6 +42,7 @@
         <div id="recipeinstr" id="instructionbar"><h2>Place a marker to label the region your recipe comes from. Fill out the recipe form with your dish information!</h2></div>
 
 
+
       <ul id="nav_right" class="nav navbar-nav navbar-right">
         <li><a href="/">Cancel Recipe</a></li>
       </ul>
@@ -122,7 +123,7 @@
 
                         <input type="text" name="recipe_image" id="recipe_image" placeholder="image url"  required /></br>
                         <label class="error" for="recipe_image" id="recipe_image_error"> This field is required!</label>
-                        <label class="error" for="recipe_image" id="recipe_image_error234"> Only .png and .jpg URLs!</label></br></br>
+                        <label class="error" for="recipe_image" id="recipe_image_error234"> Only .png .jpg .jpeg and .gif URLs!</label></br></br>
                         
                         <label for="recipe_checkbox">Dietary restrictions satisfied: </label></br>
                             <div class="checkbox">
@@ -143,7 +144,8 @@
                           <textarea type="text" name="extra_info" id="extra_info" class="bigger" placeholder="Anything else?"  /></textarea>
                         
                       </br></br>
-                        <input type="submit" name="submit" class="recipebutton" id="submit_btn" value="Submit Recipe" />
+                      <label class="error" for="submit" id="marker_error1"> Choose the origin of your recipe on the map at the top of the page!</label></br>
+                        <input for="submit_stuff" type="submit" name="submit" class="recipebutton" id="submit_btn" value="Submit Recipe" />
 <!--                      </fieldset>
                   </form>-->
             </div>
