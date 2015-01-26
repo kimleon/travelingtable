@@ -29,7 +29,20 @@ $(document).ready(function(){
                 var glut = data.gluten_free
                 var username = data.username
                 var recipes = data.recipe_array
+                $("#welcome").html("Welcome, "+username);
 
+
+                    if (recipes===[]){
+                      $("#status").html("You haven't uploaded any recipes!")
+                    } else {
+                      rewrite = ''
+                      for (var i=0;i<recipes.length;i++) {
+                        rewrite = rewrite + "<li><a onclick='profileresult();' style='line-height:150%' id='"+recipes[i][1]+"'>"+recipes[i][0]+"</a></li>"
+                      }
+                      $(".recipes").html(rewrite);
+                    }
+
+                    
                 if (veg===true) {
                   $("#c1").html('<label><input type="checkbox" name="vegetarian" id="vegetarian" value="" checked>Vegetarian</label>')
                 };
@@ -45,18 +58,7 @@ $(document).ready(function(){
 
               //console.log(username);
               //console.log(recipes.length);
-                    $("#welcome").html("Welcome, "+username);
 
-
-                        if (recipes===[]){
-                          $("#status").html("You haven't uploaded any recipes!")
-                        } else {
-                          rewrite = ''
-                          for (var i=0;i<recipes.length;i++) {
-                            rewrite = rewrite + "<li><a onclick='profileresult();' style='line-height:150%' id='"+recipes[i][1]+"'>"+recipes[i][0]+"</a></li>"
-                          }
-                          $(".recipes").html(rewrite);
-                        }
 
                 };
 
