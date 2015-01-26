@@ -376,7 +376,7 @@ function buttondisplay() {
         return this.match(suffix+"$") == suffix;
       };
 
-      if (!recipe_image.endsWith(".png") && !recipe_image.endsWith(".jpg") && !recipe_image.endsWith(".gif")) {
+      if (!recipe_image.endsWith(".png") && !recipe_image.endsWith(".jpg") && !recipe_image.endsWith(".gif") && !recipe_image.endsWith(".jpeg")) {
         $("label#recipe_image_error234").show();
         $("input#recipe_image").focus();
         return false;
