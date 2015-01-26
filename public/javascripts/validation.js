@@ -288,7 +288,10 @@ function loginvalidate(event) {
         //var test = $("input[name='boxinput"+i+"']").val();
         //console.log(test);
         temp = $("input[name='boxinput"+i+"']").val();
-        temp = temp.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
+        temp = temp.replace(/\{/g,'');
+        temp = temp.replace(/\}/g,'');
+        temp = temp.replace(/\$/g,'');
+        temp = temp.replace(/\&/g,'and');
         temp = temp.replace(/</g,'');
         temp = temp.replace(/>/g,'');
         if (i<counterbox) {
@@ -324,7 +327,10 @@ function loginvalidate(event) {
         //var test = $("input[name='input"+i+"']").val();
         //console.log(test);
         temp2 = $("textarea[name='input"+i+"']").val();
-        temp2 = temp2.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
+        temp2 = temp2.replace(/\{/g,'');
+        temp2 = temp2.replace(/\}/g,'');
+        temp2 = temp2.replace(/\$/g,'');
+        temp2 = temp2.replace(/\&/g,'and');
         temp2 = temp2.replace(/</g,'');
         temp2 = temp2.replace(/>/g,'');
         if (i<counter) {
@@ -350,7 +356,10 @@ function loginvalidate(event) {
         $("input#recipe_name").focus();
         return false;
       }
-      recipe_name = recipe_name.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
+      recipe_name = recipe_name.replace(/\{/g,'');
+      recipe_name = recipe_name.replace(/\}/g,'');
+      recipe_name = recipe_name.replace(/\$/g,'');
+      recipe_name = recipe_name.replace(/\&/g,'and');
       recipe_name = recipe_name.replace(/</g,'');
       recipe_name = recipe_name.replace(/>/g,'');
       var recipe_name_lower = recipe_name.toLowerCase();
@@ -403,7 +412,10 @@ function loginvalidate(event) {
 
 
       var extra_info = $("textarea[name='extra_info']").val();
-      extra_info = extra_info.replace(/[^a-zA-Z 0-9&#@?!,.:;-_]+/g,'');
+      extra_info = extra_info.replace(/\{/g,'');
+      extra_info = extra_info.replace(/\}/g,'');
+      extra_info = extra_info.replace(/\$/g,'');
+      extra_info = extra_info.replace(/\&/g,'and');
       extra_info = extra_info.replace(/</g,'');
       extra_info = extra_info.replace(/>/g,'');
       //console.log('extra_info being sent over: '+extra_info);
