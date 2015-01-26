@@ -132,19 +132,37 @@ clusterSettings = {
 		
       map = new google.maps.Map(mapArea, mapOptions);
 
+     google.maps.event.addListener(map, 'bounds_changed', function() {
+         var edges = map.getBounds()
+          var left_coord = edges.getSouthWest().lng();
+          var top_coord = edges.getNorthEast().lat();
+          var right_coord = edges.getNorthEast().lng();
+          var bottom_coord = edges.getSouthWest().lat();
+         $.ajax({
+                type: "POST",
+                url: "/findMarkers",
+                data: '&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&bottom_coord='+bottom_coord,
+                success: function(data) {
+                  //console.log('recieving the data of markers');
+                  //console.log(data.new_markers)
+                  new_locations = data.new_markers
+                }
+          });
+
+      });
       google.maps.event.addListener(map, 'idle', function()  {
             //console.log('function refreshmap called')
             //console.log(locations)
           // get edges
-          var edges = map.getBounds();
+      var edges = map.getBounds();
 
-          var pinIcon = new google.maps.MarkerImage(
-    "/graphics/marker.png",
-    null, /* size is determined at runtime */
-    null, /* origin is 0,0 */
-    null, /* anchor is bottom center of the scaled image */
-    new google.maps.Size(30,31)
-);  
+      var pinIcon = new google.maps.MarkerImage(
+       "/graphics/marker.png",
+        null, /* size is determined at runtime */
+        null, /* origin is 0,0 */
+        null, /* anchor is bottom center of the scaled image */
+        new google.maps.Size(30,31)
+       );  
 
           //console.log(edges);
           var left_coord = edges.getSouthWest().lng();
@@ -207,10 +225,10 @@ clusterSettings = {
 
 
 
-       setInterval(function(){ 
+        
     
       google.maps.event.addDomListener(map, 'load', function()  {
-            //console.log('function refreshmap called')
+            console.log('function refreshmap called')
             //console.log(locations)
           var edges = map.getBounds();
           //console.log(edges);
@@ -264,8 +282,7 @@ clusterSettings = {
           //ajaxObj.get(); //Start the get cycle.
           //refreshMapCluster();
         });
-      }, 5000);
-
+      
     var setListener = function(marker) {
 
       var recipe_name 
@@ -460,7 +477,7 @@ clusterSettings = {
 
   
 
-      google.maps.event.addDomListener(window, 'load', initialize);
+  google.maps.event.addDomListener(window, 'load', initialize);
 
 
 
