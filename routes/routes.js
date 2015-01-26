@@ -310,6 +310,7 @@ module.exports = function(passport) {
         cur_array = [recipe.name, recipe._id]
         recipe_array.push(cur_array);
       });
+      console.log(recipe_array, req.user.username, 'stuff')
 
       res.json({
         username: req.user.username,
