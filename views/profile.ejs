@@ -48,7 +48,7 @@ $(document).ready(function(){
                     } else {
                       rewrite = ''
                       for (var i=0;i<recipes.length;i++) {
-                        rewrite = rewrite + "<li><a onclick='profileresult();' class='recIDselector' style='line-height:150%' id='"+recipes[i][1]+"'>"+recipes[i][0]+"</a></li>"
+                        rewrite = rewrite + "<li id='"+recipes[i][1]+"'><a onclick='profileresult();' class='recIDselector' style='line-height:150%' id='"+recipes[i][1]+"'>"+recipes[i][0]+"</a></li>"
                       }
                       $(".recipes").html(rewrite);
                     }
