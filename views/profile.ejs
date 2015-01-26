@@ -40,6 +40,23 @@ $(document).ready(function(){
                 }
                 if (glut===true) {
                   $("#c3").html('<label><input type="checkbox" name="gluten-free" id="gluten-free" value="" checked>Gluten-Free</label>')
+
+
+              console.log(username);
+              console.log(recipes.length)
+                   /* $("#welcome").html("Welcome,"+username);
+
+
+                        if (recipes===[]){
+                          $("#status").html("You haven't uploaded any recipes!")
+                        } else {
+                          rewrite = ''
+                          for (var i=0;i<recipes.length;i++) {
+                            rewrite = rewrite + "<li><a onclick='profileresult();' style='line-height:150%' id='"+recipes[i][1]+"'>"+recipes[i][0]+"</a></li>"
+                          }
+                          $(".recipes").html(rewrite);
+                        }*/
+
                 };
 
 
@@ -70,31 +87,15 @@ $(document).ready(function(){
 <div id="profile">
             <div id="profcontents">
 
-            <h2 style="text-align:center">Welcome, <%= username %></h2>
+            <h2 id="welcome" style="text-align:center">Welcome, </h2>
 
             <script type="text/javascript">randomPic();</script></br>
             <h4 id="status" style="text-align:center">Check out the recipes you uploaded!</h4><br>
             <div class="recipes"><ul>
-              <!--": "+ recipetitle[i][0] + is the value of the dish type-->
-            <!--<% for(var i=0; i<recipetitle.length; i++) {%>
-
-               <!--<li><%= "<div id="+recipetitle[i][2]+">"+recipetitle[i][1]+ "</div>" %></li>-->
-              <!-- <li><a onclick="profileresult();" style="line-height:150%" id="<%=recipetitle[i][2]%>"><%=recipetitle[i][1]%></a></li>
-            <% } %>-->
+     
             </ul></div>
 
-<script>
-  if (recipes===[]){
-    $("#status").html("You haven't uploaded any recipes!")
-  } else {
-    rewrite = ''
-    for (var i=0;i<recipes.length;i++) {
-      rewrite = rewrite + "<li><a onclick='profileresult();' style='line-height:150%' id='"+recipes[i][1]+"'>"+recipes[i][0]+"</a></li>"
-    }
-    $(".recipes").html(rewrite);
-  }
 
-</script>
  
 
             </div>
