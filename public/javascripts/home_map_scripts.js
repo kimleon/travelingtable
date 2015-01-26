@@ -1,3 +1,4 @@
+//We used the google maps API for this part: https://developers.google.com/maps/
 var map;
 var currentID;
 var markers = []
