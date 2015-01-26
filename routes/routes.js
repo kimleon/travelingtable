@@ -797,14 +797,23 @@ router.post('/feelingLucky', function(req, res) {
 router.post('/deleteRecipe', function(req, res) {
   var recipeID = req.body.recipeID
   var markerID = req.body.markerID
+  if (req.isAuthenticated()) {
+    user_list = req.user.recipe_list
+    if (user_list.indexOf(recipeID) !== -1) {
+      Mongoose.model('Recipe').remove(
+      {_id: recipeID});
 
-  Mongoose.model('Recipe').remove(
-    {_id: recipeID});
+      Mongoose.model('Marker').remove(
+      {_id: markerID});
 
-   Mongoose.model('Marker').remove(
-    {_id: markerID});
+      res.redirect('/Profile');
+      } else {
+        res.redirect('/Profile');
+      }
 
-   res.render('Profile');
+  }
+
+  
 });
 return router;
 }
