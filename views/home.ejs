@@ -128,17 +128,64 @@ function buttondisplay() {
 <!================================================================================-->
 
 
-<li><a href="#">?</a></li>
+<li><a href="#">Help</a></li>
 
 
 
- 
+<!--================================================================================-->
+<!--                                    f e a t u r e s 
+<!================================================================================-->
+
+
+<li class="dropdown">
+            <a href="#" id="myBtn" data-toggle="dropdown" class="dropdown-toggle">Features<b class="caret"></b></a>
+            <ul id="drop" class="dropdown-menu" hidden>
+                <li><a href="/heatmap" id="gray">Heatmap</a></li>
+                <li><a id="feeling_lucky" href="/#" onClick="lucky_click()" >I'm feeling lucky</a></li>
+                <li><a href="/GobiPhilosophy" id="gray">the Gobi philosophy</a></li>
+                <li><a href="/GobiPhilosophy">our story</a></li>
+            </ul>
+        </li>
+
+ <script>
+
+
+$(function() {
+$("#myBtn").click(function(){
+    if ( $("#drop").hasClass("hidden")) {
+         $("#drop").removeClass("hidden");
+         $("#drop").slideDown("slow");              
+    } else {
+       if ( $("#drop").is(":hidden")) {
+           $("#drop").slideDown("slow");
+       } else {
+          $("#drop").slideUp("slow");
+        }
+  }
+})
+})
+
+</script>
+<script>
+
+$(document).click(function(evt){    
+       if(evt.target.id !== "drop") {
+          if ($("#drop").hasClass("hidden")===false) {
+            $("#drop").slideUp("slow");
+            return;
+          }
+       }
+        });  
+
+</script>
+
 <!--==============================================================================-->
 <!--                                s i g n   u p 
 <!================================================================================-->
              
-    <li><a href="#" data-toggle="modal"   id="sign_up" data-target="#registerModal">Sign-up</a>
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
+    <li><a href="#" data-toggle="modal"   class="special" id="sign_up" data-target="#registerModal">Sign-up</a>
+
+<form onSubmit="signupvalidate(event);"><div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -150,7 +197,7 @@ function buttondisplay() {
             <div class="modal-body" id="signup_form">
                   <div id="welcome_thing">Welcome to our site! </div><br>
                     <label for="new_username">Don't have a username? Choose one!</label></br>
-                    <input type="text" name="new_username" id="username" placeholder="Username">
+                    <input type="text" name="new_username" id="username" placeholder="username">
                     <div id="signupfail" class="fail"></div>
                     <label class="error fail" for="new_username" id="new_username_error"> This field is required!</label>
                     <label class="error fail" for="new_username" id="new_username_error2"> Your username can only contain numbers and letters!</label></br>
@@ -158,9 +205,20 @@ function buttondisplay() {
 
 
                     <label for="new_password">Choose a password:</label></br>
-                    <input type="password" name="new_password" id="username" placeholder="Password"></br>
+                    <input type="password" name="new_password" id="username" placeholder="password"></br>
                      <label class="error fail" for="new_password" id="new_password_error"> This field is required! Passwords cannot contain these characters: ${}&lt;&gt;</label>
-                     <label class="error fail" for="new_password" id="new_password_error2"> Your password can only contain numbers and letters!</label>
+                     <label class="error fail" for="new_password" id="new_password_error2"> Your password can only contain numbers and letters!</label><br>
+
+ 
+
+                 <label for="new_password">Confirm password:</label></br>
+                    <input type="password" name="confirmpassword" id="username" placeholder="password"></br>
+                     <label class="error fail" for="confirmpassword" id="confirmpassword_error">Your passwords don't match! Try again!</label>
+                     <label class="error fail" for="new_password" id="confirmpassword_error2"> Confirm your password!</label>
+
+
+
+
                   <input type="submit" name="submit" class="signupbutton button2 btn-large" id="submit_btn" value="Sign Up!" />
 
           </div>
@@ -170,17 +228,17 @@ function buttondisplay() {
 
     </div>
   </div>
-</div><!--register bootstrap--></li>
+</div></form>
+<iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe><!--register bootstrap--></li>
  
  
-         
-         
+
 <!--================================================================================-->         
 <!--                                 l o g i n  
 <!================================================================================-->
 
-    <li><a href="#" data-toggle="modal" id="log_in" data-target="#loginModal">Login</a>
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+    <li><a href="#" data-toggle="modal" class="special" id="log_in" data-target="#loginModal">Login</a>
+<form onSubmit="loginvalidate(event);"><div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -202,7 +260,6 @@ function buttondisplay() {
               <label class="error fail" for="password" id="password_error"> This field is required! Passwords cannot contain these characters: ${}&lt;&gt;</label>            
 
 
-
               <input type="submit" name="submit" class="button button2" id="submit_btn" value="Login!" /><br>
               <div id="loginfail" class="fail"></div>
 <!--        </fieldset>
@@ -212,7 +269,7 @@ function buttondisplay() {
       <div id='loginmessage' class="hidden" style="color:black;text-align:center"><h3>Login Form Submitted!</h3><br><br></div>
     </div>
   </div>
-</div><!--login bootstrap--></li>
+</div></form><iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe><!--login bootstrap--></li>
             
       
 
@@ -288,18 +345,18 @@ function buttondisplay() {
 <!--                       s e a r c h   t a b    
 <!-============================================================================-->
 
-<div id="search_tab" hidden>
+<div id="search_tab" class="hidden">
   <ul id="search_list">
-    <div id="search_inner"></div>
+    <div id="search_inner"><div class="white2">no results found</div></div>
   </ul>
 </div>
 
 
-<script>
+<!--script>
 
 
 $(function() {
-  $("#search_input").hover(function() {
+  $("#search_input").click(function() {
     if ( $("#search_tab").hasClass("hidden")) {
          $("#search_tab").removeClass("hidden");
          $("#search_tab").slideDown("slow");              
@@ -312,20 +369,45 @@ $(function() {
   }
 })
 })
+</script-->
+
+<script>
+$(function() {
+  $("#search_input").click(function() {
+    if ( $("#search_tab").hasClass("hidden")) {
+         $("#search_tab").removeClass("hidden");
+         $("#search_tab").slideDown("fast");              
+    } else {
+       if ( $("#search_tab").is(":hidden")) {
+           $("#search_tab").slideDown("fast");
+       }
+}})
+})
 </script>
+
+<script>
+
+$(document).click(function(evt){    
+    if ($("#search_tab").hasClass("hidden")===false) {
+      console.log('its showing');
+      //alert(evt.target.id);
+        if(evt.target.id !== "search_input") {
+            $("#search_tab").slideUp("fast");
+            //alert('nope');
+            return;
+          //}
+       }
+        }
+      });  
+
+</script>
+
+
 
 <!--===========================================================================-->
 <!--                       e x t r a s   t a b    
 <!-============================================================================-->
 
-<div id="features" class="hidden brand">
-<a href="/heatmap" class="gray">heatmap</a><br>
-<a id="feeling_lucky" href="/#" onClick="lucky_click()" class="white" >I'm feeling lucky</a><br>
-<a href="/GobiPhilosophy" class="gray">the Gobi philosophy</a><br>
-<a href="/GobiPhilosophy" class="white">our story</a><br>
-<!--a href="#" class="gray">Test</a><br>
-<a href="#" class="white">Test</a><br-->
-</div>
 
 <script type="text/javascript">
 
@@ -366,6 +448,7 @@ function lucky_click() {
       var steps;
       var est_time;
       var views;
+      var extra_info;
 
         $.ajax({
               type: "POST",
@@ -385,6 +468,7 @@ function lucky_click() {
                 steps = data.instructions[0].split('~`~,');
                 est_time = data.prep_time
                 views = data.views
+                extra_info = data.extra_info
                 //console.log('stuff', views, ingredients, steps, est_time);
                  
           if (vegetarian===true) {
@@ -450,18 +534,29 @@ function lucky_click() {
         instruction_display=instruction_display+'<li>'+steps[j]+'</li>'
       }
 
-      $('.recipetitle').html('<div>'+recipe_name+'</div>');
-      $('.recipeimage').html('<img id = "image" src="'+recipe_image+'" style="width:20vw;height:auto" />');     
-      $('.recipetype').html('<div>Dish Type: '+recipe_type+'</div>'); 
-      $('.upvotes').html('<div><h3>Total Votes: </h3></div><div>'+upvotes+' upvotes</div>') 
-      $('.views').html('<div>'+views+' views</div>');
-      $('.instructions').html('<div>Instructions: <ol>'+instruction_display+'</ol></div>');
-      $('.ingredients').html('<div>Ingredients: <ul>'+ingredient_display+'</ul></div>');
-      $('.est_time').html('<div>Estimated cook time:   '+est_time+' hours</div>');
-      $('.vegcheck').html('<div class="reciperestrictions">Meets these dietary restrictions:</div><input type="checkbox" onclick="return false"'+vegetarian);
+
+
+
+      $('.recipetitle').html('<div><strong>'+recipe_name+'</strong></div>');
+      $('.recipeimage').html('<img id="imagez" src="'+recipe_image+'" style="width:20vw;height:auto" />');     
+      $('.recipetype').html('<div><strong>Dish Type:</strong> '+recipe_type+'</div>'); 
+      $('.upvotes').html('<div><strong>'+upvotes+' </strong>upvotes</div>') 
+      $('.views').html('<div><strong>'+views+'</strong> views</div>');
+      $('.instructions').html('<div><strong>Instructions: </strong><ol>'+instruction_display+'</ol></div>');
+      $('.ingredients').html('<div><strong>Ingredients: </strong><ul>'+ingredient_display+'</ul></div>');
+      $('.est_time').html('<div><strong>Estimated cook time:</strong>   '+est_time+' hours</div>');
+      $('.vegcheck').html('<div class="reciperestrictions"><strong>Meets these dietary restrictions:</strong></div><input type="checkbox" onclick="return false"'+vegetarian);
       $('.vegancheck').html('<input type="checkbox" onclick="return false"'+vegan);
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
+// console.log(extra_info);
+      if (extra_info!== '' && extra_info!== undefined) {
+        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
+
+
+
+
+
 
 
       var image = document.getElementById('image');
@@ -469,43 +564,12 @@ function lucky_click() {
         image.src = '/graphics/GlobalGobi.png';
       }
 
+
     }
   });
 }
 
-$(function() {
-  $(".brand").click(function() {
-    if ( $("#features").hasClass("hidden")) {
-         $("#features").removeClass("hidden");
-         $("#features").slideDown("slow");              
-    } else {
-       if ( $("#features").is(":hidden")) {
-           $("#features").slideDown("slow");
-       } else {
-          $("#features").slideUp("slow");
-        }
-  }
-})
-})
-/*
-    $(".brand").hover(function() {
-        if ( $("#features").hasClass("hidden")) {
-          $("#features").removeClass("hidden");
-          $("#features").slideDown("slow");              
-            } else {
 
-
-                  if ( $("#features").is(":hidden")) {
-                     $("#features").slideDown("slow");
-                  } else {
-                  $("#features").slideUp("slow");
-                  }            
-            
-
-            }
-  })
-  })
-*/
 </script>
 
 
