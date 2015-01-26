@@ -293,6 +293,7 @@ module.exports = function(passport) {
 
    /*HANDLE login things POST to submit form*/ //BUT WHAT DO WE DO IF THE SIGNUP FAILS I DONT KNOW PLS HELP ME
   router.get('/Login', function(req, res){
+    console.log('login succesful');
     res.json({ //sends info to specify what should now be shown in the nav bar
           loggedIn: true,
           message: ' '
@@ -311,11 +312,11 @@ module.exports = function(passport) {
       });
 
       res.json({
-        username: req.user.username
+        username: req.user.username,
         vegetarian: req.user.vegetarian,
         vegan: req.user.vegan,
         allergies: req.user.allergies,
-        gluten_free: req.user.gluten_free
+        gluten_free: req.user.gluten_free,
         recipe_array: recipe_array
       });
     });
@@ -680,8 +681,8 @@ router.post('/findMarkers', function(req, res) {
   });
 */
   router.get('/Profile', isLoggedIn, function(req, res) {
-    res.render('Profile');
-  }
+    res.render('profile');
+  });
   
   /*Decide if a user CAN vote when the recipe is opened */
   router.post('/canUpvote', isLoggedIn, function(req, res) {
