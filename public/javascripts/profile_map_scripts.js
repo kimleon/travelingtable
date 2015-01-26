@@ -205,6 +205,7 @@ var map;
         var rec2 = recipe_position[2] + 30;
         var new_pos = [rec0, rec1, rec2];
         map.panTo(new_pos);
+        map.setZoom(7);
         var recipe_name;
         var recipe_type;
         var recipe_image;
