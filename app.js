@@ -1,3 +1,4 @@
+//for a custom error page, we used this tutorial as a guide: http://www.hacksparrow.com/express-js-custom-error-pages-404-and-500.html
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
