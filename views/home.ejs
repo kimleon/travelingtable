@@ -2,7 +2,12 @@
 <!doctype html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Traveling Table</title>
+<title>Traveling Table | Home</title>
+
+<link rel="shortcut icon" href="/graphics/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/graphics/favicon.ico" type="image/x-icon">
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
 <script src="https://maps.google.com/maps/api/js?sensor=true"></script>
@@ -266,7 +271,7 @@ function buttondisplay() {
             <div class="recipetype">Enjoy!</div><br>
             <div class="ingredients"></div><br>
             <div class="instructions"></div><br>
-            <div class="extra_info"></div><br>
+            <div class="extra_info"></div>
             <div class="vegcheck"></div>
             <div class="vegancheck"></div>
             <div class="gfcheck"><br></div>
@@ -348,6 +353,7 @@ function lucky_click() {
       //console.log('markerid: '+markerID2);
       var panPoint = new google.maps.LatLng(latitude,longitude);
       map.panTo(panPoint);
+      map.setZoom(7)
       var recipe_name;
       var recipe_type;
       var recipe_image;
@@ -458,10 +464,10 @@ function lucky_click() {
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
 
 
-      //var image = document.getElementById('image');
-        //image.onerror = function() {
-        //image.src = '/graphics/GlobalGobi.png';
-      //}
+      var image = document.getElementById('image');
+        image.onerror = function() {
+        image.src = '/graphics/GlobalGobi.png';
+      }
 
     }
   });

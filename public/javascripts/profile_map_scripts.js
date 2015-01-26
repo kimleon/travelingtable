@@ -100,6 +100,13 @@ var map;
           var top_coord = edges.getNorthEast().lat();
           var right_coord = edges.getNorthEast().lng();
           var bottom_coord = edges.getSouthWest().lat();
+          var pinIcon = new google.maps.MarkerImage(
+    "/graphics/marker.png",
+    null, /* size is determined at runtime */
+    null, /* origin is 0,0 */
+    null, /* anchor is bottom center of the scaled image */
+    new google.maps.Size(30,31)
+);  
           // console.log('got all the edges');
           // console.log(left_coord, top_coord, right_coord, bottom_coord);
 
@@ -127,7 +134,7 @@ var map;
                           position: new google.maps.LatLng(loc[1], loc[2]),
                           map: map,
                           customInfo: loc[0],
-                          icon:'/graphics/marker.png'
+                          icon:pinIcon
                       });
 
                       setListener(loc.marker);
@@ -152,6 +159,13 @@ var map;
           var top_coord = edges.getNorthEast().lat();
           var right_coord = edges.getNorthEast().lng();
           var bottom_coord = edges.getSouthWest().lat();
+          var pinIcon = new google.maps.MarkerImage(
+    "/graphics/marker.png",
+    null, /* size is determined at runtime */
+    null, /* origin is 0,0 */
+    null, /* anchor is bottom center of the scaled image */
+    new google.maps.Size(30,31)
+);  
           // console.log('got all the edges for USERS');
           // console.log(left_coord, top_coord, right_coord, bottom_coord);
           //ajax post edges
@@ -172,8 +186,8 @@ var map;
                           position: new google.maps.LatLng(loc[1], loc[2]),
                           map: map,
                           customInfo: loc[0],
-                          icon:'/graphics/marker.png'
-                      });
+                          icon: pinIcon
+                                                });
                       setListener(loc.marker);
            });
            }
@@ -191,6 +205,7 @@ var map;
         var rec2 = recipe_position[2] + 30;
         var new_pos = [rec0, rec1, rec2];
         map.panTo(new_pos);
+        map.setZoom(7);
         var recipe_name;
         var recipe_type;
         var recipe_image;

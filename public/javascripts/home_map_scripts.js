@@ -137,6 +137,15 @@ clusterSettings = {
             //console.log(locations)
           // get edges
           var edges = map.getBounds();
+
+          var pinIcon = new google.maps.MarkerImage(
+    "/graphics/marker.png",
+    null, /* size is determined at runtime */
+    null, /* origin is 0,0 */
+    null, /* anchor is bottom center of the scaled image */
+    new google.maps.Size(30,31)
+);  
+
           //console.log(edges);
           var left_coord = edges.getSouthWest().lng();
           var top_coord = edges.getNorthEast().lat();
@@ -170,7 +179,8 @@ clusterSettings = {
                           position: new google.maps.LatLng(loc[1], loc[2]),
                           map: map,
                           customInfo: loc[0],
-                          icon:'/graphics/marker.png',
+                          icon: pinIcon
+                          //icon:'/graphics/marker.png&marker=scale:2|',
                           //animation: null
                           //animation: google.maps.Animation.DROP
                       });
@@ -208,6 +218,14 @@ clusterSettings = {
           var top_coord = edges.getNorthEast().lat();
           var right_coord = edges.getNorthEast().lng();
           var bottom_coord = edges.getSouthWest().lat();
+
+          var pinIcon = new google.maps.MarkerImage(
+    "/graphics/marker.png",
+    null, /* size is determined at runtime */
+    null, /* origin is 0,0 */
+    null, /* anchor is bottom center of the scaled image */
+    new google.maps.Size(30, 31)
+);  
           //console.log('got all the edges');
           //console.log(left_coord, top_coord, right_coord, bottom_coord);
           //ajax post edges
@@ -229,7 +247,8 @@ clusterSettings = {
                           position: new google.maps.LatLng(loc[1], loc[2]),
                           map: map,
                           customInfo: loc[0],
-                          icon:'/graphics/marker.png',
+                          icon: pinIcon
+                          //icon:'/graphics/marker.png&marker=scale:2|',
                           //animation:null
                           //animation: google.maps.Animation.DROP
                       });
@@ -417,7 +436,7 @@ clusterSettings = {
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
 
             if (extra_info!== '') {
-        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'</div>');
+        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
       }
 
       var image = document.getElementById('image');
