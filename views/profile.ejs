@@ -26,6 +26,8 @@ $(document).ready(function(){
                 var vegan = data.vegan
                 var allergies = data.allergies
                 var glut = data.gluten_free
+                var username = data.username
+                var recipes = data.recipe_array
 
                 if (veg===true) {
                   $("#c1").html('<label><input type="checkbox" name="vegetarian" id="vegetarian" value="" checked>Vegetarian</label>')
@@ -71,17 +73,28 @@ $(document).ready(function(){
             <h2 style="text-align:center">Welcome, <%= username %></h2>
 
             <script type="text/javascript">randomPic();</script></br>
-            <h4 style="text-align:center"><%= haverecipes %></h4><br>
+            <h4 id="status" style="text-align:center">Check out the recipes you uploaded!</h4><br>
             <div class="recipes"><ul>
               <!--": "+ recipetitle[i][0] + is the value of the dish type-->
-            <% for(var i=0; i<recipetitle.length; i++) {%>
+            <!--<% for(var i=0; i<recipetitle.length; i++) {%>
 
                <!--<li><%= "<div id="+recipetitle[i][2]+">"+recipetitle[i][1]+ "</div>" %></li>-->
-               <li><a onclick="profileresult();" style="line-height:150%" id="<%=recipetitle[i][2]%>"><%=recipetitle[i][1]%></a></li>
-            <% } %>
+              <!-- <li><a onclick="profileresult();" style="line-height:150%" id="<%=recipetitle[i][2]%>"><%=recipetitle[i][1]%></a></li>
+            <% } %>-->
             </ul></div>
 
+<script>
+  if (recipes===[]){
+    $("#status").html("You haven't uploaded any recipes!")
+  } else {
+    rewrite = ''
+    for (var i=0;i<recipes.length;i++) {
+      rewrite = rewrite + "<li><a onclick='profileresult();' style='line-height:150%' id='"+recipes[i][1]+"'>"+recipes[i][0]+"</a></li>"
+    }
+    $(".recipes").html(rewrite);
+  }
 
+</script>
  
 
             </div>
