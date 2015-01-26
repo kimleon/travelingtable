@@ -122,9 +122,44 @@ body {
 	font-size:120%;
 }
 
+.navbar-default .navbar-nav .dropdown-menu {
+    background-color: #35d7b7;
+    color:white;
+    font-weight:300;
+    border-radius:0px 0px 30px 30px;
+    overflow:hidden;
+    padding:0;
+    border:0;
+  }
+
+
+
+.navbar-default .navbar-nav .dropdown-menu> li > a {
+	font-weight:300;
+	padding:1vw;
+	padding-left:20px;
+	background-color:white;
+	border:0;
+	color:#1777d0;
+}
+
+
+.navbar-default .navbar-nav .dropdown-menu> li > a:hover {
+	background-color:#F9FBFF;
+}
+
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     background-color: #2DBEB2;
     color: white;
+}
+
+
+#gray {
+	background-color:#F0F5FF;
+}
+
+#gray:hover {
+	background-color: #e8effc;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -133,13 +168,16 @@ body {
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
 	color: white;
 }
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+
+/*.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
 	color: #54f0b5;
 	background-color: #54f0b5;
-}
+}*/
+
+
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-	color: #54f0b5;
-	background-color: #54f0b5;
+	color: white;
+	background-color: #2DBEB2;
 }
 .navbar-default .navbar-toggle {
 	border-color: #54f0b5;
@@ -160,6 +198,7 @@ body {
 .navbar-default .navbar-link:hover {
 	color: #54f0b5;
 }
+
 
 
 
@@ -385,6 +424,7 @@ body {
   display:block;
   height:80vh;
   overflow:auto;
+  color:#7e7e7e;
 }
 
 
@@ -433,7 +473,9 @@ a:hover {
   background-color:white;
   border-bottom-right-radius:3em;
   border-bottom-left-radius: 3em;
-  overflow:auto;
+  overflow:scroll;
+  max-height:75vh;
+  min-width:250px;
 }
 
 .white2 {
@@ -443,6 +485,7 @@ a:hover {
 	width:35vw;
 	padding:1vw;
 	padding-left:20px;
+	min-width:250px;
 }
 .white2:hover {
 	background-color: #F9FBFF;
@@ -455,6 +498,7 @@ a:hover {
 	width:35vw;
 	padding:1vw;
 	padding-left:20px;
+	min-width:250px;
 }
 
 .gray2:hover {
@@ -551,3 +595,5 @@ div.our_pictures {
 #welcome_thing {
 	text-align: center;
 }
+
+

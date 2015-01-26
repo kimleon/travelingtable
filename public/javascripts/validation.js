@@ -48,12 +48,15 @@ function buttondisplay() {
 
 
 //<!--=========================== LOGIN FORM =========================================-> 
-
- $(function() {
+function loginvalidate(event) {
+ //$(function() {
     //console.log('Login function is happening')
     $('.error').hide();
-    $(".button").click(function() {
-       console.log('login button');
+
+    event.preventDefault();
+
+    //$(".button").click(function() {
+      // console.log('login button');
       // validate and process form here
       
       $('.error').hide();
@@ -129,8 +132,8 @@ function buttondisplay() {
 
 
 
-    });
-  });
+    //});
+  };
 
 
 
@@ -144,10 +147,11 @@ function buttondisplay() {
  //    });
  //  }); 
 
- $(function() {
+ function signupvalidate(event) {
     $('.error').hide();
+    event.preventDefault();
 
-    $(".signupbutton").click(function() {
+    //$(".signupbutton").click(function() {
     //$("#submit_btn.signupbutton.btn-large").submit(function() {
       // validate and process form here
       // console.log('signup happening');
@@ -180,6 +184,21 @@ function buttondisplay() {
         $("input#new_password").focus();
         return false;
       }
+
+
+      var confirm_password = $("input[name=confirmpassword]").val();
+      if (confirm_password === '') {
+        $("label#confirmpassword_error2").show();
+        $("input#confirmpassword").focus();
+        return false;
+      }
+
+      if (confirm_password !== new_password) {
+        $("label#confirmpassword_error").show();
+        $("input#confirmpassword").focus();
+        return false;
+      }
+
 
       var vegetarian = $("input[name=vegetarian]").prop("checked");
       var vegan = $("input[name=vegan]").prop("checked");
@@ -231,8 +250,8 @@ function buttondisplay() {
 
 
 
-    });
-  });
+    //});
+  };
 
   
 
@@ -728,7 +747,7 @@ $(function() {
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
 // console.log(extra_info);
-      if (extra_info!== '') {
+      if (extra_info!== '' && extra_info!== undefined) {
         $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
       }
 
@@ -857,7 +876,7 @@ function profileresult() {
       $('.ingredients').html('<div><strong>Ingredients:</strong> <ul>'+ingredient_display+'</ul></div>');
       $('.est_time').html('<div><strong>Estimated cook time:</strong>   '+est_time+' hours</div>');
       // console.log(extra_info);
-      if (extra_info!==''){
+      if (extra_info!=='' && extra_info!==undefined){
       $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
     }
 

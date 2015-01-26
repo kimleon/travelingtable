@@ -86,15 +86,14 @@ function buttondisplay() {
          <span class="icon-bar"></span>
          </button>
 
-         <a class="navbar-brand hidden-xs" href="#" style="vertical-align:center"><img src="graphics/GlobalGobi.png" class="brand" style="max-width:40px;height:auto"></a>
-         <a class="navbar-brand visible-xs" href="#" style="vertical-align:center"><img src="graphics/GlobalGobi.png" class="brand" style="max-width:40px;height:auto"></a>
+         <a class="navbar-brand hidden-xs" href="/" style="vertical-align:center"><img src="graphics/GlobalGobi.png" class="brand" style="max-width:40px;height:auto"></a>
+         <a class="navbar-brand visible-xs" href="/" style="vertical-align:center"><img src="graphics/GlobalGobi.png" class="brand" style="max-width:40px;height:auto"></a>
            
 
       </div>
       <div class="navbar-collapse collapse">
 
- 
-        
+
 
 <!--================================================================================-->
 <!--                                       h o m e  
@@ -111,7 +110,54 @@ function buttondisplay() {
 
 <ul class="nav navbar-nav navbar-right">
 
-    <li><a href="/">Home</a></li>
+<!--================================================================================-->
+<!--                                    f e a t u r e s 
+<!================================================================================-->
+
+
+<li class="dropdown">
+            <a href="#" id="myBtn" data-toggle="dropdown" class="dropdown-toggle">Features<b class="caret"></b></a>
+            <ul id="drop" class="dropdown-menu" hidden>
+                <li><a href="/heatmap" id="gray">Heatmap</a></li>
+                <li><a id="feeling_lucky" href="/#" onClick="lucky_click()" >I'm feeling lucky</a></li>
+                <li><a href="/GobiPhilosophy" id="gray">the Gobi philosophy</a></li>
+                <li><a href="/GobiPhilosophy">our story</a></li>
+            </ul>
+        </li>
+
+ <script>
+
+
+$(function() {
+$("#myBtn").click(function(){
+    if ( $("#drop").hasClass("hidden")) {
+         $("#drop").removeClass("hidden");
+         $("#drop").slideDown("slow");              
+    } else {
+       if ( $("#drop").is(":hidden")) {
+           $("#drop").slideDown("slow");
+       } else {
+          $("#drop").slideUp("slow");
+        }
+  }
+})
+})
+
+</script>
+<script>
+
+$(document).click(function(evt){    
+       if(evt.target.id !== "drop") {
+          if ($("#drop").hasClass("hidden")===false) {
+            $("#drop").slideUp("slow");
+            return;
+          }
+       }
+        });  
+
+</script>
+
+    <!--<li><a href="/">Home</a></li>-->
 
 
 
@@ -138,14 +184,6 @@ function buttondisplay() {
 <!--                       f e a t u r e s   t a b    
 <!-============================================================================-->
 
-<div id="features" class="hidden brand">
-<a href="/heatmap" class="gray">heatmap</a><br>
-<a href="/gobiphilosophy" class="white">the Gobi philosophy</a><br>
-<a href="/GobiPhilosophy" class="gray">our story</a><br>
-</div>
-
-
-<script>
 
 
 
@@ -158,22 +196,7 @@ $('#tab').click(function() {
 });
 </script>
 
-<script>
-$(function() {
-              $(".brand").click(function() {
-                  if ( $("#features").hasClass("hidden")) {
-                       $("#features").removeClass("hidden");
-                       $("#features").slideDown("slow");              
-                  } else {
-                       if ( $("#features").is(":hidden")) {
-                           $("#features").slideDown("slow");
-                       } else {
-                          $("#features").slideUp("slow");
-                        }
-              }
-            })
-          })
-</script>
+
 
 
 
