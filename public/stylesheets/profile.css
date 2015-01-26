@@ -8,12 +8,15 @@
 body {
 	margin:0;
 	font-family: 'Open Sans', sans-serif;
+	font-size:1em;
 }
 
 .avatar {
-	height: 20vh;
+	display:block;
+	height: 20vw;
 	width: auto;
 	z-index:3;
+	margin:0 auto;
 }
 
 #profile {
@@ -28,10 +31,25 @@ body {
 
 #profcontents {
 	margin: 0 auto;
-	width:31vw;
-	margin-top: 5vh;
+	width:40vw;
 	z-index:1;
+	padding:70px;
+	padding-top:30px;
+	padding-bottom:60px;
 	}
+
+
+#dietprefs {
+	margin: 0 auto;
+	width:40vw;
+	z-index:1;
+	padding:40px;
+	padding-top:80px;
+	padding-bottom:80px;
+	background-color:#57CBC1;
+	}
+
+
 	
 #map {
 	height:100vh;
@@ -77,4 +95,39 @@ color:white;
 	vertical-align: center;
 }
 
+ a {
+ 	color:white;
+ }
 
+a:hover{
+	color:#ffff89;
+}
+
+ .space {
+ 	margin-bottom:50px;
+ }
+
+
+ #pinklink{
+ 	color:#ec0763;
+ }
+
+#pinklink:hover{
+ 	color:#c80553;
+ }
+
+ #submit_btn2 {
+	border-radius:50px;
+	background-color:#D75261;
+	color:white;
+	border:0;
+	float:right;
+	bottom:2vh;
+	right:2vw;
+	margin:20px;
+	padding:5px 10px 5px 10px;
+}
+
+#submit_btn2:hover {
+	background-color:#c54755;
+}

@@ -9,7 +9,7 @@
 <script>
 function randomPic() {
     var x = Math.floor((Math.random() * 6) + 1);
-	document.write('<img src="/graphics/'+x.toString()+'.png" class="avatar" style="width:20vw;height:auto;" /> ');
+	document.write('<img src="/graphics/'+x.toString()+'.png" class="avatar"  /> ');
 }
 </script>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
@@ -75,17 +75,19 @@ $(document).ready(function(){
             <div class="recipes"><ul>
               <!--": "+ recipetitle[i][0] + is the value of the dish type-->
             <% for(var i=0; i<recipetitle.length; i++) {%>
+
                <!--<li><%= "<div id="+recipetitle[i][2]+">"+recipetitle[i][1]+ "</div>" %></li>-->
-               <li><a onclick="profileresult();" id="<%=recipetitle[i][2]%>"><%=recipetitle[i][1]%></a></li>
+               <li><a onclick="profileresult();" style="line-height:150%" id="<%=recipetitle[i][2]%>"><%=recipetitle[i][1]%></a></li>
             <% } %>
             </ul></div>
 
 
-            </br>
-            </br>
-            </br>
-            </br>
-            <p>Edit your dietary restriction:</p>
+ 
+
+            </div>
+            <div id="dietprefs">
+              <h4>Want to make your experience more personalized? You can choose which filters you want for any future searches you make.</h4><br>
+            <p>Edit your dietary preferences:</p>
                       <div class="checkbox" id="c1">
                         <label><input type="checkbox" name="vegetarian" id="vegetarian" value="">Vegetarian</label>
                       </div>
@@ -98,8 +100,9 @@ $(document).ready(function(){
                       <div class="checkbox" id="c4">
                         <label><input type="checkbox" name="allergies" id="allergies" value="">No peanuts/soy</label>
                       </div>
-                      <div id="submitted" hidden>Preferences submitted! We'll update those for you when you search.</div></br>
-                      <input type="submit" name="submit" class="dietprefbutton btn-large" id="submit_btn" value="Submit changes" />
+                      <div id="submitted" hidden>Preferences submitted! We'll update those for you when you search.</div>
+                      <input type="submit" name="submit" class="dietprefbutton btn-large" id="submit_btn2" value="Submit changes" />
+
             </div>
 </div>
 
@@ -121,7 +124,7 @@ $(document).ready(function(){
 
 
 
-<div id="back"><a href="/">take me back!</a></div>
+<div id="back"><a id="pinklink" href="/">take me back!</a></div>
 <div id="map"> </div>
 
 

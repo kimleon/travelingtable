@@ -99,7 +99,7 @@ var map;
           var bottom_coord = edges.getSouthWest().lat();
          $.ajax({
                 type: "POST",
-                url: "/findMarkers",
+                url: "/findUserMarkers",
                 data: '&left_coord='+left_coord+'&top_coord='+top_coord+'&right_coord='+right_coord+'&bottom_coord='+bottom_coord,
                 success: function(data) {
                   //console.log('recieving the data of markers');
