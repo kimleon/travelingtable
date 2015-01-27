@@ -31,7 +31,7 @@ function deletevalidate(event) {
 				//if (data.success===true) {
 					$("#"+String(deleteID)).hide();
           $("#close_modal").click();
-          $(".recipetitle").html('Recipe deleted!');
+          $(".recipetitle").html('Recipe deleted from our database!  This marker or recipe will not show up on our home map, or when you come back to our profile!');
           $(".recipeimage").html("");
           $(".viewsvotes").html("");
           $(".est_time").html("");
