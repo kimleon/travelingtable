@@ -387,9 +387,6 @@ function loginvalidate(event) {
       } 
       var latitude = latLng.lat();
       var longitude = latLng.lng();
-      
-      
-      
 
       var recipe_name = $("input[name=recipe_name]").val();
       if (recipe_name === "") {
@@ -460,7 +457,6 @@ function loginvalidate(event) {
       extra_info = extra_info.replace(/</g,'');
       extra_info = extra_info.replace(/>/g,'');
       //console.log('extra_info being sent over: '+extra_info);
-
 
       var vegetarian = $("input[name=vegetarian]").prop("checked");
       var vegan = $("input[name=vegan]").prop("checked");
@@ -800,8 +796,10 @@ $(function() {
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
 // console.log(extra_info);
-      if (extra_info!== '' && extra_info!== undefined) {
+      if (extra_info!== '' && extra_info !==undefined) {
         $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
+      } else {
+        $('.extra_info').html('');
       }
 
       var images = document.getElementById('imagez');
@@ -937,9 +935,11 @@ function profileresult() {
       $('.ingredients').html('<div><strong>Ingredients:</strong> <ul>'+ingredient_display+'</ul></div>');
       $('.est_time').html('<div><strong>Estimated cook time:</strong>   '+est_time+' hours</div>');
       // console.log(extra_info);
-      if (extra_info!=='' && extra_info!==undefined){
-      $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
-    }
+      if (extra_info!== '' && extra_info !==undefined) {
+        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
+      } else {
+        $('.extra_info').html('');
+      }
 
     var image = document.getElementById('images');
       image.onerror = function() {

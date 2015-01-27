@@ -220,7 +220,7 @@ var map;
         var markerID2 = marker.customInfo;
         var recipe_position = marker.getPosition();
         map.panTo(recipe_position);
-        map.setZoom(7);
+        map.setZoom(6);
         var recipe_name;
         var recipe_type;
         var recipe_image;
@@ -277,6 +277,13 @@ var map;
       $('.instructions').html('<div><strong>Instructions: </strong><ol>'+instruction_display+'</ol></div>');
       $('.ingredients').html('<div><strong>Ingredients:</strong> <ul>'+ingredient_display+'</ul></div>');
       $('.est_time').html('<div><strong>Estimated cook time:</strong>   '+est_time+' hours</div>');
+      
+
+                  if (extra_info!== '' && extra_info !==undefined) {
+        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
+      } else {
+        $('.extra_info').html('');
+      }
       
       var images = document.getElementById('imagez');
 
