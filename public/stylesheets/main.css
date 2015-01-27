@@ -790,15 +790,10 @@ a:hover {
 #gobi {
 	width:100vw;
 	height:auto;
-	position:absolute;
+	float:left;
+	display:inline;
 }
 
-#gobi2 {
-	width:100vw;
-	height:auto;
-	z-index:5;
-	position: absolute;
-}
 
 .gohome {
 	background-color:#1F140A;
@@ -807,16 +802,20 @@ a:hover {
 	display:block;
 	float:left;
 	position:absolute;
+	vertical-align: center;
 }
 
 .table {
-	display:block;
-	width:100px;
+	width:100vw;
 	height:auto;
+	position:inline;
+	display:inline-block;
 }
 
-#wrapper {
-	position:relative;
-	display:block;
-	float:left;
+.center {
+	vertical-align:center;
+	color:white;
+	font-size: 3em;
+	position:inline;
+	bottom:50px;
 }
