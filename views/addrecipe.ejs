@@ -34,11 +34,11 @@
 
 $(document).ready(function(){
     $(window).scroll(function(){
-        if ($(window).scrollTop() > 100){
+        if ($(window).scrollTop() > 300){
             $('#mapinstr').fadeOut(500);
             $('#recipeinstr').fadeIn(500)
         }
-    else if ($(window).scrollTop() < 100){
+    else if ($(window).scrollTop() < 300){
             $('#mapinstr').fadeIn(500);        
             $('#recipeinstr').fadeOut(500)
         }
@@ -53,8 +53,8 @@ $(document).ready(function(){
   <body>
     <div class="page">
       <div id="bar">
-      <div id="recipeinstr" class="fixedtop" id="instructionbar" hidden>Recipe Form: fill out the fields with your dish information</div>
-        <div id="mapinstr" class="fixedtop" id="instructionbar">Marker Placement: place a marker on the region your recipe comes from</div>      
+      <div id="recipeinstr" class="fixedtop" id="instructionbar" hidden><strong>Recipe Form:</strong> fill out the fields with your dish information</div>
+        <div id="mapinstr" class="fixedtop" id="instructionbar"><!--img src="/graphics/addsmall.png" /--><strong>Marker Placement:</strong> place a marker on the region your recipe comes from and click on the down arrow to continue</div>      
         <a href="/" style="right:0" id="cancel">Cancel Recipe</a>
       
       </div>
@@ -81,7 +81,6 @@ $(document).ready(function(){
     <div class="scroll"><a data-scroll data-options='{ "easing": "easeInOutQuad" }' href="#recipe_form"><button><img src="graphics/scroll copy.png" style="max-width:90%;"/></button></a></div>
     </div>
     
-    
 
             <!--<div id="form">-->
       <!--<h3>Add your recipe</h3>-->
@@ -89,9 +88,9 @@ $(document).ready(function(){
         <!--<h3 class="modal-title" id="myModalLabel" name="#recipe_form">Add your recipe</h3>-->
             <div class="modal-body" id="recipe_form">
 
-              <div class="scroll2"><a data-scroll data-options='{ "easing": "easeInOutQuad" }' href="#top"><button><img src="graphics/scrollup.png" style="max-width:90%;"/></button></a></div>
+              <div class="scroll2"><a data-scroll data-options='{ "easing": "easeInOutQuad" }' id="top"><button><img src="graphics/scrollup.png" style="max-width:90%;"/></button></a></div>
  <!--               <form method="post" name="recipe" action="">
-                    <fieldset>-->
+                    <fieldset>--></br></br></br></br>
 
                         <label for="recipe_name">Recipe Name: </label></br>
                         <input type="text" name="recipe_name" id="rec_name" placeholder=""  /></br>
