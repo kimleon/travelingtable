@@ -233,6 +233,7 @@ var map;
         var steps;
         var est_time;
         var views;
+        var extra_info
           $.ajax({
                 type: "POST",
                 url: "/viewRecipe",
@@ -251,6 +252,7 @@ var map;
                   steps = data.instructions[0].split('~`~,');
                   est_time = data.prep_time
                   views = data.views
+                  extra_info = data.extra_info
                   //console.log('breakpoint 2')
                  
           },
