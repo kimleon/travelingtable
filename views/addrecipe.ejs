@@ -29,26 +29,51 @@
 <script src="/javascripts/jquery.fileupload.js"></script>
 <script src="/javascripts/addInput.js"></script>
    
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $(window).scroll(function(){
+        if ($(window).scrollTop() > 100){
+            $('#mapinstr').fadeOut(500);
+            $('#recipeinstr').fadeIn(500)
+        }
+    else if ($(window).scrollTop() < 100){
+            $('#mapinstr').fadeIn(500);        
+            $('#recipeinstr').fadeOut(500)
+        }
+    });
+});
+</script>
+
+
+
 </head>
 
   <body>
     <div class="page">
-    <div id="instructionbar">
-      <div id="mapinstr" id="instructionbar"><h2>Place a marker to label the region your recipe comes from.</h2></div>
-    </div>
-    
-
-    <div id="instructionbar">
-        <div id="recipeinstr" id="instructionbar"><h2>Place a marker to label the region your recipe comes from. Fill out the recipe form with your dish information!</h2></div>
-
+      <div id="bar">
+      <div id="recipeinstr" class="fixedtop" id="instructionbar" hidden>Recipe Form: fill out the fields with your dish information</div>
+        <div id="mapinstr" class="fixedtop" id="instructionbar">Marker Placement: place a marker on the region your recipe comes from</div>      
+        <a href="/" style="right:0" id="cancel">Cancel Recipe</a>
+      
+      </div>
 
 
-      <ul id="nav_right" class="nav navbar-nav navbar-right">
-        <li><a href="/">Cancel Recipe</a></li>
-      </ul>
 
 
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <div id="mapsection">
@@ -63,6 +88,8 @@
            
         <!--<h3 class="modal-title" id="myModalLabel" name="#recipe_form">Add your recipe</h3>-->
             <div class="modal-body" id="recipe_form">
+
+              <div class="scroll2"><a data-scroll data-options='{ "easing": "easeInOutQuad" }' href="#top"><button><img src="graphics/scrollup.png" style="max-width:90%;"/></button></a></div>
  <!--               <form method="post" name="recipe" action="">
                     <fieldset>-->
 

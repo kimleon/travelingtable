@@ -268,6 +268,9 @@ function loginvalidate(event) {
 
 
 //<!--=========================== RECIPE FORM-=========================================->
+
+
+
 //limit input into the time estimated for prep field
   function isNumberKey(evt)
       {
@@ -375,7 +378,7 @@ function loginvalidate(event) {
 
       // validate and process form here
       
-      $('.error').hide();
+      //$('.error').hide();
       // console.log("Is this happening")
       if(latLng === false) {
         $('label#marker_error1').show();
@@ -807,6 +810,11 @@ $(function() {
         // console.log('this functn is being applied')
         images.src = '/graphics/GlobalGobi.png';
       }
+
+                   if ( $("#tab").is(":hidden")) {
+              //console.log('hidden')
+           $("#tab").show();
+         }
 
 };
 

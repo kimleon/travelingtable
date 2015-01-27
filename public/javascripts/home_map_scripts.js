@@ -462,11 +462,18 @@ clusterSettings = {
         $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
       }
 
+
+
       var image = document.getElementById('image');
       // console.log('this one is happening');
       image.onerror = function() {
         image.src = '/graphics/GlobalGobi.png';
       }
+
+             if ( $("#tab").is(":hidden")) {
+              //console.log('hidden')
+           $("#tab").show();
+         }
 
 
 //$('.').html('');
