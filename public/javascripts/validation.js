@@ -163,6 +163,12 @@ function loginvalidate(event) {
         $("input#new_username").focus();
         return false;
       }
+
+      if (new_username.length > 12) {
+        $("label#new_username_error3").show();
+        $("input#new_username").focus();
+        return false;
+      }
       if( /[^a-zA-Z0-9]/.test( new_username ) ) {
         $("label#new_username_error2").show();
         $("input#new_username").focus();
@@ -171,6 +177,11 @@ function loginvalidate(event) {
       
       var new_password = $("input[name=new_password]").val();
       // console.log(new_password);
+      if (new_password.length > 15) {
+        $("label#new_password_error3").show();
+        $("input#new_password").focus();
+        return false;
+      }
       if( /[^a-zA-Z0-9]/.test( new_password ) ) {
         $("label#new_password_error2").show();
         $("input#new_password").focus();
