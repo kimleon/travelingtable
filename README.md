@@ -1,23 +1,20 @@
+SOURCES:
+-Backend: uses Node, Express, MongoDB
+-Hosting: Heroku, with MongoLab addon for database
+-User authentication: Passport library: 
+	-TO PROVIDE USER AUTHENTICATION, we used the Passport library along with these tutorials/documentation:
+	-http://passportjs.org/guide/authenticate/
+	-http://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
+	-https://scotch.io/tutorials/easy-node-authentication-setup-and-local
 
+-Google maps (for home page and profile page):
+	-We used the google maps API for this part: https://developers.google.com/maps/
 
-***FOR BOTH SEARCH AND PROFILE: when you click on a recipe title link, will bring you to the location on the map where you have posted that recipe and will animate it-figure out how this works
+-Google Maps Heatmap:
+	-To create our heatmap, we followed the google Maps example for a heatmap by loading our own data and settings:
+	-https://developers.google.com/maps/documentation/javascript/examples/layer-heatmap
+-Google Maps Marker Clustering Library (file is saved though we import it from online):
+	-https://googlemaps.github.io/js-marker-clusterer/docs/reference.html
 
+FILL IN HERE
 
--Kim: HOW DO YOU STICK THE TABS TO THE BOTTOM OF THE NAV BAR WHAT IS BOOTSTRAP DOING TO ME
-
-
-AFTER MVP:
-3.  Deepti-figure out how the hell Charles is going to break our site and break and put as much security as you can
-
-
-FEATURES FOR AFTER MVP:
--Kiran: create all the missing pages (404 error page with sad gobis, etc)
--Kiran: limit what users can put as their usernames/passwords (no spaces etc)
--Kiran: add instructions for things (question mark button)
-
-
-WE HAVE TO STOP IMPLEMENTING FEATURES BY SATURDAY NIGHT AND DEVOTE THE REST OF THE TIME TO FINDING BUGS!!!!!
-
--
-
-WE NEED TO SEND OUT THE URL SO PEOPLE CAN START ADDING RECIPES
