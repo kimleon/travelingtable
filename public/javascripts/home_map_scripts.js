@@ -460,6 +460,8 @@ clusterSettings = {
 
             if (extra_info!== '' && extra_info !==undefined) {
         $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
+      } else {
+        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+"None"+'<br></div>');
       }
 
       var image = document.getElementById('image');

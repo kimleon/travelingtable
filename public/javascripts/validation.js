@@ -455,7 +455,6 @@ function loginvalidate(event) {
       extra_info = extra_info.replace(/>/g,'');
       //console.log('extra_info being sent over: '+extra_info);
 
-
       var vegetarian = $("input[name=vegetarian]").prop("checked");
       var vegan = $("input[name=vegan]").prop("checked");
       var gluten_free = $("input[name=gluten-free]").prop("checked");
