@@ -28,11 +28,18 @@ function deletevalidate(event) {
 			url: "/deleteRecipe",
 			data: datadelete,
 			success: function(data){
-				if (data.success===true) {
+				//if (data.success===true) {
 					$("#"+String(deleteID)).hide();
-					location.reload();
-					alert('cool');
-				}
+          $("#close_modal").click();
+          $(".recipetitle").html('Recipe deleted!');
+          $(".recipeimage").html("");
+          $(".viewsvotes").html("");
+          $(".est_time").html("");
+          $(".recipetype").html("");
+          $(".ingredients").html("");
+          $(".instructions").html("");
+          $(".extra_info").html('');					
+				//}
 			}
       })
 }
