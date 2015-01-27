@@ -38,7 +38,8 @@ function deletevalidate(event) {
           $(".recipetype").html("");
           $(".ingredients").html("");
           $(".instructions").html("");
-          $(".extra_info").html('');					
+          $(".extra_info").html('');	
+          $(".deletebutton").hide();				
 				//}
 			}
       })

@@ -220,7 +220,7 @@ var map;
         var markerID2 = marker.customInfo;
         var recipe_position = marker.getPosition();
         map.panTo(recipe_position);
-        map.setZoom(7);
+        map.setZoom(6);
         var recipe_name;
         var recipe_type;
         var recipe_image;
