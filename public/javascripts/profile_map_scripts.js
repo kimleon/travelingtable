@@ -278,6 +278,13 @@ var map;
       $('.ingredients').html('<div><strong>Ingredients:</strong> <ul>'+ingredient_display+'</ul></div>');
       $('.est_time').html('<div><strong>Estimated cook time:</strong>   '+est_time+' hours</div>');
       
+
+                  if (extra_info!== '' && extra_info !==undefined) {
+        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
+      } else {
+        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+"None"+'<br></div>');
+      }
+      
       var images = document.getElementById('imagez');
 
       images.onerror = function() {
