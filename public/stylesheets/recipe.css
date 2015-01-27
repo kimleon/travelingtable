@@ -29,6 +29,7 @@ body {
 	clear:left;
 	/*height:auto;*/
 	margin:0;
+	padding-left:5vw;
 	/*margin-top:10vw;*/
 }
 
@@ -255,7 +256,21 @@ background-color: #2DBEB2;
 	padding:3px 10px 3px 10px;
 	font-size:1em;
 	width:auto;
+	margin:5px;
 }
+
+#submit_btn3 {
+	border-radius:30px;
+	background-color:#dd2a5c;
+	color:white;
+	border:0;
+	padding:4px 12px 5px 12px;
+	font-size:1.2em;
+	width:auto;
+	float:right;
+	margin-right:3.8vw;
+}
+
 
 
 .navbutton {
@@ -341,11 +356,15 @@ background-color: #2DBEB2;
 
 .scroll2 {
 	z-index:1;
+	width:120px;
+	height:auto;
 	float:right;
 	/*bottom:22vh;*/
-	right:3vw;
-	position:relative;
+	right:5.3vw;
+	position:fixed;
 	margin:0px;
+	top:100px;
+	opacity:100;
 }
 
 
@@ -400,10 +419,10 @@ button {
 
 #bar {
 	width:100vw;
-	height:90px;
+	height:auto;
+	padding:6px;
 	z-index:8;
-	background-color:black;
-	opacity:0.5;
+	background-color:rgba(0,0,0,0.5);
 	top:0;
 	position:fixed;
 }
@@ -433,7 +452,6 @@ button {
 	padding:30px;
 	color:transparent;
 	background-color: transparent;
-	opacity:0;
 }
 input{
 	border-radius: 10px;

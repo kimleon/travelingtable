@@ -53,8 +53,11 @@ $(document).ready(function(){
   <body>
     <div class="page">
       <div id="bar">
-      <div id="recipeinstr" class="fixedtop" id="instructionbar" hidden><strong>Recipe Form:</strong> fill out the fields with your dish information</div>
-      <div class="fixedtop2" id="instructionbar"><strong>Recipe Form:</strong> fill out the fields with your dish information</div>
+        <div class="fixedtop2"><strong>Recipe Form:</strong> fill out the fields with your dish information</div>
+
+        
+      <div id="recipeinstr" class="fixedtop" id="instructionbar" hidden><strong>Recipe Form:</strong> fill out the fields with your dish information<div class="scroll2"><a data-scroll data-options='{ "easing": "easeInOutQuad" }' id="top"><button><img src="graphics/scrollup.png" style="max-width:90%;"/></button></a></div></div>
+      
         <div id="mapinstr" class="fixedtop" id="instructionbar"><!--img src="/graphics/addsmall.png" /--><strong>Marker Placement:</strong> place a marker on the region your recipe comes from and click on the down arrow to continue</div>      
         <a href="/" style="right:0" id="cancel">Cancel Recipe</a>
       
@@ -89,7 +92,7 @@ $(document).ready(function(){
         <!--<h3 class="modal-title" id="myModalLabel" name="#recipe_form">Add your recipe</h3>-->
             <div class="modal-body" id="recipe_form">
 
-              <div class="scroll2"><a data-scroll data-options='{ "easing": "easeInOutQuad" }' id="top"><button><img src="graphics/scrollup.png" style="max-width:90%;"/></button></a></div>
+              
  <!--               <form method="post" name="recipe" action="">
                     <fieldset>--></br></br></br></br>
 
@@ -174,7 +177,7 @@ $(document).ready(function(){
                       </br></br>
                       <label class="error" for="submit" id="marker_error1"> Choose the origin of your recipe on the map at the top of the page!</label></br>
                       <label class="error" for="submit" id="marker_error2"> Choose another location! A recipe already exists there.</label></br>
-                        <input for="submit_stuff" type="submit" name="submit" class="recipebutton" id="submit_btn" value="Submit Recipe" />
+                        <input for="submit_stuff" type="submit" name="submit" class="recipebutton" id="submit_btn3" value="Submit Recipe" />
 <!--                      </fieldset>
                   </form>-->
             </div>
