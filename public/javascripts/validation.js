@@ -384,9 +384,6 @@ function loginvalidate(event) {
       } 
       var latitude = latLng.lat();
       var longitude = latLng.lng();
-      
-      
-      
 
       var recipe_name = $("input[name=recipe_name]").val();
       if (recipe_name === "") {
