@@ -54,6 +54,7 @@ $(document).ready(function(){
     <div class="page">
       <div id="bar">
       <div id="recipeinstr" class="fixedtop" id="instructionbar" hidden><strong>Recipe Form:</strong> fill out the fields with your dish information</div>
+      <div class="fixedtop2" id="instructionbar"><strong>Recipe Form:</strong> fill out the fields with your dish information</div>
         <div id="mapinstr" class="fixedtop" id="instructionbar"><!--img src="/graphics/addsmall.png" /--><strong>Marker Placement:</strong> place a marker on the region your recipe comes from and click on the down arrow to continue</div>      
         <a href="/" style="right:0" id="cancel">Cancel Recipe</a>
       
@@ -121,8 +122,8 @@ $(document).ready(function(){
 
                           <div id="dynamicInput">
                             <label>Ingredients: </label><br>
-                                <li><input type="text" name="boxinput1" placeholder="1 egg" onkeypress="return separateKey(event)" /></li>
-                           </div>
+                                <li><input type="text" name="boxinput1" placeholder="1 egg" onkeypress="return separateKey(event)" id="one"/></li>
+                           </div><label class="error" for="ingredient" id="ingredient_error">Enter your ingredients! </label>
                            <br><input id="submit_btn" style="float:left" type="button" value="Add another ingredient" onClick="addInputbox('dynamicInput');">
                            <input id="submit_btn" style="float:left" type="button" value="Remove one" onClick="removeInputbox();">
                            <br><br><br>
@@ -132,10 +133,11 @@ $(document).ready(function(){
                       
                            <div id="dynamicInput2">
                             <label>Recipe Instructions: </label><br>
-                                Step 1<br><textarea type="text" class="bigger" name="input1"  onkeypress="return separateKey(event)" ></textarea><br>
-                           </div><br>
+                                Step 1<br><textarea type="text" class="bigger" name="input1"  id="two" onkeypress="return separateKey(event)" ></textarea><br>
+                           </div><label class="error" for="instructions" id="instruction_error">Enter your recipe instructions! </label><br>
                            <input id="submit_btn" style="float:left" type="button" value="Add next instruction" onClick="addInput('dynamicInput2');">
                            <input id="submit_btn" style="float:left" type="button" value="Remove" onClick="removeInput();">
+                           
                            <br><br><br>
                       
 

@@ -430,6 +430,22 @@ function loginvalidate(event) {
       }
 
 
+      var ingredient1 = $("input[name=boxinput1]").val();
+      if (ingredient1 ===''){
+        $('label#ingredient_error').show();
+        $('input#one').focus();
+        return false;
+      }
+
+
+      var instruction1 = $("textarea[name=input1]").val();
+      if (instruction1 ===''){
+        $('label#instruction_error').show();
+        $('textarea#two').focus();
+        return false;
+      }
+
+
       var recipe_image = $("input[name=recipe_image]").val();
       if (recipe_image === "") {
         $("label#recipe_image_error").show();
