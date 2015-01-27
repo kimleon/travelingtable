@@ -831,7 +831,7 @@ $(function() {
 
       images.onerror = function() {
         // console.log('this functn is being applied')
-        images.src = '/graphics/GlobalGobi.png';
+        images.src = '/graphics/errorgobi.png';
       }
 
                    if ( $("#tab").is(":hidden")) {
@@ -968,7 +968,7 @@ function profileresult() {
 
     var image = document.getElementById('images');
       image.onerror = function() {
-        image.src = '/graphics/GlobalGobi.png';
+        image.src = '/graphics/errorgobi.png';
       }
       /*$('.vegcheck').html('<div class="reciperestrictions">Meets these dietary restrictions:</div><input type="checkbox" onclick="return false"'+vegetarian);
       $('.vegancheck').html('<input type="checkbox" onclick="return false"'+vegan);

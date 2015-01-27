@@ -289,7 +289,7 @@ var map;
 
       images.onerror = function() {
         // console.log('this functn is being applied')
-        images.src = '/graphics/GlobalGobi.png';
+        images.src = '/graphics/errorgobi.png';
       }
       });
 
