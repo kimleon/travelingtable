@@ -64,6 +64,7 @@ function loginvalidate(event) {
       if (username === "") {
         $("label#username_error").show();
         $("input#username").focus();
+
         return false;
       }
 

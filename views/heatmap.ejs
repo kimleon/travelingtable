@@ -22,6 +22,7 @@ body{
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization"></script>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/javascripts/smooth-scroll.js"></script>
     <script src ="/javascripts/heatmap_scripts.js" ></script>
 
 
@@ -29,6 +30,13 @@ body{
   $("#signupmessage").hide();
   //$("#features").hide();
   //console.log("hiding features tab");
+</script>
+
+
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#heatmapModal').modal('show');
+    });
 </script>
 
 
@@ -145,7 +153,7 @@ $('.x2').click(function() {
         <div class="modal-content">
             <div class="modal-header">
               <button type="button" id = "close_modal" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-              <h2 class="modal-title" id="myModalLabel">What's a heatmap?</h2>
+              <h2 class="modal-title" id="myModalLabel">What does this heatmap represent?</h2>
             </div>
 
       <div class="modal-body" id="login_form">
@@ -176,7 +184,7 @@ $('.x2').click(function() {
                 <li><a href="/heatmap" id="gray">Heatmap</a></li>
                 <!--<li><a id="feeling_lucky" href="/#" onClick="lucky_click()" >I'm feeling lucky</a></li>-->
                 <li><a href="/GobiPhilosophy" id="white">the Gobi philosophy</a></li>
-                <li><a href="/GobiPhilosophy" id="gray">our story</a></li>
+                <li><a href="/GobiPhilosophy#aboutus" id="gray">our story</a></li>
             </ul>
         </li>
 
@@ -251,7 +259,16 @@ $(document).click(function(evt){
     <div id="map-canvas" style="top:0"></div>
 
 
-
+<script>
+        smoothScroll.init({
+          speed: 1000,
+          easing: 'easeInOutCubic',
+          offset: 0,
+          updateURL: true,
+          callbackBefore: function ( toggle, anchor ) {},
+          callbackAfter: function ( toggle, anchor ) {}
+        });
+    </script>
 
 
   </body>

@@ -269,7 +269,7 @@ var map;
       for (var j=0; j<steps.length;j++) {
         instruction_display=instruction_display+'<li>'+steps[j]+'</li>'
       }
-
+    $(".deletebutton").show();
       $('.recipetitle').html('<div>'+recipe_name+'</div>');
       $('.recipeimage').html('<img id="imagez" src="'+recipe_image+'" style="width:20vw;height:auto" />');     
       $('.recipetype').html('<div><strong>Dish Type:</strong> '+recipe_type+'</div>'); 

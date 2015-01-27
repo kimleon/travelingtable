@@ -9,8 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization"></script>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
+
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
+<script src="/javascripts/smooth-scroll.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/javascripts/parallax.min.js"></script>
 
 <script type="text/javascript">
   $("#signupmessage").hide();
@@ -107,8 +111,8 @@ function buttondisplay() {
             <ul id="drop" class="dropdown-menu" hidden>
                 <li><a href="/heatmap" id="gray">Heatmap</a></li>
                 <!--<li><a id="feeling_lucky" href="/#" onClick="lucky_click()" >I'm feeling lucky</a></li>-->
-                <li><a href="/GobiPhilosophy" id="white">the Gobi philosophy</a></li>
-                <li><a href="/GobiPhilosophy" id="gray">our story</a></li>
+                <li><a href="#" id="white">the Gobi philosophy</a></li>
+                <li><a data-scroll data-options='{ "easing": "easeInOutQuad" }' href="#aboutus" id="gray">our story</a></li>
             </ul>
         </li>
 
@@ -178,18 +182,17 @@ $(document).click(function(evt){
 
 
 
-
-
 <!--===========================================================================-->
 <!--                      i t s   o u r   p h i l o s o p h y      
 <!-============================================================================-->
 
 
 <div id="all_content">
+<div class="parallax-window" data-parallax="scroll" data-image-src="/graphics/gobi1.jpg"><br><br><br><br><img class="phil" src="/graphics/phil.png" /></div>
+
   <div id="philosophy">
-    <h3>The Gobi Philosophy</h3>
-    <p>
-      By the way, if you were wondering, “Gobi” means cauliflower in Hindi.  
+    
+      If you were wondering, “Gobi” means cauliflower in Hindi.  
 
       <br><br>
 
@@ -200,31 +203,33 @@ $(document).click(function(evt){
 <br><br>This website is meant to allow users to look for and share recipes around the world.  You can explore a cuisine you have always been interested in.  If you create an account, post recipes to share knowledge about the cuisine of your expertise! We can then personalize your experience even more by filtering recipes in our database based on dietary restrictions you specify to us, when you view the map or search for recipes.  Search for recipes by their title, look at the top 5 recipes in a given area, or just go around the world and explore all the recipes our users have shared.  We, the Global Gobis, have really enjoyed making this website and we hope you enjoy this experience as well!  Be sure to test out our “I’m feeling lucky” feature!
     </p>
   </div>
+  <div class="parallax-window" data-parallax="scroll" data-image-src="/graphics/us3.png"><br><Br><br><br><br><br><img class="phil" id="aboutus" src="/graphics/aboutus.png" /></div>
+
+
   <div id="about_us">
-    <h3>About Us</h3>
     <div id="our_stories">
       <div class="group_pic"></div>
-      <div id="kiran" class="single_story">
-        <h4>Kiran</h4>
+      <div class="single_story">
+        <span style="font-size:2.2em">Kiran</span>
 <!--         do we want pictures on this page?? -->
-        <div class="our_pictures"></div>
+        <div><img  class="our_pictures" src="/graphics/kiran.png" /></div>
         <p>
           Enter Kiran.  From a town called Edison in New Jersey, she eats gobi  and dances a lot.  She also does a little computer science.  At home, there was one dish she could not stay away from: Gobi Manchurian.  Her parents began to wonder why she asked for it so much, and she even choreographed a Bollywood dance for it.  She worked so hard, just doing a little front end work (choosing all the colors) to bring you this website, so the other people in this world could also see why she loves Gobi so much.  JK Kiran did most of the front end work. Also she chose her prom dress while thinking about hex color codes.  
 
         </p>
       </div>
-      <div id="deepti" class="single_story">
-        <h4>Deep.... DAAAY</h4>
-        <div class="our_pictures"></div>
+      <div class="single_story">
+        <span style="font-size:2.2em">Deepti</span>
+        <div><img  class="our_pictures" src="/graphics/deepti.png" /></div>
         <p>
           Deepti's gobi journey began at a young age. Moving from Singapore to the United States when she was 4, Deepti had little refuge from the confusing unknown that was her new home. The only thing she could look forward to were her mother's warm dinners every night. Deepti's most requested dish? A traditional North Indian item, gobi manchurian. Which brings us to present day Deepti. Hoping to share with the entire world the warmth and comfort that gobi has always provided her, Deepti worked tirelessly on this website. She hopes this website will bring a smile to all the other lil Deeptis out there.
           <br>
           #justdeeptithings
         </p>
       </div>
-      <div id="kim" class="single_story">
-        <h4>Kim</h4>
-        <div class="our_pictures"></div>
+      <div class="single_story">
+        <span style="font-size:2.2em">Kim</span>
+        <div><img  class="our_pictures" src="/graphics/kim.png" /></div>
         <p>  
          Kim, who longboarded to MIT all the way from the streets of LA, thought she had everything that would make her life content.  She decided to go on an adventure to India last summer. One day, Kim woke up, brushed her teeth, went to her internship (in Bangalore), but little did she know her life would change.  When she went out to dinner that day, she ordered Gobi Manchurian.  Once Gobi became a part of her life, nothing was the same.  She began to believe in the power that is Gobi.  Back here at MIT, as she hopes to share this discovery she made in India, she brings you this website.
         </p>
@@ -236,7 +241,16 @@ $(document).click(function(evt){
 </div>
 
 
-
+<script>
+        smoothScroll.init({
+          speed: 1000,
+          easing: 'easeInOutCubic',
+          offset: 0,
+          updateURL: true,
+          callbackBefore: function ( toggle, anchor ) {},
+          callbackAfter: function ( toggle, anchor ) {}
+        });
+    </script>
 
   </body>
 </html>
