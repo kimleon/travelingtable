@@ -793,8 +793,10 @@ $(function() {
       $('.gfcheck').html('<input type="checkbox" onclick="return false" '+gluten);
       $('.allergiescheck').html('<input type="checkbox" onclick="return false" '+allergies);
 // console.log(extra_info);
-      if (extra_info!== '' && extra_info!== undefined) {
+      if (extra_info!== '' && extra_info !==undefined) {
         $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
+      } else {
+        $('.extra_info').html('');
       }
 
       var images = document.getElementById('imagez');
@@ -925,9 +927,11 @@ function profileresult() {
       $('.ingredients').html('<div><strong>Ingredients:</strong> <ul>'+ingredient_display+'</ul></div>');
       $('.est_time').html('<div><strong>Estimated cook time:</strong>   '+est_time+' hours</div>');
       // console.log(extra_info);
-      if (extra_info!=='' && extra_info!==undefined){
-      $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
-    }
+      if (extra_info!== '' && extra_info !==undefined) {
+        $('.extra_info').html('<div><strong>Extra Information:</strong><br>'+extra_info+'<br></div>');
+      } else {
+        $('.extra_info').html('');
+      }
 
     var image = document.getElementById('images');
       image.onerror = function() {
