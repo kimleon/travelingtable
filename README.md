@@ -16,5 +16,19 @@ SOURCES:
 -Google Maps Marker Clustering Library (file is saved though we import it from online):
 	-https://googlemaps.github.io/js-marker-clusterer/docs/reference.html
 
-FILL IN HERE
+-Smooth Scroll
+	-http://cferdinandi.github.io/smooth-scroll/
 
+-Parallax Scrolling
+	-http://pixelcog.com/parallax.js/
+
+-Bootstrap modal guide
+	-http://www.adam-bray.com/blog/108/html-5-css-jquery-login-registration-popup-box/
+
+-Twitter Bootstrap
+	-http://getbootstrap.com/
+
+-Cauliflower image on Philosophy page
+	-http://www.skinnymommy.com/wp-content/uploads/2013/02/CAULIFLOWER101.jpg
+
+FILL IN HERE
