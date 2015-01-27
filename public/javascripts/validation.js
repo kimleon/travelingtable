@@ -606,6 +606,11 @@ $(function() {
                 top5_array[i][2] = 'Appetizer2'
               }
 
+               if (top5_array[i][2]==="Entree") {
+                              top5_array[i][2] = 'entree'
+                            }
+
+
               var intro = '<div class="';
               var next = '"><li><a href="#" onclick="resultClick(';
               var next2 = ')';
@@ -661,6 +666,9 @@ $(function() {
                 search_array[i][2] = 'Appetizer2'
               }
   
+               if (search_array[i][2]==="Entree") {
+                            search_array[i][2] = 'entree'
+                          }
               //replace=replace+"<div class='"+counter+"'><li><a href='#' onclick='resultClick('"+search_array[i][0]+"')"+"'>"+search_array[i][1]+': '+search_array[i][2]+"</a></li></div>"
               //replace = replace+intro+counter+next+search_array[i][0]+next2+next3+search_array[i][1]+next4+search_array[i][2]+next5;
               //replace=replace+intro+counter+'"><li><a href="#" onclick="result('+quote+input+quote+');">'+search_array[i][1]+': '+search_array[i][2]+"</a></li></div>";
