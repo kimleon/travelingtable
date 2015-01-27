@@ -777,3 +777,12 @@ a:hover {
   height: 100%;
   border-radius: 0;
 }
+
+.helpbutton {
+	background-color: #d3d3d3;
+	border-radius:25px;
+	padding:8px;
+	margin:5px;
+	color:white;
+	font-size:1.5em;
+	;}
